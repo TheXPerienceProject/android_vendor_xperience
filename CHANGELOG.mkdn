@@ -1,327 +1,466 @@
-CyanogenMod
-===============
+XPERIENCE 
+=========
 
-Visit http://github.com/CyanogenMod for full source and git access.
+9.1.0_r3
+[*] Bump to google 5.1.0_r3
+[*] active display
+[*] Fix ram manager problems
+[*] Fix leaks
+[*] Fix bugs
+[*] Alot of patches from CM-12.1
 
-Visit http://review.cyanogenmod.org for our Gerrit instance.
+9.0.2_r1
+[*] Bump to Android 5.0.2_r1
+[*] Fixed some crashes
+[*] Updated some Qcom SEPolicy's
+[*] Optimized memory usage
+[*] add caf source LA.BF.1.1-16 updated
+[*] More improvements you can read dayli changelogs or when is builded 
+new rom in the secnd post of thelephony thread
 
-CHANGELOG (notable new features)
----------
-### 11.0.0 M11
-* Common: Android 4.4.4 (Google)
-* New Devices: Galaxy S4 Active (jactivelte), Galaxy S4 SK I-9506 (ks01lte), Galaxy S5 GSM (klte), Galaxy Tab 10.1 (picassowifi), Galaxy Player 4.0 (ypg1)
-* Re-introduce Samsung Galaxy Relay 4G (apexqtmo) support
-* Fix signal strength showing ’2147483647′ on certain devices
-* Frameworks & Core Apps: CAF and other upstream updates
-* Lockscreen: Do not play sounds while a phone call is active & MSIM updates
-* Frameworks: Add base & MSIM APIs for SEEK (Secure Element Evaluation Kit) support
-* Frameworks: Fix volume button changing two ‘steps’ per click
-* Frameworks: Add ‘Screen Off’ action for double-tap/long-press configuration options
-* Show devices connected to your WiFi (tethering) Hotspot
-* Fix bug related to ‘switch to last app’ action while in Recents view
-* Fix Navigation Bar arrow keys in RTL locales
-* Translations updates from CyanogenMod CrowdIn team
-* Adjustments to ‘Glove Mode’ (High Touch Sensitivity)
-* APN Updates for various regions
-* Camera: Add support for all available Slow Shutter speeds (hardware dependent); Improve shutter button
-* Dialer/InCallUI: Fix smartcover always showing answer fragment
-* LG G2: Address GPS and NFC issues
-* Base support for HTC Desire 816 & HTC One Mini 2 (pending nightlies)
-* Various security updates
-* General bug fixes
+9.0.1_r1
+[*] Bump to Android 5.0.1_r1
+[*] Removed Apollo and DSPManager
+[*] Added AudioFX and ELEVEN
+[*] Wheater view support on status bar header
+[*] Netspeedmeter 
+[*] Custom label carrier
+[*] Show AM/PM
+[*] Circle battery , Hidden,Text , portrait and landscape
+[*] Fixed memori leaks
+[*] Updated source with CAF LA.BF.1.1.16
+[*] Updated libstagefright codecs
+[*] Added Google FFMPEG codecs
+[*] a lot of improvements
+[*] Updated translations
 
-### 11.0.0 M10
-* Common: Android 4.4.4 (Google)
-* New Devices: Galaxy S5 Sprint (kltespr)
-* Split out Note 3 into GSM (hlte), Sprint (hltespr) and Verizon (hltevzw)
-* Refactor moto_msm8960dt as 'ghost' for Moto X 2013
-* Drop support for obake, toro, toroplus
-* Theme Engine: Themes support for additional UI elements
-* Frameworks & Core Apps: CAF and other upstream updates
-* Settings: Add scramble pin feature
-* Frameworks: Long press recent apps to switch to last used app
-* Settings: Add soft reboot option
-* Add smart cover support
-* Add glove mode support
-* Add bug reporter and crash log uploader
-* Multisim updates
-* General bug fixes
-* ANT+ Support for various hardware
-* Privacy Guard: Control NFC permissions
+9.0.0_r1
+[*] Added new Animation
+[*] changed msm from AOSP to msm-caf
+[*] ffmpge support
+[*] libgui: Bring back support for mHeap-based screenshots
+[*] hal: add support for low-latency capture
+[*] blacklist support
+[*] Update SELinux policy for sysinit
+[*] wifi: Add log message if we fail to read the wifi type.
+[*] Changelog support on settings device info
+[*] Removed ota updater support [Now is a xperience rom not a AOSP]
+[*] more sys improvements
 
-### 11.0.0 M9
-* Common: Android 4.4.4 (Google)
-* New Devices: Sony Xperia Z2 Tablets (castor); HTC One (m8)
-* Theme Engine: Themes support for additional UI elements
-* Lockscreen: Allow doubletap to sleep when using secure keyguard
-* Settings: Safe Headset Volume – prompt when interfering with 3rd party device (Jawbone, Square, etc)
-* Settings: Center clock support
-* Settings: Proximity Wake-Up support
-* Settings: Spam notification filtering
-* Settings Search: Additional improvements and highlighting
-* Data Usage Info: Add support for CDMA devices without sim cards
-* Bluetooth: Add additional A2DP profiles
-* Bluetooth: Disable AVRCP 1.5 by default (fixes various car unit compatibility)
-* Email: Fix saving attachments to storage for POP3 accounts
-* Account for Play Services induced wake-locks
-* Fix encryption on some LG Devices
-* Dialer: add support for Korean and Chinese to smart-dialer
+9.0.0
+[*] Android 5.0.0_r7
+[*] dual-sim support
+[*] initial rel
 
-### 11.0.0 M8
-* Common: Android 4.4.4 (Google)
-* New Devices: Sony Xperia Z2 (sirius); Xiaomi Mi2 (aries); Oppo Find 7a/s (find7); OnePlus One (bacon)
-* Common: Fix VPN issues related to 4.4.3 merge
-* Common: Enable 'Heads Up' notification mode (Settings > Notifications)
-* Settings: 'Interface' replaced by 'Status Bar', 'Notification Drawer', and 'Gestures'
-* Settings: Moved 'Expanded Desktop' to 'Display'
-* Settings: Moved all lock screen related items to 'Lock Screen' and removed duplicates from 'Security'
-* Settings: Moved 'Navigation Bar' layout control to 'Buttons'
-* Trebuchet: Custom Homescreen grid size
-* Trebuchet: Add Protected Apps feature
-* Trebuchet: Add Search Panel (Google Now) option
-* WhisperPush: No longer ignores 'Blacklist'
-* Futex: Protect against Towelroot
-* Various small bugfixes, global and device-specific
+8.2.6
+[*] Recents: Implement CardStackView Redesign  (From https://gerrit.paranoidandroid.co/#/c/4790/)
+[*] Settings: Allow manual media scanning requests
+[*] Frameworks: msim: initialize sim icon to the known state 
+[*] Frameworks: Keyguard: Change SUB label to SIM 
+[*] Frameworks: Revert "Systemui: ignore bartransitions if we are not on highend gfx" 
+[*] Frameworks: lowmemorykiller: Overwrite LMK parameters for low-tier devices 
+[*] Frameworks: Fix memory leak in nativeDecodeFileDescriptor 
+[*] Frameworks: AudioService: Fix monitorRotation for landscape applications 
+[*] Frameworks: extmediaplayer: miscellaneous fix 
+[*] Telephony: Disable MSISDNEditPreference until init complete.
+[*] TeleService: fix vibrate on answer 
+[*] TeleService: Change labels for MSIM
+[*] core: Correct the sensors UID
+[*] mm-video-v4l2: venc: add support to configure initial qp
+[*] Qcom: PAtched kernel with support of the new mm-venc 
+[*] Fixed some Wifi issues (Falcon device)
+[*] Update kernel to v19 on grouper
+[*] Fixed issues with DSB if you use the Netspeedmeter
+[*] Alot of bugfixes
+[*] Support of new XPerience kernel on Falcon device
+[*] Final Stage Waiting for Release of Android 5.0 Source
 
-### 11.0.0 M7
-* Common: Android 4.4.2 (Google)
-* New Devices: HTC One (m8); Samsung Galaxy Tab Pro 8.4 (mondrianwifi); Galaxy Note 8.0 LTE (n5120); LG G2 Docomo (l01f)
-* Common: Theme Chooser UI Overhaul
-* Common: Calculator app redesign (courtesy Xlythe)
-* Common: Performance Profiles
-* Common: Improved theming performance on low memory devices (~512MB RAM or less)
-* Trebuchet: Move settings to new slide-out panel
-* Trebuchet: Consolidate settings for home and drawer options
-* Media: Add FFMPEG support (expanded media format support)
-* Bluetooth: Improved support for new car audio systems and docks
-* Various small bugfixes, global and device-specific
+8.2.5
+[*] Missing Msim archives on thelephony app
+[*] Added DSB (Aka Dynamic Status Bar from PA https://gerrit.paranoidandroid.co/4787)
+[*] Fix some alignements 
+[*] Fixed some Graphical Glitches
+[*] Fixed some random reboots
+[*] Fixed some freeze's
+[*] Improved SQL 
+[*] More clean transitions
+[*] mm-video-v4l2: use new API for Ion handles
+[*] Improve translations
+[*] Code cleanup
+[*] Reverted to older dobletap2wake on XPerience kernel 18a [Falcon]
+[*] Updated some dlmalloc for Grouper
+[*] updated grouper blobs
 
-### 10.2.0
-* Common: Android 4.3 (Google)
-* Common: Privacy Guard 2.0 with AppOps
-* Common: Quick Settings Ribbon (replaces Notification Power Widgets)
-* Common: Hardware Tunables HAL
-* Common: Settings restructure
-* SMS: Voice+ (Google Voice integration)
-* SMS: Middleware layer
-* APN: World Phone Support (unified APN list)
-* Trebuchet: Universal Icon Pack support
-* Various small bugfixes, global and device-specific
 
-### 10.1.3
-* Common: CyanogenMod Account
-* Common: Privacy Guard
-* Common: Dialer blacklists
-* Common: Wake-on-Home
-* Common: QuickSettings camera
-* Common: Profile improvements
-* Various small bugfixes, global and device-specific
+8.2.4
+[*] Fixed all issues related to the Theme engine (You can install Themes :D Not have FC anymore (Thnks to cyanogen and cyanogenmod team))
+[*] Multi-sim [Thnks PA I take his commits so I hope it work D: Because PA is based on AOSP like XPERIENCE]
+[*] Updated source ,
+[*] add support to new PEEK app
+[*] add suport to color calibration on xperience settings
+[*] vibrator intensity (Settings-->Sound-->Vibrator Intensity)
+[*] Make temporary QS toggles hideable
+[*] WallpaperCropper: respect max wallpaper width
+[*] Themes: Let ThemeService handle all theme processing [3/3]
+[*] Bug fixes
+[*] New wallpaper :D
+[*] Added xperience 18+
 
-### 10.1.2
-* Master Key #2 fix
+8.2.3
+[*] Updated adrenolibs on MSM8226 devices 
+[*] Make more inline to stock device config of Falcon(MSM8226)
+[*] fixed some bad configurations on falcon
+[*] added propper flags for Cortex-A5,Cortex-A7,Cortex-A8,Cortex-A9 Cortex-A15, Krait and Scorpio.
+[*] Added prebuilt of XPerience performance app (Because some builds from source make a bad app and make FC)
+[*] [WIP] Tinted status bar (thnks to MuhammadAG for make xposed module)
 
-### 10.1.1
-* Master Key #1 fix
+8.2.2
+[*] Make sure ThemeConfig is non-null when loading resources
+[*] Themes: Add ability to apply color filters to composed icons
+[*] Themes: Fix icon filters clamping to wrong values
+[*]	Themes: Make sure composed icon info is meaningful
+[*] Andy Mast	Themes: Fix blurry composed icons
+[*]	Themes: Load missing style attributes from original style
+[*]	Move idmap to frameworks/base [2/2]
+[*]	Themes: Avoid NPE when setting text in TickerView
+[*] Themes: Track NotFoundException on app launch failure
+[*] Themes: Fix setting wallpaper from a legacy theme
+[*] Themes: Remove listener if exception is thrown 
+[*] Themes: Fix native crash in libandroidfw 
+[*] msm8226: removed Motorola GPS stack
+[*] Vendor:Motorola: Reverted Asia GPS Blobs
+[*] add NTFS support
+[*] A lot of changes on telephony (I hope Multi-sim Work's and fix the issue on SystemUI Crashes)
+[*] changes and fixes on system core
+[*] Updated webchromium
+[*] Fix some memoryleaks
+[*] Fixed GPS spamming on logcat (msm8226 devices)
+[*] Updated gropuer device config to android 4.4.4_r2.0.1
+[*] fixes on GPS hal and Audio hal (msm8226)
+[*] Added xperience bootsound
 
-### 10.1.0
-* Common: Android 4.2.2 (Google)
-* Common: cLock Lockscreen and Homescreen Widget
-* Common: Theme Engine Support
-* Common: Customize Navigation Bar (on devices without hardware keys)
-* Common: Customize Notification Light
-* Common: Display Battery Light
-* Common: Profiles with NFC support
-* Common: Customize Screen Rotation
-* Common: Notification Power Widgets
-* Common: DSP Manager
-* Common: Volume Rocker Wake
-* Common: Performance Settings (I/O Scheduler, CPU Governor, etc)
-* Quick Settings: Panel Customization
-* Quick Settings: Toggle QS panel with horizontal swipe
-* Quick Settings: Split QS actionable area
-* Quick Settings: Added QS Tiles
-* Status Bar: Hide or Show Clock
-* Status Bar: Battery Percentage and Circle Battery
-* Status Bar: Show Notification Counts
-* Status Bar: Signal Status Customization
-* Status Bar: Set Date and Time as buttons (with longpress actions)
-* Trebuchet: Launcher Updates
-* Lockscreen: Slider Shortcuts
-* Lockscreen: Maximize Widgets on Wake
+8.2.1
 
-### 10.0.0
-* Common: Android 4.1.2 (Google)
+[*] Untangle the statusbar for dual sim (this is just enough to get the statusbar to not forceclose.)
+[*] MSimNetworkController: disable CHATTY logs
+[*] SystemUI (MSIM): Fix Airplane mode toggle issue using Quick Access menu.
+[*] msim: Add missing changes from New Theme Engine
+[*] Increase available volume levels 
+[*] add new init and shutdown dialog
+[*] added bootanimation audio support (system/media/bootsound.mp3)
+[*] Fixed some FC when you have a instaler Theme
+[*] Show notification when charging.
+[*] Re-add Network Traffic and some xperience utils
+[*] Release SQLite page cache as much as it can
+[*] Falcon: Updated fingerprints
+[*] msm8226: Use Motorola GPS stack
+[*] msm8226 falcon: Add custom ACDB IDs 
+[*] Build audio hal Build audio hal
+[*] msm8226-common: Add support for msm8226-tapan9302
+[*] msm8226-common: Use moto GPS asia dualsim 4.4.4 KXB21.14-L1.40 
+[*] msm8226-common: Update adreno libs from bacon
+[*] msm8226-common: Update to 4.4.4 KXB21.14-L1.40
+[*] updated some tvdpi (for tablets)
+[*] Updated Performance app to 1.3
 
-### 9.0.0
-* Common: Android 4.0.4 (Google)
+8.2.0
+[*] Added XPerience Kernel Tweaker v1.2 in settings
+[*] Added support of OTA Updater
+[*] Some cleanup in code
+[*] fixes on settings app
+[*] Fixed some ramdom freezings
 
-### 7.1.0
-* Common: Android 2.3.7 (Google)
-* Common: Bluetooth mouse support - Scott Brady
-* Common: Improve notification swipe-to-clear - Evan Charlton
-* Common: Improve album-artist support in media scanner - Paul Crovella
-* Common: Profile improvements and bugfixes - Martin Long, Danny Baumann, Robert Burns
-* Common: RTL text improvements - Eyad Aboulouz, Eran Mizrahi
-* Common: Wake on volume key option - Sven Dawitz
-* Common: Support for revoking application permissions - Plamen K. Kosseff
-* Common: Latest Superuser app - ChainsDD
-* Common: Control brightness by sliding on statusbar - Danesh M
-* Common: Add "copy all" to context menu - Danesh M
-* Common: Lockscreen haptic and statusbar indicators toggle - Danesh M
-* Common: Nicer timepicker/datepicker - Jiri Tyr
-* Common: Configuration 0/90/180/270 rotation - Jonas Larsson, Scott Brady
-* Common: DSP Manager bugfixes and improvements - Antti S Lankila
-* Common: Support for launching apps via gestures in the background - Jiri Tyr
-* Common: Option to hide hold button during call - Roberto Leinardi
-* Common: Allow using wildcards for call blacklisting - Nihanth Subramanya
-* Common: Option to allow in-call lockscreen to match main lockscren - Sven Dawitz
-* Common: Option to notify about incoming call only in background when screen is on - Pavel Kucera
-* Common: ADWLauncher- Transitions, catalog improvements, bugfixes - John Van Etten
-* Common: Optional GMT correction for SMS/MMS timestamps - Terry Hau
-* Common: Add FM Seek for TI devices - KalimochoAz
-* Common: Add FM support for SI4708 devices (Blade, V9, Racer) - Stéphane Konstantaropoulos
-* Common: Add FM seek implementation to FM application - Tom Giordano
-* Common: Show current FM status on lockscreen - Tom Giordano
-* Common: Camera touch-to-focus - cyanogen, arcee, m0viefreak, Danny Baumann
-* Common: Screenshot feature via power menu - arcee
-* Common: WEBP backport - Vikas Arora
-* Common: Add CM copyright noticies - arcee
-* Common: Skia/Zlib/libcore ARM optimizations - 0xlab
-* Common: Bluetooth tethering - Stéphane Konstantaropoulos
-* Common: Lockscreen widget alignment - Danesh Mondegarian
-* Common: Lockscreen calendar - David Morgan
-* Common: AVRCP 1.3 support - Qualcomm (bugfix by Danny Baumann)
-* Common: LED notification overhaul - Danny Baumann
-* Common: System-wide DNS cache - Google, SEMC
-* Common: Headset icon toggle - Cameron Pickett
-* Common: FM seek support - Emilio López, Tom Giordano
-* Common: Editable event fields in Contacts app - Danny Baumann
-* Common: Remove compromised CA from system certs - Guardian Project
-* Common: Mute camera shutter option - George Maizel
-* Common: Camera timer - Danesh Mondegarian
-* Common: "Mark all read" option in MMS - Vinod Surendran
-* Common: "eat" pushes fresh brunch/breakfast to device - Ricardo Cerqueira
-* Common: Customizable account color chip in Email - copolii
-* Common: "Rings" lockscreen - Valera Trubachev
-* Click, Motorola: Speed up photo recording - Emilio López
-* Click, Motorola: Add Geolocation to photo app - KalimochoAz
-* Click: Upgraded kernel from HTC 2.6.29 to 2.6.35
-* HTC msm7x30: 2.6.35 kernel and updated userspace
-* Buzz: 2.6.35 kernel - Arne Coucheron
-* Bravo(c)/Vivo(w)/Ace/Liberty: On charge notification led - Richard Antony Burton
-* Crespo/Crespo4G: Kernel update 2.6.35.14 and more, voodoo implementation, BLN, BLX...
-* Encore: Update kernel from 2.6.29 to 2.6.32 - Dalingrin,Fattire,Verygreen
-* Encore: New GPU drivers and userspace libs
-* Encore: Adjustable clockspeed and voltage - Dalingrin
-* Encore: Backport 2.6.35 Bluetooth - Fattire
-* Encore: Working mem sleep
-* Encore: USB host support - Verygreen
+8.1.9
 
-### 7.0.3
-* Common: Don't allow packages with platform keys on user-controlled storage
+[*] Reverted sensors improvements on PEEK now work on all device with Proximity sensor 
+(because sensor improvement use a Gyroscope and Moto G and others devices does not have it)
+[*] Optimized png's
+[*] Builded with 3.4.102-XPerience-13+_R2
+[*] Updated Theme engine.
+[*] Updated blobs for Nexus 7 (AKA Grouper)
+[*] ProximityWake: Squash and port from CyanogenMod
+[*] ActivityManager bug fixe
 
-### 7.0.2
-* Common: Fix issue with missing built-in themes
-* Common: Update bundled ROM Manager to latest version
-* Supersonic: Actually fix GPS
-* Supersonic: Fix proximity and light sensor
+8.1.8
 
-### 7.0.1
-* Common: Fix fling velocity of status bar and ADW swipe - Sven Dawitz
-* Common: Fixed webview layout bug (issue 3229) - Zinx
-* Common: Fix GVoice-opens-twice bug - Zinx
-* Common: Fix issues on all devices with DNS resolution failure after some time - Zinx, various
-* Common: RTL improvements - Eran Mizrahi, Eyad Aboulouz
-* Common: Fix crashes in Arabic locale - Eyad Aboulouz
-* Common: Add Arabic keylayout - Eyad Aboulouz
-* Common: Improve ADWLauncher scrolling/zoom performance - Pavel Kucera
-* Common: Fix excessive memory use when appending to textviews - Cyanogen
-* Common: New wallpapers from the CM community (CC License, see app for credits)
-* Common: Option to disable vibration while in-call - Evan Charlton
-* Common: Add long press option to status bar widgets for settings - Alex Avance
-* Common: Compact carrier and status bar tweaks - Nihanth Subramanya, rorifree
-* Sholes: Fix connectivity loss bug - cvpcs
-* Speedy: Fix keyboard lights - JD Horelick
-* Glacier: Fix backlights - Zinx
-* Glacier: fix GPS issues - Zinx/QCom
-* msm7x30: Fix bugs during video resume - Zinx
-* qsd8x50: Fix 720p video playback
-* qsd8x50: Unified 2.6.37 kernel - Cyanogen, toastcfh, slayher
-* Espresso, Legend: WiFi fix (HTC)
-* Supersonic: Fix GPS issues (HTC)
-* msm7227: Fix GPS issues - Alex Hofbauer
-* Click: Fix recovery kernel and compilation. Now works well with latest code - KalimochoAz
-* Click: Speed up internet connection - KalimochoAz
-* Blade: Update kernel to match Gen2 Radio - kallt_kaffe
-* Blade: Update libaudio to fix SIP audio routing and microphone mute - Tom Giordano
+[*] Fixed Audio issues
+[*] Fixed some SystemUI Fc's
+[*] Updated to android 4.4.4_r2
+[*] Kernel inside xperience-13+
+[*] Alot of changes
+[*] XPerience Settings :)
+[*] Some UI from Android L
+[*] Added XPerience Settings with tabs
+[*] Updated Theme engine in the last current patch's
+[*] Updated some translations
+[*] QuickSettings: Refresh RSSI tile on tap
+[*] Updates in PIE controls in force inmersive mode
+[*] Hover has themeable
+[*] Themes: Partial change: Use ArrayListExtra for broadcasting theme changes [1/2]
+[*] DisplayColor: Properly handle a minValue
+[*] Reverted disable LPA (for Motorola Devices)
+[*] Updated msm8226-common: Update to 4.4.4 KXB21.14-L1.40
+[*] Fixed Audio bug
+[*] Updated CarLib
+[*] Updates and fixes on Trebuchet and CMHome (AND Proper GEL integration)
+[*] Avoid Graphical Flickering and glitches
+[*] Marquee text RTL improvements
+[*] egl: Fix typo 
+[*] Fix QCOM_BSP ifdef 
+[*] egl: Add support for BGRA_8888 format
+[*] qcom/common: Added O_NOFOLLOW to avoid follow the symlink
+[*] Builded With Google's Gcc 4.8
 
-### 7.0.0
-* Common: Android 2.3.3 (Gingerbread) - Google
-* Common: Fixes and changes from AOSP master - Various
-* Common: ClockworkMod Recovery 3.0: Koush, Cyanogen, Zinx
-* Common: Themes engine - T-Mobile
-* Common: Performance enhancements for Qualcomm hardware - Code Aurora
-* Common: New boot animation - 73v1n - http://www.youtube.com/watch?v=mYXiKWwp0DQ
-* Common: Fix readahead values for NAND/MMC devices
-* Common: Revamped notification widget - cvpcs
-* Common: Updated various graphics for GB style - blunden
-* Common: DSPManager updated for 2.3 - alankila
-* Common: Restyled music app and forward-port of features - Jason Asher
-* Common: Rotary answer in Phone app - James Peterson
-* Common: BT VoiceDialer fixes - Matthew Sparby
-* Common: Calendar enhancements - James Peterson
-* Common: Stagefright fixes for 7x30, 8x50, and 7x27 - Zinx, arcee, Cyanogen
-* Common: Pacman package manager - Kmobs
-* Common: Workaround for unknown phone number - Jiri Tyr
-* Common: Trackball answer/hangup - Juan Rodriguez
-* Common: CMParts reorganization - Robert Burns
-* Common: View ChangeLog via CMParts (System) - Wes Garner
-* Common: Optional screen on/off animations - Diogo Ferreira
-* Common: New browser incognito mode - optedoblivion
-* Common: New trackball/trackpad wake - Zinx, Cyanogen
-* Common: Legacy sensor/GPS support - arcee
-* Common: Enabled v8 javascript engine on armv6 (msm7227/msm7225) - arcee
-* Common: Customizable overscroll - arcee
-* Common: Torch cleanup - defer
-* Common: 2D compositor backwards compatibility - arcee
-* Common: OpenGL backwards compatibility - Zinx, Cyanogen, Sileht, ezterry
-* Common: SMS templates using gestures - Riccardo Ciovati
-* Common: Phone Goggles - David Bidorff
-* Common: Option to always show battery percentage on lockscreen - Robert Burns
-* Common: Option to show music controls with compatible headset connection - Wes Garner
-* Common: CPU frequency/scaling control in CMParts - Robert Ramiega
-* Common: Option to pause/play music with camera button - cvpcs
-* Common: Allow SIP User-Agent configuration - arcee
-* Common (non-HTC): Fixed mobile connection suspension - arcee
-* Common: New music widgets - Jason Asher
-* Common: Updated FLAC support - cvpcs, Cyanogen, kroot
-* Common: Updated wallpapers - Fitsnugly, Prash
-* Common: Customizable search/long-press search - Sven Dawitz
-* Common: New lockscreen styles - Rotary Revamped (default) and Lense - Sven Dawitz, Stefano Pignataro
-* Common: Customizable app launcher on rotary lockscreen - Sven Dawitz
-* Common: Now playing and album art on lockscreen - kmobs
-* Common: GPS fixes - CodeAurora, arcee
-* Common: Breakfast/Brunch - arcee
-* Common: Statusbar battery percentage with mini icon - Sven Dawitz, design by Jazz Kalsi
-* Common: SMS split for braindead carriers - Mike Wielgosz
-* Common: MMS user-defined custom vibrate - Wes Garner
-* Common: CMParts cleanup - Sven Dawitz
-* Common: Notification profiles - Martin Long
-* Common: TI wl12xx FM radio reverse engineering - Michael A. Reid
-* Common: Tablet tweaks - Sven Dawitz
-* Common: Revamped CMStats - Chris Soyars
-* Common: Improved RTL text support and fonts - Eyad Aboulouz, Eran Mizrahi,
-* Espresso/Legend: Enabled native WiFi tethering - Cyanogen, OMAPZoom.org
-* Legend/Liberty/Buzz/Click: Enabled FM Radio - Alexander Hofbauer (libaudio patch)
-* Z71: Enabled MPEG4/AAC video recording - arcee
-* Z71: Enabled native WiFi tethering - arcee
-* Passion/Bravo/BravoC/Supersonic/Inc: Kernel 2.6.37 - Google, Cyanogen, defer, Kali-, toastcfh, slayher
-* Vision/Glacier/Espresso: WiFi calling compatibility and optimization - Zinx
-* Vision/Glacier/Ace: Unified kernel - HTC, Cyanogen, Zinx, Kali-, defer
-* Vision/Glacier/Ace: Fix FM radio on 2.3 - Zinx
-* Vision/Glacier/Ace: Fixes for video overlay - Zinx, CodeAurora
-* Vision: Only install WiFi calling on TMUS devices - attn1
-* Espresso/Legend/Liberty: Unified kernel - HTC, Cyanogen, attn1, jznomoney, Alexander Hofbauer
-* Supersonic: WiMAX support - HTC, Shinzul, toastcfh, shift, #teamwin, Cyanogen, Joey Conway
-* Supersonic: HDMI mirror support: #teamwin
-* ONE: Enabled native WiFi tethering - arcee
+8.1.6
+1/07/2014
+[*] MSIM: Fix crash during set subscription
+[*] MSIM: Add support for cell info
+[*] MSIM:Add null check to avoid phone app crash
+[*] MSimCallNotifier: remove override
+[*] settings: Auto-brightness levels shouldn't fill the screen
+[*] Settings: Make settings searchable. 
+[*] Settings: Check to see if menu items are null onPause
+[*] MountService: Handle UUID in list response
+[*] SettingConfirmationHelper: Unbreak public api
+[*] HOVER: Respect screen limits when adding view
+[*] Themes: add ability to theme quick settings battery tiles 
+[*] HOVER: Don't treat touch outside event as true if is animating
+[*] MSIM: Add support for cell info
+[*] Frameworks: Fix to avoid crash when the tab is not set.
+[*] audio: Inform audio HAL if it is a voice call initiated by Telephony
+[*] Use ArrayListExtra for broadcasting theme changes [1/2]
+[*] hwui: fix possible null pointer de-refrence
+[*] update parameters in uploadToTexture() for GLES20
+[*] update branch 'LNX.LA.3.5.2.2_rb1'
+[*] msm8226: Update latest adreno blobs from bacon
+[*] msm8226: Latest GPS blobs from bacon 
+[*] MSM8226-common: GPS: Minor hal update 
+[*] Alot of fixes for Grouper (AKA NEXUS 7 2012)
+
+/06/2014
+8.1.5
+[*] Android_4.4.4_r1
+[*] fixes
+[*] blackUI
+[*] Added DSPManager
+[*] New CMfilemanager
+[*] Fixes 
+[*] Android L wallpaper and Keyboard
+[*] Changes in Networkbatterysaber now reduced to 20seconds to change 2G when Screen is off
+[*] Support of new Wifi driver from XPerience Kernel
+[*] Internal changes :)
+[*] Added Dashclock
+
+23/06/2014
+
+[*] hover fixes for tablets
+[*] changes on Theme Engine
+[*] added changelog support
+[*] Keyguard: fix NPE setting lockscreen wallpaper
+[*] SystemUI: Make battery indicator themeable
+[*] Pie: Fix Pie positioning when PIE_ALWAYS_AT_RIGHT
+[*] PIE: Add themeable colors support 
+[*] Some black popups images
+[*] Added CPU INFO AND RAM INFO 
+
+XPerience-AOSP
+20/06/2014
+
+[*] Based on pure AOSP
+[*] Android 4.4.4
+[*] Added QuickSettings 3.1 from ParanoidAndroid
+[*] Added OTAupdate for Download Gaaps from that app :)
+[*] Peek
+[*] Hover
+[*] Theme Engine
+[*] Some Cherry pick from Cyanogenmod
+[*] like MSIM support
+[*] Taked commits from MotorolaMobilityLC
+[*] Krait improvements :D
+[*] Batterysaver in Settings->Mobile Networks-> Battery saving Mode :)
+[*] OC Working Proper :)
+[*] XPerience-03+ kernel (falcon device)
+[*] PIE controls
+[*] Themes: Add previews to the themes contract.
+[*] Themes: Add status bar and navigation bar to ThemesContract 
+[*] Fixed VPN acces
+[*] Fixed Thermald configs
+[*] Camera: Adds longshot commands …
+[*] Fix Widevine breakage on Falcon Google Play Edition
+[*]  Camera: Adds meta data message and commands …
+[*] Camera: Add meta data types for meta data callback …
+[*] init: uevent: Add msm video symbolic link handling …
+[*] init: Format userdata from fs_mgr if needed …
+[*] init: propagate hwrev from cmdline to property space …
+[*] fs_mgr: introduct recover_userdata …
+[*] init: set ro.hw.radio from UTAG …
+[*] mkbootimg: Add --dt parameter to specify DT image …
+[*]Port support for EMU analog audio to Android 4.4.2 …
+[*] Add MMI specific groups and property permissions …
+[*] audio: Add support tunnel mode recording …
+[*] system/core: Add tunnel format frame size …
+[*] system/core: New stream type and flag for incall music delivery …
+[*] Revert "get rid of HAL pixelformats 5551 and 4444" …
+[*] diag: Remove world read/write permissions from /dev/diag …
+[*] Camera: Extend few data structures for QCom features. …
+[*] audio: Add QCOM devices and audio formats …
+[*] system/core: Add support for FM feature 
+
+20140610
+[*] Bringup in to Android 4.4.3_r1.1
+[*] Fixed listviewanimations for 4.4.3
+[*] NotificationHelper: Define Peek app broadcast intents 
+[*]  NotificationHelper: Create broadcast receiver for Peek app
+[*] Fix BluetoothManager are broken before update source
+[*] sync status bar transparency state on theme change 
+[*] Themes: Avoid compiling icon packs every boot
+[*] framework: Add compass tile (1/2)
+[*] GEL Integration (1/3)
+[*] AOSP translations
+[*] Optimized Krait variant with Cortex-A15 flags
+[*] Updated flags to build with linaro 4.8.3
+[*] Optimized with pngcrush
+[*] Updated XPerienceSetupWizard
+[*] Trebuchet: Fixed DynamicProfile for Live Settings support
+[*] av: QC AAC encoder supports 320KBps 
+[*] Fix memory leak when filtering commands in insertCommand_l() 
+[*] Settings: Fix isPackageInstalled logic.
+[*] Fixed some Issues with superUSER
+
+20140602
+[*] added Animation on circle battery
+[*] perf: Send a boost hint when a key on the navbar is pressed 
+[*] Fix resource leaks 
+[*] appops: Fix WIFI_SCAN AppOp permission index" 
+[*] Fix wallpapers not applying in full screen 
+[*] Keyguard: Make sure disabling Camera widget
+[*] CM11 Themes: Don't kill setup wizards … 
+[*] CM11 Themes: Add themeChange config change to manifest
+[*] stagefright: yield callbackDispatcher to writer only for video
+[*] libstagefright: Fix to handle EAGAIN error on first read to source
+[*] audio: mute duration at the beginning of recording
+[*] RTSP: Fix crash issue while repeated pause/resume
+[*] Bluetooth: Fix for device gets stuck in pairing
+[*] Bluetooth: Acquire wakelock to turn on lcd during Connection
+[*] MSIM: Status & Subscriptions Status themes & navigation
+[*] NAtive: Ensure that app lib symlinks are correctly labeled when create
+[*] Themes: Fix -110 install error [1/2]
+[*] ART: fixes bootloop (caused by null pointer 4-byte align 64-bit values in Get/Set Double/Long for GCC 4.8.)
+[*] Art: Implement SetTargetMinHeapFree, SetTargetHeapConcurrentStart 
+[*] Frameworks_RS: Off warnings
+[*] Fixed some battery drain's
+[*] More faster and optimized with new flags for linaro.
+
+27/05/2014
+[*] Fixes for PEEK
+[*] Now have support for PEEK app :)
+[*] Fixes some null points
+[*] Now have fully sipport to New CM theme engine :)
+[*] Wallpaper lockscreen support
+[*] Fixes on CAF for Falcon devices and MultiSIM (XT1032,XT1033(multisim support))
+[*] Added Overclock into XPerience-01 Kernel for falcon device.
+
+14/06/2014
+[*] Common: Theme Chooser UI Overhaul
+[*] Common: Calculator app redesign (courtesy Xlythe)
+[*] Common: Performance Profiles
+[*] Common: Improved theming performance on low memory devices (~512MB RAM or less)
+[*] Trebuchet: Move settings to new slide-out panel
+[*] Trebuchet: Consolidate settings for home and drawer options
+[*] Media: Add FFMPEG support (expanded media format support)
+[*] Bluetooth: Improved support for new car audio systems and docks
+[*] Various small bugfixes, global and device-specific
+[*] HOVER from PA
+
+26/05/2014
+
+[*] New CM theme engine
+[*] Peek 
+[*] Optimizations 
+[*] Updates from AOSP
+[*] FFMPEG codecs
+[*] Telephony updates now have support to multi-sim devices :D
+[*] Bring support to Falcon device.
+
+22/04/14
+
+[*] Fixes for assets of new theme engine
+[*] Rom now support custom bootanimation,sounds wallpapper from themes like CM11 new themes.
+[*] Fixed memory leaks
+[*] Add entry to change lock wallpaper via themes 
+[*] Download: add to support pause/resume download by manual
+[*] Style previews [3/3]
+[*] Parallel shutdown 
+[*] Trebuchet: Fix capitalization of some strings
+[*] CM11 Themes: Store hash codes for target and overlay in idmap 
+[*] adb: Do not look for bu in /system/bin when in recovery mode 
+
+16/04/2014
+
+[*] New Theme engine from CM
+[*] Fixed some memory leaks
+[*] Updated Source to latest from AOSP
+[*] Updated some parts to MR5 from CM
+[*] Removed some duplicated options
+[*] Fixed some FC's on ScreenRecorder
+[*] Fixes on Shell(aka Bug report)
+[*] Fixes on Kernel Ramdisk to avoid Fc's like phone Fc and others :)
+[*] Implemented Changelog in device info setting
+[*] Reimplemented XPerienceStats.
+[*] Implemented XPerience Setup Wizzard (Based on CMAccount).
+[*] Reordened Settings :D
+
+27/03/2014
+
+[*] Added XPerience Stats :) all info are anonymous n_n you can check it on github
+[*] added hardware info on settings
+[*] Added multi-window
+[*] Screen recorder optimizations :D
+[*] Suport to SEMC (SOMC Sony Mobile) apps ;)
+[*] Added XPerience 17 kernel with propper ramdisk.
+
+20/03/2014
+
+[*] Internal fixes and changes. 
+[*] Reordened settings
+[*] New wallpaper :P
+
+01/03/2014
+
+[*] Fixed issue when ScreenRecorder is enabled.
+[*] XPerience kernel updated to v17
+
+25/02/2014
+
+[*] Updated to android 4.4.2_r2
+[*] White UI
+[*] Fixed FC in Settings 
+[*] Fixed some issues
+[*] Base: [1/2] ElectroBeam: Add an alternative screen-off animation
+[*] Settings: [2/2] ElectroBeam: Add an alternative screen-off animation
+
+Changelog:
+12/02/14
+[*] add option to force high-end graphics on low memory devices 
+[*] [1/2] Left handed navbar during landscape mode
+[*] Bring back Camera widget option for tablets
+[*] binder: update MemoryHeapIon
+
+7/feb/2014
+[*] add CPU info overlay [2/2]
+[*] Added XPerience Platlogo
+[*] Lockscreen blur
+
+
+XPE-8.0-RC0
+[*] Based on Android 4.4.2 (Google)
+[*] Cyanogenmod 11.0 (CM)
+[*] DarkUI thnks to SlimROMS and Cyanfox for port...
+[*] Multi-Window (XPlodWild from omnirom)
+[*] LastView animations
+[*] Screen recording
+[*] Optimization RGB 
+[*] Ram Optimization
+[*] RAM VAR
+[*] SpeedNET view
+
