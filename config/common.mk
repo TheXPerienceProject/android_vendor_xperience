@@ -103,7 +103,7 @@ PRODUCT_COPY_FILES +=  \
 
 #Performance app
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/XPeriencePerformance.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
+    vendor/XPe/prebuilt/common/app/XPeriencePerformance2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
