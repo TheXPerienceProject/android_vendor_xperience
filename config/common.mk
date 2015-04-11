@@ -105,6 +105,10 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/XPeriencePerformance2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
+#adblock fix
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/etc/hosts:system/etc/hosts
+
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
