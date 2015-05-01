@@ -88,6 +88,7 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/XPe/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
@@ -128,7 +129,8 @@ include vendor/XPe/config/themes_common.mk
 PRODUCT_PACKAGES += \
     Development \
     LatinIME \
-    BluetoothExt
+    BluetoothExt \
+    Profiles
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
@@ -218,7 +220,7 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 9
 PRODUCT_VERSION_MINOR = 1
-PRODUCT_VERSION_MAINTENANCE = 0_r5
+PRODUCT_VERSION_MAINTENANCE = 1_r1
 
 # Set CM_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
