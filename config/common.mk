@@ -92,6 +92,7 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+endif
 
 # CM-specific init file
 PRODUCT_COPY_FILES += \
