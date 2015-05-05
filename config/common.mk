@@ -126,6 +126,9 @@ PRODUCT_COPY_FILES += \
 # T-Mobile theme engine
 include vendor/XPe/config/themes_common.mk
 
+PRODUCT_BOOT_JARS += \
+	org.codeaurora.Performance 
+
 # Required CM packages
 PRODUCT_PACKAGES += \
     Development \
