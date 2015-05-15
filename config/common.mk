@@ -132,13 +132,14 @@ PRODUCT_BOOT_JARS += \
 #Quickboot for user builds
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk
+	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:/system/priv-app/QuickBoot/QuickBoot.apk
 endif
 #Quickboot for userdebug builds
 ifneq ($(TARGET_BUILD_VARIANT),userdebug)
 PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk
+	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk:/system/priv-app/QuickBoot/QuickBoot.apk
 endif
+
 
 # Required CM packages
 PRODUCT_PACKAGES += \
