@@ -129,6 +129,17 @@ include vendor/XPe/config/themes_common.mk
 PRODUCT_BOOT_JARS += \
 	org.codeaurora.Performance 
 
+#Quickboot for user builds
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_COPY_FILES += \
+	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk
+endif
+#Quickboot for userdebug builds
+ifneq ($(TARGET_BUILD_VARIANT),userdebug)
+PRODUCT_COPY_FILES += \
+	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk
+endif
+
 # Required CM packages
 PRODUCT_PACKAGES += \
     Development \
