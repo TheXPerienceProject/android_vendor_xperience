@@ -316,7 +316,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(CM_BUILDTYPE) \
   ro.modversion=$(CM_VERSION) \
   ro.xpe.model=$(CM_BUILD) \
-  ro.cmlegal.url=https://www.cyanogenmod.org/docs/privacy
+  ro.cmlegal.url=http://xpe.cynd.gq/privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
 
