@@ -101,6 +101,7 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/XPeriencePerformance2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
 #Fix Chromium fc workaround
+PRODUCT_COPY_FILES += \
 vendor/XPe/prebuilt/chromium/libwebviewchromium_loader.so:system/lib/libwebviewchromium_loader.so \
 vendor/XPe/prebuilt/chromium/libwebviewchromium_plat_support.so:system/lib/libwebviewchromium_plat_support.so
 
