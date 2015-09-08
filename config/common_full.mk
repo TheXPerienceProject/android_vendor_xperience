@@ -19,10 +19,12 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     PhotoTable \
     SoundRecorder \
-    PhotoPhase
+    PhotoPhase \
+    CMSettingsProvider
 
 # Extra tools in CM
 PRODUCT_PACKAGES += \
     vim \
     zip \
-    unrar
+    unrar \
+    curl
