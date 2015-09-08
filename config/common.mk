@@ -98,7 +98,7 @@ PRODUCT_COPY_FILES +=  \
 
 #Performance app
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/XPeriencePerformance2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
+    vendor/XPe/prebuilt/common/app/XPerienceInsiderbeta.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
 #Fix Chromium fc workaround
 PRODUCT_COPY_FILES += \
@@ -190,9 +190,6 @@ PRODUCT_PACKAGES += \
     mount.exfat \
     fsck.exfat \
     mkfs.exfat \
-    mkfs.f2fs \
-    fsck.f2fs \
-    fibmap.f2fs \
     ntfsfix \
     ntfs-3g \
     gdbserver \
@@ -200,6 +197,14 @@ PRODUCT_PACKAGES += \
     oprofiled \
     sqlite3 \
     strace
+
+# fix build on mac
+# ifeq ($(HOST_OS),linux)
+# PRODUCT_PACKAGES += \
+# mkfs.f2fs \
+# fsck.f2fs \
+# fibmap.f2fs
+# endif
 
 # Openssh
 PRODUCT_PACKAGES += \
