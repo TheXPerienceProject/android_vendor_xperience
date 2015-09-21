@@ -203,14 +203,6 @@ PRODUCT_PACKAGES += \
     sqlite3 \
     strace
 
-# fix build on mac
-# ifeq ($(HOST_OS),linux)
-# PRODUCT_PACKAGES += \
-# mkfs.f2fs \
-# fsck.f2fs \
-# fibmap.f2fs
-# endif
-
 # Openssh
 PRODUCT_PACKAGES += \
     scp \
@@ -252,7 +244,7 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 9
 PRODUCT_VERSION_MINOR = 1
-PRODUCT_VERSION_MAINTENANCE = 1_r13
+PRODUCT_VERSION_MAINTENANCE = 1_r18
 
 # Set CM_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
