@@ -126,8 +126,12 @@ PRODUCT_COPY_FILES += \
 # T-Mobile theme engine
 include vendor/XPe/config/themes_common.mk
 
+#remember codeaurora is only for msm
+#Falcon Tweaking
+ifeq ($(CM_BUILD), falcon)
 PRODUCT_BOOT_JARS += \
 	org.codeaurora.Performance 
+endif
 
 #Quickboot for user builds
 ifneq ($(TARGET_BUILD_VARIANT),user)
