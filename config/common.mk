@@ -168,15 +168,16 @@ PRODUCT_PACKAGES += \
 # Custom CM packages
 PRODUCT_PACKAGES += \
     AudioFX \
-    CMFileManager \
-    CMHome \
     CMWallpapers \
+    CMFileManager \
+    CMAccount \
+    CMHome \
+    CMSettingsProvider
     Eleven \
     Launcher3 \
     LockClock \
     Trebuchet \
     XPerienceCenter
-#   XPerienceSetupWizard <--Work in progress
 
 # CM Platform Library
 PRODUCT_PACKAGES += \
