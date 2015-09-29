@@ -128,7 +128,7 @@ include vendor/XPe/config/themes_common.mk
 
 #remember codeaurora is only for msm
 #Falcon Tweaking
-ifeq ($(CM_BUILD), falcon)
+ifeq ($(call is-vendor-board-platform,QCOM),true)
 PRODUCT_BOOT_JARS += \
 	org.codeaurora.Performance 
 endif
