@@ -360,7 +360,7 @@ ifndef CM_PLATFORM_SDK_VERSION
   CM_PLATFORM_SDK_VERSION := 2
 endif
 
-ifndef XPE_PLATFORM_REV
+ifndef CM_PLATFORM_REV
   # For internal SDK revisions that are hotfixed/patched
   # Reset after each XPE_PLATFORM_SDK_VERSION release
   # If you are doing a release and this is NOT 0, you are almost certainly doing it wrong
@@ -373,11 +373,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # CyanogenMod Platform SDK Version
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.build.version.plat.sdk=$(XPE_PLATFORM_SDK_VERSION)
+  ro.cm.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
 
 # CyanogenMod Platform Internal
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.build.version.plat.rev=$(XPE_PLATFORM_REV)
+  ro.cm.build.version.plat.rev=$(CM_PLATFORM_REV)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
