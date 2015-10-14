@@ -1,3 +1,3 @@
 #Buildtype and changelog
-export CM_BUILDTYPE := UNOFFICIAL
+export XPE_BUILDTYPE := UNOFFICIAL
 export XPERIENCE_CHANGELOG := true
