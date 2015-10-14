@@ -69,7 +69,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 #Falcon Tweaking
-ifeq ($(CM_BUILD), falcon)
+ifeq ($(XPE_BUILD), falcon)
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:system/etc/init.d/01XPerienceKernelCOnf
 endif
@@ -247,102 +247,102 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
-PRODUCT_VERSION_MAJOR = 9
-PRODUCT_VERSION_MINOR = 1
-PRODUCT_VERSION_MAINTENANCE = 1_r18
+PRODUCT_VERSION_MAJOR = 10
+PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MAINTENANCE = 0_beta1
 
-# Set CM_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set XPE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
-ifndef CM_BUILDTYPE
+ifndef XPE_BUILDTYPE
     ifdef RELEASE_TYPE
-        # Starting with "CM_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^CM_||g')
-        CM_BUILDTYPE := $(RELEASE_TYPE)
+        # Starting with "XPE_" is optional
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^XPE_||g')
+        XPE_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(CM_BUILDTYPE)),)
-    CM_BUILDTYPE :=
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
+    XPE_BUILDTYPE :=
 endif
 
-ifdef CM_BUILDTYPE
-    ifneq ($(CM_BUILDTYPE), SNAPSHOT)
-        ifdef CM_EXTRAVERSION
+ifdef XPE_BUILDTYPE
+    ifneq ($(XPE_BUILDTYPE), SNAPSHOT)
+        ifdef XPE_EXTRAVERSION
             # Force build type to EXPERIMENTAL
-            CM_BUILDTYPE := EXPERIMENTAL
-            # Remove leading dash from CM_EXTRAVERSION
-            CM_EXTRAVERSION := $(shell echo $(CM_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to CM_EXTRAVERSION
-            CM_EXTRAVERSION := -$(CM_EXTRAVERSION)
+            XPE_BUILDTYPE := EXPERIMENTAL
+            # Remove leading dash from XPE_EXTRAVERSION
+            XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to XPE_EXTRAVERSION
+            XPE_EXTRAVERSION := -$(XPE_EXTRAVERSION)
         endif
     else
-        ifndef CM_EXTRAVERSION
+        ifndef XPE_EXTRAVERSION
             # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            CM_BUILDTYPE := EXPERIMENTAL
+            XPE_BUILDTYPE := EXPERIMENTAL
         else
-            # Remove leading dash from CM_EXTRAVERSION
-            CM_EXTRAVERSION := $(shell echo $(CM_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to CM_EXTRAVERSION
-            CM_EXTRAVERSION := -$(CM_EXTRAVERSION)
+            # Remove leading dash from XPE_EXTRAVERSION
+            XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
+            # Add leading dash to XPE_EXTRAVERSION
+            XPE_EXTRAVERSION := -$(XPE_EXTRAVERSION)
         endif
     endif
 else
-    # If CM_BUILDTYPE is not defined, set to UNOFFICIAL
-    CM_BUILDTYPE := UNOFFICIAL
-    CM_EXTRAVERSION :=
+    # If XPE_BUILDTYPE is not defined, set to UNOFFICIAL
+    XPE_BUILDTYPE := UNOFFICIAL
+    XPE_EXTRAVERSION :=
 endif
 
-ifeq ($(CM_BUILDTYPE), UNOFFICIAL)
+ifeq ($(XPE_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        CM_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        XPE_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-ifeq ($(CM_BUILDTYPE), RELEASE)
+ifeq ($(XPE_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(CM_BUILD)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(shell date -u +%Y%m%d)-$(CM_BUILD)
+            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
         else
-            CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(CM_BUILD)
+            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
         endif
     endif
 else
     ifeq ($(PRODUCT_VERSION_MINOR),0)
-        CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)$(CM_EXTRAVERSION)-$(CM_BUILD)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
     else
-        CM_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(CM_BUILDTYPE)$(CM_EXTRAVERSION)-$(CM_BUILD)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
     endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.xpe.version=$(CM_VERSION) \
-  ro.xpe.releasetype=$(CM_BUILDTYPE) \
-  ro.modversion=$(CM_VERSION) \
-  ro.xpe.model=$(CM_BUILD) \
-  ro.cmlegal.url=http://xpe.cynd.gq/privacy.html
+  ro.xpe.version=$(XPE_VERSION) \
+  ro.xpe.releasetype=$(XPE_BUILDTYPE) \
+  ro.modversion=$(XPE_VERSION) \
+  ro.xpe.model=$(XPE_BUILD) \
+  ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
 
-CM_DISPLAY_VERSION := $(CM_VERSION)
+XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-  ifneq ($(CM_BUILDTYPE), UNOFFICIAL)
+  ifneq ($(XPE_BUILDTYPE), UNOFFICIAL)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-      ifneq ($(CM_EXTRAVERSION),)
-        # Remove leading dash from CM_EXTRAVERSION
-        CM_EXTRAVERSION := $(shell echo $(CM_EXTRAVERSION) | sed 's/-//')
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(CM_EXTRAVERSION)
+      ifneq ($(XPE_EXTRAVERSION),)
+        # Remove leading dash from XPE_EXTRAVERSION
+        XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
+        TARGET_VENDOR_RELEASE_BUILD_ID := $(XPE_EXTRAVERSION)
       else
         TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
       endif
     else
       TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
     endif
-    CM_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
+    XPE_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
   endif
 endif
 endif
@@ -360,24 +360,24 @@ ifndef CM_PLATFORM_SDK_VERSION
   CM_PLATFORM_SDK_VERSION := 2
 endif
 
-ifndef CM_PLATFORM_REV
+ifndef XPE_PLATFORM_REV
   # For internal SDK revisions that are hotfixed/patched
-  # Reset after each CM_PLATFORM_SDK_VERSION release
+  # Reset after each XPE_PLATFORM_SDK_VERSION release
   # If you are doing a release and this is NOT 0, you are almost certainly doing it wrong
   CM_PLATFORM_REV := 0
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.display.version=$(CM_DISPLAY_VERSION) \
-  ro.xpe.display.version=$(CM_DISPLAY_VERSION)
+  ro.cm.display.version=$(XPE_DISPLAY_VERSION) \
+  ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
 
 # CyanogenMod Platform SDK Version
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
+  ro.cm.build.version.plat.sdk=$(XPE_PLATFORM_SDK_VERSION)
 
 # CyanogenMod Platform Internal
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.build.version.plat.rev=$(CM_PLATFORM_REV)
+  ro.cm.build.version.plat.rev=$(XPE_PLATFORM_REV)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
