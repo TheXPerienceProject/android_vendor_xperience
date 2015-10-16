@@ -176,7 +176,7 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     CMAccount \
     CMHome \
-    CMSettingsProvider
+    CMSettingsProvider \
     Eleven \
     Launcher3 \
     LockClock \
