@@ -254,6 +254,10 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
+PRODUCT_VERSION_MAJOR = 10
+PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MAINTENANCE = 0_beta1
+
 -include vendor/XPe/xperienced.mk
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
