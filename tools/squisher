@@ -28,6 +28,18 @@ OPTICHARGER=$ANDROID_BUILD_TOP/vendor/XPe/tools/opticharger
 QUIET=-q
 DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 
+# Delete specific files for lower ram devices
+if [ "$XPE_LOW_RAM_DEVICE" = "true" ]; then
+    if [ -f $ANDROID_BUILD_TOP/vendor/XPe/tools/squisher-lrd.rm ]; then
+        echo -e "${bldblu}This device is low-RAM"
+        for RM_FILE in `cat $ANDROID_BUILD_TOP/vendor/XPe/tools/squisher-lrd.rm`; do
+            rm -rf $OUT/$RM_FILE
+            echo -e "${cya} $RM_FILE"
+        done
+        echo -e "${bldblu}These applications have been removed${txtrst}"
+    fi
+fi
+
 # Optimize PNG resources in APKs
 ( cd $OUT/system; find framework/ app/ priv-app/ -name \*.apk -print | $XARGS $OPTICHARGER; )
 
