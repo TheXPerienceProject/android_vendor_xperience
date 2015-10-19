@@ -111,7 +111,7 @@ endif
 
 # CM-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.cm.rc
+    vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
 
 # Bring in camera effects
 PRODUCT_COPY_FILES +=  \
