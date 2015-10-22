@@ -17,7 +17,7 @@
  */
 -->
 <resources>
-    <string name="def_backup_transport">com.google.android.backup/.BackupTransportService</string>
+    <string name="def_backup_transport">com.google.android.gms/.backup.BackupTransportService</string>
 
     <!-- SOMC XPERIENCE -->
     <!--<integer name="def_battery_style">6</integer> -->
