@@ -1,8 +1,8 @@
-# Inherit common CM stuff
+# Inherit common XPe stuff
 $(call inherit-product, vendor/XPe/config/common.mk)
 
-# Include CM audio files
-include vendor/XPe/config/cm_audio.mk
+# Include XPe audio files
+include vendor/XPe/config/xpe_audio.mk
 
 ifeq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
     PRODUCT_COPY_FILES += \
