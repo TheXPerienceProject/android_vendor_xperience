@@ -31,7 +31,7 @@ endif
 
 #well I add ringtones here for all devices
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Titania.ogg \
+    ro.config.ringtone=BeatPlucker.ogg \
     ro.config.notification_sound=Tethys.ogg \
     ro.config.alarm_alert=Osmium.ogg
     

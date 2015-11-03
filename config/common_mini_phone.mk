@@ -4,6 +4,13 @@ $(call inherit-product, vendor/XPe/config/common.mk)
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
 
+# Required CM packages
+PRODUCT_PACKAGES += \
+LatinIME
+
+# Include CM LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/dictionaries
+
 # Include XPe LatinIME dictionaries
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/XPEKey/app/ExternalKeyboardsInternational/ExternalKeyboardsInternational.apk:system/app/ExternalKeyboardsInternational/ExternalKeyboardsInternational.apk \
