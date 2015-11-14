@@ -26,7 +26,8 @@ PRODUCT_PACKAGES += \
 
 # Extra tools in XPe
 PRODUCT_PACKAGES += \
-    vim \
-    zip \
+    bzip2 \
+    curl \
     unrar \
-    curl
+    vim \
+    zip
