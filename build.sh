@@ -46,15 +46,15 @@ JVER=$(javac -version  2>&1 | head -n1 | cut -f2 -d' ')
 DEVICE="$1"
 EXTRAS="$2"
 
-
+if [ $ARCH = "64" ]; then
   # Get build version
   MAJOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed  's/PRODUCT_VERSION_MAJOR := //g')
   MINOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
-  MAINTENANCE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/ROM_VERSION_MAINTENANCE := //g')
-  TAG=$(cat $DIR/vendor/XPe/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/PRODUCT_VERSION_TAG := //g')
+  MAINTENANCE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/PRODUCT_VERSION_MAINTENANCE := //g')
+  TAG=$(cat $DIR/vendor/XPe/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/ROM_VERSION_TAG := //g')
 
   if [ -n "$TAG" ]; then
-          VERSION=$MAJOR.$MINOR$MAINTENANCE-$TAG
+          VERSION=$MAJOR.$MINOR.$MAINTENANCE-$TAG
   else
           VERSION=$MAJOR.$MINOR.$MAINTENANCE
   fi
