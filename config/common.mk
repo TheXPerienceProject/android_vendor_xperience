@@ -162,6 +162,9 @@ PRODUCT_COPY_FILES += \
 endif
 endif
 
+# T-Mobile theme engine
+#include vendor/XPe/config/themes_common.mk
+
 # Required CM packages
 PRODUCT_PACKAGES += \
     Development \
