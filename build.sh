@@ -46,7 +46,7 @@ JVER=$(javac -version  2>&1 | head -n1 | cut -f2 -d' ')
 DEVICE="$1"
 EXTRAS="$2"
 
-if [ $ARCH = "64" ]; then
+
   # Get build version
   MAJOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed  's/PRODUCT_VERSION_MAJOR := //g')
   MINOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
