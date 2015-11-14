@@ -27,8 +27,10 @@ PRODUCT_PACKAGES += \
 # Extra tools in XPe
 PRODUCT_PACKAGES += \
     7z \
+    bash \
     bzip2 \
     curl \
+    powertop \
     unrar \
     unzip \
     vim \
