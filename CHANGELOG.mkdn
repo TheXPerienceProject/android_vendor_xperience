@@ -1,6 +1,12 @@
 XPERIENCE 
 =========
 
+10.0
+[*] Android 6.0
+[*] CM security patches
+[*] Caf patches
+[*] some old features
+
 9.1.0_r3
 [*] Bump to google 5.1.0_r3
 [*] active display

@@ -113,19 +113,14 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
 
-# Bring in camera effects
-PRODUCT_COPY_FILES +=  \
-    vendor/XPe/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
-    vendor/XPe/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
-
 #Performance app
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/XPerienceInsiderbeta.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
 #Fix Chromium fc workaround
-PRODUCT_COPY_FILES += \
-vendor/XPe/prebuilt/chromium/libwebviewchromium_loader.so:system/lib/libwebviewchromium_loader.so \
-vendor/XPe/prebuilt/chromium/libwebviewchromium_plat_support.so:system/lib/libwebviewchromium_plat_support.so
+#PRODUCT_COPY_FILES += \
+#vendor/XPe/prebuilt/chromium/libwebviewchromium_loader.so:system/lib/libwebviewchromium_loader.so \
+#vendor/XPe/prebuilt/chromium/libwebviewchromium_plat_support.so:system/lib/libwebviewchromium_plat_support.so
 
 #adblock fix
 PRODUCT_COPY_FILES += \
@@ -134,10 +129,6 @@ PRODUCT_COPY_FILES += \
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
-
-# Copy over added mimetype supported in libcore.net.MimeUtils
-PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -150,9 +141,6 @@ PRODUCT_COPY_FILES += \
 # This is CM!
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
-
-# T-Mobile theme engine
-include vendor/XPe/config/themes_common.mk
 
 #remember codeaurora is only for msm
 #Falcon Tweaking
@@ -182,7 +170,6 @@ PRODUCT_PACKAGES += \
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
-    Basic \
     libemoji \
     Terminal \
     VoicePlus 
@@ -192,10 +179,9 @@ PRODUCT_PACKAGES += \
     AudioFX \
     CMWallpapers \
     CMFileManager \
-    CMAccount \
-    CMHome \
     CMSettingsProvider \
     Eleven \
+    ExactCalculator \
     Launcher3 \
     LockClock \
     Trebuchet \
@@ -223,19 +209,26 @@ PRODUCT_PACKAGES += \
     htop \
     powertop \
     lsof \
-    mount.exfat \
-    fsck.exfat \
-    mkfs.exfat \
     mkfs.f2fs \
     fsck.f2fs \
     fibmap.f2fs \
-    ntfsfix \
-    ntfs-3g \
+    mkfs.ntfs \
+    fsck.ntfs \
+    mount.ntfs \
     gdbserver \
     micro_bench \
     oprofiled \
     sqlite3 \
     strace
+
+WITH_EXFAT ?= true
+ifeq ($(WITH_EXFAT),true)
+TARGET_USES_EXFAT := true
+PRODUCT_PACKAGES += \
+    mount.exfat \
+    fsck.exfat \
+    mkfs.exfat
+endif
 
 # Openssh
 PRODUCT_PACKAGES += \
@@ -260,13 +253,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
-
-# TCM (TCP Connection Management)
-PRODUCT_PACKAGES += \
-    tcmiface
-
-PRODUCT_BOOT_JARS += \
-    tcmiface
 
 # These packages are excluded from user builds
 ifneq ($(TARGET_BUILD_VARIANT),user)
@@ -346,9 +332,6 @@ ifeq ($(XPE_BUILDTYPE), RELEASE)
         endif
     endif
 else
-    ifeq ($(PRODUCT_VERSION_MINOR),0)
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
-    else
         XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
     endif
 endif
