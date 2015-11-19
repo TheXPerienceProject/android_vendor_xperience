@@ -5,6 +5,7 @@
 # Create an issue at https://github.com/dschuermann/ad-away/issues
 #
 # Changelog:
+# 2015-11-19 Added domains for EFF tracker blocker detection
 # 2014-05-18 Now with a valid SSL certificate available at https://adaway.org/hosts.txt
 # 2013-03-29 Integrated some hosts from
 #            http://adblock.gjtech.net/?format=hostfile
@@ -101,6 +102,8 @@
 127.0.0.1 cdn.nearbyad.com
 127.0.0.1 ads.ookla.com
 127.0.0.1 mobiledl.adboe.com
+127.0.0.1 ads.flurry.com
+127.0.0.1 gemini.yahoo.com
 
 # [hosted on cloudfront]
 127.0.0.1 d3anogn3pbtk4v.cloudfront.net
@@ -514,4 +517,9 @@
 127.0.0.1 applift.com
 # use finer grained hostnames?
 #127.0.0.1 tracking.applift.com
+
+# [EFF Tracker Detection]
+127.0.0.1 trackersimulator.org
+127.0.0.1 eviltracker.net
+127.0.0.1 do-not-tracker.org
 
