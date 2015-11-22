@@ -268,7 +268,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 0_beta5
+PRODUCT_VERSION_MAINTENANCE = 0_beta10
+
 
 -include vendor/XPe/xperienced.mk
 
@@ -314,6 +315,7 @@ else
     # If XPE_BUILDTYPE is not defined, set to UNOFFICIAL
     XPE_BUILDTYPE := UNOFFICIAL
     XPE_EXTRAVERSION :=
+   
 endif
 
 ifeq ($(XPE_BUILDTYPE), UNOFFICIAL)
@@ -342,6 +344,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
+  ro.xpe.codename=SnowFlare \
   ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
