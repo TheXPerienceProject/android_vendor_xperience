@@ -122,10 +122,6 @@ PRODUCT_COPY_FILES += \
 #vendor/XPe/prebuilt/chromium/libwebviewchromium_loader.so:system/lib/libwebviewchromium_loader.so \
 #vendor/XPe/prebuilt/chromium/libwebviewchromium_plat_support.so:system/lib/libwebviewchromium_plat_support.so
 
-#adblock fix
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/hosts:system/etc/hosts
-
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
