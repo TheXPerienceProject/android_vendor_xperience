@@ -109,7 +109,7 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# CM-specific init file
+# specific init file
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
 
@@ -159,30 +159,30 @@ endif
 endif
 
 # T-Mobile theme engine
-#include vendor/XPe/config/themes_common.mk
+include vendor/XPe/config/themes_common.mk
 
-# Required CM packages
+# Required packages
 PRODUCT_PACKAGES += \
     Development \
     BluetoothExt \
     Profiles
 
-# Optional CM packages
+# Optional packages
 PRODUCT_PACKAGES += \
     libemoji \
     Terminal \
     VoicePlus 
 
-# Custom CM packages
+# Custom packages
 PRODUCT_PACKAGES += \
     AudioFX \
-    CMWallpapers \
     CMFileManager \
     CMSettingsProvider \
     Eleven \
     ExactCalculator \
     Launcher3 \
     LockClock \
+    OpenDelta \
     Trebuchet \
     XPerienceCenter
 
@@ -197,7 +197,7 @@ PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
     org.cyanogenmod.hardware.xml
 
-# Extra tools in CM
+# Extra tools
 PRODUCT_PACKAGES += \
     libsepol \
     e2fsck \
