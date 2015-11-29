@@ -182,7 +182,6 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Launcher3 \
     LockClock \
-    OpenDelta \
     Trebuchet \
     XPerienceCenter
 
@@ -264,7 +263,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 0_RC1
+PRODUCT_VERSION_MAINTENANCE = 0_r2
 
 
 -include vendor/XPe/xperienced.mk
@@ -340,7 +339,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Poro King \
+  ro.xpe.codename=PoroKing \
   ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
