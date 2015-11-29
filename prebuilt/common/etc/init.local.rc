@@ -1,4 +1,4 @@
-# CyanogenMod Extras
+# XPerience Extras
 import /init.superuser.rc
 
 on init
