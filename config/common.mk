@@ -175,10 +175,10 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
+    Apollo \
     AudioFX \
     CMFileManager \
     CMSettingsProvider \
-    Eleven \
     ExactCalculator \
     Launcher3 \
     LockClock \
