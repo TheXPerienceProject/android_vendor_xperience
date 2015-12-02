@@ -158,9 +158,6 @@ PRODUCT_COPY_FILES += \
 endif
 endif
 
-# T-Mobile theme engine
-include vendor/XPe/config/themes_common.mk
-
 # Required packages
 PRODUCT_PACKAGES += \
     Development \
@@ -172,6 +169,10 @@ PRODUCT_PACKAGES += \
     libemoji \
     Terminal \
     VoicePlus 
+
+# Include librsjni explicitly to workaround GMS issue
+PRODUCT_PACKAGES += \
+    librsjni
 
 # Custom packages
 PRODUCT_PACKAGES += \
