@@ -183,6 +183,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Launcher3 \
     LockClock \
+    OpenDelta \
     Trebuchet \
     XPerienceCenter
 
@@ -260,7 +261,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 0_r3
+PRODUCT_VERSION_MAINTENANCE = 1_r3
 
 
 -include vendor/XPe/xperienced.mk
