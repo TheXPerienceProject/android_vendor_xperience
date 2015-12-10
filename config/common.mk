@@ -158,6 +158,9 @@ PRODUCT_COPY_FILES += \
 endif
 endif
 
+# Theme engine
+include vendor/XPe/config/themes_common.mk
+
 # Required packages
 PRODUCT_PACKAGES += \
     Development \
@@ -183,7 +186,6 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Launcher3 \
     LockClock \
-    OpenDelta \
     Trebuchet \
     XPerienceCenter
 
@@ -273,7 +275,7 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 ifndef XPE_BUILDTYPE
     ifdef RELEASE_TYPE
         # Starting with "XPE_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^XPE_||g')
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^xpe_||g')
         XPE_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
@@ -319,16 +321,16 @@ endif
 
 ifeq ($(XPE_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
+            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
         else
-            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
+            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
         endif
     endif
 else
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)$(XPE_EXTRAVERSION)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
 
 endif
 
