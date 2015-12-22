@@ -22,7 +22,8 @@ PRODUCT_PACKAGES += \
     PhaseBeam \
     PhotoTable \
     SoundRecorder \
-    PhotoPhase
+    PhotoPhase \
+    Screencast
 
 # Extra tools in XPe
 PRODUCT_PACKAGES += \
