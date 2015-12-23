@@ -1,5 +1,21 @@
 XPERIENCE 
 =========
+10.0.1_r3
+[*] Android 6.0.1_r3
+[*] Statusbar: Custom Header image
+[*] Kernel builded on GCC 5.2
+[*] BatterySaverNotification: You can dissmis
+[*] ThemeEngine
+[*] Fix NPE's
+[*] Fix Some Memory Leaks
+[*] Apollo
+[*] XPerience Updater on Settings/about(Like AOSP updates)
+[*] Fix SuperUSER 
+[*] CAF Patches LA.BF.1.1.3_rb1.4
+[*] CAF Patches LA.BF64.1.2.2_rb4.7
+[*] Live tiles
+[*] System improvements
+[*] CM Security patches
 
 10.0
 [*] Android 6.0
