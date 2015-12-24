@@ -2,7 +2,7 @@
 
 # Exports
 
-. $ANDROID_BUILD_TOP/vendor/XPe/tools/colors
+./vendor/XPe/tools/colors
 
 export Changelog=Changelog.txt
 
