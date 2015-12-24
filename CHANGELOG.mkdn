@@ -16,6 +16,11 @@ XPERIENCE
 [*] Live tiles
 [*] System improvements
 [*] CM Security patches
+[*] Toast animations
+[*] ABListview animations
+[*] AOKP System animations
+[*] Advanced DOZE configurations.
+[*] Headset notification
 
 10.0
 [*] Android 6.0
