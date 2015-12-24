@@ -20,6 +20,7 @@ XPERIENCE
 [*] ABListview animations
 [*] AOKP System animations
 [*] Advanced DOZE configurations.
+[*] Headset notification
 
 10.0
 [*] Android 6.0
