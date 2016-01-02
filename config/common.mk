@@ -179,15 +179,16 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    Apollo \
     AudioFX \
     CMFileManager \
     CMSettingsProvider \
+    Eleven \
     ExactCalculator \
     Launcher3 \
     LockClock \
     Trebuchet \
-    XPerienceCenter
+    XPerienceCenter \
+    XPerienceSetupWizard
 
 # CM Platform Library
 PRODUCT_PACKAGES += \
@@ -339,7 +340,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Saitama \
+  ro.xpe.codename=Ragnar \
   ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
