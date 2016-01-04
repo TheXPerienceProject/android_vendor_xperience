@@ -188,7 +188,6 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    AudioFX \
     CMFileManager \
     CMSettingsProvider \
     Eleven \
