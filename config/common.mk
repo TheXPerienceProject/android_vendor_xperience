@@ -168,7 +168,7 @@ PRODUCT_COPY_FILES += \
 
 
 # Theme engine
-#include vendor/XPe/config/themes_common.mk
+-include vendor/XPe/config/themes_common.mk
 
 # Required packages
 PRODUCT_PACKAGES += \
