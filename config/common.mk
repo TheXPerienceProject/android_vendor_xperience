@@ -149,17 +149,26 @@ endif
 ifeq ($(call is-vendor-board-platform,QCOM),true)
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:/system/priv-app/QuickBoot/QuickBoot.apk
+	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
 endif
 #Quickboot for userdebug builds
 ifneq ($(TARGET_BUILD_VARIANT),userdebug)
 PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk:/system/priv-app/QuickBoot/QuickBoot.apk
+	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
 endif
 endif
 
+#Track new themeengine and audioFX
+PRODUCT_COPY_FILES += \
+	vendor/XPe/prebuilt/common/app/ThemeChooser/ThemeChooser.apk:system/priv-app/ThemeChooser/ThemeChooser.apk \
+	vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
+	vendor/XPe/prebuilt/common/app/ThemeStore/ThemeStore.apk:system/priv-app/ThemeStore/ThemeStore.apk \
+	vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
+        vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
+
+
 # Theme engine
-include vendor/XPe/config/themes_common.mk
+#include vendor/XPe/config/themes_common.mk
 
 # Required packages
 PRODUCT_PACKAGES += \
