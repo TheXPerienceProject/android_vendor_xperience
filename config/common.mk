@@ -147,15 +147,13 @@ endif
 
 #Quickboot for user builds
 ifeq ($(call is-vendor-board-platform,QCOM),true)
-ifneq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
-endif
+#ifneq ($(TARGET_BUILD_VARIANT),user)
+#PRODUCT_COPY_FILES += \
+#	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
+#endif
 #Quickboot for userdebug builds
-ifneq ($(TARGET_BUILD_VARIANT),userdebug)
 PRODUCT_COPY_FILES += \
 	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
-endif
 endif
 
 #Track new themeengine and audioFX
