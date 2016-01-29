@@ -20,7 +20,7 @@
     <string name="def_backup_transport">com.google.android.gms/.backup.BackupTransportService</string>
 
     <!-- SOMC XPERIENCE -->
-    <integer name="def_battery_style">6</integer>
+    <add-resource type="integer" name="def_battery_style">6</add-resource>
 
     <!-- Enable notification counters in statusbar -->
     <!--<integer name="def_notif_count">1</integer> -->
