@@ -164,6 +164,10 @@ PRODUCT_COPY_FILES += \
         vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
 
 
+# Live lockscreen
+PRODUCT_COPY_FILES += \
+    vendor/cm/config/permissions/org.cyanogenmod.livelockscreen.xml:system/etc/permissions/org.cyanogenmod.livelockscreen.xml
+
 # Theme engine
 -include vendor/XPe/config/themes_common.mk
 
