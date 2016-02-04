@@ -146,7 +146,7 @@ PRODUCT_BOOT_JARS += \
 endif
 
 #Quickboot for user builds
-ifeq ($(call is-vendor-board-platform,QCOM),true)
+ifeq ($(call is-vendor-board-platform,QCOM,motorola-qcom),true)
 #ifneq ($(TARGET_BUILD_VARIANT),user)
 #PRODUCT_COPY_FILES += \
 #	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
@@ -273,7 +273,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 1_r10
+PRODUCT_VERSION_MAINTENANCE = 1_r16
 
 
 -include vendor/XPe/xperienced.mk
@@ -349,7 +349,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Floky \
+  ro.xpe.codename=pulse-fire-cannon \
   ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
