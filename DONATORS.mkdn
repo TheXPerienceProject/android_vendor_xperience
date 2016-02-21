@@ -13,6 +13,7 @@ MOTOROLA MOTO G:
 [*] Para94
 [*] mfelipe
 [*] miguelAr52
+[*] Walter Knapp 
 
 XPERIA SP:
 
@@ -22,3 +23,4 @@ Nexus 7:
 
 [*] Craig Moyle
 [*] Ткалун Сергей
+
