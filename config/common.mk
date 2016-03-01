@@ -195,6 +195,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Launcher3 \
     LockClock \
+    OmniSwitch \
     Trebuchet \
     XPerienceCenter \
     XPerienceSetupWizard
