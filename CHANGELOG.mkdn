@@ -1,5 +1,11 @@
 XPERIENCE 
 =========
+
+10.0.1_r13
+[*] Android 6.0.1_r13
+[*] caf optimizations
+[*] CM security patches
+
 10.0.1_r3
 [*] Android 6.0.1_r3
 [*] Statusbar: Custom Header image
