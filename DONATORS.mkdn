@@ -14,6 +14,7 @@ MOTOROLA MOTO G:
 [*] mfelipe
 [*] miguelAr52
 [*] Walter Knapp 
+[*] celikbasm
 
 Motorola Moto X
 [*] Bernd Stahl
