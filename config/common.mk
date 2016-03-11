@@ -272,9 +272,11 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
+DEVICE_PACKAGE_OVERLAYS += vendor/cm/overlay/common
+
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 1_r16
+PRODUCT_VERSION_MAINTENANCE = 1_r22
 
 
 -include vendor/XPe/xperienced.mk
