@@ -1699,9 +1699,6 @@
   <apn carrier="Sprint CdmaNai" mcc="312" mnc="530" apn="CdmaNai" mmsproxy="68.28.31.7" mmsport="80" mmsc="http://mms.sprintpcs.com" type="mms" carrier_enabled="false" protocol="IPV4V6" roaming_protocol="IPV4V6" bearer="6" />
   <apn carrier="LTE CLARO" mcc="330" mnc="110" apn="lte.claropr.com" authtype="1" type="default,supl" />
   <apn carrier="MMS CLARO" mcc="330" mnc="110" apn="mmslte.claropr.com" mmsc="http://mmsg.claropr.com:10021/mmsc" mmsproxy="10.50.38.3" mmsport="8799" authtype="1" type="mms" />
-
-  <apn carrier="Virgin Mobile MX" mcc="334" mnc="020" apn="internet.virginmobile.mx" />
-  <apn carrier="Cierto" mcc="334" mnc="030" apn="internet.cierto.mx" />
   <apn carrier="Claro PR" mcc="330" mnc="11" apn="internet.claropr.com" proxy="" port="8080" user="" password="" mmsc="" type="default,supl" />
   <apn carrier="Claro PR MMS" mcc="330" mnc="11" apn="mms.claropr.com" proxy="" port="" user="" password="" mmsc="http://mmsg.claropr.com:1021/mmsc" mmsproxy="10.50.38.3" mmsport="8799" type="mms" />
   <apn carrier="Telcel Internet" mcc="334" mnc="02" apn="internet.itelcel.com" proxy="" port="" user="webgprs" password="webgprs2002" mmsc="" type="default,supl" />
@@ -1711,6 +1708,8 @@
   <apn carrier="Movistar MX" mcc="334" mnc="03" apn="internet.movistar.mx" proxy="" port="" user="movistar" password="movistar" mmsc="" type="default,supl" />
   <apn carrier="Movistar MX MMS" mcc="334" mnc="03" apn="mms.movistar.mx" proxy="" port="" user="movistar" password="movistar" mmsc="http://mms.movistar.mx" mmsproxy="10.2.20.1" mmsport="9201" type="mms" />
   <apn carrier="Iusacell Internet" mcc="334" mnc="05" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default,supl" />
+  <apn carrier="Virgin Internet" mcc="334" mnc="030" apn="internet.virginmobile.mx" />
+  <apn carrier="Cierto Internet" mcc="334" mnc="030" apn="internet.cierto.mx" />
 
   <apn carrier="Internet Modem" mcc="334" mnc="05" apn="modem.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" type="dun" />
   <apn carrier="Iusacell MMS" mcc="334" mnc="05" apn="mms.iusacellgsm.mx" mmsc="http://mms.iusacell3g.com/" user="mmsiusacellgsm" password="mmsiusacellgsm" type="mms" />
