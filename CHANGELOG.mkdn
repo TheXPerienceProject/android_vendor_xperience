@@ -1,6 +1,11 @@
 XPERIENCE 
 =========
 
+10.0.1_r22
+[*] Android 6.0.1_r22
+[*] apn fix issues
+[*] Memory issues
+
 10.0.1_r13
 [*] Android 6.0.1_r13
 [*] caf optimizations
