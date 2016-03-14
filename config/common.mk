@@ -158,7 +158,6 @@ endif
 
 #Track new themeengine and audioFX
 PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/ThemeChooser/ThemeChooser.apk:system/priv-app/ThemeChooser/ThemeChooser.apk \
 	vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
 	vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
         vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 

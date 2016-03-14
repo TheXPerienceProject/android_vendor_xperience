@@ -8,8 +8,6 @@ list_files() {
 cat <<EOF
 addon.d/707-xpe.sh
 priv-app/AudioFX/AudioFX.apk
-priv-app/ThemeChooser/ThemeChooser.apk
-priv-app/ThemeStore/ThemeStore.apk
 etc/permissions/com.cyngn.audiofx.xml
 EOF
 }
