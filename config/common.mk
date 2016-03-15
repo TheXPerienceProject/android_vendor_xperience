@@ -351,7 +351,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Behemoth \
+  ro.xpe.codename=AoShin \
   ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
