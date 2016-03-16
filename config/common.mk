@@ -167,7 +167,7 @@ PRODUCT_COPY_FILES += \
 -include vendor/XPe/config/themes_common.mk
 
 # CMSDK
-include vendor/cm/config/cmsdk_common.mk
+include vendor/XPe/config/cmsdk_common.mk
 
 # Required packages
 PRODUCT_PACKAGES += \
@@ -263,7 +263,7 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
-DEVICE_PACKAGE_OVERLAYS += vendor/cm/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
