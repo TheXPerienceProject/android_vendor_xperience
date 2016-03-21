@@ -196,8 +196,10 @@ PRODUCT_PACKAGES += \
     LockClock \
     OmniSwitch \
     Trebuchet \
+    WeatherProvider \
     XPerienceCenter \
     XPerienceSetupWizard
+
 
 # Exchange support
 PRODUCT_PACKAGES += \
