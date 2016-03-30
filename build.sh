@@ -98,6 +98,33 @@ if [ $ARCH = "64" ]; then
   #Generate Changelog
   export CHANGELOG=true
 
+# setup environment
+echo -e "${bldblu}Setting up environment ${txtrst}"
+export USE_CCACHE=1
+export CCACHE_DIR=~/.ccache
+# set ccache due to your disk space,set it at your own risk
+prebuilts/misc/linux-x86/ccache/ccache -M 15G
+
+#Enable to remove build.prop
+echo -e ""
+fix_count=0
+elif [ "$var" == "clean" ]
+then
+   echo -e "${bldblu}Clearing previous build info ${txtrst}"
+   mka installclean
+elif [ "$var" == "fix" ]
+then
+   echo -e "skip for remove build.prop"
+   fix_count=1
+fi
+done
+if [ "$fix_count" == "0" ]
+then
+   echo -e "removing build.prop"
+   rm -f $OUT_DIR/system/build.prop
+fi
+
+
   # Fetch latest sources
   if [ "$SYNC" == "true" ]; then
           echo -e ""
