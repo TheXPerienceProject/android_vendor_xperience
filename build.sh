@@ -117,7 +117,6 @@ then
    echo -e "skip for remove build.prop"
    fix_count=1
 fi
-done
 if [ "$fix_count" == "0" ]
 then
    echo -e "removing build.prop"
