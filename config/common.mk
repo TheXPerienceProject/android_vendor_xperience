@@ -288,7 +288,7 @@ ifndef XPE_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
+ifeq ($(filter RELEASE NIGHTLY WEEKLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
     XPE_BUILDTYPE :=
 endif
 
@@ -320,7 +320,7 @@ else
    
 endif
 
-ifeq ($(XPE_BUILDTYPE), UNOFFICIAL)
+ifeq ($(XPE_BUILDTYPE), UNOFFICIAL,WEEKLY)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
         XPE_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
