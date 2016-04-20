@@ -191,6 +191,7 @@ PRODUCT_PACKAGES += \
     CMSettingsProvider \
     Eleven \
     ExactCalculator \
+    Gallery3 \
     Launcher3 \
     LiveLockScreenService \
     LockClock \
