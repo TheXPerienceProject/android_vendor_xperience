@@ -115,7 +115,7 @@ PRODUCT_COPY_FILES += \
 
 #Performance app
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/XPerienceInsiderbeta.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
+    vendor/XPe/prebuilt/common/app/Alessaplug.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
 #Fix Chromium fc workaround
 #PRODUCT_COPY_FILES += \
