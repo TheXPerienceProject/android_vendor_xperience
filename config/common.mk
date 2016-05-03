@@ -271,7 +271,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 1_r31
+PRODUCT_VERSION_MAINTENANCE = 1_r43
 
 
 -include vendor/XPe/xperienced.mk
@@ -347,7 +347,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=AncientDragon \
+  ro.xpe.codename=Galactic-kindred \
   ro.cmlegal.url=http://xpe.esy.es//privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
