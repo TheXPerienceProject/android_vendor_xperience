@@ -162,6 +162,10 @@ PRODUCT_COPY_FILES += \
 	vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
         vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
 
+# SuperSU
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/SuperSU.zip:system/addon.d/SuperSU.zip \
+    vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
 
 # Theme engine
 -include vendor/XPe/config/themes_common.mk
