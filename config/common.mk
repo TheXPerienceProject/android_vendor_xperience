@@ -193,6 +193,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CMFileManager \
     CMSettingsProvider \
+    DataUsageProvider \
     Eleven \
     ExactCalculator \
     Gallery3 \
@@ -204,7 +205,6 @@ PRODUCT_PACKAGES += \
     WeatherProvider \
     XPerienceCenter \
     XPerienceSetupWizard
-
 
 # Exchange support
 PRODUCT_PACKAGES += \
