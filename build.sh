@@ -120,7 +120,9 @@ fi
 if [ "$fix_count" == "0" ]
 then
    echo -e "removing build.prop"
-   rm -f $OUT_DIR/system/build.prop
+	rm -f out/target/product/"$DEVICE"/system/build.prop
+	rm -Rf out/target/product/"$DEVICE"/obj/PACKAGING/target_files_intermediates
+
 fi
 
 
