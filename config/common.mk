@@ -80,7 +80,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 endif
 
 # Backup Tool
-ifneq (,$(filter true, $(CYNGN_TARGET) $(EXTERNAL_CLEAN_TARGET)))
+ifeq (,$(filter true, $(CYNGN_TARGET) $(EXTERNAL_CLEAN_TARGET)))
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/XPe/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
