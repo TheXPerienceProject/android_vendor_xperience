@@ -80,13 +80,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 endif
 
 # Backup Tool
-ifeq (,$(filter true, $(CYNGN_TARGET) $(EXTERNAL_CLEAN_TARGET)))
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/XPe/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
     vendor/XPe/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
     vendor/XPe/prebuilt/common/bin/blacklist:system/addon.d/blacklist
-endif
+
 
 #Falcon Tweaking
 ifeq ($(XPE_BUILD), falcon)
