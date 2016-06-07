@@ -201,6 +201,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     OmniSwitch \
     Trebuchet \
+    WallpaperPicker \
     WeatherProvider \
     XPerienceCenter \
     XPerienceSetupWizard
