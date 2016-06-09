@@ -3,6 +3,7 @@ $(call inherit-product, vendor/XPe/config/common.mk)
 
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
+PRODUCT_SIZE := full
 
 # Required CM packages
 PRODUCT_PACKAGES += \
