@@ -93,6 +93,10 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:system/etc/init.d/01XPerienceKernelCOnf
 endif
 
+# Backup Services whitelist
+PRODUCT_COPY_FILES += \
+    vendor/XPe/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
