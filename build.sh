@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Version 2.0.5, Adapted for XPerience.
+# Version 2.0.6, Adapted for XPerience.
+# Some darwin additions
 
 # We don't allow scrollback buffer
 echo -e '\0033\0143'
@@ -36,9 +37,9 @@ fi
 
 # If there is more than one jdk installed, use latest 7.x
 if [ "`update-alternatives --list javac | wc -l`" -gt 1 ]; then
-        JDK7=$(dirname `update-alternatives --list javac | grep "\-7\-"` | tail -n1)
-        JRE7=$(dirname ${JDK7}/../jre/bin/java)
-        export PATH=${JDK7}:${JRE7}:$PATH
+JDK7=$(dirname `update-alternatives --list javac | grep "\-7\-"` | tail -n1)
+JRE7=$(dirname ${JDK7}/../jre/bin/java)
+export PATH=${JDK7}:${JRE7}:$PATH
 fi
 JVER=$(javac -version  2>&1 | head -n1 | cut -f2 -d' ')
 
@@ -47,127 +48,131 @@ DEVICE="$1"
 EXTRAS="$2"
 
 if [ $ARCH = "64" ]; then
-  # Get build version
-  MAJOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed  's/PRODUCT_VERSION_MAJOR := //g')
-  MINOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
-  MAINTENANCE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/PRODUCT_VERSION_MAINTENANCE := //g')
-  TAG=$(cat $DIR/vendor/XPe/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/ROM_VERSION_TAG := //g')
+# Get build version
+MAJOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed  's/PRODUCT_VERSION_MAJOR := //g')
+MINOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
+MAINTENANCE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/PRODUCT_VERSION_MAINTENANCE := //g')
+TAG=$(cat $DIR/vendor/XPe/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/ROM_VERSION_TAG := //g')
 
-  if [ -n "$TAG" ]; then
-          VERSION=$MAJOR.$MINOR.$MAINTENANCE-$TAG
-  else
-          VERSION=$MAJOR.$MINOR.$MAINTENANCE
-  fi
+if [ -n "$TAG" ]; then
+VERSION=$MAJOR.$MINOR.$MAINTENANCE-$TAG
+else
+VERSION=$MAJOR.$MINOR.$MAINTENANCE
+fi
 
-  # If there is no extra parameter, reduce parameters index by 1
-  if [ "$EXTRAS" == "true" ] || [ "$EXTRAS" == "false" ]; then
-          SYNC="$2"
-          UPLOAD="$3"
-  else
-          SYNC="$3"
-          UPLOAD="$4"
-  fi
+# If there is no extra parameter, reduce parameters index by 1
+if [ "$EXTRAS" == "true" ] || [ "$EXTRAS" == "false" ]; then
+SYNC="$2"
+UPLOAD="$3"
+else
+SYNC="$3"
+UPLOAD="$4"
+fi
 
-  # Get start time
-  res1=$(date +%s.%N)
+# Get start time
+res1=$(date +%s.%N)
 
-  echo -e "${cya}Building ${bldcya}XPerience $VERSION for $DEVICE ${txtrst}";
-  echo -e "${bldgrn}Start time: $(date) ${txtrst}"
+echo -e "${cya}Building ${bldcya}XPerience $VERSION for $DEVICE ${txtrst}";
+echo -e "${bldgrn}Start time: $(date) ${txtrst}"
 
-  # Decide what command to execute
-  case "$EXTRAS" in
-          threads)
-                  echo -e "${bldblu}Please enter desired building/syncing threads number followed by [ENTER]${txtrst}"
-                  read threads
-                  THREADS=$threads
-          ;;
-          clean|cclean)
-                  echo -e "${bldblu}Cleaning intermediates and output files${txtrst}"
-                  export CLEAN_BUILD="true"
-                  [ -d "${DIR}/out" ] && rm -Rf ${DIR}/out/*
-          ;;
-  esac
+# Decide what command to execute
+case "$EXTRAS" in
+threads)
+echo -e "${bldblu}Please enter desired building/syncing threads number followed by [ENTER]${txtrst}"
+read threads
+THREADS=$threads
+;;
+clean|cclean)
+echo -e "${bldblu}Cleaning intermediates and output files${txtrst}"
+export CLEAN_BUILD="true"
+[ -d "${DIR}/out" ] && rm -Rf ${DIR}/out/*
+;;
+esac
 
-  echo -e ""
+echo -e ""
 
-  export DEVICE=$DEVICE
+export DEVICE=$DEVICE
 
-  #Use Prebuilt Chromium
-  export USE_PREBUILT_CHROMIUM=1
-  
-  #Generate Changelog
-  export CHANGELOG=true
+#Use Prebuilt Chromium
+export USE_PREBUILT_CHROMIUM=1
+
+#Generate Changelog
+export CHANGELOG=true
 
 # setup environment
 echo -e "${bldblu}Setting up environment ${txtrst}"
 export USE_CCACHE=1
 export CCACHE_DIR=~/.ccache
 # set ccache due to your disk space,set it at your own risk
+if [ `uname -s` == "Darwin" ]; then
+prebuilts/misc/darwin-x86/ccache/ccache -M 15G
+else
 prebuilts/misc/linux-x86/ccache/ccache -M 15G
+fi
 
 #Enable to remove build.prop
 echo -e ""
 fix_count=0
 elif [ "$var" == "clean" ]
 then
-   echo -e "${bldblu}Clearing previous build info ${txtrst}"
-   mka installclean
+echo -e "${bldblu}Clearing previous build info ${txtrst}"
+mka installclean
 elif [ "$var" == "fix" ]
 then
-   echo -e "skip for remove build.prop"
-   fix_count=1
+echo -e "skip for remove build.prop"
+fix_count=1
 fi
 if [ "$fix_count" == "0" ]
 then
-   echo -e "removing build.prop"
-	rm -f out/target/product/"$DEVICE"/system/build.prop
-	rm -Rf out/target/product/"$DEVICE"/obj/PACKAGING/target_files_intermediates
+echo -e "removing build.prop"
+rm -f out/target/product/"$DEVICE"/system/build.prop
+rm -Rf out/target/product/"$DEVICE"/obj/PACKAGING/target_files_intermediates
 
 fi
 
 
-  # Fetch latest sources
-  if [ "$SYNC" == "true" ]; then
-          echo -e ""
-          echo -e "${bldblu}Fetching latest sources${txtrst}"
-          repo sync -j"$THREADS"
-          echo -e ""
-  fi
+# Fetch latest sources
+if [ "$SYNC" == "true" ]; then
+echo -e ""
+echo -e "${bldblu}Fetching latest sources${txtrst}"
+repo sync -j"$THREADS"
+echo -e ""
+fi
 
-  if [ ! -r "${DIR}/out/versions_checked.mk" ] && [ -n "$(java -version 2>&1 | grep -i openjdk)" ]; then
-          echo -e "${bldcya}Your java version still not checked and is candidate to fail, masquerading.${txtrst}"
-          JAVA_VERSION="java_version=${JVER}"
-  fi
+if [ ! -r "${DIR}/out/versions_checked.mk" ] && [ -n "$(java -version 2>&1 | grep -i openjdk)" ]; then
+echo -e "${bldcya}Your java version still not checked and is candidate to fail, masquerading.${txtrst}"
+JAVA_VERSION="java_version=${JVER}"
+fi
 
-  if [ -n "${INTERACTIVE}" ]; then
-          echo -e "${bldblu}Dropping to interactive shell${txtrst}"
-          echo -en "${bldblu}Remeber to lunch you device:"
-          if [ "${VENDOR}" == "XPe" ]; then
-                  echo -e "[${bldgrn}lunch xpe_$DEVICE-userdebug${bldblu}]${txtrst}"
-          else
-                  echo -e "[${bldgrn}lunch full_$DEVICE-userdebug${bldblu}]${txtrst}"
-          fi
-          bash --init-file build/envsetup.sh -i
-  else
-          # Setup environment
-          echo -e ""
-          echo -e "${bldblu}Setting up environment${txtrst}"
-          . build/envsetup.sh
-          echo -e ""
-
-          # lunch/brunch device
-          echo -e "${bldblu}Lunching device [$DEVICE] ${cya}(Includes dependencies sync)${txtrst}"
-          export PREFS_FROM_SOURCE
-          lunch "xpe_$DEVICE-userdebug";
-
-          echo -e "${bldblu}Starting compilation${txtrst}"
-          mka bacon
-  fi
-       echo -e ""
-
-       # Get elapsed time
-       res2=$(date +%s.%N)
-       echo -e "${bldgrn}Total time elapsed: ${txtrst}${grn}$(echo "($res2 - $res1) / 60"|bc ) minutes ($(echo "$res2 - $res1"|bc ) seconds)${txtrst}"
+if [ -n "${INTERACTIVE}" ]; then
+echo -e "${bldblu}Dropping to interactive shell${txtrst}"
+echo -en "${bldblu}Remeber to lunch you device:"
+if [ "${VENDOR}" == "XPe" ]; then
+echo -e "[${bldgrn}lunch xpe_$DEVICE-userdebug${bldblu}]${txtrst}"
 else
-  echo -e "${bldred}This script only supports 64 bit architecture${txtrst}"
+echo -e "[${bldgrn}lunch full_$DEVICE-userdebug${bldblu}]${txtrst}"
+fi
+bash --init-file build/envsetup.sh -i
+else
+# Setup environment
+echo -e ""
+echo -e "${bldblu}Setting up environment${txtrst}"
+. build/envsetup.sh
+echo -e ""
+
+# lunch/brunch device
+echo -e "${bldblu}Lunching device [$DEVICE] ${cya}(Includes dependencies sync)${txtrst}"
+export PREFS_FROM_SOURCE
+lunch "xpe_$DEVICE-userdebug";
+
+echo -e "${bldblu}Starting compilation${txtrst}"
+mka bacon
+fi
+echo -e ""
+
+# Get elapsed time
+res2=$(date +%s.%N)
+echo -e "${bldgrn}Total time elapsed: ${txtrst}${grn}$(echo "($res2 - $res1) / 60"|bc ) minutes ($(echo "$res2 - $res1"|bc ) seconds)${txtrst}"
+else
+echo -e "${bldred}This script only supports 64 bit architecture${txtrst}"
 fi
