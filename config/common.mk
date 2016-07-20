@@ -180,7 +180,8 @@ include vendor/XPe/config/cmsdk_common.mk
 PRODUCT_PACKAGES += \
     Development \
     BluetoothExt \
-    Profiles
+    Profiles \
+    ThemeManagerService
 
 # Optional packages
 PRODUCT_PACKAGES += \
