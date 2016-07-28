@@ -194,6 +194,7 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
+    CMAudioService \
     CMFileManager \
     CMSettingsProvider \
     DataUsageProvider \
