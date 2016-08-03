@@ -199,15 +199,15 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     CMSettingsProvider \
     DataUsageProvider \
-    Eleven \
+    Pulsar \
     ExactCalculator \
     Gallery3 \
-    Launcher3 \
+    NexusLauncher \
     LiveLockScreenService \
     LockClock \
     OmniSwitch \
     Trebuchet \
-    WallpaperPicker \
+    WallpaperPickerG \
     WeatherProvider \
     XPerienceCenter \
     XPerienceSetupWizard
@@ -281,7 +281,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 1_r52
+PRODUCT_VERSION_MAINTENANCE = 1_r61
 
 
 -include vendor/XPe/xperienced.mk
@@ -357,8 +357,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=UBUNTU \
-  ro.cmlegal.url=http://xpe.esy.es/privacy.html
+  ro.xpe.codename=SeñorPato \
+  ro.cmlegal.url=klozz.github.io/git.klozz.personal/privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
 
