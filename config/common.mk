@@ -170,6 +170,12 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/SuperSU.zip \
     vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
 
+# Pulsar and nexus
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/Pulsar/Pulsar.apk:system/app/Pulsar/Pulsar.apk \
+    vendor/XPe/prebuilt/NexusLauncher/NexusLauncher.apk:system/priv-app/NexusLauncher/NexusLauncher.apk \
+    vendor/XPe/prebuilt/WallpaperPicker/WallpaperPicker.apk:system/app/WallpaperPicker/WallpaperPicker.apk
+
 # Theme engine
 -include vendor/XPe/config/themes_common.mk
 
@@ -281,7 +287,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 10
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 1_r61
+PRODUCT_VERSION_MAINTENANCE = 1.1_r61
 
 
 -include vendor/XPe/xperienced.mk
