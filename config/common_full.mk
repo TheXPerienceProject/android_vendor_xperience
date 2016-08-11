@@ -39,3 +39,7 @@ PRODUCT_PACKAGES += \
     vim \
     wget \
     zip
+
+# Themes
+PRODUCT_PACKAGES += \
+    HexoLibre
