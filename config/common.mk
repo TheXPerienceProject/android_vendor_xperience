@@ -296,9 +296,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
-PRODUCT_VERSION_MAJOR = 10
+PRODUCT_VERSION_MAJOR = 11
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 1.1_r61
+PRODUCT_VERSION_MAINTENANCE =
 
 
 -include vendor/XPe/xperienced.mk
@@ -374,7 +374,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=SeñorPato \
+  ro.xpe.codename=Nougat \
   ro.cmlegal.url=klozz.github.io/git.klozz.personal/privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
