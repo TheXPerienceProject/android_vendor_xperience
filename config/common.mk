@@ -179,10 +179,10 @@ PRODUCT_COPY_FILES += \
 # Theme engine
 -include vendor/XPe/config/themes_common.mk
 
-ifneq ($(TARGET_DISABLE_CMSDK), true)
+# ifneq ($(TARGET_DISABLE_CMSDK), true)
 # CMSDK
-include vendor/XPe/config/cmsdk_common.mk
-endif
+# include vendor/XPe/config/cmsdk_common.mk
+# endif
 
 # Required packages
 PRODUCT_PACKAGES += \
@@ -204,9 +204,6 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    CMAudioService \
-    CMFileManager \
-    CMSettingsProvider \
     DataUsageProvider \
     Pulsar \
     ExactCalculator \
