@@ -187,9 +187,7 @@ PRODUCT_COPY_FILES += \
 # Required packages
 PRODUCT_PACKAGES += \
     Development \
-    BluetoothExt \
     Profiles \
-    ThemeManagerService \
     WeatherManagerService
 
 # Optional packages
