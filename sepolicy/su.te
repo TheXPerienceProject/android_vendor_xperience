@@ -54,19 +54,19 @@ userdebug_or_eng(`
   # typealias shell alias suclient;
   # domain_auto_trans(untrusted_app, su_exec, suclient)
 
-  allow untrusted_app su_exec:file { execute_no_trans getattr open read execute };
-  allow untrusted_app sudaemon:unix_stream_socket { connectto read write setopt ioctl };
+#  allow untrusted_app su_exec:file { execute_no_trans getattr open read execute };
+#  allow untrusted_app sudaemon:unix_stream_socket { connectto read write setopt ioctl };
   allow untrusted_app superuser_device:dir { r_dir_perms };
   allow untrusted_app superuser_device:sock_file { write };
 
 
   # For Settings control of access
   allow system_app superuser_device:sock_file { read write create setattr unlink getattr };
-  allow system_app sudaemon:unix_stream_socket { connectto read write setopt ioctl };
+  #allow system_app sudaemon:unix_stream_socket { connectto read write setopt ioctl };
   allow system_app superuser_device:dir { create rw_dir_perms setattr unlink };
 
   allow kernel sudaemon:fd { use };
 
 ')
 
-neverallow { domain userdebug_or_eng(`-dumpstate -shell -su -untrusted_app -init -sudaemon') } su_exec:file no_x_file_perms;
+#neverallow { domain userdebug_or_eng(`-dumpstate -shell -su -untrusted_app -init -sudaemon') } su_exec:file no_x_file_perms;
