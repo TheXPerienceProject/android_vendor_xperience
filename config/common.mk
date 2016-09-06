@@ -202,6 +202,7 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
+    AudioFX \
     BluetoothExt \
     CMAudioService \
     CMFileManager \
