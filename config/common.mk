@@ -166,9 +166,9 @@ endif
 #        vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
 
 # SuperSU
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/SuperSU.zip \
-    vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+#PRODUCT_COPY_FILES += \
+#    vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/SuperSU.zip \
+#    vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
 
 # Pulsar and nexus
 PRODUCT_COPY_FILES += \
