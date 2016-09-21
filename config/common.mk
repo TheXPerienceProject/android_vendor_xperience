@@ -143,10 +143,10 @@ PRODUCT_COPY_FILES += \
 
 #remember codeaurora is only for msm
 #Falcon Tweaking
-ifeq ($(call is-vendor-board-platform,QCOM),true)
-PRODUCT_BOOT_JARS += \
-	org.codeaurora.Performance 
-endif
+#ifeq ($(call is-vendor-board-platform,QCOM),true)
+#PRODUCT_BOOT_JARS += \
+#	org.codeaurora.Performance 
+#endif
 
 #Quickboot for user builds
 ifeq ($(call is-vendor-board-platform,QCOM,motorola-qcom),true)
@@ -161,9 +161,9 @@ endif
 
 #Track new themeengine and audioFX
 #PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
-	vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
-        vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
+#	vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
+#	vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
+#        vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
 
 # SuperSU
 PRODUCT_COPY_FILES += \
@@ -184,8 +184,11 @@ ifneq ($(TARGET_DISABLE_CMSDK), true)
 include vendor/XPe/config/cmsdk_common.mk
 endif
 
-# Required packages
+# Required CM packages
 PRODUCT_PACKAGES += \
+    BluetoothExt \
+    CMAudioService \
+    CMParts \
     Development \
     Profiles \
     WeatherManagerService
@@ -193,8 +196,7 @@ PRODUCT_PACKAGES += \
 # Optional packages
 PRODUCT_PACKAGES += \
     libemoji \
-    Terminal \
-    VoicePlus 
+    Terminal 
 
 # Include librsjni explicitly to workaround GMS issue
 PRODUCT_PACKAGES += \
@@ -202,21 +204,16 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    AudioFX \
-    BluetoothExt \
-    CMAudioService \
-    CMFileManager \
-    CMSettingsProvider \
-    DataUsageProvider \
-    Pulsar \
-    ExactCalculator \
-    Gallery3 \
-    NexusLauncher \
-    LiveLockScreenService \
-    LockClock \
-    OmniSwitch \
+    Launcher3 \
     Trebuchet \
-    WallpaperPickerG \
+    AudioFX \
+    CMWallpapers \
+    CMFileManager \
+    Eleven \
+    LockClock \
+    CMSettingsProvider \
+    ExactCalculator \
+    LiveLockScreenService \
     WeatherProvider \
     XPerienceCenter \
     XPerienceSetupWizard
@@ -300,7 +297,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 11
 PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE =
+PRODUCT_VERSION_MAINTENANCE = 0
 
 
 -include vendor/XPe/xperienced.mk
