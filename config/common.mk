@@ -121,14 +121,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
 
-#Performance app
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/XPerienceAlessav2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
-
-#Fix Chromium fc workaround
-#PRODUCT_COPY_FILES += \
-#vendor/XPe/prebuilt/chromium/libwebviewchromium_loader.so:system/lib/libwebviewchromium_loader.so \
-#vendor/XPe/prebuilt/chromium/libwebviewchromium_plat_support.so:system/lib/libwebviewchromium_plat_support.so
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
@@ -142,44 +134,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is CM!
+# This is XPe!
 PRODUCT_COPY_FILES += \
-    vendor/XPe/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
-
-#remember codeaurora is only for msm
-#Falcon Tweaking
-#ifeq ($(call is-vendor-board-platform,QCOM),true)
-#PRODUCT_BOOT_JARS += \
-#	org.codeaurora.Performance 
-#endif
-
-#Quickboot for user builds
-ifeq ($(call is-vendor-board-platform,QCOM,motorola-qcom),true)
-#ifneq ($(TARGET_BUILD_VARIANT),user)
-#PRODUCT_COPY_FILES += \
-#	vendor/XPe/prebuilt/common/app/user/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
-#endif
-#Quickboot for userdebug builds
-PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/app/userdebug/QuickBoot.apk:system/priv-app/QuickBoot/QuickBoot.apk
-endif
-
-#Track new themeengine and audioFX
-#PRODUCT_COPY_FILES += \
-#	vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
-#	vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
-#        vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh 
-
-# SuperSU
-#PRODUCT_COPY_FILES += \
-#    vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/SuperSU.zip \
-#    vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
-
-# Pulsar and nexus
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/Pulsar/Pulsar.apk:system/app/Pulsar/Pulsar.apk \
-    vendor/XPe/prebuilt/NexusLauncher/NexusLauncher.apk:system/priv-app/NexusLauncher/NexusLauncher.apk \
-    vendor/XPe/prebuilt/WallpaperPicker/WallpaperPicker.apk:system/app/WallpaperPicker/WallpaperPicker.apk
+    vendor/XPe/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
 
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
