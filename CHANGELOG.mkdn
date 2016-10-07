@@ -1,5 +1,12 @@
 XPERIENCE 
 =========
+11.0.0_r14
+[*] Android 7.0.0_r14
+[*] DayNight support
+[*] Substratum support as service (substratum app needed)
+[*] Caf patches
+[*] Battery styles back
+[*] WIP stage.
 
 10.0.1_r22
 [*] Android 6.0.1_r22
