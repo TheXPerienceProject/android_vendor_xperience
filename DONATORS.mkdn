@@ -18,6 +18,7 @@ MOTOROLA MOTO G:
 
 Motorola Moto X
 [*] Bernd Stahl
+[*] Salem Strange
 
 XPERIA SP:
 
