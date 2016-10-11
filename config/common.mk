@@ -185,6 +185,7 @@ PRODUCT_PACKAGES += \
     WeatherProvider \
     SoundRecorder \
     Screencast \
+    XPe_Browser \
     XPerienceCenter \
     XPerienceSetupWizard
 
