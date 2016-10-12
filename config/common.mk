@@ -138,6 +138,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
 
+#Performance app
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/app/XPerienceAlessav2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
+
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
 
