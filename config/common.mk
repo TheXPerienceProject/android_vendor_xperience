@@ -65,9 +65,13 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
+ifneq ($(XPE_BUILDTYPE),RELEASE)
+PRODUCT_COPY_FILES += \
+    vendor/XPe/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
+endif
+
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
-    vendor/XPe/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt \
     vendor/XPe/DONATORS.mkdn:system/etc/donators.txt
 
 # Lower RAM devices
