@@ -151,8 +151,8 @@ echo -e ""
 #making changelog on niglty roms
 if [ "${BUILDTYPE}" == "NIGHTLY" ]; then
 echo -e " Making changelog and System directory"
+mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
 	./vendor/XPe/tools/changelog
-        mkdir out/target/product/"$DEVICE"/system/etc/
 	mv Changelog.txt out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
