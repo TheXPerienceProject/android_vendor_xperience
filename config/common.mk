@@ -66,8 +66,8 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
 ifneq ($(XPE_BUILDTYPE),RELEASE)
-PRODUCT_COPY_FILES += \
-    vendor/XPe/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
+# PRODUCT_COPY_FILES += \
+#     vendor/XPe/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
 endif
 
 # Copy over the changelog to the device
@@ -156,6 +156,11 @@ ifneq ($(TARGET_DISABLE_CMSDK), true)
 # CMSDK
 include vendor/XPe/config/cmsdk_common.mk
 endif
+
+#XPerience Services
+PRODUCT_PACKAGES += xpe-services
+PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
+PRODUCT_BOOT_JARS += xpe-services
 
 # Required CM packages
 PRODUCT_PACKAGES += \
