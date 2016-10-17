@@ -377,7 +377,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Cloud \
+  ro.xpe.codename=Madness \
   ro.xpelegal.url=klozz.github.io/git.klozz.personal/privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
