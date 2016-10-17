@@ -7,7 +7,7 @@ package mx.xperience.power;
 
 import android.util.Log;
 
-public final class ShutdownAOSPA {
+public final class ShutdownXPe {
     private static final String TAG = "XPerienceShutdown";
 
     public void rebootOrShutdown(boolean isreboot, String rebootreason) {
