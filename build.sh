@@ -156,6 +156,20 @@ mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
 	mv Changelog.txt out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
+#making changelog on UNOFFICIAL roms
+if [ "${BUILDTYPE}" == "UNOFFICIAL" ]; then
+echo -e " Making changelog and System directory"
+mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
+cp vendor/XPe/CHANGELOG.mkdn out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
+fi
+
+#making changelog on RELEASE roms
+if [ "${BUILDTYPE}" == "RELEASE" ]; then
+echo -e " Making changelog and System directory"
+mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
+cp vendor/XPe/CHANGELOG.mkdn out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
+fi
+
 # lunch/brunch device
 echo -e "${bldblu}Lunching device [$DEVICE] ${cya}(Includes dependencies sync)${txtrst}"
 export PREFS_FROM_SOURCE
