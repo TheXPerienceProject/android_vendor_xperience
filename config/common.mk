@@ -102,6 +102,11 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:system/etc/init.d/01XPerienceKernelCOnf
 endif
 
+ifeq ($(XPE_BUILD), ghost)
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/etc/init.d/02XPerienceColorcalib:system/etc/init.d/02XPerienceColorcalib
+endif
+
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/backup.xml:system/etc/sysconfig/backup.xml

@@ -1,0 +1,6 @@
+#!/system/bin/sh
+
+#this script calibrate RGB colors in values range from 0 to 255
+# so this change to 86% red 85%green 100%blue
+
+echo "220 220 255" > /sys/devices/platform/mdp.591617/kcal;
