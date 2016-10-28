@@ -303,7 +303,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 11
-PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MINOR = 1
 PRODUCT_VERSION_MAINTENANCE = 0
 
 
@@ -380,7 +380,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.xpe.releasetype=$(XPE_BUILDTYPE) \
   ro.modversion=$(XPE_VERSION) \
   ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Madness \
+  ro.xpe.codename=MadnessOFNougat7.1 \
   ro.xpelegal.url=klozz.github.io/git.klozz.personal/privacy.html
 
 -include vendor/XPe-priv/keys/keys.mk
@@ -407,7 +407,6 @@ endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.cm.display.version=$(XPE_DISPLAY_VERSION) \
   ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
