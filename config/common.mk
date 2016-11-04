@@ -198,6 +198,7 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     LiveLockScreenService \
     LockClock \
+    masquerade \
     Screencast \
     SoundRecorder \
     Trebuchet \
