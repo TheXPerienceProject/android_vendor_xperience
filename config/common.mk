@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= XPerience & MXSeñorPato
+4f1743470ffc96c763a54a6513e10ad2279c4cc2PRODUCT_BRAND ?= XPerience & MXSeñorPato
 
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
@@ -11,7 +11,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
 
 # get a sorted list of the sizes
 bootanimation_sizes := $(subst .zip,, $(shell ls vendor/XPe/prebuilt/common/bootanimation))
-bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
+bootanimation_sizes := $(shell echo -e $(subst "$(space)",'\n',"$(bootanimation_sizes)") | sort -rn)
 
 # find the appropriate size and set
 define check_and_set_bootanimation
