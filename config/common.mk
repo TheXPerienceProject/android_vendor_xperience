@@ -194,6 +194,7 @@ PRODUCT_PACKAGES += \
     CMWallpapers \
     Eleven \
     ExactCalculator \
+    Gello \
     Launcher3 \
     LiveLockScreenService \
     LockClock \
@@ -203,7 +204,6 @@ PRODUCT_PACKAGES += \
     Trebuchet \
     WallpaperPicker \
     WeatherProvider \
-    XPe_Browser \
     XPerienceCenter \
     XPerienceSetupWizard
 
