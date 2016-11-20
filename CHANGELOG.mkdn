@@ -1,5 +1,17 @@
 XPERIENCE 
 =========
+11.1.0_r7
+[*] Android 7.1.0_r7
+[*] Partial screenshot support
+[*] rounded icons support like pixel
+[*] Pixel Launcher and wallpaper picker
+[*] pixel navbar
+[*] Bug fixes
+[*] Fixes for camerahal1
+[*] XPerience Services
+[*] CAF Patches
+[*] Security patches
+
 11.0.0_r14
 [*] Android 7.0.0_r14
 [*] DayNight support
