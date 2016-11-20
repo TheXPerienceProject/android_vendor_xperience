@@ -198,6 +198,7 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     LiveLockScreenService \
     LockClock \
+    OmniClockOSS \
     masquerade \
     Screencast \
     SoundRecorder \
