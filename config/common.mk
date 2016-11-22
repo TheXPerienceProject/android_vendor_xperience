@@ -200,11 +200,13 @@ PRODUCT_PACKAGES += \
     LockClock \
     OmniClockOSS \
     masquerade \
+    NexusLauncher \
     Screencast \
     SoundRecorder \
     Trebuchet \
     WallpaperPicker \
     WeatherProvider \
+    WallpaperGoogle \
     XPerienceCenter \
     XPerienceSetupWizard
 
