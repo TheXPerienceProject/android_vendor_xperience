@@ -146,7 +146,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
 
-#Performance app
+#Pixel <3
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/NexusLauncher/NexusLauncher.apk:system/priv-app/NexusLauncher/NexusLauncher.apk \
+    vendor/XPe/prebuilt/WallpaperGoogle/WallpaperGoogle.apk:system/priv-app/WallpaperGoogle/WallpaperGoogle.apk
+
+#Performance App
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/XPerienceAlessav2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
@@ -194,8 +199,7 @@ PRODUCT_PACKAGES += \
     CMWallpapers \
     Eleven \
     ExactCalculator \
-    Gello \
-    Launcher3 \
+    XPe_Browser \
     LiveLockScreenService \
     LockClock \
     OmniClockOSS \
@@ -203,7 +207,6 @@ PRODUCT_PACKAGES += \
     NexusLauncher \
     Screencast \
     SoundRecorder \
-    Trebuchet \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
