@@ -4,7 +4,7 @@ $(call inherit-product, vendor/XPe/config/common.mk)
 PRODUCT_SIZE := mini
 
 # Include CM audio files
-include vendor/XPe/config/cm_audio.mk
+include vendor/XPe/config/xpe_audio.mk
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
