@@ -20,6 +20,7 @@ Motorola Moto X
 [*] Bernd Stahl
 [*] Salem Strange
 [*] Scott Crosson
+[*] Jose Antonio Castro Gonzalez
 
 XPERIA SP:
 
