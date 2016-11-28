@@ -10,7 +10,8 @@ XPERIENCE
 [*] Fixes for camerahal1
 [*] XPerience Services
 [*] CAF Patches
-[*] Security patches
+[*] November 5 Security patches
+[*] Substratum - OMS7 
 
 11.0.0_r14
 [*] Android 7.0.0_r14
