@@ -138,6 +138,10 @@ ifneq ($(TARGET_DISABLE_CMSDK), true)
 include vendor/XPe/config/cmsdk_common.mk
 endif
 
+# Bootanimation
+PRODUCT_PACKAGES += \
+    bootanimation.zip
+
 #XPerience Services
 PRODUCT_PACKAGES += xpe-services
 PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
