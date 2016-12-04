@@ -219,14 +219,12 @@ PRODUCT_PACKAGES += \
 
 # Extra tools
 PRODUCT_PACKAGES += \
-    7z \
     bash \
     bzip2 \
     curl \
     fsck.ntfs \
     gdbserver \
     htop \
-    lib7z \
     libsepol \
     micro_bench \
     mke2fs \
