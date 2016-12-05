@@ -155,6 +155,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/XPerienceAlessav2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
+#7z 16
+PRODUCT_COPY_FILES += \
+    vendor/XPe/7z/system/lib/lib7z.so:system/lib/lib7z.so \
+    vendor/XPe/7z/system/xbin/7z:system/xbin/7z
+
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
 
