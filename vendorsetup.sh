@@ -1,4 +1,7 @@
+add_lunch_combo xpe_a5ul-userdebug
+add_lunch_combo xpe_athene-userdebug
 add_lunch_combo xpe_falcon-userdebug
 add_lunch_combo xpe_grouper-userdebug
-add_lunch_combo xpe_a5ul-userdebug
 add_lunch_combo xpe_ghost-userdebug
+add_lunch_combo xpe_osprey-userdebug
+add_lunch_combo xpe_titan-userdebug

@@ -208,7 +208,6 @@ PRODUCT_PACKAGES += \
     XPe_Browser \
     LiveLockScreenService \
     LockClock \
-    OmniClockOSS \
     masquerade \
     NexusLauncher \
     Screencast \
@@ -318,7 +317,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 PRODUCT_VERSION_MAJOR = 11
 PRODUCT_VERSION_MINOR = 1
-PRODUCT_VERSION_MAINTENANCE = 0
+PRODUCT_VERSION_MAINTENANCE = 1
 
 
 -include vendor/XPe/xperienced.mk
