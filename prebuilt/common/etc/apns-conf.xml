@@ -1697,9 +1697,9 @@
   <apn carrier="Movistar MX" mcc="334" mnc="03" apn="internet.movistar.mx" proxy="" port="" user="movistar" password="movistar" mmsc="" type="default,supl" />
   <apn carrier="Movistar MX MMS" mcc="334" mnc="03" apn="mms.movistar.mx" proxy="" port="" user="movistar" password="movistar" mmsc="http://mms.movistar.mx" mmsproxy="10.2.20.1" mmsport="9201" type="mms" />
   <apn carrier="Iusacell Internet" mcc="334" mnc="05" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default,supl" />
-  <apn carrier="Virgin Internet" mcc="334" mnc="030" apn="internet.virginmobile.mx" type="default,supl" />
-  <apn carrier="Cierto Internet" mcc="334" mnc="030" apn="internet.cierto.mx" type="default,supl" />
-  <apn carrier="Weex Internet" mcc="334" mnc="030" apn="internet.weex.mx" type="default,supl" />
+  <apn name="virgin Internet" numeric="334030" mcc="334" mnc="030" apn="internet.virginmobile.mx" user="" server="" password="" proxy="" port="" mmsproxy="" mmsport="" mmsprotocol="null" mmsc="" type="" />
+  <apn name="Cierto Internet" numeric="334030" mcc="334" mnc="030" apn="internet.cierto.mx" user="" server="" password="" proxy="" port="" mmsproxy="" mmsport="" mmsprotocol="null" mmsc="" type="default,supl" />
+  <apn name="Weex Internet" numeric="334030" mcc="334" mnc="030" apn="internet.weex.mx" user="" server="" password="" proxy="" port="" mmsproxy="" mmsport="" mmsprotocol="null" mmsc="" type="default,supl" />
   <apn carrier="Internet Modem" mcc="334" mnc="05" apn="modem.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" type="dun" />
   <apn carrier="Iusacell MMS" mcc="334" mnc="05" apn="mms.iusacellgsm.mx" mmsc="http://mms.iusacell3g.com/" user="mmsiusacellgsm" password="mmsiusacellgsm" type="mms" />
   <apn carrier="Iusacell Internet" mcc="334" mnc="050" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default,supl" />
