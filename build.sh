@@ -98,9 +98,9 @@ export USE_CCACHE=1
 export CCACHE_DIR=~/.ccache
 # set ccache due to your disk space,set it at your own risk
 if [ `uname -s` == "Darwin" ]; then
-prebuilts/misc/darwin-x86/ccache/ccache -M 20G
+prebuilts/misc/darwin-x86/ccache/ccache -M 50G
 else
-prebuilts/misc/linux-x86/ccache/ccache -M 20G
+prebuilts/misc/linux-x86/ccache/ccache -M 50G
 fi
 
 
