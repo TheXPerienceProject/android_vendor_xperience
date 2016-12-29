@@ -215,8 +215,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     masquerade \
     NexusLauncher \
-    Screencast \
-    SoundRecorder \
+    Trebuchet \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
