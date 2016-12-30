@@ -270,6 +270,11 @@ function write_packages() {
             printf 'LOCAL_CERTIFICATE := %s\n' "$CERT"
         elif [ "$CLASS" = "JAVA_LIBRARIES" ]; then
             printf 'LOCAL_SRC_FILES := %s/framework/%s\n' "$SRC" "$FILE"
+            local CERT=platform
+            if [ ! -z "$ARGS" ]; then
+                CERT="$ARGS"
+            fi
+            printf 'LOCAL_CERTIFICATE := %s\n' "$CERT"
         elif [ "$CLASS" = "ETC" ]; then
             printf 'LOCAL_SRC_FILES := %s/etc/%s\n' "$SRC" "$FILE"
         elif [ "$CLASS" = "EXECUTABLES" ]; then
@@ -433,12 +438,35 @@ function write_product_packages() {
 # be executed first!
 #
 function write_header() {
+    if [ -f $1 ]; then
+        rm $1
+    fi
+
     YEAR=$(date +"%Y")
 
     [ "$COMMON" -eq 1 ] && local DEVICE="$DEVICE_COMMON"
 
-    cat << EOF > $1
-# Copyright (C) $YEAR The CyanogenMod Project
+    NUM_REGEX='^[0-9]+$'
+    if [[ $INITIAL_COPYRIGHT_YEAR =~ $NUM_REGEX ]] && [ $INITIAL_COPYRIGHT_YEAR -le $YEAR ]; then
+        if [ $INITIAL_COPYRIGHT_YEAR -lt 2016 ]; then
+            printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-2016 The CyanogenMod Project\n" > $1
+        elif [ $INITIAL_COPYRIGHT_YEAR -eq 2016 ]; then
+            printf "# Copyright (C) 2016 The CyanogenMod Project\n" > $1
+        fi
+        if [ $YEAR -eq 2017 ]; then
+            printf "# Copyright (C) 2017 The XPerience Project\n" >> $1
+        elif [ $INITIAL_COPYRIGHT_YEAR -eq $YEAR ]; then
+            printf "# Copyright (C) $YEAR The XPerience Project\n" >> $1
+        elif [ $INITIAL_COPYRIGHT_YEAR -le 2017 ]; then
+            printf "# Copyright (C) 2017-$YEAR The XPerience Project\n" >> $1
+        else
+            printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-$YEAR The XPerience Project\n" >> $1
+        fi
+    else
+        printf "# Copyright (C) $YEAR The XPerience Project\n" > $1
+    fi
+
+    cat << EOF >> $1
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -648,8 +676,8 @@ function oat2dex() {
     local OAT=
 
     if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        export BAKSMALIJAR="$CM_ROOT"/vendor/cm/build/tools/smali/baksmali.jar
-        export SMALIJAR="$CM_ROOT"/vendor/cm/build/tools/smali/smali.jar
+        export BAKSMALIJAR="$CM_ROOT"/vendor/XPe/build/tools/smali/baksmali.jar
+        export SMALIJAR="$CM_ROOT"/vendor/XPe/build/tools/smali/smali.jar
     fi
 
     # Extract existing boot.oats to the temp folder
@@ -685,8 +713,12 @@ function oat2dex() {
         if get_file "$OAT" "$TMPDIR" "$SRC"; then
             java -jar "$BAKSMALIJAR" deodex -o "$TMPDIR/dexout" -b "$BOOTOAT" -d "$TMPDIR" "$TMPDIR/$(basename "$OAT")"
         elif [[ "$CM_TARGET" =~ .jar$ ]]; then
-            # try to extract classes.dex from boot.oat for framework jars
-            java -jar "$BAKSMALIJAR" deodex -o "$TMPDIR/dexout" -b "$BOOTOAT" -d "$TMPDIR" -e "/$OEM_TARGET" "$BOOTOAT"
+            # try to extract classes.dex from boot.oats for framework jars
+            JAROAT="$TMPDIR/system/framework/$ARCH/boot-$(basename ${OEM_TARGET%.*}).oat"
+            if [ ! -f "$JAROAT" ]; then
+                JAROAT=$BOOTOAT;
+            fi
+            java -jar "$BAKSMALIJAR" deodex -o "$TMPDIR/dexout" -b "$BOOTOAT" -d "$TMPDIR" "$JAROAT/$OEM_TARGET"
         else
             continue
         fi
@@ -774,9 +806,7 @@ function extract() {
         echo "Cleaning output directory ($OUTPUT_ROOT).."
         rm -rf "${OUTPUT_TMP:?}"
         mkdir -p "${OUTPUT_TMP:?}"
-        if [ -d "$OUTPUT_ROOT" ]; then
-            mv "${OUTPUT_ROOT:?}/"* "${OUTPUT_TMP:?}/"
-        fi
+        mv "${OUTPUT_ROOT:?}/"* "${OUTPUT_TMP:?}/"
         VENDOR_STATE=1
     fi
 
@@ -855,13 +885,21 @@ function extract() {
                 if [ ! -f "$DEST" ]; then
                     KEEP="1"
                 else
-                    local DEST_HASH=$(sha1sum "$DEST" | awk '{print $1}' )
+                    if [ "$(uname)" == "Darwin" ]; then
+                        local DEST_HASH=$(shasum "$DEST" | awk '{print $1}' )
+                    else
+                        local DEST_HASH=$(sha1sum "$DEST" | awk '{print $1}' )
+                    fi
                     if [ "$DEST_HASH" != "$HASH" ]; then
                         KEEP="1"
                     fi
                 fi
                 if [ "$KEEP" = "1" ]; then
-                    local TMP_HASH=$(sha1sum "$TMP" | awk '{print $1}' )
+                    if [ "$(uname)" == "Darwin" ]; then
+                        local TMP_HASH=$(shasum "$TMP" | awk '{print $1}' )
+                    else
+                        local TMP_HASH=$(sha1sum "$TMP" | awk '{print $1}' )
+                    fi
                     if [ "$TMP_HASH" = "$HASH" ]; then
                         printf '    + (keeping pinned file with hash %s)\n' "$HASH"
                         cp -p "$TMP" "$DEST"

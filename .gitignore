@@ -1,8 +1,12 @@
 proprietary/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 .DS_store
 =======
 *.DS_Store
 .DS_Store
 >>>>>>> d6a5c6999c2667d443306dfd98f273105d50ec2e
+=======
+prebuilt/archive
+>>>>>>> 6679251... http_prebuilt: Implement archive of artifacts
