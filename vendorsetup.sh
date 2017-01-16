@@ -5,3 +5,4 @@ add_lunch_combo xpe_grouper-userdebug
 add_lunch_combo xpe_ghost-userdebug
 add_lunch_combo xpe_osprey-userdebug
 add_lunch_combo xpe_titan-userdebug
+add_lunch_combo xpe_addison-userdebug
