@@ -30,8 +30,8 @@ endif
 
 #well I add ringtones here for all devices
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=BeatPlucker.ogg \
-    ro.config.notification_sound=Tethys.ogg \
+    ro.config.ringtone=Zen.ogg \
+    ro.config.notification_sound=Chime.ogg \
     ro.config.alarm_alert=Osmium.ogg
     
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
@@ -52,8 +52,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.notification_sound=Argon.ogg \
-    ro.config.alarm_alert=Hassium.ogg
+    ro.config.notification_sound=Chime.ogg \
+    ro.config.alarm_alert=Flow.ogg
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # Thank you, please drive thru!
@@ -373,7 +373,7 @@ else
    
 endif
 
-ifeq ($(XPE_BUILDTYPE), UNOFFICIAL,WEEKLY)
+ifeq ($(XPE_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
         XPE_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
