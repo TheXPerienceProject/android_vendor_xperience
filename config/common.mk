@@ -149,6 +149,10 @@ PRODUCT_PACKAGES += xpe-services
 PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
 PRODUCT_BOOT_JARS += xpe-services
 
+# Bootanimation
+PRODUCT_PACKAGES += \
+    bootanimation.zip
+
 # Required CM packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
