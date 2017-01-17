@@ -122,7 +122,7 @@ PRODUCT_COPY_FILES += \
 
 # SuperSU
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/SuperSU.zip \
+    vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
     vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
