@@ -120,6 +120,11 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/XPe/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+# SuperSU
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/SuperSU.zip:system/addon.d/SuperSU.zip \
+    vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
