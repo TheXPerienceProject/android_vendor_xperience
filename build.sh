@@ -48,6 +48,7 @@ MAJOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed 
 MINOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
 MAINTENANCE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/PRODUCT_VERSION_MAINTENANCE := //g')
 TAG=$(cat $DIR/vendor/XPe/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/ROM_VERSION_TAG := //g')
+WITH_XPERIASUPPORT=$(cat $DIR/vendor/XPe/vendor.mk | grep 'WITH_XPERIASUPPORT := *' | sed  's/WITH_XPERIASUPPORT := //g')
 
 
 if [ -n "$TAG" ]; then
@@ -103,7 +104,12 @@ else
 prebuilts/misc/linux-x86/ccache/ccache -M 50G
 fi
 
-
+#If you want include XPERIA Support
+if [ "${WITH_XPERIASUPPORT}" == "true"]; then
+echo -e " copying xperia support"
+	./vendor/XPe/config/xperiasupport.sh
+fi
+	
 #making changelog on niglty roms
 if [ "${BUILDTYPE}" == "NIGHTLY" ]; then
 echo -e " Making changelog and System directory"
