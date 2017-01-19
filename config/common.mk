@@ -108,15 +108,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
-# init.d support
+# init.d 
+pport
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/XPe/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # SuperSU
+ifeq ($(WITH_SUPERSU),true)
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
     vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+endif
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
@@ -308,10 +311,8 @@ PRODUCT_PACKAGES += \
     procrank
 
 # Conditionally build in su
-ifeq ($(WITH_SU),true)
 PRODUCT_PACKAGES += \
     su
-endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
