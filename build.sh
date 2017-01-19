@@ -105,7 +105,7 @@ prebuilts/misc/linux-x86/ccache/ccache -M 50G
 fi
 
 #If you want include XPERIA Support
-if [ "${WITH_XPERIASUPPORT}" == "true"]; then
+if [ "${WITH_XPERIASUPPORT}" == "true" ]; then
 echo -e " copying xperia support"
 	./vendor/XPe/config/xperiasupport.sh
 fi
