@@ -107,6 +107,9 @@ fi
 #If you want include XPERIA Support
 if [ "${WITH_XPERIASUPPORT}" == "true" ]; then
 echo -e " copying xperia support"
+echo ${bldppl}"Making dir..."${txtrst}
+mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/permissions/
+mkdir -v -p $OUT/target/product/"$DEVICE"/system/framework/
 	./vendor/XPe/config/xperiasupport.sh
 fi
 	
