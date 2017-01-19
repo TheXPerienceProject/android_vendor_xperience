@@ -108,8 +108,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
-# init.d 
-pport
+# init.d spport
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/XPe/prebuilt/common/bin/sysinit:system/bin/sysinit
