@@ -4,5 +4,5 @@
 
 # Print something to build output
 echo ${bldppl}"Moving XPeria support files..."${txtrst}
-cp -avr vendor/XPe/prebuilt/XPeriaSupport/etc/permissions/. $OUT/target/product/"$DEVICE"/system/etc/permissions/
-cp -avr vendor/XPe/prebuilt/XPeriaSupport/framework/. $OUT/target/product/"$DEVICE"/system/framework/
+cp -A -V -R vendor/XPe/prebuilt/XPeriaSupport/etc/permissions/. $OUT/target/product/"$DEVICE"/system/etc/permissions/
+cp -A -V -R vendor/XPe/prebuilt/XPeriaSupport/framework/. $OUT/target/product/"$DEVICE"/system/framework/
