@@ -1,5 +1,56 @@
 XPERIENCE 
 =========
+11.1.1_R9:
+
+[*] FWB:  introduce pocket judge
+	--   * Judge if device is in pocket.
+    	 * Notify clients callbacks when pocked state changes.
+	     * Start listening when device becomes not interactive.
+	     * Stop listening when device becomes interactive and is NOT in pocket.
+	     * Addresses NOUGAT-9.
+	--
+[*] Service: introduce pocket lock 
+	--
+		* Block touch screen and keys inputs when device is in pocket.
+		* Safe-door to disable pocket lock within long press power button
+		  if sensors do not behave correctly after PocketManager.isDeviceInPocket()
+		  returns true.
+		* Window uses TYPE_SYSTEM_ERROR flag with ensure high
+		  priority over the lockscreen and other high priority windows.
+	--
+[*] FWB: fix multi-sim colors
+[*] FWB:CMDS:fix bootanimation inclusion to give support on substratum 
+[*] fingerprint: disable when device is in pocket
+	--
+		* Stop listening for fingerprint when device enters pocket state.
+	--
+[*] SystemUI: Add NFC,Syncronize,IME,Caffeine,screenshot,USB tethering, Music,Reboot tiles
+[*] System:Sepolicy: Fix Su Allow apps in /system/priv-app to call and execute su commands
+[*] Buch of OMS fixes
+[*] System:sepolicy: allow sdcardd to remount sdcardfs 
+[*] System:Sepolicy:Add policy to SELinux to allow ViPER4Android in enforcing mode 
+[*] Frameworks:Native:Fix surfaceflinger file descriptor leak
+[*] FWN:Release resources when repeating dlopen-dlcose.
+	--
+		When the libbinder.so is dlopen and dlclose many
+		times, we need to delete the pthread_key and
+		munmap the memory mapping.
+
+		Otherwise, it will crash as the leakage causes
+		the pthread_key or memory mapping surpass their
+		limit.
+	--
+[*] January 5 security patch
+[*] New wallpaper
+[*] New bootanimation
+[*] Pixel theme
+[*] RainbowUnicorn (Custom settings for XPerience)
+[*] Bug fixes on Alessa Kernel Tweaker
+[*] windowmanager: Add support for blur effects 
+[*] Partial Carrier label (only work on Keyguard (Lockscreen)
+[*] Network Traffic Metter
+[*] Battery Bar
+
 11.1.0_r7
 [*] Android 7.1.0_r7
 [*] Partial screenshot support
@@ -521,4 +572,3 @@ XPE-8.0-RC0
 [*] Ram Optimization
 [*] RAM VAR
 [*] SpeedNET view
-
