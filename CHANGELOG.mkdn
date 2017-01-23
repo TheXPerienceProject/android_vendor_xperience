@@ -50,6 +50,7 @@ XPERIENCE
 [*] Partial Carrier label (only work on Keyguard (Lockscreen)
 [*] Network Traffic Metter
 [*] Battery Bar
+[*] XPerience Display
 
 11.1.0_r7
 [*] Android 7.1.0_r7
@@ -572,3 +573,4 @@ XPE-8.0-RC0
 [*] Ram Optimization
 [*] RAM VAR
 [*] SpeedNET view
+

@@ -156,6 +156,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/XPerienceAlessav2.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
+#XPerience Display
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/app/XPeDisplay.apk:system/app/XPeDisplay/XPeDisplay.apk
+
 #7z 16
 PRODUCT_COPY_FILES += \
     vendor/XPe/7z/system/lib/lib7z.so:system/lib/lib7z.so \
