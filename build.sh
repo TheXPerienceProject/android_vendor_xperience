@@ -121,6 +121,14 @@ mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
 	mv Changelog.txt out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
+#making changelog on niglty roms
+if [ "${BUILDTYPE}" == "WEEKLY" ]; then
+echo -e " Making changelog and System directory"
+mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
+	./vendor/XPe/tools/changelog
+	mv Changelog.txt out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
+fi
+
 #making changelog on UNOFFICIAL roms
 if [ "${BUILDTYPE}" == "UNOFFICIAL" ]; then
 echo -e " Making changelog and System directory"

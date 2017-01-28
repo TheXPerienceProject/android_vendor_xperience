@@ -30,8 +30,8 @@ endif
 
 #well I add ringtones here for all devices
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Zen.ogg \
-    ro.config.notification_sound=Chime.ogg \
+    ro.config.ringtone=Triton.ogg \
+    ro.config.notification_sound=pixiedust.ogg \
     ro.config.alarm_alert=Osmium.ogg
     
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
@@ -334,10 +334,18 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
 # Set XPE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
+ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
+    XPE_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+else
+    XPE_VERSION_MAINTENANCE := 0
+endif
+
+# Set XPE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+
 ifndef XPE_BUILDTYPE
     ifdef RELEASE_TYPE
         # Starting with "XPE_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^xpe_||g')
+        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^XPE_||g')
         XPE_BUILDTYPE := $(RELEASE_TYPE)
     endif
 endif
@@ -372,7 +380,6 @@ else
     # If XPE_BUILDTYPE is not defined, set to UNOFFICIAL
     XPE_BUILDTYPE := UNOFFICIAL
     XPE_EXTRAVERSION :=
-   
 endif
 
 ifeq ($(XPE_BUILDTYPE), UNOFFICIAL)
@@ -383,17 +390,24 @@ endif
 
 ifeq ($(XPE_BUILDTYPE), RELEASE)
     ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(XPE_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
+#            ifeq ($(XPE_VERSION_MAINTENANCE),0)
+                XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPE_BUILD)
+#            else
+#                XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPE_BUILD)
+#            endif
         else
-            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
+            XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(XPE_BUILD)
         endif
     endif
 else
-        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)$(XPE_EXTRAVERSION)-$(XPE_BUILD)-$(XPE_BUILDTYPE)
-
+#    ifeq ($(XPE_VERSION_MAINTENANCE),0)
+#        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
+#    else
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
+#    endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
