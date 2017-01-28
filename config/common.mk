@@ -220,7 +220,7 @@ PRODUCT_PACKAGES += \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
-    XPerienceCenter \
+    XPeUpdater \
     XPerienceSetupWizard
 
 # Exchange support
