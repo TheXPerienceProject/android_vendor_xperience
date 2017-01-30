@@ -40,3 +40,4 @@ Nexus 7:
 
 Unknown device.
 [*] Rodrigo Caliman
+[*] Scott Hawn
