@@ -411,12 +411,12 @@ else
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.xpe.version=$(XPE_VERSION) \
-  ro.xpe.releasetype=$(XPE_BUILDTYPE) \
-  ro.modversion=$(XPE_VERSION) \
-  ro.xpe.model=$(XPE_BUILD) \
-  ro.xpe.codename=Kukulkán \
-  ro.xpelegal.url=http://thexperienceproject.com/legal/
+    ro.xpe.version=$(XPE_VERSION) \
+    ro.xpe.releasetype=$(XPE_BUILDTYPE) \
+    ro.modversion=$(XPE_VERSION) \
+    ro.xpe.model=$(XPE_BUILD) \
+    ro.xpe.codename=Kukulkán \
+    ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
 
@@ -424,25 +424,25 @@ XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-  ifneq ($(XPE_BUILDTYPE), UNOFFICIAL)
-    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-      ifneq ($(XPE_EXTRAVERSION),)
-        # Remove leading dash from XPE_EXTRAVERSION
-        XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(XPE_EXTRAVERSION)
-      else
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
-      endif
-    else
-      TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
-    endif
-    XPE_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
-  endif
+    ifneq ($(XPE_BUILDTYPE), UNOFFICIAL)
+        ifndef TARGET_VENDOR_RELEASE_BUILD_ID
+            ifneq ($(XPE_EXTRAVERSION),)
+        		# Remove leading dash from XPE_EXTRAVERSION
+                XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
+                TARGET_VENDOR_RELEASE_BUILD_ID := $(XPE_EXTRAVERSION)
+            else
+                TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
+            endif
+        else
+            TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
+        endif
+            XPE_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
+     endif
 endif
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
+    ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
