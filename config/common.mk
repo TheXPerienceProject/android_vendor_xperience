@@ -30,7 +30,7 @@ endif
 
 #well I add ringtones here for all devices
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Triton.ogg \
+    ro.config.ringtone=Perseus.ogg \
     ro.config.notification_sound=pixiedust.ogg \
     ro.config.alarm_alert=Osmium.ogg
     
@@ -40,8 +40,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.selinux=1
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -413,7 +411,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Kukulkán \
+    ro.xpe.codename=Quetzalcóatl \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
