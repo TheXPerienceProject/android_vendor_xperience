@@ -23,7 +23,7 @@ Motorola Moto X1st GEN
 [*] Salem Strange
 [*] Scott Crosson
 [*] Jose Antonio Castro Gonzalez
-[*] televisiontv ---Big thanks :D---
+[*] televisiontv
 [*] Warren_Orange
 [*] sharukins
 [*] _Morfic_
@@ -44,4 +44,3 @@ Nexus 7:
 
 Unknown device.
 [*] Rodrigo Caliman
-[*] Scott Hawn
