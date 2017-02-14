@@ -23,11 +23,15 @@ Motorola Moto X1st GEN
 [*] Salem Strange
 [*] Scott Crosson
 [*] Jose Antonio Castro Gonzalez
-[*] televisiontv ---Big thanks :D---
+[*] televisiontv
 [*] Warren_Orange
 [*] sharukins
 [*] _Morfic_
 [*] TroyG
+[*] Oto Beker
+[*] Stefanowall
+[*] 7bob
+[*] scott hawn
 
 XPERIA SP:
 
@@ -40,4 +44,3 @@ Nexus 7:
 
 Unknown device.
 [*] Rodrigo Caliman
-[*] Scott Hawn
