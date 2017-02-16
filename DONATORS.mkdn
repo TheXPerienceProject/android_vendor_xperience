@@ -16,7 +16,7 @@ MOTOROLA MOTO G1st GEN:
 [*] Walter Knapp 
 [*] celikbasm
 [*] Alessandro Sarri
-[*] Walter Knapp Thanks again :)
+[*] Walter Knapp Thanks again :) Woldou
 
 Motorola Moto X1st GEN
 [*] Bernd Stahl
@@ -32,6 +32,8 @@ Motorola Moto X1st GEN
 [*] Stefanowall
 [*] 7bob
 [*] scott hawn
+[*] Luuk Mulder
+[*] Woldou
 
 XPERIA SP:
 
