@@ -114,8 +114,7 @@ PRODUCT_COPY_FILES += \
 # SuperSU
 ifeq ($(WITH_SUPERSU),true)
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
-    vendor/XPe/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+    vendor/XPe/prebuilt/common/magisk.zip:system/addon.d/magisk.zip
 endif
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
@@ -216,7 +215,8 @@ PRODUCT_PACKAGES += \
     WeatherProvider \
     WallpaperGoogle \
     XPeUpdater \
-    XPerienceSetupWizard
+    XPerienceSetupWizard \
+    MagiskManager
 
 # Exchange support
 PRODUCT_PACKAGES += \
