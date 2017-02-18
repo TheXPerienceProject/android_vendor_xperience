@@ -64,11 +64,11 @@ function breakfast()
                 variant="userdebug"
             fi
 
-            if ! check_product xpe_$target && check_product cm_$target; then
+            if ! check_product xpe_$target && check_product xpe_$target; then
                 echo "** Warning: '$target' is using XPE-based makefiles. This will be deprecated in the next major release."
                 lunch xpe_$target-$variant
             else
-                lunch lineage_$target-$variant
+                lunch xpe_$target-$variant
             fi
         fi
     fi
@@ -909,7 +909,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $CM_BUILD, run away!"
+        echo "The connected device does not appear to be $XPE_BUILD, run away!"
     fi
 }
 
