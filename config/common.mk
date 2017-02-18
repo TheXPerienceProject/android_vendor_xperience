@@ -214,7 +214,6 @@ PRODUCT_PACKAGES += \
     CMSettingsProvider \
     Eleven \
     ExactCalculator \
-    XPe_Browser \
     LiveLockScreenService \
     LockClock \
     masquerade \
