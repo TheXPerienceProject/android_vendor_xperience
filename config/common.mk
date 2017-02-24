@@ -217,13 +217,14 @@ PRODUCT_PACKAGES += \
     LiveLockScreenService \
     LockClock \
     masquerade \
+    MagiskManager \
     NexusLauncher \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
     XPeUpdater \
     XPerienceSetupWizard \
-    MagiskManager
+    XPeriaHome
 
 # Exchange support
 PRODUCT_PACKAGES += \

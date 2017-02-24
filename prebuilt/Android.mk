@@ -20,9 +20,23 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := MagiskManager
 LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/$(LOCAL_MODULE).apk
+LOCAL_SRC_FILES := common/app/MagiskManager.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := PRESIGNED
 include $(BUILD_PREBUILT)
+
+#
+# Prebuilt APKs
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := XPeriaHome
+LOCAL_MODULE_OWNER := xpe
+LOCAL_SRC_FILES := common/app/XPeriaHome.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := PRESIGNED
+include $(BUILD_PREBUILT)
+
