@@ -162,14 +162,6 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/7z/system/lib/lib7z.so:system/lib/lib7z.so \
     vendor/XPe/7z/system/xbin/7z:system/xbin/7z
 
-#Google Dialer
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/priv-app/GoogleDialer/GoogleDialer.apk:system/priv-app/GoogleDialer/GoogleDialer.apk
-#Google Dialger framework common
-PRODUCT_COPY_FILES += \
-	vendor/XPe/prebuilt/common/etc/permissions/com.google.android.dialer.support.xml:system/etc/permissions/com.google.android.dialer.support.xml \
-    vendor/XPe/prebuilt/common/framework/com.google.android.dialer.support.jar:system/framework/com.google.android.dialer.support.jar
-
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
 
