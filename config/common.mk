@@ -419,6 +419,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=Itzamná \
+	ro.xpe.cafbranch=lnx.2.1.r14-rel \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
