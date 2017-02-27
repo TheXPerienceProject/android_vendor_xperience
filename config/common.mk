@@ -211,6 +211,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AudioFX \
     CMSettingsProvider \
+	CommandCenter3 \
     Eleven \
     ExactCalculator \
     LiveLockScreenService \
@@ -353,7 +354,7 @@ ifndef XPE_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY WEEKLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
+ifeq ($(filter RELEASE NIGHTLY HOMECASE WEEKLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
     XPE_BUILDTYPE :=
 endif
 
@@ -417,7 +418,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Quetzalcóatl \
+    ro.xpe.codename=Itzamná \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
