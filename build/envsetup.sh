@@ -49,7 +49,6 @@ function breakfast()
             . $f
         done
     unset f
-
     if [ $# -eq 0 ]; then
         # No arguments, so let's have the full menu
         lunch
@@ -59,17 +58,11 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the Lineage model name
+            # This is probably just the CM model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
-
-            if ! check_product xpe_$target && check_product xpe_$target; then
-                echo "** Warning: '$target' is using XPE-based makefiles. This will be deprecated in the next major release."
-                lunch xpe_$target-$variant
-            else
-                lunch xpe_$target-$variant
-            fi
+            lunch xpe_$target-$variant
         fi
     fi
     return $?

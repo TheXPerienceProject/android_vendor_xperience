@@ -11,11 +11,10 @@ EXTRAS="$2"
 DEVICE2=$device
 export DEVICE=$DEVICE
 export DEVICE2=$DEVICE
-#export BLOCK_BASED_OTA = true
 
 # build
 . build/envsetup.sh
-lunch xpe_$device-userdebug
+lunch $device-userdebug
 #breakfast $device
 make clean
 
@@ -27,6 +26,7 @@ mkdir -v -p /home/klozz/xpe/out/target/product/falcon/system/etc/
 mkdir -v -p /home/klozz/xpe/out/target/product/victara/system/etc/
 mkdir -v -p /home/klozz/xpe/out/target/product/osprey/system/etc/
 mkdir -v -p /home/klozz/xpe/out/target/product/titan/system/etc/
+mkdir -v -p /home/klozz/xpe/out/target/product/merlin/system/etc/
         ./vendor/XPe/tools/changelog
         cp Changelog.txt /home/klozz/xpe/out/target/product/addison/system/etc/CHANGELOG-XPE.txt
         cp Changelog.txt /home/klozz/xpe/out/target/product/athene/system/etc/CHANGELOG-XPE.txt
@@ -36,6 +36,7 @@ mkdir -v -p /home/klozz/xpe/out/target/product/titan/system/etc/
         cp Changelog.txt /home/klozz/xpe/out/target/product/osprey/system/etc/CHANGELOG-XPE.txt
         cp Changelog.txt /home/klozz/xpe/out/target/product/titan/system/etc/CHANGELOG-XPE.txt
         cp Changelog.txt /home/klozz/xpe/out/target/product/wt88047/system/etc/CHANGELOG-XPE.txt
+        cp Changelog.txt /home/klozz/xpe/out/target/product/merlin/system/etc/CHANGELOG-XPE.txt
 
 mkdir -v -p /home/klozz/xpe/out/target/product/addison/system/etc/permissions/
 mkdir -v -p /home/klozz/xpe/out/target/product/addison/system/framework/
@@ -62,6 +63,9 @@ mkdir -v -p /home/klozz/xpe/out/target/product/osprey/system/framework/
 mkdir -v -p /home/klozz/xpe/out/target/product/wt88047/system/etc/permissions/
 mkdir -v -p /home/klozz/xpe/out/target/product/wt88047/system/framework/
 
+mkdir -v -p /home/klozz/xpe/out/target/product/merlin/system/etc/permissions/
+mkdir -v -p /home/klozz/xpe/out/target/product/merlin/system/framework/
+
  cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/etc/permissions/*.xml /home/klozz/xpe/out/target/product/addison/system/etc/permissions
  cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/framework/*.jar out/target/product/addison/system/framework
  cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/etc/permissions/*.xml /home/klozz/xpe/out/target/product/athene/system/etc/permissions
@@ -78,10 +82,9 @@ mkdir -v -p /home/klozz/xpe/out/target/product/wt88047/system/framework/
  cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/framework/*.jar out/target/product/victara/system/framework/
  cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/etc/permissions/*.xml /home/klozz/xpe/out/target/product/wt88047/system/etc/permissions
  cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/framework/*.jar out/target/product/wt88047/system/framework/
+ cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/etc/permissions/*.xml /home/klozz/xpe/out/target/product/merlin/system/etc/permissions
+ cp -a -R /home/klozz/xpe/vendor/XPe/prebuilt/XPeriaSupport/framework/*.jar out/target/product/merlin/system/framework/
 
-#fix addison dtb build
-#mkdir -v -p /home/klozz/xpe/out/target/product/addison/obj/KERNEL_OBJ/arch/arm/boot/dts/qcom
-#cp -a -R /home/klozz/xpe/device/motorola/addison/dtb/*.dtb /home/klozz/xpe/out/target/product/addison/obj/KERNEL_OBJ/arch/arm/boot/dts/qcom
 
 make bacon -j8
 
