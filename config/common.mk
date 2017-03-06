@@ -151,7 +151,7 @@ PRODUCT_COPY_FILES += \
 
 #Performance App
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/XPerienceAlessav2.0.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
+    vendor/XPe/prebuilt/common/app/Alessa2.4.0.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
 
 #XPerience Display
 PRODUCT_COPY_FILES += \
