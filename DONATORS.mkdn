@@ -34,9 +34,12 @@ Motorola Moto X1st GEN
 [*] scott hawn
 [*] Luuk Mulder
 [*] Woldou
+[*] James Flynn
+
+Moto Z Play
+[*] Michael Flynn
 
 XPERIA SP:
-
 [*] Gabboxxx
 
 Nexus 7:
@@ -44,5 +47,7 @@ Nexus 7:
 [*] Craig Moyle
 [*] Ткалун Сергей
 
-Unknown device.
+Unknown device
 [*] Rodrigo Caliman
+[*] Remy Noel
+[*] Insane (rodrigo)
