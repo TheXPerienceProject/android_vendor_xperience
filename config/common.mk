@@ -208,7 +208,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     LiveLockScreenService \
     LockClock \
-    masquerade \
+    ThemeInterfacer \
     MagiskManager \
     NexusLauncher \
     WallpaperPicker \
