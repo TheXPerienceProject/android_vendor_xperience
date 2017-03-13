@@ -7,3 +7,5 @@ add_lunch_combo xpe_titan-userdebug
 add_lunch_combo xpe_addison-userdebug
 add_lunch_combo xpe_wt88047-userdebug
 add_lunch_combo xpe_merlin-userdebug
+add_lunch_combo xpe_lettuce-userdebug
+add_lunch_combo xpe_onyx-userdebug
