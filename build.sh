@@ -191,10 +191,11 @@ echo -e ""
 
 # lunch/brunch device
 echo -e "${bldblu}Lunching device [$DEVICE] ${cya}(Includes dependencies sync)${txtrst}"
+lunch "$DEVICE-userdebug";
 lunch "xpe_$DEVICE-userdebug";
 
 echo -e "${bldblu}Starting compilation${txtrst}"
-mka bacon
+mka bacon -j"$THREADS"
 fi
 echo -e ""
 
