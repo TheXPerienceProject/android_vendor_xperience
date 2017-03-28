@@ -83,7 +83,7 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/XPe/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/XPe/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
+    vendor/XPe/prebuilt/common/bin/50-cm.sh:system/addon.d/50-xpe.sh \
     vendor/XPe/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 
@@ -144,11 +144,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
 
-#Pixel <3
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/NexusLauncher/NexusLauncher.apk:system/priv-app/NexusLauncher/NexusLauncher.apk \
-    vendor/XPe/prebuilt/WallpaperGoogle/WallpaperGoogle.apk:system/priv-app/WallpaperGoogle/WallpaperGoogle.apk
-
 #Performance App
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/app/Alessa2.4.0.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
@@ -183,7 +178,7 @@ PRODUCT_PACKAGES += \
     BluetoothExt \
     CMAudioService \
     CMParts \
-	CustomTiles \
+    CustomTiles \
     Development \
     Profiles \
     WeatherManagerService
@@ -204,14 +199,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AudioFX \
     CMSettingsProvider \
-	CommandCenter3 \
+    CommandCenter3 \
     Eleven \
     ExactCalculator \
     LiveLockScreenService \
     LockClock \
     ThemeInterfacer \
     MagiskManager \
-    NexusLauncher \
+    SnapdragonLauncher \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
@@ -412,7 +407,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=Ixchel \
-	ro.xpe.cafbranch=lnx.2.1.r14-rel \
+    ro.xpe.cafbranch=lnx.2.1.r14-rel \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
@@ -442,7 +437,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
-
--include vendor/cyngn/product.mk
-
-$(call prepend-product-if-exists, vendor/extra/product.mk)
