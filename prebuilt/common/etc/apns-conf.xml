@@ -1685,30 +1685,30 @@
   <apn carrier="MMS CLARO" mcc="330" mnc="110" apn="mmslte.claropr.com" mmsc="http://mmsg.claropr.com:10021/mmsc" mmsproxy="10.50.38.3" mmsport="8799" authtype="1" type="mms" />
   <apn carrier="Claro PR" mcc="330" mnc="11" apn="internet.claropr.com" proxy="" port="8080" user="" password="" mmsc="" type="default,supl" />
   <apn carrier="Claro PR MMS" mcc="330" mnc="11" apn="mms.claropr.com" proxy="" port="" user="" password="" mmsc="http://mmsg.claropr.com:1021/mmsc" mmsproxy="10.50.38.3" mmsport="8799" type="mms" />
-  <!--Mexico apn-->
-  <apn carrier="Telcel Internet" mcc="334" mnc="02" apn="internet.itelcel.com" proxy="" port="" user="webgprs" password="webgprs2002" mmsc="" type="default,supl" />
-  <apn carrier="Mensajas Multimedia" mcc="334" mnc="02" apn="mms.itelcel.com" proxy="" port="" user="mmsgprs" password="mmsgprs2003" mmsc="http://mms.itelcel.com/servlets/mms" mmsproxy="148.233.151.240" mmsport="8080" type="mms" />
-  <apn carrier="Telcel EDGE" mcc="334" mnc="020" apn="internet.itelcel.com" proxy="" port="" user="webgprs" password="webgprs2002" mmsc="" type="default,supl" />
+  <apn carrier="Azteca Movil" mcc="334" mnc="020" apn="internet.mvne1.com" type="default,dun" mvno_type="spn" mvno_match_data="AZTECA MOVIL" authtype="1" />
+  <apn carrier="Telcel Internet" mcc="334" mnc="02" apn="internet.itelcel.com" proxy="" port="" user="webgprs" password="webgprs2002" mmsc="" type="default,dun" authtype="1" />
+  <apn carrier="Mensajas Multimedia" mcc="334" mnc="02" apn="mms.itelcel.com" proxy="" port="" user="mmsgprs" password="mmsgprs2003" mmsc="http://mms.itelcel.com/servlets/mms" mmsproxy="148.233.151.240" mmsport="8080" type="mms" authtype="1" />
+  <apn carrier="Telcel EDGE" mcc="334" mnc="020" apn="internet.itelcel.com" proxy="" port="" user="webgprs" password="webgprs2002" mmsc="" type="default,dun" authtype="1" />
   <apn carrier="Telcel MMS" mcc="334" mnc="020" apn="mms.itelcel.com" proxy="" port="" user="mmsgprs" password="mmsgprs2003" mmsc="http://mms.itelcel.com/servlets/mms" mmsproxy="148.233.151.240" mmsport="8080" type="mms" />
   <apn carrier="Movistar MX" mcc="334" mnc="03" apn="internet.movistar.mx" proxy="" port="" user="movistar" password="movistar" mmsc="" type="default,supl" />
   <apn carrier="Movistar MX MMS" mcc="334" mnc="03" apn="mms.movistar.mx" proxy="" port="" user="movistar" password="movistar" mmsc="http://mms.movistar.mx" mmsproxy="10.2.20.1" mmsport="9201" type="mms" />
   <apn carrier="Iusacell Internet" mcc="334" mnc="05" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default,supl" />
   <apn name="Virgin Internet Movil" numeric="334030" mcc="334" mnc="030" apn="internet.virginmobile.mx" type="default" mvno_type="spn" mvno_match_data="Virgin Mobile" authtype="1" />
-  <apn name="Cierto Internet" numeric="334030" mcc="334" mnc="030" apn="internet.cierto.mx" user="" server="" password="" proxy="" port="" mmsproxy="" mmsport="" mmsprotocol="null" mmsc="" type="default,supl" />
-  <apn name="Weex Internet" numeric="334030" mcc="334" mnc="030" apn="internet.weex.mx" user="" server="" password="" proxy="" port="" mmsproxy="" mmsport="" mmsprotocol="null" mmsc="" type="default,supl" />
-  <apn carrier="Internet Modem" mcc="334" mnc="05" apn="modem.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" type="dun" />
+  <apn name="Cierto Internet" numeric="334030" mcc="334" mnc="030" apn="internet.cierto.mx" type="default" mvno_type="spn" mvno_match_data="Cierto" authtype="1"/>
+  <apn name="Weex Internet" numeric="334030" mcc="334" mnc="030" apn="internet.weex.mx" user="" type="default" mvno_type="spn" mvno_match_data="weex" authtype="1" />
+  <apn carrier="Internet Modem" mcc="334" mnc="05" apn="modem.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" type="dun" authtype="0" />
   <apn carrier="Iusacell MMS" mcc="334" mnc="05" apn="mms.iusacellgsm.mx" mmsc="http://mms.iusacell3g.com/" user="mmsiusacellgsm" password="mmsiusacellgsm" type="mms" />
-  <apn carrier="Iusacell Internet" mcc="334" mnc="050" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default,supl" />
+  <apn carrier="Iusacell Internet" mcc="334" mnc="050" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default" />
   <apn carrier="Iusacell MMS" mcc="334" mnc="050" apn="mms.iusacellgsm.mx" mmsc="http://mms.iusacell3g.com/" user="mmsiusacellgsm" password="mmsiusacellgsm" type="mms" />
+  <apn carrier="Iusacell SUPL" mcc="334" mnc="05" apn="supl.iusacellgsm.mx" type="supl" authtype="0" />
   <apn carrier="Unefon Internet" mcc="334" mnc="050" apn="web.iusacellgsm.mx" user="iusacellgsm" password="iusacellgsm" authtype="0" type="default,supl" />
   <apn carrier="Unefon MMS" mcc="334" mnc="050" apn="mms.iusacellgsm.mx" mmsc="http://mms.iusacell3g.com/" user="mmsiusacellgsm" password="mmsiusacellgsm" type="mms" />
   <apn carrier="Nextel Navegación" mcc="334" mnc="090" apn="wap.nexteldata.com.mx" user="" password="" authtype="0" type="default,supl" />
   <apn carrier="Nextel MMS" mcc="334" mnc="090" apn="mms.nexteldata.com.mx" mmsproxy="129.192.129.104" mmsport="8080" mmsc="http://3gmms.nexteldata.com.mx" user="" password="" type="mms" />
   <apn carrier="Nextel Internet" mcc="334" mnc="090" apn="modem.nexteldata.com.mx" user="" password="" type="dun,tethering" />
   <apn carrier="Nextel Localización" mcc="334" mnc="090" apn="location.nexteldata.com.mx" server="supl.nexteldata.com.mx" port="7275" type="supl" />
-  <apn carrier="Movistar INTERNET" mcc="334" mnc="30" apn="internet.movistar.mx" user="movistar" password="movistar" authtype="1" type="default,supl" />
+  <apn carrier="Movistar INTERNET" mcc="334" mnc="30" apn="internet.movistar.mx" user="movistar" password="movistar" authtype="1" type="default,dun" authtype="1" />
   <apn carrier="Movistar MMS" mcc="334" mnc="30" apn="mms.movistar.mx" proxy="" port="" mmsproxy="10.2.20.1" mmsport="80" mmsc="http://mms.movistar.mx" user="movistar" password="movistar" authtype="1" type="mms" />
-
   <apn carrier="LIME Prepaid Internet" mcc="338" mnc="180" apn="ppinternet" mmsc="" user="" password="" proxy="" port="8799" type="default,supl" />
   <apn carrier="LIME Postpaid Internet" mcc="338" mnc="180" apn="internet" mmsc="" user="" password="" proxy="" port="8799" type="default,supl" />
   <apn carrier="LIME Prepaid MMS" mcc="338" mnc="180" apn="ppmms" mmsc="http://mmsc" user="" password="" proxy="10.20.5.34" port="8799" type="mms" />
