@@ -1707,7 +1707,7 @@
   <apn carrier="Nextel MMS" mcc="334" mnc="090" apn="mms.nexteldata.com.mx" mmsproxy="129.192.129.104" mmsport="8080" mmsc="http://3gmms.nexteldata.com.mx" user="" password="" type="mms" />
   <apn carrier="Nextel Internet" mcc="334" mnc="090" apn="modem.nexteldata.com.mx" user="" password="" type="dun,tethering" />
   <apn carrier="Nextel Localización" mcc="334" mnc="090" apn="location.nexteldata.com.mx" server="supl.nexteldata.com.mx" port="7275" type="supl" />
-  <apn carrier="Movistar INTERNET" mcc="334" mnc="30" apn="internet.movistar.mx" user="movistar" password="movistar" authtype="1" type="default,dun" authtype="1" />
+  <apn carrier="Movistar INTERNET" mcc="334" mnc="30" apn="internet.movistar.mx" user="movistar" password="movistar" authtype="1" type="default,dun" />
   <apn carrier="Movistar MMS" mcc="334" mnc="30" apn="mms.movistar.mx" proxy="" port="" mmsproxy="10.2.20.1" mmsport="80" mmsc="http://mms.movistar.mx" user="movistar" password="movistar" authtype="1" type="mms" />
   <apn carrier="LIME Prepaid Internet" mcc="338" mnc="180" apn="ppinternet" mmsc="" user="" password="" proxy="" port="8799" type="default,supl" />
   <apn carrier="LIME Postpaid Internet" mcc="338" mnc="180" apn="internet" mmsc="" user="" password="" proxy="" port="8799" type="default,supl" />
