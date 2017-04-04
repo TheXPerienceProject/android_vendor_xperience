@@ -342,7 +342,7 @@ ifndef XPE_BUILDTYPE
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY HOMECASE WEEKLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
+ifeq ($(filter RELEASE NIGHTLY HOMECASE WEEKLY SNAPSHOT EXPERIMENTAL STABLERELEASE,$(XPE_BUILDTYPE)),)
     XPE_BUILDTYPE :=
 endif
 
@@ -406,7 +406,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Ixchel \
+    ro.xpe.codename=Ak’Kin  \
     ro.xpe.cafbranch=lnx.2.1.r14-rel \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
