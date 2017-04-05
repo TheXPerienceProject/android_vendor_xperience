@@ -1,5 +1,22 @@
 XPERIENCE 
 =========
+11.1.2_R2:
+[*] Battery alerts
+[*] Android 7.1.2_r2
+[*] App bar
+[*] Battery Bar
+[*] Bluetooth enhacements
+[*] Improved stability of notifications
+[*] Improvements in overall connectivity
+[*] Option to disable Pocket Judge
+[*] Improvements with 0 compressed apk's
+[*] Doze improvements
+[*] Rootless mode support on substratum
+[*] Interfacer
+[*] Snapdragon Launcher
+[*] XPeria Launcher 
+[*] XPeria APPS support
+
 11.1.1_R9:
 
 [*] FWB:  introduce pocket judge
