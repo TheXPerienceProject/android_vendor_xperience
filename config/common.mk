@@ -36,6 +36,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
+PRODUCT_COPY_FILES += \
+    vendor/XPe/prebuilt/common/org.cyanogenmod.platform.jar:system/framework/org.cyanogenmod.platform.jar \
+    vendor/XPe/prebuilt/common/org.cyanogenmod.platform.apk:system/framework/org.cyanogenmod.platform.apk 
+
+
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true
