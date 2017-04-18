@@ -38,6 +38,7 @@ Motorola Moto X1st GEN
 
 Moto Z Play
 [*] Michael Flynn
+[*] DroneDoom
 
 XPERIA SP:
 [*] Gabboxxx
