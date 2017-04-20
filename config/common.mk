@@ -207,6 +207,7 @@ PRODUCT_PACKAGES += \
     CommandCenter3 \
     Eleven \
     ExactCalculator \
+    Jelly \
     LiveLockScreenService \
     LockClock \
     ThemeInterfacer \
