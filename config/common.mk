@@ -144,14 +144,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
 
-#Performance App
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/Alessa2.4.0.apk:system/app/XPeriencePerformance/XPeriencePerformance.apk
-
-#XPerience Display
-PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/app/XPeDisplay.apk:system/app/XPeDisplay/XPeDisplay.apk
-
 #7z 16
 PRODUCT_COPY_FILES += \
     vendor/XPe/7z/system/lib/lib7z.so:system/lib/lib7z.so \
@@ -198,6 +190,7 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     AudioFX \
+    Alessa \
     CMSettingsProvider \
     CommandCenter3 \
     Eleven \
@@ -211,6 +204,7 @@ PRODUCT_PACKAGES += \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
+    XPeDisplay \
     XPeUpdater \
     XPerienceSetupWizard \
     XPeriaHome
