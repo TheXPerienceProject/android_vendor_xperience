@@ -1,8 +1,8 @@
 XPERIENCE 
 =========
-11.1.2_R2:
+11.1.2:
 [*] Battery alerts
-[*] Android 7.1.2_r2
+[*] Android 7.1.2_r8
 [*] App bar
 [*] Battery Bar
 [*] Bluetooth enhacements
@@ -16,6 +16,10 @@ XPERIENCE
 [*] Snapdragon Launcher
 [*] XPeria Launcher 
 [*] XPeria APPS support
+[*] WakelockBlocker
+[*] Alarm block
+[*] Unlock using fingerprint without enter Pin/Pattern
+[*] Clear recents fab configs
 
 11.1.1_R9:
 
