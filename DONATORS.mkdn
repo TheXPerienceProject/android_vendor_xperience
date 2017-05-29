@@ -35,6 +35,7 @@ Motorola Moto X1st GEN
 [*] Luuk Mulder
 [*] Woldou
 [*] James Flynn
+[*] manck
 
 Moto Z Play
 [*] Michael Flynn
