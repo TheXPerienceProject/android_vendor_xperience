@@ -401,7 +401,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Niá:wen \
+    ro.xpe.codename=êmis \
     ro.xpe.cafbranch=lnx.2.1.r14-rel \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
