@@ -40,6 +40,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.selinux=1
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -158,6 +160,12 @@ include vendor/XPe/config/xpe_audio.mk
 ifneq ($(TARGET_DISABLE_CMSDK), true)
 # CMSDK
 include vendor/XPe/config/cmsdk_common.mk
+endif
+
+# Use signing keys for only official builds
+ifeq ($(XPERIENCE_CHANNEL), OFFICIAL)
+    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
+    PRODUCT_OTA_PUBLIC_KEYS = .keys/releasekey/otakey.x509.pem
 endif
 
 #XPerience Services
@@ -313,6 +321,9 @@ PRODUCT_VERSION_MAJOR = 11
 PRODUCT_VERSION_MINOR = 1
 PRODUCT_VERSION_MAINTENANCE = 2
 
+ifndef XPERIENCE_CHANNEL
+    XPERIENCE_CHANNEL := UNOFFICIAL
+endif
 
 -include vendor/XPe/xperienced.mk
 
@@ -399,6 +410,7 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.version=$(XPE_VERSION) \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
+    ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=êmis \
