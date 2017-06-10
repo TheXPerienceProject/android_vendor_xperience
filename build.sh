@@ -195,8 +195,17 @@ lunch "$DEVICE-userdebug";
 breakfast "$DEVICE"
 
 echo -e "${bldblu}Starting compilation${txtrst}"
+
+#if kenzo won't build do this ARM64 devices for example
+if [ "$DEVICE" == "kenzo" ]
+then
+make updater -j"$THREADS"
+mka bacon -j"$THREADS"
+else
 mka bacon -j"$THREADS"
 fi
+fi
+
 echo -e ""
 
 # Get elapsed time
