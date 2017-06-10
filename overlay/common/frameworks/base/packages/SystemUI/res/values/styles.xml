@@ -24,9 +24,4 @@
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">#C8C8CE</item>
     </style>
-    <style name="DarkTheme">
-        <item name="backgroundColor">#3F3F45</item>
-        <item name="fillColor">#8C8C92</item>
-        <item name="singleToneColor">#8C8C92</item>
-    </style>
 </resources>
