@@ -201,6 +201,10 @@ if [ "$DEVICE" == "kenzo" ]
 then
 make updater -j"$THREADS"
 mka bacon -j"$THREADS"
+elif [ "$DEVICE" == "mido" ]
+then
+make updater -j"$THREADS"
+mka bacon -j"$THREADS"
 else
 mka bacon -j"$THREADS"
 fi
