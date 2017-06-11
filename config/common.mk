@@ -163,7 +163,7 @@ include vendor/XPe/config/cmsdk_common.mk
 endif
 
 # Use signing keys for only official builds
-ifeq ($(XPERIENCE_CHANNEL), OFFICIAL)
+ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
     PRODUCT_OTA_PUBLIC_KEYS = .keys/releasekey/otakey.x509.pem
 endif
@@ -201,7 +201,6 @@ PRODUCT_PACKAGES += \
     Alessa \
     CMSettingsProvider \
     CommandCenter3 \
-    Eleven \
     ExactCalculator \
     Jelly \
     LiveLockScreenService \
@@ -209,6 +208,7 @@ PRODUCT_PACKAGES += \
     ThemeInterfacer \
     MagiskManager \
     SnapdragonLauncher \
+    Stardust \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
