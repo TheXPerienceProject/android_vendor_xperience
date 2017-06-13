@@ -414,7 +414,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=êmis \
-    ro.xpe.cafbranch=lnx.2.1.r14-rel \
+    ro.xpe.cafbranch=lnx.2.1.r17-rel->(LA.UM.5.9.r1-02300-8x53.0) \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
