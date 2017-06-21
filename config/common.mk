@@ -212,10 +212,12 @@ PRODUCT_PACKAGES += \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
+    XPeriaHome \
     XPeDisplay \
     XPeUpdater \
     XPerienceSetupWizard \
-    XPeriaHome
+	XPerienceWallpapers
+
 
 # Exchange support
 PRODUCT_PACKAGES += \
