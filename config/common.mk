@@ -216,7 +216,7 @@ PRODUCT_PACKAGES += \
     XPeDisplay \
     XPeUpdater \
     XPerienceSetupWizard \
-	XPerienceWallpapers
+    XPerienceWallpapers
 
 
 # Exchange support
