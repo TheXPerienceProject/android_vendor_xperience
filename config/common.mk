@@ -415,8 +415,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=êmis \
-    ro.xpe.cafbranch=lnx.2.1.r17-rel->(LA.UM.5.9.r1-02300-8x53.0) \
+    ro.xpe.codename=Izanagi \
+    ro.xpe.cafbranch=lnx.2.1.r20-rel->(LA.UM.5.8.r1-02200-8x98.0) \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
