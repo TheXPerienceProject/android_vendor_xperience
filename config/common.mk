@@ -100,11 +100,6 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.d/02XPerienceColorcalib:system/etc/init.d/02XPerienceColorcalib
 endif
 
-ifeq ($(MOTOCAMERA), true)
-PRODUCT_COPY_FILES += \
-     vendor/XPe/config/permissions/com.motorola.cameraone.xml:system/etc/permissions/com.motorola.cameraone.xml
-endif
-
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
     vendor/XPe/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
