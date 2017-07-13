@@ -116,7 +116,7 @@ PRODUCT_COPY_FILES += \
 # SuperSU
 #ifeq ($(WITH_SUPERSU),true)
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/Magisk-v12.0.zip:system/addon.d/magisk.zip
+    vendor/XPe/prebuilt/common/Magisk-v13.1.zip:system/addon.d/magisk.zip
 #endif
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
