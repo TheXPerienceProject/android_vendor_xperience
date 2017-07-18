@@ -168,6 +168,11 @@ PRODUCT_PACKAGES += xpe-services
 PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
 PRODUCT_BOOT_JARS += xpe-services
 
+# TWRP
+ifeq ($(WITH_TWRP),true)
+include vendor/XPe/config/twrp.mk
+endif
+
 # Required CM packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
