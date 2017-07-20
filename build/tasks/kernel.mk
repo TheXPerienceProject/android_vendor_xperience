@@ -210,6 +210,7 @@ else
             $(warning * pack the boot image using the prebuilt Kernel.                 *)
             $(warning ******************************************************************)
             FULL_KERNEL_BUILD := true
+            KERNEL_BIN := $(TARGET_PREBUILT_KERNEL)
         endif
     endif
 endif
