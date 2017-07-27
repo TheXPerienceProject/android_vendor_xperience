@@ -109,10 +109,10 @@ PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # SuperSU
-ifeq ($(WITH_MAGISK),true)
+#ifeq ($(WITH_SUPERSU),true)
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/Magisk-v13.3.zip:system/addon.d/magisk.zip
-endif
+#endif
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
