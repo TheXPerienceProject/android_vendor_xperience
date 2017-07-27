@@ -5,6 +5,8 @@ DONATORS:
 
 "Thank you so much for help"
 
+ATT: TeamMEX (Aka klozz jesus)
+
 MOTOROLA MOTO G1st GEN:
 
 [*] Lee Mulligan [lmulli]
@@ -43,6 +45,7 @@ Moto Z Play
 
 Moto G4/Plus
 [*] Jesus Alfredo Espinosa Sanchez
+[*] Julian Ku
 
 XPERIA SP:
 [*] Gabboxxx
@@ -57,3 +60,8 @@ Unknown device
 [*] Remy Noel
 [*] Insane (rodrigo)
 [*] auberginemaster 
+
+
+Thanks for help us with the build server
+[*] AsCarex (Jesus Alfredo
+[*] Julian Ku
