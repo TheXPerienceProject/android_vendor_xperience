@@ -330,9 +330,8 @@ endif
 -include vendor/XPe/xperienced.mk
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
-
-# Set XPE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
-
+###########################################################################
+# Set XPE_BUILDTYPE from the env RELEASE_TYPE
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
     XPE_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
@@ -392,23 +391,24 @@ ifeq ($(XPE_BUILDTYPE), RELEASE)
         XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)-$(XPE_BUILD)
     else
         ifeq ($(TARGET_BUILD_VARIANT),user)
-#            ifeq ($(XPE_VERSION_MAINTENANCE),0)
+            ifeq ($(XPE_VERSION_MAINTENANCE),0)
                 XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPE_BUILD)
-#            else
-#                XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPE_BUILD)
-#            endif
+            else
+                XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(XPE_BUILD)
+            endif
         else
             XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(XPE_BUILD)
         endif
     endif
 else
-#    ifeq ($(XPE_VERSION_MAINTENANCE),0)
-#        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
-#    else
+    ifeq ($(XPE_VERSION_MAINTENANCE),0)
+        XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
+    else
         XPE_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(shell date -u +%Y%m%d)-$(XPE_BUILDTYPE)$(XPE_EXTRAVERSION)-$(XPE_BUILD)
-#    endif
+    endif
 endif
 
+###########################################################################
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.version=$(XPE_VERSION) \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
