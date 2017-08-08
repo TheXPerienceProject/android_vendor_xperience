@@ -64,7 +64,6 @@ PRODUCT_COPY_FILES += \
 
 # Lower RAM devices
 ifeq ($(XPE_LOW_RAM_DEVICE),true)
-MALLOC_IMPL := dlmalloc
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -124,7 +123,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
 
-
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
@@ -148,9 +146,6 @@ PRODUCT_COPY_FILES += \
 
 # Include XPe audio files
 include vendor/XPe/config/xpe_audio.mk
-
-# Theme engine
--include vendor/XPe/config/themes_common.mk
 
 ifneq ($(TARGET_DISABLE_CMSDK), true)
 # CMSDK
@@ -415,8 +410,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Izanagi \
-    ro.xpe.cafbranch=lnx.2.1.r20-rel->(LA.UM.5.8.r1-02200-8x98.0) \
+    ro.xpe.codename=Aioros \
+    ro.xpe.cafbranch=LA.UM.5.8.r1-02200-8x98.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
