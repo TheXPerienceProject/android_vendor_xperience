@@ -314,9 +314,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
 
-PRODUCT_VERSION_MAJOR = 11
-PRODUCT_VERSION_MINOR = 1
-PRODUCT_VERSION_MAINTENANCE = 2
+PRODUCT_VERSION_MAJOR = 12
+PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MAINTENANCE = 0
 
 ifndef XPERIENCE_CHANNEL
     XPERIENCE_CHANNEL := UNOFFICIAL
@@ -410,8 +410,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Aioros \
-    ro.xpe.cafbranch=LA.UM.5.8.r1-02200-8x98.0 \
+    ro.xpe.codename=Orion \
+    ro.xpe.cafbranch=xxxxxxxxxxxxxxx \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
