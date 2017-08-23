@@ -76,6 +76,7 @@ function breakfast()
             . $f
         done
     unset f
+
     if [ $# -eq 0 ]; then
         # No arguments, so let's have the full menu
         lunch
@@ -85,10 +86,11 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the CM model name
+            # This is probably just the xpe model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
+
             lunch xpe_$target-$variant
         fi
     fi
