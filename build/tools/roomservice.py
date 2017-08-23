@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-# Copyright (C) 2012-16, The CyanogenMod Project
+# Copyright (C) 2012-16, The CyanogenMod Projec
+# Copyright (C) 2017,    The LineageOS Project
 # Copyright (C) 2011-2016 The XPerience Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -131,7 +132,7 @@ def add_to_local_manifest(path, name, remote, branch=None):
             name = "LineageOS/" + name
     if (remote == "xpe"):
         if (branch == None):
-            branch = "xpe-11.1"
+            branch = "xpe-12.0"
         if not (name.find("XPerience-AOSP-Lollipop/") == 0):
             name = "XPerience-AOSP-Lollipop/" + name
 
@@ -186,14 +187,14 @@ def get_from_github(device):
                 break
 
 def checkdeps(repo_path):
-    cmdeps = glob.glob(repo_path + "/cm.dependencies")
+    cmdeps = glob.glob(repo_path + "/lineage.dependencies")
     xpedeps = glob.glob(repo_path + "/xpe.dependencies")
     if ((len(cmdeps) + len(xpedeps)) < 1):
         ran_checkdeps_on.append("NO_DEPS:\t\t" + repo_path)
         return
     else:
         if (len(cmdeps) > 0):
-            ran_checkdeps_on.append("HAS_CM_DEPS:\t" + repo_path)
+            ran_checkdeps_on.append("HAS_LINEAGE_DEPS:\t" + repo_path)
             cmdeps = cmdeps[0]
             cmdeps = open(cmdeps, 'r')
             cmdeps = json.loads(cmdeps.read())

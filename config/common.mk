@@ -79,7 +79,7 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/XPe/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/XPe/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/XPe/prebuilt/common/bin/50-cm.sh:system/addon.d/50-xpe.sh \
+    vendor/XPe/prebuilt/common/bin/50-xpe.sh:system/addon.d/50-xpe.sh \
     vendor/XPe/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 
@@ -245,12 +245,12 @@ PRODUCT_PACKAGES += \
 
 
 # Custom off-mode charger
-ifneq ($(WITH_CM_CHARGER),false)
+ifneq ($(WITH_XPE_CHARGER),false)
 PRODUCT_PACKAGES += \
     charger_res_images \
-    cm_charger_res_images \
+    xpe_charger_res_images \
     font_log.png \
-    libhealthd.cm
+    libhealthd.xpe
 endif
 
 # ExFAT support
