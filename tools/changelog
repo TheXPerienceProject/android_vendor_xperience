@@ -2,7 +2,7 @@
 
 # Exports
 
-./vendor/XPe/tools/colors
+./vendor/xperience/tools/colors
 
 export Changelog=Changelog.txt
 

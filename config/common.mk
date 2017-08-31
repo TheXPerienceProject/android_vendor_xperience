@@ -10,7 +10,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
 # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,,$(shell ls -1 vendor/XPe/prebuilt/common/bootanimation | sort -rn))
+bootanimation_sizes := $(subst .zip,,$(shell ls -1 vendor/xperience/prebuilt/common/bootanimation | sort -rn))
 
 # find the appropriate size and set
 define check_and_set_bootanimation
@@ -25,7 +25,7 @@ $(eval TARGET_BOOTANIMATION_NAME := $(shell \
 endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
-PRODUCT_BOOTANIMATION := vendor/XPe/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 endif
 
 #well I add ringtones here for all devices
@@ -55,12 +55,12 @@ endif
 
 ifneq ($(XPE_BUILDTYPE),RELEASE)
 # PRODUCT_COPY_FILES += \
-#     vendor/XPe/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
+#     vendor/xperience/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
 endif
 
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
-    vendor/XPe/DONATORS.mkdn:system/etc/donators.txt
+    vendor/xperience/DONATORS.mkdn:system/etc/donators.txt
 
 # Lower RAM devices
 ifeq ($(XPE_LOW_RAM_DEVICE),true)
@@ -77,55 +77,55 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/XPe/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/XPe/prebuilt/common/bin/50-xpe.sh:system/addon.d/50-xpe.sh \
-    vendor/XPe/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/xperience/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/xperience/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/xperience/prebuilt/common/bin/50-xpe.sh:system/addon.d/50-xpe.sh \
+    vendor/xperience/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
 
 #Falcon Tweaking
 ifeq ($(XPE_BUILD), falcon)
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:system/etc/init.d/01XPerienceKernelCOnf
+    vendor/xperience/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:system/etc/init.d/01XPerienceKernelCOnf
 endif
 
 ifeq ($(XPE_BUILD), ghost)
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/init.d/02XPerienceColorcalib:system/etc/init.d/02XPerienceColorcalib
+    vendor/xperience/prebuilt/common/etc/init.d/02XPerienceColorcalib:system/etc/init.d/02XPerienceColorcalib
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/XPe/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/xperience/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+    vendor/xperience/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
 # init.d spport
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/XPe/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/xperience/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/xperience/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # SuperSU
 #ifeq ($(WITH_SUPERSU),true)
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/Magisk-v13.3.zip:system/addon.d/magisk.zip
+    vendor/xperience/prebuilt/common/Magisk-v13.3.zip:system/addon.d/magisk.zip
 #endif
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/xperience/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
 # specific init file
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
+    vendor/xperience/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/XPe/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/xperience/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -135,21 +135,21 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is XPe!
+# This is xperience!
 PRODUCT_COPY_FILES += \
-    vendor/XPe/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
+    vendor/xperience/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml
 
 #7z 16
 PRODUCT_COPY_FILES += \
-    vendor/XPe/7z/system/lib/lib7z.so:system/lib/lib7z.so \
-    vendor/XPe/7z/system/xbin/7z:system/xbin/7z
+    vendor/xperience/7z/system/lib/lib7z.so:system/lib/lib7z.so \
+    vendor/xperience/7z/system/xbin/7z:system/xbin/7z
 
-# Include XPe audio files
-include vendor/XPe/config/xpe_audio.mk
+# Include xperience audio files
+include vendor/xperience/config/xpe_audio.mk
 
 ifneq ($(TARGET_DISABLE_CMSDK), true)
 # CMSDK
-include vendor/XPe/config/cmsdk_common.mk
+include vendor/xperience/config/cmsdk_common.mk
 endif
 
 # Use signing keys for only official builds
@@ -165,7 +165,7 @@ PRODUCT_BOOT_JARS += xpe-services
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-include vendor/XPe/config/twrp.mk
+include vendor/xperience/config/twrp.mk
 endif
 
 # Required CM packages
@@ -313,7 +313,7 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
-DEVICE_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
 
 PRODUCT_VERSION_MAJOR = 12
 PRODUCT_VERSION_MINOR = 0
@@ -323,9 +323,9 @@ ifndef XPERIENCE_CHANNEL
     XPERIENCE_CHANNEL := UNOFFICIAL
 endif
 
--include vendor/XPe/xperienced.mk
+-include vendor/xperience/xperienced.mk
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/XPe/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
 ###########################################################################
 # Set XPE_BUILDTYPE from the env RELEASE_TYPE
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)

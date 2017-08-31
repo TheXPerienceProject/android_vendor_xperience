@@ -43,12 +43,12 @@ EXTRAS="$2"
 
 if [ $ARCH = "64" ]; then
 # Get build version
-BUILDTYPE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'XPE_BUILDTYPE := *' | sed  's/XPE_BUILDTYPE := //g')
-MAJOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed  's/PRODUCT_VERSION_MAJOR := //g')
-MINOR=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
-MAINTENANCE=$(cat $DIR/vendor/XPe/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/PRODUCT_VERSION_MAINTENANCE := //g')
-TAG=$(cat $DIR/vendor/XPe/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/ROM_VERSION_TAG := //g')
-WITH_XPERIASUPPORT=$(cat $DIR/vendor/XPe/vendor.mk | grep 'WITH_XPERIASUPPORT := *' | sed  's/WITH_XPERIASUPPORT := //g')
+BUILDTYPE=$(cat $DIR/vendor/xperience/vendor.mk | grep 'XPE_BUILDTYPE := *' | sed  's/XPE_BUILDTYPE := //g')
+MAJOR=$(cat $DIR/vendor/xperience/vendor.mk | grep 'PRODUCT_VERSION_MAJOR := *' | sed  's/PRODUCT_VERSION_MAJOR := //g')
+MINOR=$(cat $DIR/vendor/xperience/vendor.mk | grep 'PRODUCT_VERSION_MINOR := *' | sed  's/PRODUCT_VERSION_MINOR := //g')
+MAINTENANCE=$(cat $DIR/vendor/xperience/vendor.mk | grep 'PRODUCT_VERSION_MAINTENANCE := *' | sed  's/PRODUCT_VERSION_MAINTENANCE := //g')
+TAG=$(cat $DIR/vendor/xperience/vendor.mk | grep 'ROM_VERSION_TAG := *' | sed  's/ROM_VERSION_TAG := //g')
+WITH_XPERIASUPPORT=$(cat $DIR/vendor/xperience/vendor.mk | grep 'WITH_XPERIASUPPORT := *' | sed  's/WITH_XPERIASUPPORT := //g')
 
 
 if [ -n "$TAG" ]; then
@@ -110,14 +110,14 @@ echo -e " copying xperia support"
 echo ${bldppl}"Making dir..."${txtrst}
 mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/permissions/
 mkdir -v -p $OUT/target/product/"$DEVICE"/system/framework/
-	./vendor/XPe/config/xperiasupport.sh
+	./vendor/xperience/config/xperiasupport.sh
 fi
 	
 #making changelog on niglty roms
 if [ "${BUILDTYPE}" == "NIGHTLY" ]; then
 echo -e " Making changelog and System directory"
 mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
-	./vendor/XPe/tools/changelog
+	./vendor/xperience/tools/changelog
 	mv Changelog.txt out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
@@ -125,7 +125,7 @@ fi
 if [ "${BUILDTYPE}" == "WEEKLY" ]; then
 echo -e " Making changelog and System directory"
 mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
-	./vendor/XPe/tools/changelog
+	./vendor/xperience/tools/changelog
 	mv Changelog.txt out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
@@ -133,14 +133,14 @@ fi
 if [ "${BUILDTYPE}" == "UNOFFICIAL" ]; then
 echo -e " Making changelog and System directory"
 mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
-cp vendor/XPe/CHANGELOG.mkdn out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
+cp vendor/xperience/CHANGELOG.mkdn out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
 #making changelog on RELEASE roms
 if [ "${BUILDTYPE}" == "RELEASE" ]; then
 echo -e " Making changelog and System directory"
 mkdir -v -p $OUT/target/product/"$DEVICE"/system/etc/
-cp vendor/XPe/CHANGELOG.mkdn out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
+cp vendor/xperience/CHANGELOG.mkdn out/target/product/"$DEVICE"/system/etc/CHANGELOG-XPE.txt
 fi
 
 

@@ -1,3 +1,3 @@
-# This device supports CM enhanced NFC
+# This device supports XPe enhanced NFC
 PRODUCT_COPY_FILES += \
-    vendor/XPe/config/permissions/com.cyanogenmod.nfc.enhanced.xml:system/etc/permissions/com.cyanogenmod.nfc.enhanced.xml
+    vendor/xperience/config/permissions/com.cyanogenmod.nfc.enhanced.xml:system/etc/permissions/com.cyanogenmod.nfc.enhanced.xml

@@ -45,7 +45,7 @@ trap cleanup EXIT INT TERM ERR
 #
 # $1: device name
 # $2: vendor name
-# $3: CM root directory
+# $3: XPerience root directory
 # $4: is common device - optional, default to false
 # $5: cleanup - optional, default to true
 # $6: custom vendor makefile name - optional, default to false

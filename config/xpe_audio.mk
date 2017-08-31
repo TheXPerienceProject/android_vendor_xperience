@@ -2,10 +2,10 @@
 # XPerience Audio Files
 #
 
-ALARM_PATH := vendor/XPe/prebuilt/common/media/audio/alarms
-NOTIFICATION_PATH := vendor/XPe/prebuilt/common/media/audio/notifications
-RINGTONE_PATH := vendor/XPe/prebuilt/common/media/audio/ringtones
-UI_PATH := vendor/XPe/prebuilt/common/media/audio/ui
+ALARM_PATH := vendor/xperience/prebuilt/common/media/audio/alarms
+NOTIFICATION_PATH := vendor/xperience/prebuilt/common/media/audio/notifications
+RINGTONE_PATH := vendor/xperience/prebuilt/common/media/audio/ringtones
+UI_PATH := vendor/xperience/prebuilt/common/media/audio/ui
 
 #UI 
 PRODUCT_COPY_FILES += \
