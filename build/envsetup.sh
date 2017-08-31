@@ -698,7 +698,14 @@ function cmrebase() {
 }
 
 function mka() {
-    m -j "$@"
+    case `uname -s` in
+        Darwin)
+            m -j "$@"
+            ;;
+        *)
+            mk_timer schedtool -B -n 10 -e ionice -n 7 m -j "$@"
+            ;;
+    esac
 }
 
 function cmka() {
