@@ -1,4 +1,4 @@
-function __print_cm_functions_help() {
+function __print_lineage_functions_help() {
 cat <<EOF
 Additional LineageOS functions:
 - cout:            Changes directory to out.

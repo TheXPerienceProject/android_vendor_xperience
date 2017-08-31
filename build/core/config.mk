@@ -21,3 +21,5 @@ FRAMEWORK_CM_API_NEEDS_UPDATE_TEXT := $(TOPDIR)vendor/xperience/build/core/apich
 
 BUILD_MAVEN_PREBUILT := $(TOP)/vendor/xperience/build/core/maven_artifact.mk
 PUBLISH_MAVEN_PREBUILT := $(TOP)/vendor/xperience/build/core/maven_artifact_publish.mk
+
+BUILD_HTTP_PREBUILT := $(TOP)/vendor/xperience/build/core/http_prebuilt.mk
