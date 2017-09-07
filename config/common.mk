@@ -197,13 +197,9 @@ PRODUCT_PACKAGES += \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
-    LiveLockScreenService \
     LockClock \
-    SnapdragonLauncher \
+    Launcher3 \
     Stardust \
-    WallpaperPicker \
-    WeatherProvider \
-    WallpaperGoogle \
     XPeUpdater \
     XPerienceSetupWizard \
     XPerienceWallpapers
