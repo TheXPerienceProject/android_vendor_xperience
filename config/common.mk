@@ -193,22 +193,17 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     AudioFX \
-    Alessa \
     CMSettingsProvider \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
     LiveLockScreenService \
     LockClock \
-    ThemeInterfacer \
-    MagiskManager \
     SnapdragonLauncher \
     Stardust \
     WallpaperPicker \
     WeatherProvider \
     WallpaperGoogle \
-    XPeriaHome \
-    XPeDisplay \
     XPeUpdater \
     XPerienceSetupWizard \
     XPerienceWallpapers
