@@ -5,9 +5,9 @@ Additional LineageOS functions:
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
-- cmgerrit:        A Git wrapper that fetches/pushes patch from/to LineageOS Gerrit Review.
-- cmrebase:        Rebase a Gerrit change and push it again.
-- cmremote:        Add git remote for LineageOS Gerrit Review.
+- lineagegerrit:   A Git wrapper that fetches/pushes patch from/to LineageOS Gerrit Review.
+- lineagerebase:   Rebase a Gerrit change and push it again.
+- lineageremote:   Add git remote for LineageOS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
 - cafremote:       Add git remote for matching CodeAurora repository.
 - mka:             Builds using SCHED_BATCH on all processors.
@@ -86,7 +86,7 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the xpe model name
+            # This is probably just the xperience model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
@@ -102,8 +102,8 @@ alias bib=breakfast
 function eat()
 {
     if [ "$OUT" ] ; then
-        MODVERSION=$(get_build_var XPERIENCE_VERSION)
-        ZIPFILE=XPerience-$MODVERSION.zip
+        MODVERSION=$(get_build_var XPE_VERSION)
+        ZIPFILE=xperience-$MODVERSION.zip
         ZIPPATH=$OUT/$ZIPFILE
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
@@ -258,23 +258,28 @@ function dddclient()
    fi
 }
 
-function cmremote()
+function lineageremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
     then
         echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
         return 1
     fi
-    git remote rm cmremote 2> /dev/null
-    GERRIT_REMOTE=$(git config --get remote.github.projectname)
-    CMUSER=$(git config --get review.review.lineageos.org.username)
-    if [ -z "$CMUSER" ]
+    git remote rm lineage 2> /dev/null
+    local GERRIT_REMOTE=$(git config --get remote.github.projectname)
+    if [ -z "$GERRIT_REMOTE" ]
     then
-        git remote add cmremote ssh://review.lineageos.org:29418/$GERRIT_REMOTE
-    else
-        git remote add cmremote ssh://$CMUSER@review.lineageos.org:29418/$GERRIT_REMOTE
+        local GERRIT_REMOTE=$(git config --get remote.aosp.projectname | sed s#platform/#android/#g | sed s#/#_#g)
+        local PFX="LineageOS/"
     fi
-    echo "Remote 'cmremote' created"
+    local LINEAGE_USER=$(git config --get review.review.lineageos.org.username)
+    if [ -z "$LINEAGE_USER" ]
+    then
+        git remote add lineage ssh://review.lineageos.org:29418/$PFX$GERRIT_REMOTE
+    else
+        git remote add lineage ssh://$LINEAGE_USER@review.lineageos.org:29418/$PFX$GERRIT_REMOTE
+    fi
+    echo "Remote 'lineage' created"
 }
 
 function aospremote()
@@ -285,10 +290,10 @@ function aospremote()
         return 1
     fi
     git remote rm aosp 2> /dev/null
-    PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
     if (echo $PROJECT | grep -qv "^device")
     then
-        PFX="platform/"
+        local PFX="platform/"
     fi
     git remote add aosp https://android.googlesource.com/$PFX$PROJECT
     echo "Remote 'aosp' created"
@@ -302,10 +307,10 @@ function cafremote()
         return 1
     fi
     git remote rm caf 2> /dev/null
-    PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
     if (echo $PROJECT | grep -qv "^device")
     then
-        PFX="platform/"
+        local PFX="platform/"
     fi
     git remote add caf https://source.codeaurora.org/quic/la/$PFX$PROJECT
     echo "Remote 'caf' created"
@@ -344,12 +349,15 @@ function installboot()
     if (adb shell getprop ro.xpe.device | grep -q "$XPE_BUILD");
     then
         adb push $OUT/boot.img /cache/
-        for i in $OUT/system/lib/modules/*;
-        do
-            adb push $i /system/lib/modules/
-        done
+        if [ -e "$OUT/system/lib/modules/*" ];
+        then
+            for i in $OUT/system/lib/modules/*;
+            do
+                adb push $i /system/lib/modules/
+            done
+            adb shell chmod 644 /system/lib/modules/*
+        fi
         adb shell dd if=/cache/boot.img of=$PARTITION
-        adb shell chmod 644 /system/lib/modules/*
         echo "Installation complete."
     else
         echo "The connected device does not appear to be $XPE_BUILD, run away!"
@@ -412,13 +420,13 @@ function makerecipe() {
     if [ "$REPO_REMOTE" = "github" ]
     then
         pwd
-        cmremote
-        git push cmremote HEAD:refs/heads/'$1'
+        lineageremote
+        git push lineage HEAD:refs/heads/'$1'
     fi
     '
 }
 
-function cmgerrit() {
+function lineagegerrit() {
     if [ "$(__detect_shell)" = "zsh" ]; then
         # zsh does not define FUNCNAME, derive from funcstack
         local FUNCNAME=$funcstack[1]
@@ -464,7 +472,7 @@ EOF
             case $1 in
                 __cmg_*) echo "For internal use only." ;;
                 changes|for)
-                    if [ "$FUNCNAME" = "cmgerrit" ]; then
+                    if [ "$FUNCNAME" = "lineagegerrit" ]; then
                         echo "'$FUNCNAME $1' is deprecated."
                     fi
                     ;;
@@ -557,7 +565,7 @@ EOF
                 $local_branch:refs/for/$remote_branch || return 1
             ;;
         changes|for)
-            if [ "$FUNCNAME" = "cmgerrit" ]; then
+            if [ "$FUNCNAME" = "lineagegerrit" ]; then
                 echo >&2 "'$FUNCNAME $command' is deprecated."
             fi
             ;;
@@ -656,7 +664,7 @@ EOF
     esac
 }
 
-function cmrebase() {
+function lineagerebase() {
     local repo=$1
     local refs=$2
     local pwd="$(pwd)"
@@ -664,7 +672,7 @@ function cmrebase() {
 
     if [ -z $repo ] || [ -z $refs ]; then
         echo "LineageOS Gerrit Rebase Usage: "
-        echo "      cmrebase <path to project> <patch IDs on Gerrit>"
+        echo "      lineagerebase <path to project> <patch IDs on Gerrit>"
         echo "      The patch IDs appear on the Gerrit commands that are offered."
         echo "      They consist on a series of numbers and slashes, after the text"
         echo "      refs/changes. For example, the ID in the following command is 26/8126/2"
@@ -698,14 +706,7 @@ function cmrebase() {
 }
 
 function mka() {
-    case `uname -s` in
-        Darwin)
-            m -j "$@"
-            ;;
-        *)
-            mk_timer schedtool -B -n 10 -e ionice -n 7 m -j "$@"
-            ;;
-    esac
+    m -j "$@"
 }
 
 function cmka() {
