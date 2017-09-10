@@ -403,7 +403,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=Orion \
-    ro.xpe.cafbranch=xxxxxxxxxxxxxxx \
+    ro.xpe.cafbranch=LA.UM.6.5.r1-02500-8x96.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
