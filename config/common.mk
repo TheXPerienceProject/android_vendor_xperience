@@ -28,6 +28,8 @@ $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size
 PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 endif
 
+PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/common/bootanimation/$(TARGET_SCREEN_WIDTH).zip
+
 #well I add ringtones here for all devices
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.ringtone=XPerienceRing.ogg \
