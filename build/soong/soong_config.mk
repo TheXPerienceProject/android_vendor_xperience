@@ -3,6 +3,6 @@ xperience_soong:
 	$(hide) mkdir -p $(dir $@)
 	$(hide) (\
 	echo '{'; \
-        echo '"xperience": {'; \
-        echo '},'; \
+	echo '"XPerience": {'; \
+	echo '},'; \
 	echo '') > $(SOONG_VARIABLES_TMP)
