@@ -119,9 +119,9 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# specific init file
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.local.rc:root/init.xpe.rc
+# Copy all xperience-specific init rc files
+$(foreach f,$(wildcard vendor/xperience/prebuilt/common/etc/init/*.rc),\
+	$(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
