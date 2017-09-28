@@ -949,6 +949,7 @@ if [ -d $(gettop)/vendor/qcom/sdclang-4.0/linux-x86 ]; then
         *)
             export SDCLANG=true
             export SDCLANG_PATH=$(gettop)/vendor/qcom/sdclang-4.0/linux-x86/bin
+			export SDCLANG_PATH_2=$(gettop)/vendor/qcom/sdclang-4.0/linux-x86/bin
             export SDCLANG_LTO_DEFS=$(gettop)/device/qcom/common/sdllvm-lto-defs.mk
             ;;
     esac
