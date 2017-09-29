@@ -42,6 +42,9 @@ Motorola Moto X1st GEN
 Moto Z Play
 [*] Michael Flynn
 [*] DroneDoom
+[*] Angel Ortiz
+[*] Angel Enterprise
+[*] davtse
 
 Moto G4/Plus
 [*] Jesus Alfredo Espinosa Sanchez
