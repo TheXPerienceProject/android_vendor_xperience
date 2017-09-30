@@ -58,6 +58,11 @@ Nexus 7:
 [*] Craig Moyle
 [*] Ткалун Сергей
 
+xiaomi redmi 3s
+[*] Devito666
+[*] Темирлан Болуров
+[*] abde4ind
+
 Unknown device
 [*] Rodrigo Caliman
 [*] Remy Noel
