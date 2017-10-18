@@ -193,14 +193,13 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     AudioFX \
-    CMSettingsProvider \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
     LockClock \
     Launcher3 \
     Stardust \
-    XPeUpdater \
+    Updater \
     XPerienceSetupWizard \
     XPerienceWallpapers
 
