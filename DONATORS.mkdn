@@ -18,7 +18,7 @@ MOTOROLA MOTO G1st GEN:
 [*] Walter Knapp 
 [*] celikbasm
 [*] Alessandro Sarri
-[*] Walter Knapp Thanks again :) Woldou
+[*] Walter Knapp Thanks again :) Woldou ☆
 
 Motorola Moto X1st GEN
 [*] Bernd Stahl
@@ -35,16 +35,25 @@ Motorola Moto X1st GEN
 [*] 7bob
 [*] scott hawn
 [*] Luuk Mulder
-[*] Woldou
+[*] Woldou ☆
 [*] James Flynn
 [*] manck
+[*] ITA-Rookie
+-----OBAKE----
+[*] pbarrette
 
 Moto Z Play
 [*] Michael Flynn
 [*] DroneDoom
-[*] Angel Ortiz
+[*] Angel Ortiz ☆
 [*] Angel Enterprise
-[*] davtse
+[*] davtse ☆
+[*] negusp
+
+Moto Z Play Moto Mods.
+[*] davtse ☆
+[*] hamudistan
+[*] dado_13
 
 Moto G4/Plus
 [*] Jesus Alfredo Espinosa Sanchez
@@ -62,6 +71,11 @@ xiaomi redmi 3s
 [*] Devito666
 [*] Темирлан Болуров
 [*] abde4ind
+[*] Adolfo Silerio
+[*] AsCarex (Jesus Alfredo) ☆
+
+Xiaomi Note 3/pro Kate
+[*] AsCarex (Jesus Alfredo) ☆
 
 Unknown device
 [*] Rodrigo Caliman
@@ -71,5 +85,5 @@ Unknown device
 
 
 Thanks for help us with the build server
-[*] AsCarex (Jesus Alfredo
+[*] AsCarex (Jesus Alfredo) ☆
 [*] Julian Ku
