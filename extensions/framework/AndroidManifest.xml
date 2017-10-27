@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2018 The XPerience Project
+<!--
+     Copyright (C) 2020 Paranoid Android
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,14 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mx.xperience.framework">
 
-<resources>
-
-    <color name="primary_color">#ff2d2d2d</color>
-    <color name="primary_dark_color">#7f0b001e</color>
-    <color name="secondary_color">#ff3a3a3a</color>
-    <color name="accent_color">#2196F3</color>
-    <color name="accent_color_lighter">#42A5F5</color>
-    <color name="material_blue_400">#a15765</color>
-    <color name="material_blue_500">#ae2d46</color>
-</resources>
+    <uses-sdk
+        android:minSdkVersion="30" />
+</manifest>
