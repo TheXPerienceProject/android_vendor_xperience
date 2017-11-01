@@ -47,7 +47,7 @@ Moto Z Play
 [*] DroneDoom
 [*] Angel Ortiz ☆
 [*] Angel Enterprise
-[*] davtse ☆
+[*] davtse ☆☆☆
 [*] negusp
 
 Moto Z Play Moto Mods.
@@ -67,23 +67,28 @@ Nexus 7:
 [*] Craig Moyle
 [*] Ткалун Сергей
 
-xiaomi redmi 3s
+xiaomi redmi 3s/prime
 [*] Devito666
 [*] Темирлан Болуров
 [*] abde4ind
 [*] Adolfo Silerio
 [*] AsCarex (Jesus Alfredo) ☆
+[*] coldbootgek
+[*] Shankar Laxmeshwar
+[*] Adolfo Silerio
 
 Xiaomi Note 3/pro Kate
-[*] AsCarex (Jesus Alfredo) ☆
+[*] AsCarex (Jesus Alfredo) ☆☆☆☆☆
+[*] Julian Ku ☆
 
 Unknown device
 [*] Rodrigo Caliman
 [*] Remy Noel
 [*] Insane (rodrigo)
 [*] auberginemaster 
+[*] Miguel Barrera
 
 
 Thanks for help us with the build server
-[*] AsCarex (Jesus Alfredo) ☆
-[*] Julian Ku
+[*] AsCarex (Jesus Alfredo) ☆☆☆☆☆
+[*] Julian Ku ☆
