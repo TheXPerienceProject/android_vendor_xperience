@@ -401,7 +401,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Orion \
+    ro.xpe.codename=Mictlantecuhtli \
     ro.xpe.cafbranch=LA.UM.6.5.r1-02500-8x96.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
