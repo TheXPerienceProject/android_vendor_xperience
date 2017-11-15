@@ -199,6 +199,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     Launcher3 \
     Stardust \
+	Turbo \
     Updater \
     XPerienceSetupWizard \
     XPerienceWallpapers
