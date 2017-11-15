@@ -84,7 +84,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := XPerienceWallpapers
 LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/XPerienceWallpapers.apk
+LOCAL_SRC_FILES := common/app/XPerienceWallpapers/XPerienceWallpapers.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
@@ -100,4 +100,15 @@ LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_PRIVILEGED_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := Turbo
+LOCAL_SRC_FILES := common/app/Turbo/Turbo.apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := platform
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_DEX_PREOPT := false
 include $(BUILD_PREBUILT)
