@@ -63,7 +63,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := CommandCenter3
 LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/CommandCenter3.apk
+LOCAL_SRC_FILES := common/app/CommandCenter3/CommandCenter3.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
@@ -73,7 +73,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := Stardust
 LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/Stardust-2-11.1.2-Debug.apk
+LOCAL_SRC_FILES := common/app/Stardust-2-11.1.2-Debug/Stardust-2-11.1.2-Debug.apk
 LOCAL_OVERRIDES_PACKAGES := Music Eleven
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
