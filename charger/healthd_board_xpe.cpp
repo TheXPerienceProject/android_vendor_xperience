@@ -1,418 +1,527 @@
 /*
- * Copyright (C) 2016 The CyanogenMod Project
- *               2017 The LineageOS Project
+ *Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
+ *Copyright (c) 2017-2018, The XPerience Project.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *Redistribution and use in source and binary forms, with or without
+ *modification, are permitted provided that the following conditions are
+ *met:
+ *    * Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *    * Redistributions in binary form must reproduce the above
+ *      copyright notice, this list of conditions and the following
+ *      disclaimer in the documentation and/or other materials provided
+ *      with the distribution.
+ *    * Neither the name of The Linux Foundation nor the names of its
+ *      contributors may be used to endorse or promote products derived
+ *      from this software without specific prior written permission.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+ *WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ *MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+ *ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+ *BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ *SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ *BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ *WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ *OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ *IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <dirent.h>
 #include <errno.h>
-#include <fcntl.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <time.h>
+#include <fcntl.h>
 #include <unistd.h>
-
-#include <cutils/android_reboot.h>
 #include <cutils/klog.h>
-#include <cutils/misc.h>
-#include <cutils/uevent.h>
-#include <cutils/properties.h>
-
-#include <pthread.h>
-#include <linux/rtc.h>
-#include <linux/time.h>
-#include <sys/epoll.h>
-#include <sys/timerfd.h>
-
+#include <batteryservice/BatteryService.h>
+#include <cutils/android_reboot.h>
 #include "healthd/healthd.h"
 #include "minui/minui.h"
+#define ARRAY_SIZE(x)           (sizeof(x)/sizeof(x[0]))
 
-#define LOGE(x...) do { KLOG_ERROR("charger", x); } while (0)
-#define LOGW(x...) do { KLOG_WARNING("charger", x); } while (0)
-#define LOGI(x...) do { KLOG_INFO("charger", x); } while (0)
-#define LOGV(x...) do { KLOG_DEBUG("charger", x); } while (0)
+#define HVDCP_CHARGER           "USB_HVDCP"
+#define HVDCP_BLINK_TYPE        2
 
-static const GRFont* gr_font = NULL;
+#define RED_LED_PATH            "/sys/class/leds/red/brightness"
+#define GREEN_LED_PATH          "/sys/class/leds/green/brightness"
+#define BLUE_LED_PATH           "/sys/class/leds/blue/brightness"
+#define RED_LED_BLINK_PATH      "/sys/class/leds/red/blink"
+#define GREEN_LED_BLINK_PATH    "/sys/class/leds/green/blink"
+#define BACKLIGHT_PATH          "/sys/class/leds/lcd-backlight/brightness"
 
-struct frame {
-    int min_capacity;
-    GRSurface *surface;
+#define CHARGING_ENABLED_PATH   "/sys/class/power_supply/battery/charging_enabled"
+#define CHARGER_TYPE_PATH       "/sys/class/power_supply/usb/type"
+#define BMS_READY_PATH          "/sys/class/power_supply/bms/soc_reporting_ready"
+#define BMS_BATT_INFO_PATH      "/sys/class/power_supply/bms/battery_info"
+#define BMS_BATT_INFO_ID_PATH   "/sys/class/power_supply/bms/battery_info_id"
+#define BMS_BATT_RES_ID_PATH    "/sys/class/power_supply/bms/resistance_id"
+#define PERSIST_BATT_INFO_PATH  "/persist/bms/batt_info.txt"
+
+#define CHGR_TAG                "charger"
+#define HEALTHD_TAG             "healthd_xperience"
+#define LOGE(tag, x...) do { KLOG_ERROR(tag, x); } while (0)
+#define LOGW(tag, x...) do { KLOG_WARNING(tag, x); } while (0)
+#define LOGV(tag, x...) do { KLOG_DEBUG(tag, x); } while (0)
+
+enum {
+    RED_LED = 0x01 << 0,
+    GREEN_LED = 0x01 << 1,
+    BLUE_LED = 0x01 << 2,
 };
 
-struct animation {
-    struct frame *frames;
-    int cur_frame;
-    int num_frames;
+enum batt_info_params {
+    BATT_INFO_NOTIFY = 0,
+    BATT_INFO_SOC,
+    BATT_INFO_RES_ID,
+    BATT_INFO_VOLTAGE,
+    BATT_INFO_TEMP,
+    BATT_INFO_FCC,
+    BATT_INFO_MAX,
 };
 
-static struct animation anim = {
-    .frames = NULL,
-    .cur_frame = 0,
-    .num_frames = 0,
+struct led_ctl {
+    int color;
+    const char *path;
 };
 
-static const GRFont* get_font()
-{
-    return gr_font;
-}
+struct led_ctl leds[3] =
+    {{RED_LED, RED_LED_PATH},
+    {GREEN_LED, GREEN_LED_PATH},
+    {BLUE_LED, BLUE_LED_PATH}};
 
-static int draw_surface_centered(GRSurface* surface)
-{
-    int w, h, x, y;
+#define HVDCP_COLOR_MAP         (RED_LED | GREEN_LED)
 
-    w = gr_get_width(surface);
-    h = gr_get_height(surface);
-    x = (gr_fb_width() - w) / 2 ;
-    y = (gr_fb_height() - h) / 2 ;
-
-    gr_blit(surface, 0, 0, w, h, x, y);
-    return y + h;
-}
-
-#define STR_LEN 64
-static void draw_capacity(int capacity)
-{
-    char cap_str[STR_LEN];
-    snprintf(cap_str, (STR_LEN - 1), "%d%%", capacity);
-
-    struct frame *f = &anim.frames[0];
-    int font_x, font_y;
-    gr_font_size(get_font(), &font_x, &font_y);
-    int w = gr_measure(get_font(), cap_str);
-    int h = gr_get_height(f->surface);
-    int x = (gr_fb_width() - w) / 2;
-    int y = (gr_fb_height() + h) / 2;
-
-    gr_color(255, 255, 255, 255);
-    gr_text(get_font(), x, y + font_y / 2, cap_str, 0);
-}
-
-#ifdef QCOM_HARDWARE
-enum alarm_time_type {
-    ALARM_TIME,
-    RTC_TIME,
+struct soc_led_color_mapping {
+    int soc;
+    int color;
 };
 
-static int alarm_get_time(enum alarm_time_type time_type,
-                          time_t *secs)
+struct soc_led_color_mapping soc_leds[3] = {
+    {15, RED_LED},
+    {90, RED_LED | GREEN_LED},
+    {100, GREEN_LED},
+};
+
+static int batt_info_cached[BATT_INFO_MAX];
+static bool healthd_msm_err_log_once;
+
+static int write_file_int(char const* path, int value)
 {
-    struct tm tm;
-    unsigned int cmd;
-    int rc, fd = -1;
+    int fd;
+    char buffer[20];
+    int rc = -1, bytes;
 
-    if (!secs)
-        return -1;
-
-    fd = open("/dev/rtc0", O_RDONLY);
-    if (fd < 0) {
-        LOGE("Can't open rtc devfs node\n");
-        return -1;
-    }
-
-    switch (time_type) {
-        case ALARM_TIME:
-            cmd = RTC_ALM_READ;
-            break;
-        case RTC_TIME:
-            cmd = RTC_RD_TIME;
-            break;
-        default:
-            LOGE("Invalid time type\n");
-            goto err;
-    }
-
-    rc = ioctl(fd, cmd, &tm);
-    if (rc < 0) {
-        LOGE("Unable to get time\n");
-        goto err;
-    }
-
-    *secs = mktime(&tm) + tm.tm_gmtoff;
-    if (*secs < 0) {
-        LOGE("Invalid seconds = %ld\n", *secs);
-        goto err;
-    }
-
-    close(fd);
-    return 0;
-
-err:
-    close(fd);
-    return -1;
-}
-
-static void alarm_reboot(void)
-{
-    LOGI("alarm time is up, reboot the phone!\n");
-    syscall(__NR_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2,
-            LINUX_REBOOT_CMD_RESTART2, "rtc");
-}
-
-static int alarm_set_reboot_time_and_wait(time_t secs)
-{
-    int rc, epollfd, nevents;
-    int fd = 0;
-    struct timespec ts;
-    epoll_event event, events[1];
-    struct itimerspec itval;
-
-    epollfd = epoll_create(1);
-    if (epollfd < 0) {
-        LOGE("epoll_create failed\n");
-        goto err;
-    }
-
-    fd = timerfd_create(CLOCK_REALTIME_ALARM, 0);
-    if (fd < 0) {
-        LOGE("timerfd_create failed\n");
-        goto err;
-    }
-
-    event.events = EPOLLIN | EPOLLWAKEUP;
-    event.data.ptr = (void *)alarm_reboot;
-    rc = epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);
-    if (rc < 0) {
-        LOGE("epoll_ctl(EPOLL_CTL_ADD) failed \n");
-        goto err;
-    }
-
-    itval.it_value.tv_sec = secs;
-    itval.it_value.tv_nsec = 0;
-
-    itval.it_interval.tv_sec = 0;
-    itval.it_interval.tv_nsec = 0;
-
-    rc = timerfd_settime(fd, TFD_TIMER_ABSTIME, &itval, NULL);
-    if (rc < 0) {
-        LOGE("timerfd_settime failed %d\n",rc);
-        goto err;
-    }
-
-    nevents = epoll_wait(epollfd, events, 1, -1);
-
-    if (nevents <= 0) {
-        LOGE("Unable to wait on alarm\n");
-        goto err;
-    } else {
-        (*(void (*)())events[0].data.ptr)();
-    }
-
-    close(epollfd);
-    close(fd);
-    return 0;
-
-err:
-    if (epollfd > 0)
-        close(epollfd);
-
-    if (fd >= 0)
+    fd = open(path, O_WRONLY);
+    if (fd >= 0) {
+        bytes = snprintf(buffer, sizeof(buffer), "%d\n", value);
+        rc = write(fd, buffer, bytes);
         close(fd);
-    return -1;
+    }
+
+    return rc > 0 ? 0 : -1;
 }
 
-/*
- * 10s the estimated time from timestamp of alarm thread start
- * to timestamp of android boot completed.
- */
-#define TIME_DELTA 10
-
-/* seconds of 1 minute*/
-#define ONE_MINUTE 60
-static void *alarm_thread(void *)
+static int set_tricolor_led(int on, int color)
 {
-    time_t rtc_secs, alarm_secs;
-    int rc;
-    timespec ts;
+    int rc, i;
+    char buffer[10];
 
-    /*
-     * to support power off alarm, the time
-     * stored in alarm register at latest
-     * shutdown time should be some time
-     * earlier than the actual alarm time
-     * set by user
-     */
-    rc = alarm_get_time(ALARM_TIME, &alarm_secs);
-    if (rc < 0 || !alarm_secs)
-        goto err;
-
-    rc = alarm_get_time(RTC_TIME, &rtc_secs);
-    if (rc < 0 || !rtc_secs)
-        goto err;
-    LOGI("alarm time in rtc is %ld, rtc time is %ld\n", alarm_secs, rtc_secs);
-
-    if (alarm_secs <= rtc_secs) {
-        clock_gettime(CLOCK_BOOTTIME, &ts);
-
-        /*
-         * It is possible that last power off alarm time is up at this point.
-         * (alarm_secs + ONE_MINUTE) is the final alarm time to fire.
-         * (rtc_secs + ts.tv_sec + TIME_DELTA) is the estimated time of next
-         * boot completed to fire alarm.
-         * If the final alarm time is less than the estimated time of next boot
-         * completed to fire, that means it is not able to fire the last power
-         * off alarm at the right time, so just miss it.
-         */
-        if (alarm_secs + ONE_MINUTE < rtc_secs + ts.tv_sec + TIME_DELTA) {
-            LOGE("alarm is missed\n");
-            goto err;
+    for (i = 0; i < (int)ARRAY_SIZE(leds); i++) {
+        if ((color & leds[i].color) && (access(leds[i].path, R_OK | W_OK) == 0)) {
+            rc = write_file_int(leds[i].path, on ? 255 : 0);
+            if (rc < 0)
+                return rc;
         }
-
-        alarm_reboot();
     }
 
-    rc = alarm_set_reboot_time_and_wait(alarm_secs);
-    if (rc < 0)
-        goto err;
-
-err:
-    LOGE("Exit from alarm thread\n");
-    return NULL;
-}
-#endif
-
-void healthd_board_init(struct healthd_config*)
-{
-    pthread_t tid;
-    char value[PROP_VALUE_MAX];
-    int rc = 0, scale_count = 0, i;
-    GRSurface **scale_frames;
-    int scale_fps;  // Not in use (charger/xpe_battery_scale doesn't have FPS text
-                    // chunk). We are using hard-coded frame.disp_time instead.
-
-    rc = res_create_multi_display_surface("charger/xpe_battery_scale",
-            &scale_count, &scale_fps, &scale_frames);
-    if (rc < 0) {
-        LOGE("%s: Unable to load battery scale image", __func__);
-        return;
-    }
-
-    anim.frames = new frame[scale_count];
-    anim.num_frames = scale_count;
-    for (i = 0; i < anim.num_frames; i++) {
-        anim.frames[i].surface = scale_frames[i];
-        anim.frames[i].min_capacity = 100/(scale_count-1) * i;
-    }
-
-#ifdef QCOM_HARDWARE
-    property_get("ro.bootmode", value, "");
-    if (!strcmp("charger", value)) {
-        rc = pthread_create(&tid, NULL, alarm_thread, NULL);
-        if (rc < 0)
-            LOGE("Create alarm thread failed\n");
-    }
-#endif
+    return 0;
 }
 
-int healthd_board_battery_update(struct android::BatteryProperties*)
+static bool is_hvdcp_inserted()
 {
-    // return 0 to log periodic polled battery status to kernel log
-    return 1;
+    bool hvdcp = false;
+    char buff[12] = "\0";
+    int fd, cnt;
+
+    fd = open(CHARGER_TYPE_PATH, O_RDONLY);
+    if (fd >= 0) {
+        cnt = read(fd, buff, sizeof(buff));
+        if (cnt > 0 && !strncmp(buff, HVDCP_CHARGER, 9))
+            hvdcp = true;
+        close(fd);
+    }
+
+    return hvdcp;
 }
 
-void healthd_board_mode_charger_draw_battery(
-        struct android::BatteryProperties *batt_prop)
+static int get_blink_led_for_hvdcp(void)
 {
-    int start_frame = 0;
-    int capacity = -1;
+    int ret, rc = 0, bytes;
+    int red_blink_fd = -1, green_blink_fd = -1, type_fd = -1;
+    char buf[20];
 
-    if (batt_prop && batt_prop->batteryLevel >= 0) {
-        capacity = batt_prop->batteryLevel;
+    type_fd = open(CHARGER_TYPE_PATH, O_RDONLY);
+
+    if (type_fd < 0) {
+        LOGE(CHGR_TAG, "Could not open USB type node\n");
+        return rc;
+    } else {
+        close(type_fd);
+        ret = write_file_int(GREEN_LED_BLINK_PATH, 0);
+        if (ret < 0) {
+            LOGE(CHGR_TAG, "Fail to write: %s\n", GREEN_LED_BLINK_PATH);
+        } else {
+            rc |= GREEN_LED;
+	}
+
+        ret = write_file_int(RED_LED_BLINK_PATH, 0);
+        if (ret < 0) {
+            LOGE(CHGR_TAG, "Fail to write: %s\n", RED_LED_BLINK_PATH);
+        } else {
+            rc |= RED_LED;
+	}
     }
 
-    if (anim.num_frames == 0 || capacity < 0) {
-        LOGE("%s: Unable to draw battery", __func__);
-        return;
-    }
-
-    // Find starting frame to display based on current capacity
-    for (start_frame = 1; start_frame < anim.num_frames; start_frame++) {
-        if (capacity < anim.frames[start_frame].min_capacity)
-            break;
-    }
-    // Always start from the level just below the current capacity
-    start_frame--;
-
-    if (anim.cur_frame < start_frame)
-        anim.cur_frame = start_frame;
-
-    draw_surface_centered(anim.frames[anim.cur_frame].surface);
-    draw_capacity(capacity);
-    // Move to next frame, with max possible frame at max_idx
-    anim.cur_frame = ((anim.cur_frame + 1) % anim.num_frames);
+    return rc;
 }
 
 void healthd_board_mode_charger_battery_update(
-        struct android::BatteryProperties*)
+                struct android::BatteryProperties *batt_prop)
 {
+    static int blink_for_hvdcp = -1;
+    static int old_color = 0;
+    int i, color, soc, rc;
+    bool blink = false;
+
+    if (blink_for_hvdcp == -1)
+        blink_for_hvdcp = get_blink_led_for_hvdcp();
+
+    if ((blink_for_hvdcp > 0) && is_hvdcp_inserted())
+        blink = true;
+
+    soc = batt_prop->batteryLevel;
+
+    for (i = 0; i < ((int)ARRAY_SIZE(soc_leds) - 1); i++) {
+        if (soc < soc_leds[i].soc)
+            break;
+    }
+    color = soc_leds[i].color;
+
+    if (old_color != color) {
+        if ((color == HVDCP_COLOR_MAP) && blink) {
+            if (blink_for_hvdcp & RED_LED) {
+                rc = write_file_int(RED_LED_BLINK_PATH, HVDCP_BLINK_TYPE);
+                if (rc < 0) {
+                    LOGE(CHGR_TAG, "Fail to write: %s\n", RED_LED_BLINK_PATH);
+                    return;
+                }
+            }
+            if (blink_for_hvdcp & GREEN_LED) {
+                rc = write_file_int(GREEN_LED_BLINK_PATH, HVDCP_BLINK_TYPE);
+                if (rc < 0) {
+                    LOGE(CHGR_TAG, "Fail to write: %s\n", GREEN_LED_BLINK_PATH);
+                    return;
+                }
+            }
+        } else {
+                rc = set_tricolor_led(0, old_color);
+                if (rc < 0)
+                    LOGE(CHGR_TAG, "Error in setting old_color on tricolor_led\n");
+
+                rc = set_tricolor_led(1, color);
+                if (rc < 0)
+                    LOGE(CHGR_TAG, "Error in setting color on tricolor_led\n");
+
+                if (!rc) {
+                    old_color = color;
+                    LOGV(CHGR_TAG, "soc = %d, set led color 0x%x\n", soc, soc_leds[i].color);
+                }
+        }
+    }
 }
 
-#ifdef HEALTHD_BACKLIGHT_PATH
-#ifndef HEALTHD_BACKLIGHT_LEVEL
-#define HEALTHD_BACKLIGHT_LEVEL 100
-#endif
-
-void healthd_board_mode_charger_set_backlight(bool on)
+#define BACKLIGHT_ON_LEVEL    100
+#define BACKLIGHT_OFF_LEVEL    0
+void healthd_board_mode_charger_set_backlight(bool en)
 {
+    int rc;
+
+    if (access(BACKLIGHT_PATH, R_OK | W_OK) != 0)
+    {
+        LOGW(CHGR_TAG, "Backlight control not support\n");
+        return;
+    }
+
+    rc = write_file_int(BACKLIGHT_PATH, en ? BACKLIGHT_ON_LEVEL :
+                BACKLIGHT_OFF_LEVEL);
+    if (rc < 0) {
+        LOGE(CHGR_TAG, "Could not write to backlight node : %s\n", strerror(errno));
+        return;
+    }
+
+    LOGV(CHGR_TAG, "set backlight status to %d\n", en);
+}
+
+#define WAIT_BMS_READY_TIMES_MAX	200
+#define WAIT_BMS_READY_INTERVAL_USEC	200000
+void healthd_board_mode_charger_init()
+{
+    int ret;
+    char buff[8] = "\0";
+    int charging_enabled = 0;
+    int bms_ready = 0;
+    int wait_count = 0;
     int fd;
-    char buffer[10];
 
-    memset(buffer, '\0', sizeof(buffer));
-    fd = open(HEALTHD_BACKLIGHT_PATH, O_RDWR);
-    if (fd < 0) {
-        LOGE("Could not open backlight node : %s\n", strerror(errno));
+    /* check the charging is enabled or not */
+    fd = open(CHARGING_ENABLED_PATH, O_RDONLY);
+    if (fd < 0)
         return;
+    ret = read(fd, buff, sizeof(buff));
+    close(fd);
+    if (ret > 0) {
+        sscanf(buff, "%d\n", &charging_enabled);
+        LOGW(CHGR_TAG, "android charging is %s\n",
+                !!charging_enabled ? "enabled" : "disabled");
+        /* if charging is disabled, reboot and exit power off charging */
+        if (!charging_enabled)
+            android_reboot(ANDROID_RB_RESTART, 0, 0);
     }
-    LOGV("Enabling backlight\n");
-    snprintf(buffer, sizeof(buffer), "%d\n", on ? HEALTHD_BACKLIGHT_LEVEL : 0);
-    if (write(fd, buffer, strlen(buffer)) < 0) {
-        LOGE("Could not write to backlight : %s\n", strerror(errno));
+    fd = open(BMS_READY_PATH, O_RDONLY);
+    if (fd < 0)
+            return;
+    while (1) {
+        ret = read(fd, buff, sizeof(buff));
+        if (ret >= 0) {
+            sscanf(buff, "%d\n", &bms_ready);
+        } else {
+            LOGE(CHGR_TAG, "read soc-ready failed, ret=%d\n", ret);
+            break;
+        }
+
+        if ((bms_ready > 0) || (wait_count++ > WAIT_BMS_READY_TIMES_MAX))
+            break;
+        usleep(WAIT_BMS_READY_INTERVAL_USEC);
+        lseek(fd, 0, SEEK_SET);
     }
     close(fd);
+    LOGV(CHGR_TAG, "Checking BMS SoC ready done %d!\n", bms_ready);
+}
 
-#ifdef HEALTHD_SECONDARY_BACKLIGHT_PATH
-    fd = open(HEALTHD_SECONDARY_BACKLIGHT_PATH, O_RDWR);
+static void healthd_batt_info_notify()
+{
+    int rc, fd, id = 0;
+    int bms_ready = 0;
+    int wait_count = 0;
+    char buff[100] = "";
+    int batt_info[BATT_INFO_MAX];
+    char *ptr, *tmp, *temp_str;
+    char path_str[50] = "";
+    bool notify_bms = false;
+
+    fd = open(PERSIST_BATT_INFO_PATH, O_RDONLY);
     if (fd < 0) {
-        LOGE("Could not open second backlight node : %s\n", strerror(errno));
-        return;
-    }
-    LOGV("Enabling secondary backlight\n");
-    if (write(fd, buffer, strlen(buffer)) < 0) {
-        LOGE("Could not write to second backlight : %s\n", strerror(errno));
-        return;
-    }
-    close(fd);
-#endif
-}
-
-#else
-void healthd_board_mode_charger_set_backlight(bool)
-{
-}
-#endif
-
-void healthd_board_mode_charger_init(void)
-{
-    GRFont* tmp_font;
-    int res = gr_init_font("font_log", &tmp_font);
-    if (res == 0) {
-        gr_font = tmp_font;
+        LOGW(HEALTHD_TAG, "Error in opening batt_info.txt, fd=%d\n", fd);
+        fd = creat(PERSIST_BATT_INFO_PATH, S_IRWXU);
+        if (fd < 0) {
+            LOGE(HEALTHD_TAG, "Couldn't create file, fd=%d errno=%s\n", fd,
+                 strerror(errno));
+            goto out;
+        }
+        LOGV(HEALTHD_TAG, "Created file %s\n", PERSIST_BATT_INFO_PATH);
+        close(fd);
+        goto out;
     } else {
-        LOGW("Couldn't open font, falling back to default!\n");
-        gr_font = gr_sys_font();
+        LOGV(HEALTHD_TAG, "opened %s\n", PERSIST_BATT_INFO_PATH);
     }
 
+    rc = read(fd, buff, sizeof(buff));
+    if (rc < 0) {
+        LOGE(HEALTHD_TAG, "Error in reading fd %d, rc=%d\n", fd, rc);
+        close(fd);
+        goto out;
+    }
+    close(fd);
+
+    temp_str = strtok_r(buff, ":", &ptr);
+    id = 1;
+    while (temp_str != NULL && id < BATT_INFO_MAX) {
+        batt_info[id++] = (int)strtol(temp_str, &tmp, 10);
+        temp_str = strtok_r(NULL, ":", &ptr);
+    }
+
+    if (id < BATT_INFO_MAX) {
+        LOGE(HEALTHD_TAG, "Read %d batt_info parameters\n", id);
+        goto out;
+    }
+
+    /* Send batt_info parameters to FG driver */
+    for (id = 1; id < BATT_INFO_MAX; id++) {
+        snprintf(path_str, sizeof(path_str), "%s", BMS_BATT_INFO_ID_PATH);
+        rc = write_file_int(path_str, id);
+        if (rc < 0) {
+            LOGE(HEALTHD_TAG, "Error in writing batt_info_id %d, rc=%d\n", id,
+                rc);
+            goto out;
+        }
+
+        snprintf(path_str, sizeof(path_str), "%s", BMS_BATT_INFO_PATH);
+        rc = write_file_int(path_str, batt_info[id]);
+        if (rc < 0) {
+            LOGE(HEALTHD_TAG, "Error in writing batt_info %d, rc=%d\n",
+                batt_info[id], rc);
+            goto out;
+        }
+    }
+
+    notify_bms = true;
+
+out:
+    fd = open(BMS_READY_PATH, O_RDONLY);
+    if (fd < 0) {
+        LOGE(HEALTHD_TAG, "Couldn't open %s\n", BMS_READY_PATH);
+        return;
+    }
+
+    /* Wait for soc_reporting_ready */
+    wait_count = 0;
+    memset(buff, 0, sizeof(buff));
+    while (1) {
+        rc = read(fd, buff, 1);
+        if (rc > 0) {
+            sscanf(buff, "%d\n", &bms_ready);
+        } else {
+            LOGE(HEALTHD_TAG, "read soc-ready failed, rc=%d\n", rc);
+            break;
+        }
+
+        if ((bms_ready > 0) || (wait_count++ > WAIT_BMS_READY_TIMES_MAX))
+            break;
+
+        usleep(WAIT_BMS_READY_INTERVAL_USEC);
+        lseek(fd, 0, SEEK_SET);
+    }
+    close(fd);
+
+    if (!bms_ready)
+        notify_bms = false;
+
+    if (!notify_bms) {
+        LOGE(HEALTHD_TAG, "Not notifying BMS\n");
+        return;
+    }
+
+    /* Notify FG driver */
+    snprintf(path_str, sizeof(path_str), "%s", BMS_BATT_INFO_ID_PATH);
+    rc = write_file_int(path_str, BATT_INFO_NOTIFY);
+    if (rc < 0) {
+        LOGE(HEALTHD_TAG, "Error in writing batt_info_id, rc=%d\n", rc);
+        return;
+    }
+
+    snprintf(path_str, sizeof(path_str), "%s", BMS_BATT_INFO_PATH);
+    rc = write_file_int(path_str, INT_MAX - 1);
+    if (rc < 0)
+        LOGE(HEALTHD_TAG, "Error in writing batt_info, rc=%d\n", rc);
 }
+
+void healthd_board_init(struct healthd_config*)
+{
+    // use defaults
+    healthd_batt_info_notify();
+}
+
+static void healthd_store_batt_props(const struct android::BatteryProperties* props)
+{
+    char buff[100];
+    int fd, rc, len, batteryId = 0;
+
+    if (!props->batteryPresent) {
+        return;
+    }
+
+    if (props->batteryLevel == 0 || props->batteryVoltage == 0) {
+        return;
+    }
+
+    memset(buff, 0, sizeof(buff));
+    fd = open(BMS_BATT_RES_ID_PATH, O_RDONLY);
+    if (fd < 0) {
+        if (!healthd_msm_err_log_once) {
+            LOGE(HEALTHD_TAG, "Couldn't open %s\n", BMS_BATT_RES_ID_PATH);
+            healthd_msm_err_log_once = true;
+        }
+    } else {
+        rc = read(fd, buff, 6);
+        if (rc > 0) {
+            sscanf(buff, "%d\n", &batteryId);
+            batteryId /= 1000;
+        } else if (!healthd_msm_err_log_once) {
+            LOGE(HEALTHD_TAG, "reading batt_res_id failed, rc=%d\n", rc);
+            healthd_msm_err_log_once = true;
+        }
+    }
+
+    if (fd >= 0)
+        close(fd);
+
+    if (props->batteryLevel == batt_info_cached[BATT_INFO_SOC] &&
+        props->batteryVoltage == batt_info_cached[BATT_INFO_VOLTAGE] &&
+        props->batteryTemperature == batt_info_cached[BATT_INFO_TEMP] &&
+        props->batteryFullCharge == batt_info_cached[BATT_INFO_FCC] &&
+        batteryId == batt_info_cached[BATT_INFO_RES_ID])
+        return;
+
+    fd = open(PERSIST_BATT_INFO_PATH, O_RDWR | O_TRUNC);
+    if (fd < 0) {
+        /*
+         * Print the error just only once as this function can be called as
+         * long as the system is running and logs should not flood the console.
+         */
+        if (!healthd_msm_err_log_once) {
+            LOGE(HEALTHD_TAG, "Error in opening batt_info.txt, fd=%d\n", fd);
+            healthd_msm_err_log_once = true;
+        }
+        return;
+    }
+
+    len = snprintf(buff, sizeof(buff), "%d:%d:%d:%d:%d", props->batteryLevel,
+                   batteryId, props->batteryVoltage,
+                   props->batteryTemperature, props->batteryFullCharge);
+    if (len < 0) {
+        if (!healthd_msm_err_log_once) {
+            LOGE(HEALTHD_TAG, "Error in printing to buff, len=%d\n", len);
+            healthd_msm_err_log_once = true;
+        }
+        goto out;
+    }
+
+    buff[len] = '\0';
+    rc = write(fd, buff, sizeof(buff));
+    if (rc < 0) {
+        if (!healthd_msm_err_log_once) {
+            LOGE(HEALTHD_TAG, "Error in writing to batt_info.txt, rc=%d\n", rc);
+            healthd_msm_err_log_once = true;
+        }
+        goto out;
+    }
+
+    batt_info_cached[BATT_INFO_SOC] = props->batteryLevel;
+    batt_info_cached[BATT_INFO_RES_ID] = batteryId;
+    batt_info_cached[BATT_INFO_VOLTAGE] = props->batteryVoltage;
+    batt_info_cached[BATT_INFO_TEMP] = props->batteryTemperature;
+    batt_info_cached[BATT_INFO_FCC] = props->batteryFullCharge;
+
+out:
+    if (fd >= 0)
+        close(fd);
+}
+
+int healthd_board_battery_update(struct android::BatteryProperties* props)
+{
+    // return 0 to log periodic polled battery status to kernel log
+    healthd_store_batt_props(props);
+    return 1;
+}
+
