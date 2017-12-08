@@ -199,7 +199,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     Launcher3 \
     Stardust \
-	Turbo \
+    Turbo \
     Updater \
     XPerienceSetupWizard \
     XPerienceWallpapers
@@ -307,7 +307,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
 
 PRODUCT_VERSION_MAJOR = 12
-PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MINOR = 1
 PRODUCT_VERSION_MAINTENANCE = 0
 
 ifndef XPERIENCE_CHANNEL
@@ -402,8 +402,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Mictlantecuhtli \
-    ro.xpe.cafbranch=LA.UM.6.5.r1-02500-8x96.0 \
+    ro.xpe.codename=ChaosTheory \
+    ro.xpe.cafbranch=LA.UM.6.6.r1-04000-8x96.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
