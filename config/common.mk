@@ -82,6 +82,14 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/50-xpe.sh:system/addon.d/50-xpe.sh \
     vendor/xperience/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 
+# Fonts
+PRODUCT_COPY_FILES += \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Regular.ttf:system/fonts/GoogleSans-Regular.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Medium.ttf:system/fonts/GoogleSans-Medium.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-MediumItalic.ttf:system/fonts/GoogleSans-MediumItalic.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Italic.ttf:system/fonts/GoogleSans-Italic.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Bold.ttf:system/fonts/GoogleSans-Bold.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-BoldItalic.ttf:system/fonts/GoogleSans-BoldItalic.ttf
 
 #Falcon Tweaking
 ifeq ($(XPE_BUILD), falcon)
