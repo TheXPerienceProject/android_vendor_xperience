@@ -43,6 +43,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
+#Set configs if the device is designed to be in android GO
+ifeq ($(XPERIENCE_GO_MODE),false)
+PRODUCT_PACKAGES += \
+    Launcher3
+else
+PRODUCT_PACKAGES += \
+    Launcher3Go
+
+include vendor/xperience/config/go_mode.mk
+endif
+
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
@@ -209,7 +220,6 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Jelly \
     LockClock \
-    Launcher3 \
     Stardust \
     Turbo \
     Updater \
