@@ -166,6 +166,10 @@ ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_OTA_PUBLIC_KEYS = .keys/releasekey/otakey.x509.pem
 endif
 
+#XPerience colour :v well not is from xpe but It will be added here so..
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.ime.theme_id=4
+
 #XPerience Services
 PRODUCT_PACKAGES += xpe-services
 PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
