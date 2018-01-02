@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Copyright (C) 2012-16, The CyanogenMod Projec
 # Copyright (C) 2017,    The LineageOS Project
-# Copyright (C) 2011-2016 The XPerience Project
+# Copyright (C) 2011-2018 The XPerience Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -133,8 +133,8 @@ def add_to_local_manifest(path, name, remote, branch=None):
     if (remote == "xpe"):
         if (branch == None):
             branch = "xpe-12.0"
-        if not (name.find("XPerience-AOSP-Lollipop/") == 0):
-            name = "XPerience-AOSP-Lollipop/" + name
+        if not (name.find("TheXPerienceProject/") == 0):
+            name = "TheXPerienceProject/" + name
 
     if is_path_in_manifest(path, name, remote, branch):
         # Error messages are present in the called function, so just exit
@@ -151,7 +151,7 @@ def add_to_local_manifest(path, name, remote, branch=None):
 
 
 def get_from_github(device):
-        print("Going to fetch %s from XPerience-AOSP-Lollipop github" % device)
+        print("Going to fetch %s from TheXPerienceProject github" % device)
         try:
             authtuple = netrc.netrc().authenticators("api.github.com")
 
@@ -163,7 +163,7 @@ def get_from_github(device):
         except:
             githubauth = None
 
-        githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:XPerience-AOSP-Lollipop+in:name+fork:true" % device)
+        githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:TheXPerienceProject+in:name+fork:true" % device)
         if githubauth:
             githubreq.add_header("Authorization","Basic %s" % githubauth)
 
