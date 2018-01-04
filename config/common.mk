@@ -69,6 +69,10 @@ ifneq ($(XPE_BUILDTYPE),RELEASE)
 #     vendor/xperience/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
 endif
 
+# Disable Rescue Party
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.disable_rescue=true
+
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
     vendor/xperience/DONATORS.mkdn:system/etc/donators.txt
