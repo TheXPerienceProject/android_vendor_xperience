@@ -16,3 +16,6 @@ endif
 
 $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackageGo.mk)
 PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.foreground-heap-growth-multiplier=2.0
+
+PRODUCT_PACKAGES += \
+    Launcher3Go
