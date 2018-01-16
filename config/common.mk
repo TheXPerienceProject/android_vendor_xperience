@@ -189,6 +189,9 @@ ifeq ($(WITH_TWRP),true)
 include vendor/xperience/config/twrp.mk
 endif
 
+# Include AmbientSense if it's available
+-include vendor/ambientmusic/AmbientMusic.mk
+
 # Required CM packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
