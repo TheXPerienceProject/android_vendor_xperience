@@ -163,11 +163,6 @@ PRODUCT_COPY_FILES += \
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
 
-ifneq ($(TARGET_DISABLE_CMSDK), true)
-# CMSDK
-include vendor/xperience/config/cmsdk_common.mk
-endif
-
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
