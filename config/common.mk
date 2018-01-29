@@ -186,12 +186,8 @@ endif
 # Required CM packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
-    CMAudioService \
-    CMParts \
-    CustomTiles \
     Development \
     Profiles \
-    WeatherManagerService
 
 # Optional packages
 PRODUCT_PACKAGES += \
