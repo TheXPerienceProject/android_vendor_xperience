@@ -92,6 +92,17 @@ LOCAL_CERTIFICATE := shared
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := Launcher3Pixel
+LOCAL_MODULE_OWNER := xpe
+LOCAL_SRC_FILES := common/app/Launcher3Pixel/Launcher3Pixel.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := shared
+LOCAL_PRIVILEGED_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := MotCamera
 LOCAL_MODULE_OWNER := motorola
 LOCAL_SRC_FILES := common/app/MotCamera/MotCamera.apk

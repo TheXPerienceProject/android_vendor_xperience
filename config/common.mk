@@ -208,7 +208,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Jelly \
     LockClock \
-	Launcher3 \
+	Launcher3Pixel \
     Stardust \
     Turbo \
     Updater \
