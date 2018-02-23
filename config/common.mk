@@ -173,6 +173,9 @@ endif
 PRODUCT_GENERIC_PROPERTIES += \
     ro.com.google.ime.theme_id=4
 
+# Themes
+$(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk) 
+
 #XPerience Services
 PRODUCT_PACKAGES += xpe-services
 PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
