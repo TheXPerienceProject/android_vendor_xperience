@@ -21,7 +21,7 @@ type Product_variables struct {
 }
 
 type ProductVariables struct {
-    Has_legacy_camera_hal1  *bool `json:",omitempty"`
+        Has_legacy_camera_hal1  *bool `json:",omitempty"`
 	Uses_media_extensions   *bool `json:",omitempty"`
 	Uses_generic_camera_parameter_library  *bool `json:",omitempty"`
 	Specific_camera_parameter_library  *string `json:",omitempty"`
