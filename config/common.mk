@@ -29,28 +29,28 @@ PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/common/bootanimation/$(TARGET
 endif
 
 #well I add ringtones here for all devices
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.config.ringtone=XPerienceRing.ogg \
     ro.config.notification_sound=Reminder.ogg \
     ro.config.alarm_alert=Fuego.ogg
-    
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true
 
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.selinux=1
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # Thank you, please drive thru!
-PRODUCT_GENERIC_PROPERTIES += persist.sys.dun.override=0
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
 endif
 
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Enable ADB authentication
-PRODUCT_GENERIC_PROPERTIES += ro.adb.secure=1
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
 ifneq ($(XPE_BUILDTYPE),RELEASE)
@@ -59,7 +59,7 @@ ifneq ($(XPE_BUILDTYPE),RELEASE)
 endif
 
 # Disable Rescue Party
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
 # Copy over the changelog to the device
@@ -70,7 +70,7 @@ PRODUCT_COPY_FILES += \
 ifeq ($(XPE_LOW_RAM_DEVICE),true)
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     config.disable_atlas=true \
     dalvik.vm.jit.codecachesize=0 \
     persist.sys.force_highendgfx=true \
@@ -174,11 +174,11 @@ ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
 endif
 
 #XPerience colour :v well not is from xpe but It will be added here so..
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.ime.theme_id=4
 
 # Themes
-$(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk) 
+$(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 
 #XPerience Services
 PRODUCT_PACKAGES += xpe-services
@@ -268,10 +268,10 @@ PRODUCT_PACKAGES += \
 endif
 
 ifeq ($(BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE),)
-  PRODUCT_GENERIC_PROPERTIES += \
+  PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.device.cache_dir=/data/cache
 else
-  PRODUCT_GENERIC_PROPERTIES += \
+  PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.device.cache_dir=/cache
 endif
 
@@ -305,16 +305,16 @@ PRODUCT_PACKAGES += \
     libffmpeg_omx \
     media_codecs_ffmpeg.xml
 
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 
 # Storage manager
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
 
 # Media
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
 
 # These packages are excluded from user builds
@@ -328,7 +328,7 @@ PRODUCT_PACKAGES += \
     su
 endif
 
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.root_access=0
 
 DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
@@ -423,10 +423,10 @@ else
 endif
 
 ###########################################################################
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.xpe.version=$(XPE_VERSION) \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
-	ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
@@ -457,7 +457,7 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
 endif
 endif
 
-PRODUCT_GENERIC_PROPERTIES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
