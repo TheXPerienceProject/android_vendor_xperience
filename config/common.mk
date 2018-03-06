@@ -420,8 +420,8 @@ PRODUCT_GENERIC_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=ChaosTheory \
-    ro.xpe.cafbranch=LA.UM.6.6.r1-04000-8x96.0 \
+    ro.xpe.codename=Calypso \
+    ro.xpe.cafbranch=LA.UM.6.6.r1-06500-89xx.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
