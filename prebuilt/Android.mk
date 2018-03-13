@@ -40,15 +40,15 @@ LOCAL_PATH := $(call my-dir)
 #LOCAL_CERTIFICATE := PRESIGNED
 #include $(BUILD_PREBUILT)
 
-#include $(CLEAR_VARS)
-#LOCAL_MODULE := Alessa
-#LOCAL_MODULE_OWNER := xpe
-#LOCAL_SRC_FILES := common/app/Alessa.apk
-#LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE_SUFFIX := .apk
-#LOCAL_MODULE_CLASS := APPS
-#LOCAL_CERTIFICATE := PRESIGNED
-#include $(BUILD_PREBUILT)
+include $(CLEAR_VARS)
+LOCAL_MODULE := Alessa
+LOCAL_MODULE_OWNER := xpe
+LOCAL_SRC_FILES := common/app/Alessa.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := PRESIGNED
+include $(BUILD_PREBUILT)
 
 #include $(CLEAR_VARS)
 #LOCAL_MODULE := XPeDisplay
@@ -73,7 +73,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := Stardust
 LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/Stardust-2-11.1.2-Debug/Stardust-2-11.1.2-Debug.apk
+LOCAL_SRC_FILES := common/app/Stardust/Stardust.apk
 LOCAL_OVERRIDES_PACKAGES := Music Eleven
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
