@@ -206,13 +206,15 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    AudioFX \
     Alessa \
+	audio_effects.conf \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
+	libcyanogen-dsp \
     LockClock \
 	Launcher3Pixel \
+	MusicFX \
     Stardust \
     Turbo \
     Updater \
