@@ -162,6 +162,10 @@ PRODUCT_COPY_FILES += \
 
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
+PRODUCT_COPY_FILES += \
+    vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
+    vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
+    vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh
 
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
@@ -207,20 +211,16 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     Alessa \
-	audio_effects.conf \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
-	libcyanogen-dsp \
     LockClock \
-	Launcher3Pixel \
-	MusicFX \
+    Launcher3Pixel \
     Stardust \
     Turbo \
     Updater \
     XPerienceSetupWizard \
     XPerienceWallpapers
-
 
 # Exchange support
 PRODUCT_PACKAGES += \
