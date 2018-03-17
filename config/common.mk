@@ -163,9 +163,8 @@ PRODUCT_COPY_FILES += \
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
 PRODUCT_COPY_FILES += \
-    vendor/XPe/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
-    vendor/XPe/prebuilt/common/app/AudioFX/AudioFX.apk:system/priv-app/AudioFX/AudioFX.apk \
-    vendor/XPe/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh
+    vendor/xperience/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
+    vendor/xperience/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh
 
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
@@ -210,6 +209,7 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
+    AudioFX \
     Alessa \
     CommandCenter3 \
     ExactCalculator \

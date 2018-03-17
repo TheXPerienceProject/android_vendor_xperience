@@ -41,6 +41,17 @@ LOCAL_PATH := $(call my-dir)
 #include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := AudioFX
+LOCAL_MODULE_OWNER := xpe
+LOCAL_SRC_FILES := common/app/AudioFX/AudioFX.apk
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := PRESIGNED
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := Alessa
 LOCAL_MODULE_OWNER := xpe
 LOCAL_SRC_FILES := common/app/Alessa.apk
