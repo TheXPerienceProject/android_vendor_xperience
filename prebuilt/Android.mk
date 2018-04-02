@@ -106,6 +106,20 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := Launcher3Pixel
 LOCAL_MODULE_OWNER := xpe
 LOCAL_SRC_FILES := common/app/Launcher3Pixel/Launcher3Pixel.apk
+LOCAL_OVERRIDES_PACKAGES := Launcher2 Launcher3PixelGo
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := shared
+LOCAL_PRIVILEGED_MODULE := true
+include $(BUILD_PREBUILT)
+
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := Launcher3PixelGo
+LOCAL_MODULE_OWNER := xpe
+LOCAL_SRC_FILES := common/app/Launcher3PixelGo/Launcher3PixelGo.apk
+LOCAL_OVERRIDES_PACKAGES := Launcher2 Launcher3 Laucher3Pixel
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
