@@ -219,7 +219,7 @@ PRODUCT_PACKAGES += \
     Jelly \
     LockClock \
     Launcher3Pixel \
-    Stardust \
+    RetroMusic \
     Turbo \
     Updater \
     XPerienceSetupWizard \
