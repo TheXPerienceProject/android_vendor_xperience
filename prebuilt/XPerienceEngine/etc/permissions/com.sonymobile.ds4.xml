@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <library name="com.sonymobile.ds4.api"
+        file="/system/framework/com.sonymobile.ds4_impl.jar"/>
+</permissions>

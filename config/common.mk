@@ -219,10 +219,12 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Jelly \
     LockClock \
-    Launcher3Pixel \
     RetroMusic \
     Turbo \
     Updater \
+    XPeriaCalendar \
+    XPeriaHome \
+    XPeriaWeather \
     XPerienceSetupWizard \
     XPerienceWallpapers
 
