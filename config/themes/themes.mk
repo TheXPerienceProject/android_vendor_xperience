@@ -1,6 +1,10 @@
 # Theme vendor extension
 -include vendor/xperience/config/themes/Android.mk
 
+# Blue XPerience
+PRODUCT_PACKAGES += \
+    BlueXPerienceTheme
+
 # Deep Purple
 PRODUCT_PACKAGES += \
     DeepPurpleTheme
@@ -8,6 +12,10 @@ PRODUCT_PACKAGES += \
 # Indigo
 PRODUCT_PACKAGES += \
     IndigoTheme
+
+# Light Green
+PRODUCT_PACKAGES += \
+    XPerienceLightGreen
 
 # Pink
 PRODUCT_PACKAGES += \
@@ -36,3 +44,7 @@ PRODUCT_PACKAGES += \
 # Teal
 PRODUCT_PACKAGES += \
     TealTheme
+
+# XPerience Wine
+PRODUCT_PACKAGES += \
+    XPerienceWineTheme
