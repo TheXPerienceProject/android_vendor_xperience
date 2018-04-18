@@ -426,6 +426,7 @@ endif
 PRODUCT_GENERIC_PROPERTIES += \
     ro.xpe.version=$(XPE_VERSION) \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
+	ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
