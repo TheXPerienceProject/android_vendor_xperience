@@ -1,5 +1,3 @@
-add_lunch_combo xpe_addison-userdebug
-add_lunch_combo xpe_falcon-userdebug
-add_lunch_combo xpe_kenzo-userdebug
-add_lunch_combo xpe_land-userdebug
-add_lunch_combo xpe_santoni-userdebug
+add_lunch_combo xperience_addison-userdebug
+add_lunch_combo xperience_falcon-userdebug
+add_lunch_combo xperience_lavender-userdebug
