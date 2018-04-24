@@ -144,6 +144,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := MotCamera
 LOCAL_MODULE_OWNER := motorola
 LOCAL_SRC_FILES := common/app/MotCamera/MotCamera.apk
+LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Snap Camera2
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS
