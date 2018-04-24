@@ -48,3 +48,11 @@ PRODUCT_PACKAGES += \
 # XPerience Wine
 PRODUCT_PACKAGES += \
     XPerienceWineTheme
+
+#NAVBAR themes
+PRODUCT_PACKAGES += \
+    NavigationPixelTheme \
+    NavigationPixelHolaTheme \
+    NavigationSamsungTheme \
+    NavigationXperiaTheme \
+    NavigationOnePlusTheme
