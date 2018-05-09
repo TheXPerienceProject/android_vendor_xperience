@@ -45,6 +45,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     TealTheme
 
+# Teal
+PRODUCT_PACKAGES += \
+    DarkTealTheme
+
 # XPerience Wine
 PRODUCT_PACKAGES += \
     XPerienceWineTheme

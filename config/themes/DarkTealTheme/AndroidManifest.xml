@@ -15,12 +15,12 @@
 
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mx.xperience.theme.lightgreen"
+    package="mx.xperience.theme.darkteal"
     platformBuildVersionCode="26"
     platformBuildVersionName="8.0.0">
 
-    <overlay android:priority="8" android:targetPackage="android" />
+    <overlay android:priority="2" android:targetPackage="android" />
 
     <application android:hasCode="false"
-                 android:label="XPerience Light Green" />
+                 android:label="Dark Teal" />
 </manifest>
