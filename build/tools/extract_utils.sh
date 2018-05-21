@@ -516,7 +516,7 @@ function write_header() {
         elif [ $INITIAL_COPYRIGHT_YEAR -eq $YEAR ]; then
             printf "# Copyright (C) $YEAR The XPerience Project\n" >> $1
         elif [ $INITIAL_COPYRIGHT_YEAR -le 2017 ]; then
-            printf "# Copyright (C) 201-$YEAR The XPerience Project\n" >> $1
+            printf "# Copyright (C) 2017-$YEAR The XPerience Project\n" >> $1
         else
             printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-$YEAR The XPerience Project\n" >> $1
         fi

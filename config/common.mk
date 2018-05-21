@@ -431,7 +431,7 @@ PRODUCT_GENERIC_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=Yggdrasil \
-    ro.xpe.cafbranch=LA.UM.6.6.r1-08300-89xx.0 \
+    ro.xpe.cafbranch=LA.UM.6.6.r1-08500-89xx.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 -include vendor/XPe-priv/keys/keys.mk
