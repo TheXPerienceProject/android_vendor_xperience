@@ -19,6 +19,4 @@ FRAMEWORK_CM_PLATFORM_API_FILE := $(TOPDIR)vendor/cmsdk/api/cm_current.txt
 FRAMEWORK_CM_PLATFORM_REMOVED_API_FILE := $(TOPDIR)vendor/cmsdk/api/cm_removed.txt
 FRAMEWORK_CM_API_NEEDS_UPDATE_TEXT := $(TOPDIR)vendor/xperience/build/core/apicheck_msg_current.txt
 
-BUILD_HTTP_PREBUILT := $(TOP)/vendor/xperience/build/core/http_prebuilt.mk
-
 BUILD_RRO_SYSTEM_PACKAGE := $(TOP)/vendor/xperience/build/core/system_rro.mk
