@@ -57,8 +57,8 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
         qcom_flags += -DHAS_EXTRA_FLAC_METADATA
     endif
 
-    # Enable color metadata for 8xx UM targets
-    ifneq ($(filter msm8996 msm8998,$(TARGET_BOARD_PLATFORM)),)
+    # Enable color metadata for UM platforms
+    ifeq ($(call is-board-platform-in-list, $(UM_3_18_FAMILY) $(UM_4_4_FAMILY)),true)
         TARGET_USES_COLOR_METADATA := true
     endif
 
