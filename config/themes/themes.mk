@@ -60,3 +60,9 @@ PRODUCT_PACKAGES += \
     NavigationSamsungTheme \
     NavigationXperiaTheme \
     NavigationOnePlusTheme
+
+#System
+# Themes Black
+PRODUCT_PACKAGES += \
+    SettingsBlackTheme \
+    SystemBlackTheme
