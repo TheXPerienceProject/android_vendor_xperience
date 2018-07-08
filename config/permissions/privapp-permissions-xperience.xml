@@ -68,4 +68,15 @@
         <permission name="android.permission.RECOVERY"/>
     </privapp-permissions>
 
+    <privapp-permissions package="org.lineageos.updater">
+        <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
+        <permission name="android.permission.REBOOT"/>
+        <permission name="android.permission.RECOVERY"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="com.google.android.apps.turbo">
+       <permission name="android.permission.READ_LOGS" />
+       <permission name="android.permission.REBOOT" />
+    </privapp-permissions>
+
 </permissions>

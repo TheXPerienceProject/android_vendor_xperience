@@ -154,7 +154,7 @@ PRODUCT_COPY_FILES += \
 # This is xperience!
 PRODUCT_COPY_FILES += \
     vendor/xperience/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml \
-	vendor/xperience/config/permissions/privapp-permissions-xperience.xml:system/etc/permissions/privapp-permissions-xperience.xml
+    vendor/xperience/config/permissions/privapp-permissions-xperience.xml:system/etc/permissions/privapp-permissions-xperience.xml
 
 #7z 16
 PRODUCT_COPY_FILES += \
