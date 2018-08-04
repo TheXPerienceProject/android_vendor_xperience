@@ -114,11 +114,7 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/xperience/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
-# Signature compatibility validation
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
-
-# init.d spport
+# init.d support
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/xperience/prebuilt/common/bin/sysinit:system/bin/sysinit
