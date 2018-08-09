@@ -3,6 +3,7 @@ include $(CLEAR_VARS)
 
 LOCAL_PACKAGE_NAME := NavigationSamsungTheme
 LOCAL_RRO_THEME := NavigationSamsungTheme
+LOCAL_SDK_VERSION := 28
 LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(call all-subdir-java-files)
