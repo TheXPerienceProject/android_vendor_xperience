@@ -111,7 +111,11 @@ $(call set-device-specific-path,LOC_API,loc-api,vendor/qcom/opensource/location)
 $(call set-device-specific-path,DATASERVICES,dataservices,vendor/qcom/opensource/dataservices)
 $(call set-device-specific-path,POWER,power,hardware/qcom/power)
 
+ifeq ($(BOARD_USES_AOSP_WLAN_HAL),true)
+$(call wlan-set-path-variant,wlan)
+else
 $(call wlan-set-path-variant,wlan-caf)
+endif
 $(call bt-vendor-set-path-variant,bt-caf)
 
 else
