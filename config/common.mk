@@ -163,6 +163,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/xperience/config/permissions/xperience-power-whitelist.xml:system/etc/sysconfig/xperience-power-whitelist.xml
 
+# Markup Google
+PRODUCT_COPY_FILES += \
+    vendor/xperience/prebuilt/lib/libsketchology_native.so:system/lib/libsketchology_native.so \
+    vendor/xperience/prebuilt/lib64/libsketchology_native.so:system/lib64/libsketchology_native.so
+
 # Include AOSP audio files
 include vendor/xperience/config/aosp_audio.mk
 
@@ -205,6 +210,7 @@ PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_PACKAGES += \
     Longshot \
+    MarkupGoogle \
     OmniStyle
 
 ifneq ($(PRODUCT_SIZE), mini)
