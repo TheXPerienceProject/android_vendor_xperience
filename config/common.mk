@@ -177,9 +177,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 $(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 
 #XPerience Services
-PRODUCT_PACKAGES += xpe-services
-PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
-PRODUCT_BOOT_JARS += xpe-services
+#PRODUCT_PACKAGES += xpe-services
+#PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
+#PRODUCT_BOOT_JARS += xpe-services
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
