@@ -79,7 +79,7 @@
     <bool name="config_supportLongPressPowerWhenNonInteractive">true</bool>
 
     <!-- default dnd acess packages -->
-    <string name="config_defaultDndAccessPackages">com.google.android.GoogleCamera</string>
+    <string name="config_defaultDndAccessPackages">com.google.android.GoogleCamera:com.google.intelligence.sense:com.google.android.settings.intelligence:com.google.android.apps.wellbeing</string>
 
     <!-- set default widget options to use googles clock -->
     <string name="widget_default_package_name">com.google.android.deskclock</string>
@@ -101,14 +101,7 @@
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
 
-    <!-- Controls the WiFi wakeup feature.
-          0 = Not available.
-          1 = Available.
-    -->
-    <integer translatable="false" name="config_wifi_wakeup_available">1</integer>
-
 	<!--XPerience Visual -->
-
     <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
     <bool name="config_useRoundIcon">true</bool>
 
@@ -129,4 +122,20 @@
 	<!--Turn on screen when unplug-->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
+    <!-- non blockable notification packages -->
+    <string-array name="config_nonBlockableNotificationPackages">
+        <item>com.google.android.dialer</item>
+        <item>com.google.android.dialer:phone_incoming_call</item>
+        <item>com.google.android.deskclock:Firing</item>
+        <item>com.google.android.setupwizard</item>
+        <item>com.google.android.apps.pixelmigrate</item>
+    </string-array>
+
+	<!--Misc -->
+    <string-array name="config_batteryPackageTypeService">
+        <item>com.google.android.gms</item>
+        <item>com.google.android.apps.gcs</item>
+    </string-array>
+    <string name="config_timeZoneRulesDataPackage">com.google.android.timezone.data</string>
+    <string name="config_dreamsDefaultComponent">com.google.android.deskclock/com.android.deskclock.Screensaver</string>
 </resources>
