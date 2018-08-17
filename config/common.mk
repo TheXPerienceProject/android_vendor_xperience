@@ -164,10 +164,10 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh
 
 # Use signing keys for only official builds
-ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
-    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
-    PRODUCT_OTA_PUBLIC_KEYS = .keys/releasekey/otakey.x509.pem
-endif
+#ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
+#    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
+#    PRODUCT_OTA_PUBLIC_KEYS = .keys/releasekey/otakey.x509.pem
+#endif
 
 #XPerience colour :v well not is from xpe but It will be added here so..
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
