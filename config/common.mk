@@ -209,19 +209,14 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    AudioFX \
-    Alessa \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
     LockClock \
     RetroMusic \
-    Turbo \
     Updater \
-    XPeriaCalendar \
     XPeriaHome \
     XPeriaWeather \
-    XPerienceSetupWizard \
     XPerienceWallpapers
 
 # Exchange support
