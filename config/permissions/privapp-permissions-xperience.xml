@@ -74,11 +74,6 @@
         <permission name="android.permission.RECOVERY"/>
     </privapp-permissions>
 
-    <privapp-permissions package="com.google.android.apps.turbo">
-       <permission name="android.permission.READ_LOGS" />
-       <permission name="android.permission.REBOOT" />
-    </privapp-permissions>
-
 	<privapp-permissions package="com.sonyericsson.home">
        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
        <permission name="android.permission.DELETE_PACKAGES" />
@@ -93,4 +88,35 @@
        <permission name="android.permission.WRITE_MEDIA_STORAGE" />
        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
 	</privapp-permissions>
+
+	<!--Googleshits some gapps doesn't have those perms -->
+
+    <privapp-permissions package="com.google.android.apps.turbo">
+       <permission name="android.permission.READ_LOGS" />
+       <permission name="android.permission.REBOOT" />
+       <permission name="android.permission.PACKAGE_USAGE_STATS" />
+       <permission name="android.permission.CHANGE_APP_IDLE_STATE" />
+       <permission name="android.permission.CONFIGURE_DISPLAY_BRIGHTNESS" />
+       <permission name="android.permission.ACCESS_AMBIENT_LIGHT_STATS" />
+       <permission name="android.permission.BRIGHTNESS_SLIDER_USAGE" />
+    </privapp-permissions>
+
+    <privapp-permissions package="com.android.vending">
+       <permission name="android.permission.READ_RUNTIME_PROFILES" />
+    </privapp-permissions>
+
+    <privapp-permissions package="com.google.android.gms">
+       <permission name="android.permission.CONTROL_DISPLAY_SATURATION" />
+       <permission name="android.permission.RECOVER_KEYSTORE" />
+	</privapp-permissions>
+
+    <privapp-permissions package="com.google.android.googlequicksearchbox">
+       <permission name="android.permission.SET_VOLUME_KEY_LONG_PRESS_LISTENER" />
+       <permission name="android.permission.SET_MEDIA_KEY_LISTENER" />
+    </privapp-permissions>
+
+    <privapp-permissions package="com.google.android.ext.services">
+       <permission name="android.permission.PROVIDE_RESOLVER_RANKER_SERVICE" />
+       <permission name="android.permission.READ_RUNTIME_PROFILES" />
+    </privapp-permissions>
 </permissions>
