@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 
 LOCAL_PACKAGE_NAME := NavigationPixelTheme
 LOCAL_RRO_THEME := NavigationPixelTheme
-LOCAL_SDK_VERSION := 28
+LOCAL_PRIVATE_PLATFORM_APIS := true
 LOCAL_CERTIFICATE := platform
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(call all-subdir-java-files)
