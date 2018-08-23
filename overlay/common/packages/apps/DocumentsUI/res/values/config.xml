@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2015 The Android Open Source Project
-     Copyright (C) 2017 The XPerience Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,9 +15,7 @@
 -->
 
 <resources>
-
-    <!-- Flags setup as productivity oriented in which case Downloads app will be presented
-             as Files app. Including showing of the Documents and "advanced" roots. -->
-    <bool name="show_documents_root">true</bool>
-
+    <!-- Indicates if internal storage is shown as default or not. -->
+    <bool name="config_default_show_device_root">true</bool>
 </resources>
+

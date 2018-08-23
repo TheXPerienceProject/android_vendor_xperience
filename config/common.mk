@@ -322,7 +322,8 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.root_access=0
 
-DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
+DEVICE_PACKAGE_OVERLAYS += \
+    vendor/xperience/overlay/common
 
 PRODUCT_VERSION_MAJOR = 13
 PRODUCT_VERSION_MINOR = 0
@@ -335,7 +336,6 @@ endif
 
 -include vendor/xperience/xperienced.mk
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
 ###########################################################################
 # Set XPE_BUILDTYPE from the env RELEASE_TYPE
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
