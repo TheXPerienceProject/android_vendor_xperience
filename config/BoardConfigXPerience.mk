@@ -11,3 +11,5 @@ include vendor/xperience/config/BoardConfigKernel.mk
 
 # soong
 include vendor/xperience/build/soong/soong_config.mk
+
+PRODUCT_SOONG_NAMESPACES += $(PATHMAP_SOONG_NAMESPACES)
