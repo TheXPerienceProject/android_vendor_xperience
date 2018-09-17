@@ -68,6 +68,13 @@ PRODUCT_PACKAGES += \
     SystemBlackTheme \
     SystemUIBlackTheme
 
+#Themes Dark
+PRODUCT_PACKAGES += \
+    SystemUIDarkTheme \
+    SystemDarkTheme \
+    SettingsDarkTheme \
+    GBoardDarkTheme
+
 #New accent
 PRODUCT_PACKAGES += \
     AmberAccent \
