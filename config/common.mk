@@ -213,6 +213,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Jelly \
     LockClock \
+    OmniJaws \
     RetroMusic \
     Updater \
     XPeriaHome \
