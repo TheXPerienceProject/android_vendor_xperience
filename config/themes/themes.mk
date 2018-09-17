@@ -67,3 +67,15 @@ PRODUCT_PACKAGES += \
     SettingsBlackTheme \
     SystemBlackTheme \
     SystemUIBlackTheme
+
+#New accent
+PRODUCT_PACKAGES += \
+    AmberAccent \
+    BlackAccent \
+    BlueGreyAccent \
+    BrownAccent \
+    DeepOrangeAccent \
+    OrangeAccent \
+    GreyAccent \
+    LimeAccent \
+    WhiteAccent
