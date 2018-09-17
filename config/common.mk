@@ -211,6 +211,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CommandCenter3 \
     ExactCalculator \
+    Faded \
     Jelly \
     LockClock \
     OmniJaws \
