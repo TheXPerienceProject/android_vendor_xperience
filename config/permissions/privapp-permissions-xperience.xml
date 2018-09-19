@@ -26,6 +26,10 @@
         <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
     </privapp-permissions>
 
+    <privapp-permissions package="com.bq.camerabq">
+        <permission name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.android.dialer">
         <permission name="android.permission.STATUS_BAR"/>
     </privapp-permissions>
