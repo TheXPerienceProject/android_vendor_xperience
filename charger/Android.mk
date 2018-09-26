@@ -17,12 +17,16 @@ endif
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := healthd_board_xpe.cpp
 LOCAL_MODULE := libhealthd.xpe
+LOCAL_PROPRIETARY_MODULE := true
 LOCAL_CFLAGS := -Werror
 LOCAL_C_INCLUDES := \
     system/core/healthd/include \
     system/core/base/include \
-	bootable/recovery \
+	  bootable/recovery \
     bootable/recovery/minui/include
+
+LOCAL_HEADER_LIBRARIES := libcutils_headers libutils_headers libbatteryservice_headers
+
 ifneq ($(BACKLIGHT_PATH),)
     LOCAL_CFLAGS += -DHEALTHD_BACKLIGHT_PATH=\"$(BACKLIGHT_PATH)\"
 endif
