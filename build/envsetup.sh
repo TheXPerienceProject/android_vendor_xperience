@@ -716,6 +716,7 @@ function lineagerebase() {
 }
 
 function mka() {
+    generate_hidl_vendor_qcom
     m -j "$@"
 }
 
