@@ -942,19 +942,19 @@ function fixup_common_out_dir() {
 }
 
 # Enable SD-LLVM if available
-if [ -d $(gettop)/vendor/qcom/sdclang-6.0/linux-x86 ]; then
-    case `uname -s` in
-        Darwin)
-            # Darwin is not supported yet
-            ;;
-        *)
-            export SDCLANG=true
-            export SDCLANG_PATH=$(gettop)/vendor/qcom/sdclang-6.0/linux-x86/bin
-			export SDCLANG_PATH_2=$(gettop)/vendor/qcom/sdclang-6.0/linux-x86/bin
-            export SDCLANG_LTO_DEFS=$(gettop)/device/qcom/common/sdclang/sdllvm-lto-defs.mk
-            ;;
-    esac
-fi
+#if [ -d $(gettop)/vendor/qcom/sdclang-6.0/linux-x86 ]; then
+#    case `uname -s` in
+#        Darwin)
+#            # Darwin is not supported yet
+#            ;;
+#        *)
+#            export SDCLANG=true
+#            export SDCLANG_PATH=$(gettop)/vendor/qcom/sdclang-6.0/linux-x86/bin
+#			      export SDCLANG_PATH_2=$(gettop)/vendor/qcom/sdclang-6.0/linux-x86/bin
+            #export SDCLANG_LTO_DEFS=$(gettop)/device/qcom/common/sdclang/sdllvm-lto-defs.mk
+#            ;;
+#    esac
+#fi
 
 # Android specific JACK args
 if [ -n "$JACK_SERVER_VM_ARGUMENTS" ] && [ -z "$ANDROID_JACK_VM_ARGS" ]; then
