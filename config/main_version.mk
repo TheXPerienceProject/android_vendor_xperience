@@ -6,7 +6,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=KotonamiHaruka \
+    ro.xpe.codename=Rossweisse-(ロスヴァイセ) \
     ro.xpe.cafbranch=LA.UM.7.2.r1-05100-sdm660.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
