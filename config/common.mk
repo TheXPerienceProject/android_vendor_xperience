@@ -317,8 +317,8 @@ PRODUCT_PACKAGES += \
     procrank
 
 # Conditionally build in su
-PRODUCT_PACKAGES += \
-    su
+#PRODUCT_PACKAGES += \
+#    su
 endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
