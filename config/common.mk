@@ -228,6 +228,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     OmniJaws \
     RetroMusic \
+    SubstratumSignature \
     Updater \
     XPeriaHome \
     XPeriaWeather \
