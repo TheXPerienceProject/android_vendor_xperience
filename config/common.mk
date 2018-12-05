@@ -183,6 +183,9 @@ $(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 PRODUCT_PACKAGES += QPerformance UxPerformance
 PRODUCT_BOOT_JARS += QPerformance UxPerformance
 
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.vendor.extension_library=libqti-perfd-client.so
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 include vendor/xperience/config/twrp.mk
