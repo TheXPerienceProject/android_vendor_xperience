@@ -54,7 +54,7 @@ PRODUCT_PACKAGES += \
     XPerienceWineTheme
 
 #NAVBAR themes
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     NavigationPixelTheme \
     NavigationPixelHolaTheme \
     NavigationSamsungTheme \
