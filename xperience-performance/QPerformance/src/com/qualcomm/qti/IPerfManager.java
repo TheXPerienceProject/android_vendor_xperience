@@ -14,11 +14,13 @@ public interface IPerfManager extends IInterface {
 
     public static abstract class Stub extends Binder implements IPerfManager {
         private static final String DESCRIPTOR = "com.qualcomm.qti.IPerfManager";
-        static final int TRANSACTION_perfHint = 3;
-        static final int TRANSACTION_perfLockAcquire = 4;
+
         static final int TRANSACTION_perfLockRelease = 1;
         static final int TRANSACTION_perfLockReleaseHandler = 2;
+        static final int TRANSACTION_perfHint = 3;
+        static final int TRANSACTION_perfLockAcquire = 4;
         static final int TRANSACTION_perfUXEngine_events = 5;
+        static final int TRANSACTION_perfGetFeedback = 6;
 
         private static class Proxy implements IPerfManager {
             private IBinder mRemote;
@@ -33,6 +35,23 @@ public interface IPerfManager extends IInterface {
 
             public String getInterfaceDescriptor() {
                 return Stub.DESCRIPTOR;
+            }
+
+            public int perfGetFeedback(int i, String str) throws RemoteException {
+                Parcel obtain = Parcel.obtain();
+                Parcel obtain2 = Parcel.obtain();
+                try {
+                    obtain.writeInterfaceToken(Stub.DESCRIPTOR);
+                    obtain.writeInt(i);
+                    obtain.writeString(str);
+                    this.mRemote.transact(Stub.TRANSACTION_perfGetFeedback, obtain, obtain2, 0);
+                    obtain2.readException();
+                    int readInt = obtain2.readInt();
+                    return readInt;
+                } finally {
+                    obtain2.recycle();
+                    obtain.recycle();
+                }
             }
 
             public int perfHint(int i, String str, int i2, int i3) throws RemoteException {
@@ -172,6 +191,12 @@ public interface IPerfManager extends IInterface {
                         parcel2.writeNoException();
                         parcel2.writeInt(perfLockRelease);
                         return true;
+                    case TRANSACTION_perfGetFeedback /*6*/:
+                        parcel.enforceInterface(DESCRIPTOR);
+                        perfLockRelease = perfGetFeedback(parcel.readInt(), parcel.readString());
+                        parcel2.writeNoException();
+                        parcel2.writeInt(perfLockRelease);
+                        return true;
                     default:
                         return super.onTransact(i, parcel, parcel2, i2);
                 }
@@ -180,6 +205,8 @@ public interface IPerfManager extends IInterface {
             return true;
         }
     }
+
+    int perfGetFeedback(int i, String str) throws RemoteException;
 
     int perfHint(int i, String str, int i2, int i3) throws RemoteException;
 

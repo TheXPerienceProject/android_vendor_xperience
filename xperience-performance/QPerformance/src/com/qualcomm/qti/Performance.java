@@ -108,6 +108,8 @@ public class Performance {
         }
     }
 
+    private native int native_perf_get_feedback(int i, String str);
+
     private native int native_perf_hint(int i, String str, int i2, int i3);
 
     private native int native_perf_io_prefetch_start(int i, String str, String str2);
@@ -121,6 +123,10 @@ public class Performance {
     private native int native_perf_uxEngine_events(int i, int i2, String str, int i3);
 
     private native String native_perf_uxEngine_trigger(int i);
+
+    public int perfGetFeedback(int i, String str) {
+        return native_perf_get_feedback(i, str);
+    }
 
     public int perfHint(int i, String str, int i2, int i3) {
         if (this.mIsPlatformOrPrivApp) {
