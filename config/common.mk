@@ -69,6 +69,7 @@ PRODUCT_COPY_FILES += \
 # Lower RAM devices
 ifeq ($(XPE_LOW_RAM_DEVICE),true)
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
+TARGET_HAS_LOW_RAM := true
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     config.disable_atlas=true \
@@ -183,8 +184,16 @@ $(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 PRODUCT_PACKAGES += QPerformance UxPerformance
 PRODUCT_BOOT_JARS += QPerformance UxPerformance
 
+#CAF
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.vendor.extension_library=libqti-perfd-client.so
+    ro.vendor.extension_library=libqti-perfd-client.so \
+    persist.backup.ntpServer=0.pool.ntp.org \
+    sys.vendor.shutdown.waittime=500
+
+#    persist.vendor.radio.apm_sim_not_pwdn=1 \
+#    persist.vendor.radio.custom_ecc=1 \
+#    persist.vendor.radio.sib16_support=1 \
+#    persist.vendor.radio.rat_on=combine \
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
