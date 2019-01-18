@@ -27,5 +27,5 @@ ADDITIONAL_BUILD_PROPERTIES += \
     vendor.iop.enable_prefetch_ofr=1 \
     vendor.perf.iop_v3.enable=1 \
     ro.vendor.at_library=libqti-at.so \
-    persist.vendor.qti.games.gt.prof=1
+    persist.vendor.qti.games.gt.prof=1 \
     ro.build.version.qcom=$(CAF_BRANCH)
