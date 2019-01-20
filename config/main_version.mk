@@ -17,8 +17,15 @@ CAF_BRANCH := LA.UM.7.3.r1-06600-sdm845.0
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
 
+ADDITIONAL_BUILD_PROPERTIES += \
+    persist.backup.ntpServer=0.pool.ntp.org \
+    sys.vendor.shutdown.waittime=500
+
 #Call perf blobs
 include vendor/xperience/xperience-performance/common-perf/perf-common.mk
+
+PRODUCT_PACKAGES += QPerformance UxPerformance
+PRODUCT_BOOT_JARS += QPerformance UxPerformance
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
