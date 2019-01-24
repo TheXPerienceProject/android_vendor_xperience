@@ -24,9 +24,6 @@ ADDITIONAL_BUILD_PROPERTIES += \
 #Call perf blobs
 include vendor/xperience/xperience-performance/common-perf/perf-common.mk
 
-PRODUCT_PACKAGES += QPerformance UxPerformance
-PRODUCT_BOOT_JARS += QPerformance UxPerformance
-
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     vendor.enable_prefetch=1 \

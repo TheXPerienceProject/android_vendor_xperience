@@ -182,6 +182,9 @@ $(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 #PRODUCT_PACKAGES += mx.xperience.power.ShutdownXPe.xml
 #PRODUCT_BOOT_JARS += xpe-services
 
+PRODUCT_PACKAGES += QPerformance UxPerformance
+PRODUCT_BOOT_JARS += QPerformance UxPerformance
+
 #CAF
 #    persist.vendor.radio.apm_sim_not_pwdn=1 \
 #    persist.vendor.radio.custom_ecc=1 \
@@ -196,11 +199,13 @@ endif
 # Include AmbientSense if it's available
 -include vendor/ambientmusic/AmbientMusic.mk
 
-# Required CM packages
+# Required XPe packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
     Development \
     Profiles \
+    DownloadProvider \
+    MediaProvider
 
 # Optional packages
 PRODUCT_PACKAGES += \
