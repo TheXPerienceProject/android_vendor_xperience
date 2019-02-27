@@ -6,8 +6,8 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=Rossweisse-(ロスヴァイセ) \
-    ro.xpe.cafbranch=LA.UM.7.3.r1-06700-sdm845.0 \
+    ro.xpe.codename=EagleWarrior-(cuāuhpilli) \
+    ro.xpe.cafbranch=LA.UM.7.3.r1-06900-sdm845.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
