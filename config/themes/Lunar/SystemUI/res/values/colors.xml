@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Quicksettings main QS background-->
+    <color name="quick_settings_status_bar_background_color">@android:color/transparent</color>
+
+    <!-- QS edit page background color -->
+    <color name="qs_edit_item_decoration_bg">@*android:color/black</color>
+    <color name="qs_detail_progress_track">#2e0f2f</color>
+
+    <!-- Lockscreen clock styles -->
+    <color name="analog_clock_border_color_dark">#ff0097a7</color>
+    <color name="analog_clock_face_color_dark">#2e0f2f</color>
+    <color name="qs_subhead">#2e0f2f</color>
+
+</resources>

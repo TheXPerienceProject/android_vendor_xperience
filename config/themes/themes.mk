@@ -75,6 +75,12 @@ PRODUCT_PACKAGES += \
     SettingsDarkTheme \
     GBoardDarkTheme
 
+# Lunar Theme (WIP ) 
+PRODUCT_PACKAGES += \
+    SystemUILunarTheme \
+    SystemLunarTheme \
+    SettingsLunarTheme \
+
 #New accent
 PRODUCT_PACKAGES += \
     AmberAccent \

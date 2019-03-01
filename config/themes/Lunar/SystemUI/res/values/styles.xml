@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="qs_base" parent="android:Theme.DeviceDefault">
+        <item name="android:colorPrimary">#2e0f2f</item>
+        <item name="android:colorPrimaryDark">#2e0f2f</item>
+        <item name="android:colorSecondary">#2e0f2f</item>
+        <item name="android:colorAccent">@*android:color/accent_device_default_dark</item>
+        <item name="android:colorControlNormal">?android:attr/textColorPrimary</item>
+        <item name="android:colorBackgroundFloating">#2e0f2f</item>
+        <item name="android:colorBackground">#2e0f2f</item>
+        <item name="android:panelColorBackground">#2e0f2f</item>
+    </style>
+</resources>
