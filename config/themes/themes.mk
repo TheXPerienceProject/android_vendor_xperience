@@ -81,6 +81,12 @@ PRODUCT_PACKAGES += \
     SystemLunarTheme \
     SettingsLunarTheme \
 
+# Ilta Theme (WIP ) 
+PRODUCT_PACKAGES += \
+    SystemUIIltaTheme \
+    SystemIltaTheme \
+    SettingsIltaTheme \
+
 #New accent
 PRODUCT_PACKAGES += \
     AmberAccent \
