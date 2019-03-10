@@ -67,7 +67,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE := Alessa
 LOCAL_MODULE_OWNER := xpe
-LOCAL_SRC_FILES := common/app/Alessa.apk
+LOCAL_SRC_FILES := common/app/Alessa_2.0.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .apk
 LOCAL_MODULE_CLASS := APPS

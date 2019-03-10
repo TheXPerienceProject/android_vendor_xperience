@@ -221,6 +221,7 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
+    Alessa \
     CommandCenter3 \
     ExactCalculator \
     Faded \
