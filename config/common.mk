@@ -226,8 +226,8 @@ PRODUCT_PACKAGES += \
     Faded \
     Jelly \
     LockClock \
+    Notes \
     OmniJaws \
-    RetroMusic \
     SubstratumSignature \
     Updater \
     XPeriaHome \
