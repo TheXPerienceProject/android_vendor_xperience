@@ -262,6 +262,7 @@ PRODUCT_PACKAGES += \
     curl \
     fsck.ntfs \
     gdbserver \
+    getcap \
     htop \
     libsepol \
     micro_bench \
@@ -271,6 +272,7 @@ PRODUCT_PACKAGES += \
     oprofiled \
     pigz \
     powertop \
+    setcap \
     sqlite3 \
     strace \
     tune2fs \
