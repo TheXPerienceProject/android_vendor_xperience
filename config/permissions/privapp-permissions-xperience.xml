@@ -59,6 +59,7 @@
         <permission name="com.android.permission.WRITE_EMBEDDED_SUBSCRIPTIONS"/>
 		<permission name="android.permission.PACKAGE_USAGE_STATS" />
 		<permission name="android.permission.FORCE_STOP_PACKAGES" />
+		<permission name="com.motorola.mod.permission.MOD_INTERNAL" />
     </privapp-permissions>
 
     <privapp-permissions package="com.cyngn.audiofx">
