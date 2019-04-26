@@ -48,6 +48,10 @@
         <permission name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
     </privapp-permissions>
 
+    <privapp-permissions package="com.oneplus.soundrecorder">
+        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.android.gallery3d">
         <permission name="android.permission.WRITE_APN_SETTINGS"/>
         <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
@@ -120,6 +124,16 @@
     <privapp-permissions package="com.android.launcher3">
        <permission name="android.permission.MANAGE_ACTIVITY_STACKS"/>
        <permission name="android.permission.STATUS_BAR"/>
+    </privapp-permissions>
+
+    <!-- For oneplus launcher -->
+    <privapp-permissions package="net.oneplus.launcher">
+       <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+       <permission name="android.permission.MANAGE_USERS"/>
+       <permission name="android.permission.CONTROL_REMOTE_APP_TRANSITION_ANIMATIONS"/>
+       <permission name="android.permission.FORCE_STOP_PACKAGES"/>
+       <permission name="android.permission.BIND_APPWIDGET"/>
+       <permission name="android.permission.UPDATE_APP_OPS_STATS" />
     </privapp-permissions>
 
     <privapp-permissions package="com.motorola.cameraone">
