@@ -98,3 +98,11 @@ PRODUCT_PACKAGES += \
     GreyAccent \
     LimeAccent \
     WhiteAccent
+
+##########################################
+##            FONTS                     ##
+##########################################
+
+# Fonts
+PRODUCT_PACKAGES += \
+    XPerienceFonts
