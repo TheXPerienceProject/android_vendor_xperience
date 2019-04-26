@@ -175,4 +175,9 @@
        <permission name="android.permission.PROVIDE_RESOLVER_RANKER_SERVICE" />
        <permission name="android.permission.READ_RUNTIME_PROFILES" />
     </privapp-permissions>
+
+    <privapp-permissions package="com.android.settings">
+       <permission name="android.permission.ACCESS_FONT_MANAGER" />
+    </privapp-permissions>
+
 </permissions>
