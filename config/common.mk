@@ -222,13 +222,13 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     Alessa \
+    AmbientPlayHistoryProvider \
     CommandCenter3 \
     ExactCalculator \
     Faded \
     Jelly \
     LockClock \
     Notes \
-    OmniJaws \
     SubstratumSignature \
     Updater \
     XPeriaHome \
