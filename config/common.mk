@@ -120,12 +120,6 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/xperience/prebuilt/common/bin/sysinit:system/bin/sysinit
 
-# SuperSU
-#ifeq ($(WITH_SUPERSU),true)
-#PRODUCT_COPY_FILES += \
-#    vendor/xperience/prebuilt/common/Magisk-v13.3.zip:system/addon.d/magisk.zip
-#endif
-
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
@@ -160,9 +154,6 @@ PRODUCT_COPY_FILES += \
 
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
-PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/com.cyngn.audiofx.xml:system/etc/permissions/com.cyngn.audiofx.xml \
-    vendor/xperience/prebuilt/common/bin/707-xpe.sh:system/addon.d/707-xpe.sh
 
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
@@ -184,12 +175,6 @@ $(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 
 PRODUCT_PACKAGES += QPerformance UxPerformance
 PRODUCT_BOOT_JARS += QPerformance UxPerformance
-
-#CAF
-#    persist.vendor.radio.apm_sim_not_pwdn=1 \
-#    persist.vendor.radio.custom_ecc=1 \
-#    persist.vendor.radio.sib16_support=1 \
-#    persist.vendor.radio.rat_on=combine \
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
@@ -225,7 +210,6 @@ PRODUCT_PACKAGES += \
     AmbientPlayHistoryProvider \
     CommandCenter3 \
     ExactCalculator \
-    Faded \
     Jelly \
     LockClock \
     Notes \
@@ -234,6 +218,11 @@ PRODUCT_PACKAGES += \
     XPeriaHome \
     XPeriaWeather \
     XPerienceWallpapers
+
+ifneq ($(XPE_BUILD), falcon)
+PRODUCT_PACKAGES += \
+    XPeriaCalendar
+endif
 
 # Exchange support
 PRODUCT_PACKAGES += \
