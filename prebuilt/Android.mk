@@ -43,6 +43,17 @@ LOCAL_DEX_PREOPT := false
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := WeatherClient
+LOCAL_MODULE_TAGS := optional
+LOCAL_SRC_FILES := common/app/WeatherClient/WeatherClient.apk
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_MODULE_CLASS := APPS
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_DEX_PREOPT := false
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := XPeriaWeather
 LOCAL_MODULE_OWNER := sony
 LOCAL_SRC_FILES := common/app/Weather/Weather.apk

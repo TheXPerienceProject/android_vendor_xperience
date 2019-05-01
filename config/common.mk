@@ -215,6 +215,7 @@ PRODUCT_PACKAGES += \
     Notes \
     SubstratumSignature \
     Updater \
+    WeatherClient \
     XPeriaHome \
     XPeriaWeather \
     XPerienceWallpapers
