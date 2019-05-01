@@ -53,11 +53,6 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
-ifneq ($(XPE_BUILDTYPE),RELEASE)
-# PRODUCT_COPY_FILES += \
-#     vendor/xperience/CHANGELOG.mkdn:system/etc/CHANGELOG-XPE.txt
-endif
-
 # Disable Rescue Party
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
