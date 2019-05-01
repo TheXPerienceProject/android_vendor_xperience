@@ -140,6 +140,18 @@ LOCAL_PRIVILEGED_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := Gcam_Whyred
+LOCAL_MODULE_OWNER := google
+LOCAL_SRC_FILES := common/app/Gcam/Gcam_Whyred/Gcam_Whyred.apk
+LOCAL_OVERRIDES_PACKAGES := SnapdragonCamera Snap Camera2 
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .apk
+LOCAL_MODULE_CLASS := APPS
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_PRIVILEGED_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := MotCamera
 LOCAL_MODULE_OWNER := motorola
 LOCAL_SRC_FILES := common/app/MotCamera/MotCamera.apk
