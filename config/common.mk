@@ -150,9 +150,6 @@ PRODUCT_COPY_FILES += \
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
 
-PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/org.pixelexperience.ambient.play.xml:system/etc/permissions/org.pixelexperience.ambient.play.xml
-
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
@@ -206,7 +203,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Alessa \
     AmbientPlayHistoryProvider \
-    AmbientPlayProvider \
     CommandCenter3 \
     ExactCalculator \
     Jelly \
