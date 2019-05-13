@@ -31,18 +31,6 @@ LOCAL_DEX_PREOPT := false
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := XPeriaCalendar
-LOCAL_MODULE_OWNER := sony
-LOCAL_SRC_FILES := common/app/Calendar/Calendar.apk
-LOCAL_OVERRIDES_PACKAGES := Calendar
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_DEX_PREOPT := false
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := WeatherClient
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := common/app/WeatherClient/WeatherClient.apk

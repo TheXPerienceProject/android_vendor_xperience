@@ -215,11 +215,6 @@ PRODUCT_PACKAGES += \
     XPeriaWeather \
     XPerienceWallpapers
 
-ifneq ($(XPE_BUILD), falcon)
-PRODUCT_PACKAGES += \
-    XPeriaCalendar
-endif
-
 # Exchange support
 PRODUCT_PACKAGES += \
     Exchange2
