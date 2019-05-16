@@ -36,6 +36,7 @@
 
     <privapp-permissions package="com.google.android.dialer">
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+        <permission name="com.android.voicemail.permission.ADD_VOICEMAIL"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.android.mms">
