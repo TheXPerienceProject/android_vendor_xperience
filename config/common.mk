@@ -30,7 +30,7 @@ endif
 
 #well I add ringtones here for all devices
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.config.ringtone=XPerienceRing.ogg \
+    ro.config.ringtone=XPerienceRing.ogg,XPerienceRing.ogg \
     ro.config.notification_sound=Reminder.ogg \
     ro.config.alarm_alert=Fuego.ogg
 
