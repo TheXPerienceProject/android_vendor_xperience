@@ -210,14 +210,14 @@ PRODUCT_PACKAGES += \
     AmbientPlayHistoryProvider \
     CommandCenter3 \
     ExactCalculator \
-    Jelly \
     LockClock \
     Notes \
     SubstratumSignature \
     WeatherClient \
     XPeriaHome \
     XPeriaWeather \
-    XPerienceWallpapers
+    XPerienceWallpapers \
+    Yunikon
 
 # Exchange support
 PRODUCT_PACKAGES += \
