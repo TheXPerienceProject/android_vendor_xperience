@@ -142,6 +142,10 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml \
     vendor/xperience/config/permissions/privapp-permissions-xperience.xml:system/etc/permissions/privapp-permissions-xperience.xml
 
+# Hidden API whitelist
+PRODUCT_COPY_FILES += \
+    vendor/xperience/config/permissions/xperience-hiddenapi-package-whitelist.xml:system/etc/permissions/xperience-hiddenapi-package-whitelist.xml
+
 #7z 16
 PRODUCT_COPY_FILES += \
     vendor/xperience/7z/system/lib/lib7z.so:system/lib/lib7z.so \
