@@ -188,6 +188,7 @@ endif
 # Include AmbientSense if it's available
 -include vendor/ambientmusic/AmbientMusic.mk
 
+ifneq ($(PRODUCT_SIZE), mini)
 # Required XPe packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
@@ -211,10 +212,9 @@ PRODUCT_PACKAGES += \
 # Custom packages
 PRODUCT_PACKAGES += \
     Alessa \
-    AmbientPlayHistoryProvider \
     CommandCenter3 \
     ExactCalculator \
-    LockClock \
+    DeskClock \
     Notes \
     SubstratumSignature \
     WeatherClient \
@@ -222,6 +222,34 @@ PRODUCT_PACKAGES += \
     XPeriaWeather \
     XPerienceWallpapers \
     Yunikon
+else
+# Required XPe packages
+PRODUCT_PACKAGES += \
+    BluetoothExt \
+    Profiles \
+    DownloadProvider \
+    MediaProvider
+
+# Optional packages
+PRODUCT_PACKAGES += \
+    libemoji \
+    Terminal
+
+# Include explicitly to work around GMS issues
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full \
+    librsjni
+
+# Custom packages
+PRODUCT_PACKAGES += \
+    Alessa \
+    CommandCenter3 \
+    ExactCalculator \
+    Notes \
+    SubstratumSignature \
+    WeatherClient \
+    Yunikon
+endif
 
 # Exchange support
 PRODUCT_PACKAGES += \
