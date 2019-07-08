@@ -29,6 +29,7 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.iop@2.0.so:system/lib/vendor.qti.hardware.iop@2.0.so
 
 ifeq ($(TARGET_ARCH),arm64)
+PRODUCT_COPY_FILES += \
     vendor/xperience/xperience-performance/common-perf/lib64/libqti-at.so:system/lib64/libqti-at.so \
     vendor/xperience/xperience-performance/common-perf/lib64/libqti-perfd-client_system.so:system/lib64/libqti-perfd-client_system.so \
     vendor/xperience/xperience-performance/common-perf/lib64/libqti-iopd-client_system.so:system/lib64/libqti-iopd-client_system.so\
@@ -47,6 +48,7 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/xperience-performance/common-perf/vendor/lib/vendor.qti.hardware.iop@2.0.so:$(TARGET_COPY_OUT_VENDOR)/lib/vendor.qti.hardware.iop@2.0.so
 
 ifeq ($(TARGET_ARCH),arm64)
+PRODUCT_COPY_FILES += \
     vendor/xperience/xperience-performance/common-perf/vendor/lib64/hw/vendor.qti.hardware.iop@2.0-impl.so:$(TARGET_COPY_OUT_VENDOR)/lib64/hw/vendor.qti.hardware.iop@2.0-impl.so \
     vendor/xperience/xperience-performance/common-perf/vendor/lib64/libqti-iopd-client.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libqti-iopd-client.so \
     vendor/xperience/xperience-performance/common-perf/vendor/lib64/vendor.qti.hardware.iop@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.qti.hardware.iop@1.0.so \
