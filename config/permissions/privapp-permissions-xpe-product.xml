@@ -115,6 +115,10 @@
        <permission name="android.permission.UPDATE_APP_OPS_STATS" />
     </privapp-permissions>
 
+    <privapp-permissions package="com.google.android.apps.nexuslauncher">
+       <permission name="android.permission.STATUS_BAR"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.motorola.cameraone">
        <permission name="android.permission.STOP_APP_SWITCHES" />
        <permission name="android.permission.WRITE_MEDIA_STORAGE" />

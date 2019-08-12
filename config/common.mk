@@ -204,6 +204,7 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_PACKAGES += \
+    Longshot \
     OmniStyle
 
 ifneq ($(PRODUCT_SIZE), mini)
