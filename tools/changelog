@@ -2,8 +2,6 @@
 
 # Exports
 
-./vendor/xperience/tools/colors
-
 export Changelog=Changelog.txt
 
 # Exports
