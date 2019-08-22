@@ -7,12 +7,12 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=Cernunnos \
-    ro.xpe.cafbranch=LA.UM.7.1.r1-15800-sm8150.0 \
+    ro.xpe.cafbranch=LA.UM.7.1.r1-16300-sm8150.0 \
     ro.xpelegal.url=http://thexperienceproject.com/legal/
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
-CAF_BRANCH := LA.UM.7.1.r1-15800-sm8150.0
+CAF_BRANCH := LA.UM.7.1.r1-16300-sm8150.0
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
