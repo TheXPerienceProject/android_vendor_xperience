@@ -67,7 +67,7 @@ function breakfast()
 {
     target=$1
     local variant=$2
-    XPE_DEVICES_ONLY="true"
+    XPERIENCE_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
     for f in `/bin/ls vendor/xperience/vendorsetup.sh 2> /dev/null`
@@ -118,7 +118,7 @@ function eat()
             done
             echo "Device Found.."
         fi
-        if (adb shell getprop ro.xpe.device | grep -q "$XPE_BUILD"); then
+        if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD"); then
             # if adbd isn't root we can't write to /cache/recovery/
             adb root
             sleep 1
@@ -134,7 +134,7 @@ EOF
             fi
             rm /tmp/command
         else
-            echo "The connected device does not appear to be $XPE_BUILD, run away!"
+            echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
         fi
         return $?
     else
@@ -356,7 +356,7 @@ function installboot()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 > /dev/null
     adb wait-for-online remount
-    if (adb shell getprop ro.xpe.device | grep -q "$XPE_BUILD");
+    if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD");
     then
         adb push $OUT/boot.img /cache/
         if [ -e "$OUT/system/lib/modules/*" ];
@@ -370,7 +370,7 @@ function installboot()
         adb shell dd if=/cache/boot.img of=$PARTITION
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $XPE_BUILD, run away!"
+        echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
     fi
 }
 
@@ -404,13 +404,13 @@ function installrecovery()
     sleep 1
     adb wait-for-online shell mount /system 2>&1 >> /dev/null
     adb wait-for-online remount
-    if (adb shell getprop ro.xpe.device | grep -q "$XPE_BUILD");
+    if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $XPE_BUILD, run away!"
+        echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
     fi
 }
 
@@ -789,7 +789,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop ro.xpe.device | grep -q "$XPE_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if (adb shell getprop ro.xpe.device | grep -q "$XPERIENCE_BUILD") || [ "$FORCE_PUSH" = "true" ];
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices \
@@ -907,7 +907,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $XPE_BUILD, run away!"
+        echo "The connected device does not appear to be $XPERIENCE_BUILD, run away!"
     fi
 }
 
@@ -926,14 +926,15 @@ function repopick() {
 function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
-    if [ ! -z $XPE_FIXUP_COMMON_OUT ]; then
+    common_target_out=common-${target_device}
+    if [ ! -z $XPERIENCE_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
-            ln -s ${common_out_dir}-${target_device} ${common_out_dir}
+            ln -s ${common_target_out} ${common_out_dir}
         else
             [ -L ${common_out_dir} ] && rm ${common_out_dir}
             mkdir -p ${common_out_dir}-${target_device}
-            ln -s ${common_out_dir}-${target_device} ${common_out_dir}
+            ln -s ${common_target_out} ${common_out_dir}
         fi
     else
         [ -L ${common_out_dir} ] && rm ${common_out_dir}
