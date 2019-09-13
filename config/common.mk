@@ -40,9 +40,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.build.selinux=1
-
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # Thank you, please drive thru!
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
