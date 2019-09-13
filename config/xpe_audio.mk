@@ -33,14 +33,6 @@ PRODUCT_COPY_FILES += \
     $(NOTIFICATION_PATH)/Reminder.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Reminder.ogg
 
 # Ringtones
-ifeq ($(TARGET_NEEDS_BOOSTED_SOUNDS),true)
-PRODUCT_COPY_FILES += \
-	$(RINGTONE_PATH)/boosted/Boxbeat.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Boxbeat.ogg \
-	$(RINGTONE_PATH)/boosted/CyanTone.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/CyanTone.ogg \
-	$(RINGTONE_PATH)/boosted/Highscore.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Highscore.ogg \
-	$(RINGTONE_PATH)/boosted/Lyon.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Lyon.ogg \
-	$(RINGTONE_PATH)/boosted/Rockin.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Rockin.ogg
-else
 PRODUCT_COPY_FILES += \
     $(RINGTONE_PATH)/Boxbeat.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Boxbeat.ogg \
     $(RINGTONE_PATH)/CyanTone.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/CyanTone.ogg \
@@ -53,4 +45,3 @@ PRODUCT_COPY_FILES += \
     $(RINGTONE_PATH)/Music_box.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Music_box.ogg \
     $(RINGTONE_PATH)/generic_xperia.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/generic_xperia.ogg \
     $(RINGTONE_PATH)/garden_waltz.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/garden_waltz.ogg
-endif
