@@ -48,9 +48,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.setupwizard.enterprise_mode=1 \
     setupwizard.enable_assist_gesture_training=true
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.build.selinux=1
-
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.ringtone=Rasalas.ogg \
     ro.config.notification_sound=Notification_H.ogg \
