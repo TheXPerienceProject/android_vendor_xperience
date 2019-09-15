@@ -10,6 +10,12 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
+# Build fingerprint
+ifneq ($(BUILD_FINGERPRINT),)
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.build.fingerprint=$(BUILD_FINGERPRINT)
+endif
+
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
 CAF_BRANCH := LA.UM.8.1.r1-12600-sm8150.0
