@@ -91,11 +91,6 @@ else
     MSM_VIDC_TARGET_LIST := $(TARGET_BOARD_PLATFORM)
     QCOM_HARDWARE_VARIANT := $(TARGET_BOARD_PLATFORM)
 endif
-endif
-endif
-endif
-endif
-endif
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom/audio/$(QCOM_HARDWARE_VARIANT) \
