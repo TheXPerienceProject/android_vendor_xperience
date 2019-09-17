@@ -1,5 +1,5 @@
 #Buildtype and changelog
-export XPERIENCE_CHANGELOG := true
+XPERIENCE_CHANGELOG := true
 
 ifeq ($(XPE_BUILDTYPE), HOMECASE)
  export WITH_XPERIASUPPORT := false
