@@ -150,13 +150,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/xperience/config/permissions/xperience-hiddenapi-package-whitelist.xml:system/etc/permissions/xperience-hiddenapi-package-whitelist.xml
 
-#7z 16
-PRODUCT_COPY_FILES += \
-    vendor/xperience/7z/system/lib/lib7z.so:system/lib/lib7z.so \
-    vendor/xperience/7z/system/xbin/7z:system/xbin/7z
-
 # Include AOSP audio files
-include vendor/lineage/config/aosp_audio.mk
+include vendor/xperience/config/aosp_audio.mk
 
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
@@ -195,15 +190,12 @@ ifneq ($(PRODUCT_SIZE), mini)
 PRODUCT_PACKAGES += \
     BluetoothExt \
     Development \
-    Profiles \
     DownloadProvider \
     MediaProvider
 
 # Optional packages
 PRODUCT_PACKAGES += \
     libemoji \
-    LiveWallpapersPicker \
-    PhotoTable \
     Terminal
 
 # Include explicitly to work around GMS issues
@@ -228,7 +220,6 @@ else
 # Required XPe packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
-    Profiles \
     DownloadProvider \
     MediaProvider
 
