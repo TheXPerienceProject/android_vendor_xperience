@@ -17,27 +17,27 @@ PRODUCT_PACKAGES += \
 
 #system
 PRODUCT_COPY_FILES += \
-    vendor/xperience/xperience-performance/common-perf/bin/perfservice::system/bin/perfservice \
-    vendor/xperience/xperience-performance/common-perf/etc/init/perfservice.rc:system/etc/init/perfservice.rc \
-    vendor/xperience/xperience-performance/common-perf/lib/libqti-at.so:system/lib/libqti-at.so \
-    vendor/xperience/xperience-performance/common-perf/lib/libqti-perfd-client_system.so:system/lib/libqti-perfd-client_system.so \
-    vendor/xperience/xperience-performance/common-perf/lib/libqti-iopd-client_system.so:system/lib/libqti-iopd-client_system.so\
-    vendor/xperience/xperience-performance/common-perf/lib/libqti_performance.so:system/lib/libqti_performance.so \
-    vendor/xperience/xperience-performance/common-perf/lib/libqti-util_system.so:system/lib/libqti-util_system.so \
-    vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.perf@1.0.so:system/lib/vendor.qti.hardware.perf@1.0.so \
-    vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.iop@1.0.so:system/lib/vendor.qti.hardware.iop@1.0.so \
-    vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.iop@2.0.so:system/lib/vendor.qti.hardware.iop@2.0.so
+    vendor/xperience/xperience-performance/common-perf/bin/perfservice::$(TARGET_COPY_OUT_SYSTEM)/bin/perfservice \
+    vendor/xperience/xperience-performance/common-perf/etc/init/perfservice.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/perfservice.rc \
+    vendor/xperience/xperience-performance/common-perf/lib/libqti-at.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqti-at.so \
+    vendor/xperience/xperience-performance/common-perf/lib/libqti-perfd-client_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqti-perfd-client_system.so \
+    vendor/xperience/xperience-performance/common-perf/lib/libqti-iopd-client_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqti-iopd-client_system.so\
+    vendor/xperience/xperience-performance/common-perf/lib/libqti_performance.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqti_performance.so \
+    vendor/xperience/xperience-performance/common-perf/lib/libqti-util_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib/libqti-util_system.so \
+    vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.perf@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.hardware.perf@1.0.so \
+    vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.iop@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.hardware.iop@1.0.so \
+    vendor/xperience/xperience-performance/common-perf/lib/vendor.qti.hardware.iop@2.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib/vendor.qti.hardware.iop@2.0.so
 
 ifeq ($(TARGET_ARCH),arm64)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/xperience-performance/common-perf/lib64/libqti-at.so:system/lib64/libqti-at.so \
-    vendor/xperience/xperience-performance/common-perf/lib64/libqti-perfd-client_system.so:system/lib64/libqti-perfd-client_system.so \
-    vendor/xperience/xperience-performance/common-perf/lib64/libqti-iopd-client_system.so:system/lib64/libqti-iopd-client_system.so\
-    vendor/xperience/xperience-performance/common-perf/lib64/libqti_performance.so:system/lib64/libqti_performance.so \
-    vendor/xperience/xperience-performance/common-perf/lib64/libqti-util_system.so:system/lib64/libqti-util_system.so \
-    vendor/xperience/xperience-performance/common-perf/lib64/vendor.qti.hardware.perf@1.0.so:system/lib64/vendor.qti.hardware.perf@1.0.so \
-    vendor/xperience/xperience-performance/common-perf/lib64/vendor.qti.hardware.iop@1.0.so:system/lib64/vendor.qti.hardware.iop@1.0.so \
-    vendor/xperience/xperience-performance/common-perf/lib64/vendor.qti.hardware.iop@2.0.so:system/lib64/vendor.qti.hardware.iop@2.0.so
+    vendor/xperience/xperience-performance/common-perf/lib64/libqti-at.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqti-at.so \
+    vendor/xperience/xperience-performance/common-perf/lib64/libqti-perfd-client_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqti-perfd-client_system.so \
+    vendor/xperience/xperience-performance/common-perf/lib64/libqti-iopd-client_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqti-iopd-client_system.so\
+    vendor/xperience/xperience-performance/common-perf/lib64/libqti_performance.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqti_performance.so \
+    vendor/xperience/xperience-performance/common-perf/lib64/libqti-util_system.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libqti-util_system.so \
+    vendor/xperience/xperience-performance/common-perf/lib64/vendor.qti.hardware.perf@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.perf@1.0.so \
+    vendor/xperience/xperience-performance/common-perf/lib64/vendor.qti.hardware.iop@1.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.iop@1.0.so \
+    vendor/xperience/xperience-performance/common-perf/lib64/vendor.qti.hardware.iop@2.0.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/vendor.qti.hardware.iop@2.0.so
 endif
 
 #vendor

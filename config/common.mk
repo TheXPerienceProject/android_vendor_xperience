@@ -56,7 +56,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
-    vendor/xperience/DONATORS.mkdn:system/etc/donators.txt
+    vendor/xperience/DONATORS.mkdn:$(TARGET_COPY_OUT_SYSTEM)/etc/donators.txt
 
 # Lower RAM devices
 ifeq ($(XPE_LOW_RAM_DEVICE),true)
@@ -76,79 +76,79 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/xperience/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/xperience/prebuilt/common/bin/50-xpe.sh:system/addon.d/50-xpe.sh \
-    vendor/xperience/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/xperience/prebuilt/common/bin/50-xpe.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-xpe.sh \
+    vendor/xperience/prebuilt/common/bin/blacklist:$(TARGET_COPY_OUT_SYSTEM)/addon.d/blacklist
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
-    vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+    vendor/xperience/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 endif
 
 # Clean up packages cache to avoid wrong strings and resources
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/bin/clean_cache.sh:system/bin/clean_cache.sh
+    vendor/xperience/prebuilt/bin/clean_cache.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/clean_cache.sh
 
 # Fonts
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Regular.ttf:system/fonts/GoogleSans-Regular.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Medium.ttf:system/fonts/GoogleSans-Medium.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-MediumItalic.ttf:system/fonts/GoogleSans-MediumItalic.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Italic.ttf:system/fonts/GoogleSans-Italic.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Bold.ttf:system/fonts/GoogleSans-Bold.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-BoldItalic.ttf:system/fonts/GoogleSans-BoldItalic.ttf
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Regular.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Regular.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Medium.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Medium.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-MediumItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-MediumItalic.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Italic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Italic.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-Bold.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Bold.ttf \
+    vendor/xperience/prebuilt/common/fonts/GoogleSans-BoldItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-BoldItalic.ttf
 
 #Falcon Tweaking
 ifeq ($(XPE_BUILD), falcon)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:system/etc/init.d/01XPerienceKernelCOnf
+    vendor/xperience/prebuilt/common/etc/init.d/01XPerienceKernelCOnf:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/01XPerienceKernelCOnf
 endif
 
 ifeq ($(XPE_BUILD), ghost)
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/02XPerienceColorcalib:system/etc/init.d/02XPerienceColorcalib
+    vendor/xperience/prebuilt/common/etc/init.d/02XPerienceColorcalib:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/02XPerienceColorcalib
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/xperience/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/xperience/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/xperience/prebuilt/common/etc/init.d/00banner:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/00banner \
+    vendor/xperience/prebuilt/common/bin/sysinit:$(TARGET_COPY_OUT_SYSTEM)/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/xperience/prebuilt/common/etc/init.d/90userinit:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/90userinit
 endif
 
 # Copy all xperience-specific init rc files
 $(foreach f,$(wildcard vendor/xperience/prebuilt/common/etc/init/*.rc),\
-	$(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
+	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/xperience/prebuilt/common/lib/content-types.properties:$(TARGET_COPY_OUT_SYSTEM)/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+    frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.sip.voip.xml
 
 # Enable wireless Xbox 360 controller support
 PRODUCT_COPY_FILES += \
-    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
+    frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/Vendor_045e_Product_0719.kl
 
 # This is xperience!
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/mx.xperience.android.xml:system/etc/permissions/mx.xperience.android.xml \
-    vendor/xperience/config/permissions/privapp-permissions-xperience.xml:system/etc/permissions/privapp-permissions-xperience.xml
+    vendor/xperience/config/permissions/mx.xperience.android.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/mx.xperience.android.xml \
+    vendor/xperience/config/permissions/privapp-permissions-xperience.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-xperience.xml
 
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/xperience-hiddenapi-package-whitelist.xml:system/etc/permissions/xperience-hiddenapi-package-whitelist.xml
+    vendor/xperience/config/permissions/xperience-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/xperience-hiddenapi-package-whitelist.xml
 
 # Include AOSP audio files
 include vendor/xperience/config/aosp_audio.mk
