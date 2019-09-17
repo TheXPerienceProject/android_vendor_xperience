@@ -7,11 +7,11 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
     ro.xpe.codename=Quetzacoatl \
-    ro.xpelegal.url=http://thexperienceproject.com/legal/
+    ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
-#CAF_BRANCH := LA.UM.7.1.r1-16300-sm8150.0
+CAF_BRANCH := LA.UM.8.1.r1-08800-sm8150.0
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
@@ -21,9 +21,9 @@ ADDITIONAL_BUILD_PROPERTIES += \
     sys.vendor.shutdown.waittime=500
 
 #Call perf blobs
-#include vendor/xperience/xperience-performance/common-perf/perf-common.mk
+include vendor/xperience/xperience-performance/common-perf/perf-common.mk
 
-#ADDITIONAL_BUILD_PROPERTIES += \
+ADDITIONAL_BUILD_PROPERTIES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     vendor.enable_prefetch=1 \
     vendor.iop.enable_uxe=1 \
