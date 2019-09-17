@@ -158,6 +158,9 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/7z/system/lib/lib7z.so:system/lib/lib7z.so \
     vendor/xperience/7z/system/xbin/7z:system/xbin/7z
 
+# Include AOSP audio files
+include vendor/lineage/config/aosp_audio.mk
+
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
 
