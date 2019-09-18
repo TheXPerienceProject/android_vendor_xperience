@@ -174,8 +174,8 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Themes
 $(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
 
-PRODUCT_PACKAGES += QPerformance UxPerformance
-PRODUCT_BOOT_JARS += QPerformance UxPerformance
+#PRODUCT_PACKAGES += QPerformance UxPerformance
+#PRODUCT_BOOT_JARS += QPerformance UxPerformance
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
