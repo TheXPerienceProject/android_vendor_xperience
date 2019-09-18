@@ -246,7 +246,8 @@ endif
 
 # Exchange support
 PRODUCT_PACKAGES += \
-    Exchange2
+    Exchange2 \
+    Perfdump
 
 # Extra tools
 PRODUCT_PACKAGES += \
