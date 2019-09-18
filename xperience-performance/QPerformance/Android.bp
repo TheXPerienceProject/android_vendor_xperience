@@ -1,0 +1,23 @@
+//
+// Copyright (C) 2019 The XPerience Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+//java lib
+java_library {
+    name: "QPerformance",
+    installable: true,
+    srcs: ["**/*.java"],
+
+    no_standard_libs: true,
+    libs: [
+        "core-oj",
+        "core-libart",
+        "framework",
+    ],
+    owner: "xpe",
+    optimize: {
+        enabled: false,
+    },
+}
