@@ -36,7 +36,7 @@
 #include <cutils/klog.h>
 #include <batteryservice/BatteryService.h>
 #include <cutils/android_reboot.h>
-#include "healthd/healthd.h"
+#include "healthd.h"
 #include "minui/minui.h"
 #define ARRAY_SIZE(x)           (sizeof(x)/sizeof(x[0]))
 
