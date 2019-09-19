@@ -146,7 +146,7 @@ static bool is_hvdcp_inserted()
 
     fd = open(CHARGER_TYPE_PATH, O_RDONLY);
     if (fd >= 0) {
-        cnt = read(fd, buff, (sizeof(buff) - 1));
+        cnt = read(fd, buff, sizeof(buff));
         if (cnt > 0 && !strncmp(buff, HVDCP_CHARGER, 9))
             hvdcp = true;
         close(fd);
@@ -185,27 +185,6 @@ static int get_blink_led_for_hvdcp(void)
 
     return rc;
 }
-
-#if QTI_BSP
-#define STR_LEN 8
-void healthd_board_mode_charger_draw_battery(
-                struct android::BatteryProperties *batt_prop)
-{
-    char cap_str[STR_LEN];
-    int x, y;
-    int str_len_px;
-    static int char_height = -1, char_width = -1;
-
-    if (char_height == -1 && char_width == -1)
-        gr_font_size(&char_width, &char_height);
-    snprintf(cap_str, (STR_LEN - 1), "%d%%", batt_prop->batteryLevel);
-    str_len_px = gr_measure(cap_str);
-    x = (gr_fb_width() - str_len_px) / 2;
-    y = (gr_fb_height() + char_height) / 2;
-    gr_color(0xa4, 0xc6, 0x39, 255);
-    gr_text(x, y, cap_str, 0);
-}
-#endif
 
 void healthd_board_mode_charger_battery_update(
                 struct android::BatteryProperties *batt_prop)
@@ -284,13 +263,6 @@ void healthd_board_mode_charger_set_backlight(bool en)
     LOGV(CHGR_TAG, "set backlight status to %d\n", en);
 }
 
-static inline void get_healthd_props()
-{
-    healthd_msm_log_en = property_get_bool("persist.healthd_xperience.log_en", 1);
-    healthd_msm_store_params =
-                property_get_bool("persist.healthd_xperience.store_params", 0);
-}
-
 #define WAIT_BMS_READY_TIMES_MAX	200
 #define WAIT_BMS_READY_INTERVAL_USEC	200000
 void healthd_board_mode_charger_init()
@@ -306,10 +278,9 @@ void healthd_board_mode_charger_init()
     fd = open(CHARGING_ENABLED_PATH, O_RDONLY);
     if (fd < 0)
         return;
-    ret = read(fd, buff, (sizeof(buff) - 1));
+    ret = read(fd, buff, sizeof(buff));
     close(fd);
     if (ret > 0) {
-		buff[ret] = '\0';
         sscanf(buff, "%d\n", &charging_enabled);
         LOGW(CHGR_TAG, "android charging is %s\n",
                 !!charging_enabled ? "enabled" : "disabled");
@@ -321,9 +292,8 @@ void healthd_board_mode_charger_init()
     if (fd < 0)
             return;
     while (1) {
-		ret = read(fd, buff, (sizeof(buff) - 1));
-        if (ret > 0) {
-            buff[ret] = '\0';
+        ret = read(fd, buff, sizeof(buff));
+        if (ret >= 0) {
             sscanf(buff, "%d\n", &bms_ready);
         } else {
             LOGE(CHGR_TAG, "read soc-ready failed, ret=%d\n", ret);
@@ -350,10 +320,6 @@ static void healthd_batt_info_notify()
     char path_str[50] = "";
     bool notify_bms = false;
 
-    if (!healthd_msm_store_params) {
-        return;
-    }
-
     fd = open(PERSIST_BATT_INFO_PATH, O_RDONLY);
     if (fd < 0) {
         LOGW(HEALTHD_TAG, "Error in opening batt_info.txt, fd=%d\n", fd);
@@ -370,14 +336,14 @@ static void healthd_batt_info_notify()
         LOGV(HEALTHD_TAG, "opened %s\n", PERSIST_BATT_INFO_PATH);
     }
 
-    rc = read(fd, buff, (sizeof(buff) - 1));
+    rc = read(fd, buff, sizeof(buff));
     if (rc < 0) {
         LOGE(HEALTHD_TAG, "Error in reading fd %d, rc=%d\n", fd, rc);
         close(fd);
         goto out;
     }
     close(fd);
-    buff[rc] = '\0';
+
     temp_str = strtok_r(buff, ":", &ptr);
     id = 1;
     while (temp_str != NULL && id < BATT_INFO_MAX) {
@@ -463,7 +429,6 @@ out:
 void healthd_board_init(struct healthd_config*)
 {
     // use defaults
-    get_healthd_props();
     healthd_batt_info_notify();
 }
 
@@ -471,10 +436,6 @@ static void healthd_store_batt_props(const struct android::BatteryProperties* pr
 {
     char buff[100];
     int fd, rc, len, batteryId = 0;
-
-    if (!healthd_msm_store_params) {
-        return;
-    }
 
     if (!props->batteryPresent) {
         return;
@@ -561,8 +522,6 @@ int healthd_board_battery_update(struct android::BatteryProperties* props)
 {
     // return 0 to log periodic polled battery status to kernel log
     healthd_store_batt_props(props);
-    if (healthd_msm_log_en)
-        return 0;
     return 1;
 }
 
