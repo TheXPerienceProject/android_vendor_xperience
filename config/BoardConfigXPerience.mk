@@ -1,5 +1,5 @@
 # Charger
-ifneq ($(WITH_XPE_CHARGER),false)
+ifneq ($(WITH_XPE_CHARGER),)
     BOARD_HAL_STATIC_LIBRARIES := libhealthd.xpe
 endif
 
