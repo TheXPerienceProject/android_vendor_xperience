@@ -1,60 +1,60 @@
 # Theme vendor extension
--include vendor/xperience/config/themes/Android.mk
+#-include vendor/xperience/config/themes/Android.mk
 
 # Blue XPerience
-PRODUCT_PACKAGES += \
+##PRODUCT_PACKAGES += \
     BlueXPerienceTheme
 
 # Deep Purple
-PRODUCT_PACKAGES += \
+##PRODUCT_PACKAGES += \
     DeepPurpleTheme
 
 # Indigo
-PRODUCT_PACKAGES += \
+##PRODUCT_PACKAGES += \
     IndigoTheme
 
 # Light Green
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     XPerienceLightGreen
 
 # Pink
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     PinkTheme
 
 # Pixel
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     PixelTheme
 
 # Purple
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     PurpleTheme
 
 # Red
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     RedTheme
 
 # Sky Blue
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     SkyBlueTheme
 
 # Yellow
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     YellowTheme
 
 # Teal
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     TealTheme
 
 # Teal
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     DarkTealTheme
 
 # XPerience Wine
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     XPerienceWineTheme
 
 #NAVBAR themes
-#PRODUCT_PACKAGES += \
+##PRODUCT_PACKAGES += \
     NavigationPixelTheme \
     NavigationPixelHolaTheme \
     NavigationSamsungTheme \
@@ -63,32 +63,32 @@ PRODUCT_PACKAGES += \
 
 #System
 # Themes Black
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     SettingsBlackTheme \
     SystemBlackTheme \
     SystemUIBlackTheme
 
 #Themes Dark
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     SystemUIDarkTheme \
     SystemDarkTheme \
     SettingsDarkTheme \
     GBoardDarkTheme
 
 # Lunar Theme (WIP ) 
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     SystemUILunarTheme \
     SystemLunarTheme \
     SettingsLunarTheme \
 
 # Ilta Theme (WIP ) 
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     SystemUIIltaTheme \
     SystemIltaTheme \
     SettingsIltaTheme \
 
 #New accent
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     AmberAccent \
     BlackAccent \
     BlueGreyAccent \
@@ -104,5 +104,5 @@ PRODUCT_PACKAGES += \
 ##########################################
 
 # Fonts
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     XPerienceFonts
