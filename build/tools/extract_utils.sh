@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -867,16 +868,16 @@ function oat2dex() {
     local HOST="$(uname)"
 
     if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        export BAKSMALIJAR="$XPERIENCE_ROOT"/vendor/xperience/build/tools/smali/baksmali.jar
-        export SMALIJAR="$XPERIENCE_ROOT"/vendor/xperience/build/tools/smali/smali.jar
+        export BAKSMALIJAR="$XPERIENCE_ROOT"/prebuilts/tools-lineage/common/smali/baksmali.jar
+        export SMALIJAR="$XPERIENCE_ROOT"/prebuilts/tools-lineage/common/smali/smali.jar
     fi
 
     if [ -z "$VDEXEXTRACTOR" ]; then
-        export VDEXEXTRACTOR="$XPERIENCE_ROOT"/vendor/xperience/build/tools/"$HOST"/vdexExtractor
+        export VDEXEXTRACTOR="$XPERIENCE_ROOT"/prebuilts/tools-lineage/"${HOST,,}"-x86/bin/vdexExtractor
     fi
 
     if [ -z "$CDEXCONVERTER" ]; then
-        export CDEXCONVERTER="$LINEAGE_ROOT"/vendor/lineage/build/tools/"$HOST"/compact_dex_converter
+        export CDEXCONVERTER="$XPERIENCE_ROOT"/prebuilts/tools-lineage/"${HOST,,}"-x86/bin/compact_dex_converter
     fi
 
     # Extract existing boot.oats to the temp folder
