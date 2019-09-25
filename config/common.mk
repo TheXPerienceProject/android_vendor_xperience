@@ -251,49 +251,43 @@ PRODUCT_PACKAGES += \
 
 # Extra tools
 PRODUCT_PACKAGES += \
+    7z \
+    awk \
     bash \
     bzip2 \
     curl \
-    fsck.ntfs \
-    gdbserver \
     getcap \
     htop \
+    lib7z \
     libsepol \
-    micro_bench \
-    mke2fs \
-    mkfs.ntfs \
-    mount.ntfs \
-    oprofiled \
     pigz \
     powertop \
     setcap \
-    sqlite3 \
-    strace \
-    tune2fs \
     unrar \
     unzip \
     vim \
     wget \
     zip
 
+# Filesystems tools
+PRODUCT_PACKAGES += \
+    fsck.exfat \
+    fsck.ntfs \
+    mke2fs \
+    mkfs.exfat \
+    mkfs.ntfs \
+    mount.ntfs
+
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images \
 
 # Custom off-mode charger
 ifneq ($(WITH_XPE_CHARGER),false)
 PRODUCT_PACKAGES += \
-    charger_res_images \
     xpe_charger_res_images \
     font_log.png \
     libhealthd.xpe
-endif
-
-# ExFAT support
-WITH_EXFAT ?= true
-ifeq ($(WITH_EXFAT),true)
-TARGET_USES_EXFAT := true
-PRODUCT_PACKAGES += \
-    mount.exfat \
-    fsck.exfat \
-    mkfs.exfat
 endif
 
 # Openssh
@@ -331,12 +325,16 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # These packages are excluded from user builds
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_PACKAGES += \
+    micro_bench \
     procmem \
-    procrank
+    procrank \
+    strace
 
 # Conditionally build in su
-#PRODUCT_PACKAGES += \
-#    su
+ifeq ($(WITH_SU),true)
+PRODUCT_PACKAGES += \
+    su
+endif
 endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
