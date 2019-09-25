@@ -97,10 +97,5 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom/display/$(QCOM_HARDWARE_VARIANT) \
     hardware/qcom/media/$(QCOM_HARDWARE_VARIANT)
 
-# QCOM HW crypto
-ifeq ($(TARGET_HW_DISK_ENCRYPTION),true)
-    TARGET_CRYPTFS_HW_PATH ?= vendor/qcom/opensource/commonsys/cryptfs_hw
-endif
-
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true
