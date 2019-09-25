@@ -159,7 +159,7 @@ include vendor/xperience/config/xpe_audio.mk
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
-    PRODUCT_OTA_PUBLIC_KEYS = .keys/releasekey/otakey.x509.pem
+    PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
 
 # Only build OTA if official
 PRODUCT_PACKAGES += \
