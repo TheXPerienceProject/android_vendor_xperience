@@ -6,13 +6,12 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPE_BUILD) \
-    ro.xpe.codename=$(CN) \
+    ro.xpe.codename=Quetzacoatl \
     ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
-CAF_BRANCH := LA.UM.8.1.r1-08800-sm8150.0
-CN := Quetzacoatl
+CAF_BRANCH := LA.UM.8.1.r1-09400-sm8150.0
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
