@@ -118,6 +118,12 @@
     <!-- Whether or not we should show the option to show battery percentage -->
     <bool name="config_battery_percentage_setting_available">false</bool>
 
+    <!-- Controls the navigation bar interaction mode:
+         0: 3 button mode (back, home, overview buttons)
+         1: 2 button mode (back, home buttons + swipe up for overview)
+         2: gestures only for back, home and overview -->
+    <integer name="config_navBarInteractionMode">2</integer>
+
 	<!-- Corner radius -->
     <dimen name="config_dialogCornerRadius">8.0dip</dimen>
     <dimen name="config_buttonCornerRadius">4.0dip</dimen>
