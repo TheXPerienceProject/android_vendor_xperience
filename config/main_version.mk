@@ -5,7 +5,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
-    ro.xpe.model=$(XPE_BUILD) \
+    ro.xpe.model=$(XPERIENCE_BUILD) \
     ro.xpe.codename=Quetzacoatl \
     ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/
 
