@@ -124,12 +124,12 @@
          2: gestures only for back, home and overview -->
     <integer name="config_navBarInteractionMode">2</integer>
 
-	<!-- Corner radius -->
+    <!-- Corner radius -->
     <dimen name="config_dialogCornerRadius">8.0dip</dimen>
     <dimen name="config_buttonCornerRadius">4.0dip</dimen>
     <dimen name="config_progressBarCornerRadius">1000.0dip</dimen>
 
-	<!--Turn on screen when unplug-->
+    <!--Turn on screen when unplug-->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
     <!-- non blockable notification packages -->
@@ -153,8 +153,15 @@
     <bool name="config_smart_replies_in_notifications_requires_targeting_p">false</bool>
 
     <!-- System font packages (overlay in vendor) -->
-    <string-array name="config_fontPackages" translatable="false">
+    <!--<string-array name="config_fontPackages" translatable="false">
         <item>mx.xperience.fonts</item>
-    </string-array>
+    </string-array>-->
+
+    <!-- The package name for the default wellbeing app.
+         This package must be trusted, as it has the permissions to control other applications
+         on the device.
+         Example: "com.android.wellbeing"
+     -->
+    <string name="config_defaultWellbeingPackage">com.google.android.apps.wellbeing</string>
 
 </resources>
