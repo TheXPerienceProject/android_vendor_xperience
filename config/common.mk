@@ -196,6 +196,7 @@ PRODUCT_PACKAGES += \
     BluetoothExt \
     Development \
     DownloadProvider \
+    Launcher3QuickStepGo \
     MediaProvider
 
 # Optional packages
@@ -214,6 +215,7 @@ PRODUCT_PACKAGES += \
     CommandCenter3 \
     ExactCalculator \
     DeskClock \
+    Launcher3QuickStep
     Notes \
     SubstratumSignature \
     WeatherClient \
