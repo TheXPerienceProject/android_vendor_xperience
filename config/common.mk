@@ -244,6 +244,10 @@ PRODUCT_PACKAGES += \
     Yunikon
 endif
 
+# ThemePicker
+PRODUCT_PACKAGES += \
+    ThemePicker
+
 # Exchange support
 PRODUCT_PACKAGES += \
     Exchange2 \
