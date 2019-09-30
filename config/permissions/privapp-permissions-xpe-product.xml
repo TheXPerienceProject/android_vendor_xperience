@@ -48,15 +48,6 @@
         <permission name="android.permission.PROVIDE_RESOLVER_RANKER_SERVICE"/>
     </privapp-permissions>
 
-    <privapp-permissions package="com.android.soundrecorder">
-        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
-        <permission name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
-    </privapp-permissions>
-
-    <privapp-permissions package="com.oneplus.soundrecorder">
-        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    </privapp-permissions>
-
     <privapp-permissions package="com.android.gallery3d">
         <permission name="android.permission.WRITE_APN_SETTINGS"/>
         <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
@@ -75,11 +66,6 @@
         <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
         <permission name="android.permission.MEDIA_CONTENT_CONTROL"/>
         <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
-    </privapp-permissions>
-
-    <privapp-permissions package="org.lineageos.recorder">
-        <permission name="android.permission.CAPTURE_SECURE_VIDEO_OUTPUT"/>
-        <permission name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
     </privapp-permissions>
 
     <privapp-permissions package="mx.xperience.snapdragon">
@@ -183,6 +169,23 @@
 
     <privapp-permissions package="com.android.settings">
        <permission name="android.permission.ACCESS_FONT_MANAGER" />
+       <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="com.qualcomm.qcrilmsgtunnel">
+        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="org.codeaurora.ims">
+        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+        <permission name="android.permission.READ_PRECISE_PHONE_STATE"/>
+        <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="com.android.wallpaper">
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+        <permission name="android.permission.SET_WALLPAPER_COMPONENT"/>
+        <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
     </privapp-permissions>
 
 </permissions>

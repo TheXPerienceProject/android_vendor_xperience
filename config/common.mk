@@ -144,7 +144,8 @@ PRODUCT_COPY_FILES += \
 # This is xperience!
 PRODUCT_COPY_FILES += \
     vendor/xperience/config/permissions/mx.xperience.android.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/mx.xperience.android.xml \
-    vendor/xperience/config/permissions/privapp-permissions-xperience.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-xperience.xml
+    vendor/xperience/config/permissions/privapp-permissions-xpe-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-xpe-product.xml \
+    vendor/xperience/config/permissions/privapp-permissions-xpe-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-xpe-system.xml
 
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
