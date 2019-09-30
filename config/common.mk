@@ -26,6 +26,10 @@ endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))	
 
 PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+
+#We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
+PRODUCT_COPY_FILES += $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/$(TARGET_BOOTANIMATION_NAME).zip
+
 endif
 
 #well I add ringtones here for all devices
