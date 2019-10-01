@@ -483,3 +483,13 @@ endif
 endif
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
+
+# SPeed tunning for performance
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+ifneq ($(PRODUCT_SIZE), mini)
+    NightfallQuickStep \
+else
+    NightfallQuickStepGo \
+endif
+    Settings \
+    SystemUI
