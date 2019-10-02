@@ -197,6 +197,7 @@ PRODUCT_PACKAGES += \
     Development \
     DownloadProvider \
     Launcher3QuickStepGo \
+    NightfallQuickStepGo \
     MediaProvider
 
 # Optional packages
@@ -246,7 +247,8 @@ PRODUCT_PACKAGES += \
     CommandCenter3 \
     ExactCalculator \
     Notes \
-    SubstratumSignature \
+    NightfallQuickStep \
+    Launcher3QuickStep \
     WeatherClient \
     Yunikon
 endif
