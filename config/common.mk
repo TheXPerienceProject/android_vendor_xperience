@@ -379,8 +379,6 @@ ifndef XPERIENCE_CHANNEL
     XPERIENCE_CHANNEL := UNOFFICIAL
 endif
 
--include vendor/xperience/xperienced.mk
-
 ###########################################################################
 # Set XPE_BUILDTYPE from the env RELEASE_TYPE
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
