@@ -195,14 +195,15 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 # leave less information available via JDWP.
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 
+# Disable vendor restrictions
+PRODUCT_RESTRICT_VENDOR_FILES := false
+
 ifneq ($(PRODUCT_SIZE), mini)
 # Required XPe packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
     Development \
     DownloadProvider \
-    Launcher3QuickStepGo \
-    NightfallQuickStepGo \
     MediaProvider
 
 # Optional packages
@@ -210,9 +211,10 @@ PRODUCT_PACKAGES += \
     libemoji \
     Terminal
 
-
-# Disable vendor restrictions
-PRODUCT_RESTRICT_VENDOR_FILES := false
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    NightFallQuickStep \
+    Settings \
+    SystemUI
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
@@ -226,6 +228,7 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     DeskClock \
     Launcher3QuickStep \
+    NightFallQuickStep \
     Notes \
     SubstratumSignature \
     WeatherClient \
@@ -256,10 +259,15 @@ PRODUCT_PACKAGES += \
     CommandCenter3 \
     ExactCalculator \
     Notes \
-    NightfallQuickStep \
-    Launcher3QuickStep \
+    NightFallQuickStepGo \
+    Launcher3QuickStepGo \
     WeatherClient \
     Yunikon
+
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    NightFallQuickStepGo \
+    Settings \
+    SystemUI
 endif
 
 # ThemePicker
@@ -483,13 +491,3 @@ endif
 endif
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
-
-# SPeed tunning for performance
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-ifneq ($(PRODUCT_SIZE), mini)
-    NightfallQuickStep \
-else
-    NightfallQuickStepGo \
-endif
-    Settings \
-    SystemUI
