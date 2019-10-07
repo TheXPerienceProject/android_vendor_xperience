@@ -176,9 +176,6 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.ime.theme_id=4
 
-# Themes
-$(call inherit-product-if-exists, vendor/xperience/config/themes/themes.mk)
-
 #PRODUCT_PACKAGES += QPerformance UxPerformance
 #PRODUCT_BOOT_JARS += QPerformance UxPerformance
 
