@@ -211,7 +211,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     NightFallQuickStep \
     Settings \
-    SystemUI
+    SystemUI \
+    XMusic
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
@@ -230,6 +231,7 @@ PRODUCT_PACKAGES += \
     SubstratumSignature \
     WeatherClient \
     XPeriaHome \
+    XMusic \
     XPeriaWeather \
     XPerienceWallpapers \
     Yunikon
@@ -259,12 +261,14 @@ PRODUCT_PACKAGES += \
     NightFallQuickStepGo \
     Launcher3QuickStepGo \
     WeatherClient \
+    XMusic \
     Yunikon
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     NightFallQuickStepGo \
     Settings \
-    SystemUI
+    SystemUI \
+    XMusic
 endif
 
 # ThemePicker
