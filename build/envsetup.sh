@@ -317,6 +317,24 @@ function cafremote()
     echo "Remote 'caf' created"
 }
 
+function cafmerge()
+{
+    if ! git rev-parse --git-dir &> /dev/null
+    then
+        echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+        return 1
+    fi
+
+TOP="${ANDROID_BUILD_TOP}"
+MANIFEST="${TOP}/.repo/manifest.xml"
+BRANCH=$(grep "default revision" "${MANIFEST}" \
+        | sed 's/^ *//g;s/<default revision=\"refs\/tags\///g;s/\"//g')
+	git fetch caf
+    git branch rm xpe-14.0 2> /dev/null
+    git checkout -b xpe-14.0
+    git merge --no-edit --log $BRANCH
+}
+
 function installboot()
 {
     if [ ! -e "$OUT/recovery/root/system/etc/recovery.fstab" ];
