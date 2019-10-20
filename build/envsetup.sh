@@ -309,6 +309,78 @@ function cafremote()
     then
         PROJECT="build"
     fi
+    # PackageInstalle was moved
+	if [ $PROJECT = "packages/apps/PermissionController" ]
+    then
+	    PROJECT="packages/apps/PackageInstaller"
+    fi
+	# Qcom opensource path
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth" ]
+	then
+	    PROJECT="vendor/qcom-opensource/bluetooth"
+	fi
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth_ext" ]
+	then
+	    PROJECT="vendor/qcom-opensource/bluetooth_ext"
+	fi
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys-intf/bluetooth" ]
+	then
+	    PROJECT="vendor/qcom-opensource/bluetooth-commonsys-intf"
+	fi
+	if [ $PROJECT = "vendor/qcom/opensource/core-utils" ]
+	then
+	    PROJECT="vendor/qcom-opensource/core-utils"
+    fi
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys/cryptfs_hw" ]
+	then
+	    PROJECT="vendor/qcom-opensource/cryptfs_hw"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/data-ipa-cfg-mgr" ]
+	then
+	    PROJECT="vendor/qcom-opensource/data-ipa-cfg-mgr"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys-intf/display" ]
+	then
+	    PROJECT="vendor/qcom-opensource/display-commonsys-intf"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys/fm" ]
+	then
+	    PROJECT="vendor/qcom-opensource/fm-commonsys"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/fst-manager" ]
+	then
+	    PROJECT="vendor/qcom-opensource/fst-manager"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/interfaces" ]
+	then
+	    PROJECT="vendor/qcom-opensource/interfaces"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/commonsys/system/bt" ]
+	then
+	    PROJECT="vendor/qcom-opensource/system/bt"
+    fi
+
+	if [ $PROJECT = "vendor/codeaurora/commonsys/telephony" ]
+	then
+	    PROJECT="vendor/codeaurora/telephony"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/power" ]
+	then
+	    PROJECT="vendor/qcom-opensource/power"
+    fi
+
+	if [ $PROJECT = "vendor/qcom/opensource/recovery-ext" ]
+	then
+	    PROJECT="vendor/qcom-opensource/recovery-ext"
+    fi
+    ### FINISH
     if (echo $PROJECT | grep -qv "^device")
     then
         local PFX="platform/"

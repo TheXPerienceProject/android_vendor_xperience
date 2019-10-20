@@ -277,8 +277,7 @@ PRODUCT_PACKAGES += \
 
 # Exchange support
 PRODUCT_PACKAGES += \
-    Exchange2 \
-    Perfdump
+    Exchange2
 
 # Extra tools
 PRODUCT_PACKAGES += \

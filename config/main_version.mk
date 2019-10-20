@@ -20,9 +20,6 @@ ADDITIONAL_BUILD_PROPERTIES += \
     persist.backup.ntpServer=0.pool.ntp.org \
     sys.vendor.shutdown.waittime=500
 
-#Call perf blobs
-include vendor/xperience/xperience-performance/common-perf/perf-common.mk
-
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     vendor.enable_prefetch=1 \
