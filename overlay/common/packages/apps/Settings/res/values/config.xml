@@ -24,4 +24,10 @@
 
     <!-- Does the device allow updating the recovery. -->
     <bool name="config_enableRecoveryUpdater">false</bool>
+
+    <!--
+        Whether or not the homepage should be powered by legacy suggestion (versus contextual cards)
+        Default to true as not all devices support contextual cards.
+    -->
+    <bool name="config_use_legacy_suggestion">false</bool>
 </resources>
