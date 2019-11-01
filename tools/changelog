@@ -2,11 +2,11 @@
 
 # Exports
 
-export Changelog=Changelog.txt
+export Changelog=changelog.txt
 
 # Exports
 dir=$ANDROID_BUILD_TOP
-OUT=$dir/out/target/product
+OUT=$dir/out/target/product/
 
 export device=$1
 
