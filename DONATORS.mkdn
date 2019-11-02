@@ -19,6 +19,7 @@ MOTOROLA MOTO G1st GEN:
 [*] celikbasm
 [*] Alessandro Sarri
 [*] Walter Knapp Thanks again :) Woldou ☆
+[*] Eli Wilson
 
 Motorola Moto X1st GEN
 [*] Bernd Stahl
@@ -49,6 +50,9 @@ Moto Z Play
 [*] Angel Enterprise
 [*] davtse ☆☆☆
 [*] negusp
+[*] Francisco Jose
+[*] Ireneusz
+[*] Marc Shauman
 
 Moto Z Play Moto Mods.
 [*] davtse ☆
@@ -88,7 +92,26 @@ Unknown device
 [*] auberginemaster 
 [*] Miguel Barrera
 
+Xiaomi Redmi note 7 (lavender)
+[*] AsCareX
+[*] Catuva21
+[*] Prique77
+[*] Jose (Milfo)
+[*] Helmer1977
+[*] Jimgsey
+[*] Amarhilla (мαиτнιℓℓα)
+[*] Angelo
+[*] Jesse Pincay
+[*] Sebastian Gay rivero
+
+Xiaomi Mi 8 Lite (platina)
+[*] CASCF3N1X
+
+Xiaomi Redmi note 5 plus ? (vince)
+[*] Pablo ortiz
 
 Thanks for help us with the build server
 [*] AsCarex (Jesus Alfredo) ☆☆☆☆☆
 [*] Julian Ku ☆
+[*] Amarhilla (мαиτнιℓℓα) ☆☆☆
+[*] CASCF3N1X
