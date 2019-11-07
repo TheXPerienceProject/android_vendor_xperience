@@ -1,10 +1,3 @@
-define wlan-set-path-variant
-$(call project-set-path-variant,wlan,TARGET_WLAN_VARIANT,hardware/qcom/$(1))
-endef
-define bt-vendor-set-path-variant
-$(call project-set-path-variant,bt-vendor,TARGET_BT_VENDOR_VARIANT,hardware/qcom/$(1))
-endef
-
 # Set device-specific HALs into project pathmap
 define set-device-specific-path
 $(if $(USE_DEVICE_SPECIFIC_$(1)), \
@@ -19,7 +12,6 @@ $(call set-device-specific-path,AUDIO,audio,hardware/qcom/audio/$(QCOM_HARDWARE_
 $(call set-device-specific-path,DISPLAY,display,hardware/qcom/display/$(QCOM_HARDWARE_VARIANT))
 $(call set-device-specific-path,MEDIA,media,hardware/qcom/media/$(QCOM_HARDWARE_VARIANT))
 
-$(call set-device-specific-path,BT_VENDOR,bt-vendor,hardware/qcom/bt)
 $(call set-device-specific-path,CAMERA,camera,hardware/qcom/camera)
 $(call set-device-specific-path,DATA_IPA_CFG_MGR,data-ipa-cfg-mgr,vendor/qcom/opensource/data-ipa-cfg-mgr)
 $(call set-device-specific-path,GPS,gps,hardware/qcom/gps)
@@ -29,4 +21,3 @@ $(call set-device-specific-path,DATASERVICES,dataservices,vendor/qcom/opensource
 $(call set-device-specific-path,POWER,power,vendor/qcom/opensource/power)
 
 $(call wlan-set-path-variant,wlan)
-$(call bt-vendor-set-path-variant,bt)
