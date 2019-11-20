@@ -132,7 +132,7 @@ def add_to_local_manifest(path, name, remote, branch=None):
             name = "LineageOS/" + name
     if (remote == "xpe"):
         if (branch == None):
-            branch = "xpe-12.1"
+            branch = "xpe-14.0"
         if not (name.find("TheXPerienceProject/") == 0):
             name = "TheXPerienceProject/" + name
 
