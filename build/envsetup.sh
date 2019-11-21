@@ -10,6 +10,7 @@ Additional LineageOS functions:
 - lineageremote:   Add git remote for LineageOS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
 - cafremote:       Add git remote for matching CodeAurora repository.
+- cafmerge:        Fetch and merge CodeAurora branch
 - mka:             Builds using SCHED_BATCH on all processors.
 - mkap:            Builds the module(s) using mka and pushes them to the device.
 - cmka:            Cleans and builds using mka.
@@ -19,6 +20,7 @@ Additional LineageOS functions:
 - repopick:        Utility to fetch changes from Gerrit.
 - installboot:     Installs a boot.img to the connected device.
 - installrecovery: Installs a recovery.img to the connected device.
+- xpepush:         push to xpe (only on allowed pc yes im lazy to write everytime)
 EOF
 }
 
@@ -401,10 +403,15 @@ TOP="${ANDROID_BUILD_TOP}"
 MANIFEST="${TOP}/.repo/manifest.xml"
 BRANCH=$(grep "default revision" "${MANIFEST}" \
         | sed 's/^ *//g;s/<default revision=\"refs\/tags\///g;s/\"//g')
-	git fetch caf
+    git fetch caf
     git branch rm xpe-14.0 2> /dev/null
     git checkout -b xpe-14.0
     git merge --no-edit --log $BRANCH
+}
+
+function xpepush()
+{
+    git push xpe HEAD:xpe-14.0  
 }
 
 function installboot()
