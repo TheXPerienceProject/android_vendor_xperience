@@ -30,4 +30,12 @@
         <permission name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
     </privapp-permissions>
 
+    <!--We havent modified the name of the snapcamera so we need new perms-->
+    <privapp-permissions package="org.codeaurora.snapcam">
+        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+        <permission name="android.permission.PREVENT_POWER_KEY"/>
+        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
+    </privapp-permissions>
+
 </permissions>
