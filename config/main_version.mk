@@ -6,13 +6,13 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Quetzalcoatl \
+    ro.xpe.codename=Qusongite \
     ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
-CAF_BRANCH := LA.UM.8.1.r1-11600-sm8150.0
+CAF_BRANCH := LA.UM.8.1.r1-11800-sm8150.0
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
