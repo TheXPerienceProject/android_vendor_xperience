@@ -318,6 +318,43 @@ function cafremote()
     then
         PROJECT="build"
     fi
+    # Qcom opensource path
+  	if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth" ]
+  	then
+  	    PROJECT="vendor/qcom-opensource/bluetooth"
+  	fi
+  	if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth_ext" ]
+  	then
+  	    PROJECT="vendor/qcom-opensource/bluetooth_ext"
+  	fi
+    if [ $PROJECT = "vendor/qcom/opensource/commonsys/system/bt" ]
+  	then
+  	     PROJECT="vendor/qcom-opensource/system/bt"
+    fi
+    if [ $PROJECT = "vendor/qcom/opensource/commonsys/cryptfs_hw" ]
+  	then
+  	     PROJECT="vendor/qcom-opensource/cryptfs_hw"
+    fi
+    if [ $PROJECT = "vendor/codeaurora/commonsys/telephony" ]
+  	then
+  	    PROJECT="vendor/codeaurora/telephony"
+    fi
+	  if [ $PROJECT = "vendor/qcom/opensource/commonsys/fm" ]
+    then
+         PROJECT="vendor/qcom-opensource/fm-commonsys"
+    fi
+    if [ $PROJECT = "vendor/qcom/opensource/data-ipa-cfg-mgr" ]
+  	then
+  	     PROJECT="vendor/qcom-opensource/data-ipa-cfg-mgr"
+    fi
+    if [ $PROJECT = "vendor/qcom/opensource/core-utils" ]
+  	then
+  	     PROJECT="vendor/qcom-opensource/core-utils"
+    fi
+    if [ $PROJECT = "vendor/qcom/opensource/power" ]
+  	then
+  	     PROJECT="vendor/qcom-opensource/power"
+    fi
     if (echo $PROJECT | grep -qv "^device")
     then
         local PFX="platform/"
