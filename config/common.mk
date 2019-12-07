@@ -243,6 +243,7 @@ PRODUCT_PACKAGES += \
     XMusic \
     XPeriaWeather \
     XPerienceWallpapers \
+    XPerienceOverlayStub \
     Yunikon
 else
 # Required XPe packages
