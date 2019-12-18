@@ -14,3 +14,9 @@ include vendor/xperience/build/soong/soong_config.mk
 include vendor/xperience/config/BoardConfigSoong.mk
 
 PRODUCT_SOONG_NAMESPACES += $(PATHMAP_SOONG_NAMESPACES)
+
+ifneq ($(TARGET_USES_PREBUILT_CAMERA_SERVICE), true)
+PRODUCT_SOONG_NAMESPACES += \
+    frameworks/av/camera/cameraserver \
+    frameworks/av/services/camera/libcameraservice
+endif
