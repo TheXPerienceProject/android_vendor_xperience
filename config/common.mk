@@ -203,6 +203,9 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
+PRODUCT_PACKAGES += \
+    OmniStyle
+
 ifneq ($(PRODUCT_SIZE), mini)
 # Required XPe packages
 PRODUCT_PACKAGES += \
