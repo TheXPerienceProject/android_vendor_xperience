@@ -151,6 +151,17 @@ LOCAL_DEX_PREOPT := false
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := Longshot
+LOCAL_SRC_FILES     := app/Longshot.apk
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := APPS
+LOCAL_CERTIFICATE   := platform
+LOCAL_DEX_PREOPT := false
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_MULTILIB := both
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE := MarkupGoogle
 LOCAL_SRC_FILES := app/MarkupGoogle.apk
 LOCAL_MODULE_TAGS := optional
