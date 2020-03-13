@@ -213,6 +213,11 @@ PRODUCT_PACKAGES += \
     MarkupGoogle \
     OmniStyle
 
+ifeq ($(TARGET_ARCH),arm64)
+PRODUCT_PACKAGES += \
+     turbo
+endif
+
 ifneq ($(PRODUCT_SIZE), mini)
 # Required XPe packages
 PRODUCT_PACKAGES += \
