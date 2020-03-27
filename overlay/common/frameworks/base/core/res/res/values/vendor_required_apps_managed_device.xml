@@ -36,5 +36,7 @@
         <item>com.google.android.setupwizard</item> <!-- Google SetupWizard -->
         <item>com.android.settings</item> <!-- Font Manager -->
         <item>mx.xperience.fonts</item> <!-- Font Manager -->
+        <item>org.lineageos.setupwizard</item> <!-- LineageOS SetupWizard -->
+        <item>mx.xperience.setupwizard</item> <!-- XPerience SetupWizard -->
     </string-array>
 </resources>
