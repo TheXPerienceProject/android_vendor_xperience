@@ -1,4 +1,4 @@
-RODUCT_BRAND ?= XPerience & MXSeñorPato
+PRODUCT_BRAND ?= XPerience
 
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
@@ -34,7 +34,7 @@ endif
 
 #well I add ringtones here for all devices
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.config.ringtone=XPerienceRing.ogg,XPerienceRing.ogg \
+    ro.config.ringtone=XPerienceRing.ogg \
     ro.config.notification_sound=Reminder.ogg \
     ro.config.alarm_alert=Fuego.ogg
 
@@ -58,12 +58,8 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
-# Copy over the changelog to the device
-PRODUCT_COPY_FILES += \
-    vendor/xperience/DONATORS.mkdn:$(TARGET_COPY_OUT_SYSTEM)/etc/donators.txt
-
 # Lower RAM devices
-ifeq ($(XPE_LOW_RAM_DEVICE),true)
+ifeq ($(XPE_LOW_RAM_DEVICE), true)
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_HAS_LOW_RAM := true
 
@@ -75,6 +71,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.config.max_starting_bg=8 \
     ro.sys.fw.bg_apps_limit=16
 endif
+
+# Copy over the changelog to the device
+PRODUCT_COPY_FILES += \
+    vendor/xperience/DONATORS.mkdn:$(TARGET_COPY_OUT_SYSTEM)/etc/donators.txt
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
@@ -88,6 +88,10 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
     vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
     vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.ota.allow_downgrade=true
+endif
 endif
 
 # Clean up packages cache to avoid wrong strings and resources
@@ -168,12 +172,6 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/lib/libsketchology_native.so:system/lib/libsketchology_native.so \
     vendor/xperience/prebuilt/lib64/libsketchology_native.so:system/lib64/libsketchology_native.so
 
-# Include AOSP audio files
-include vendor/xperience/config/aosp_audio.mk
-
-# Include xperience audio files
-include vendor/xperience/config/xpe_audio.mk
-
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
@@ -189,21 +187,10 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.ime.theme_id=4
 
-#PRODUCT_PACKAGES += QPerformance UxPerformance
-#PRODUCT_BOOT_JARS += QPerformance UxPerformance
-
-# TWRP
-ifeq ($(WITH_TWRP),true)
-include vendor/xperience/config/twrp.mk
-endif
-
-# Do not include art debug targets
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
-
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= false
 
-ifeq ($(TARGET_ARCH),arm64)
+ifeq ($(TARGET_XPE_ARCH), arm64)
 ifneq ($(TARGET_DISABLE_ALTERNATIVE_FACE_UNLOCK), true)
 PRODUCT_PACKAGES += \
     FaceUnlockService
@@ -214,8 +201,16 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.face.moto_unlock_service=$(TARGET_FACE_UNLOCK_SUPPORTED)
 
+# TWRP
+ifeq ($(WITH_TWRP),true)
+include vendor/xperience/config/twrp.mk
+endif
+
+# Do not include art debug targets
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+
 #SetupWizard
-ifneq ($(TARGET_BUILD_VARIANT),eng)
+ifneq ($(TARGET_BUILD_VARIANT), eng)
     PRODUCT_PACKAGES += \
     XPerienceSetupWizard
 endif
@@ -233,7 +228,7 @@ PRODUCT_PACKAGES += \
     MarkupGoogle \
     OmniStyle
 
-ifeq ($(TARGET_ARCH),arm64)
+ifeq ($(TARGET_XPE_ARCH), arm64)
 PRODUCT_PACKAGES += \
      turbo
 endif
@@ -325,6 +320,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Exchange2
 
+# Include AOSP audio files
+include vendor/xperience/config/aosp_audio.mk
+
+# Include xperience audio files
+include vendor/xperience/config/xpe_audio.mk
+
 # Extra tools
 PRODUCT_PACKAGES += \
     7z \
@@ -380,16 +381,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rsync
 
-# Stagefright FFMPEG plugin
-PRODUCT_PACKAGES += \
-    libffmpeg_extractor \
-    libffmpeg_omx \
-    media_codecs_ffmpeg.xml
-
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    media.sf.omx-plugin=libffmpeg_omx.so \
-    media.sf.extractor-plugin=libffmpeg_extractor.so
-
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
@@ -413,9 +404,6 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    persist.sys.root_access=0
-
 DEVICE_PACKAGE_OVERLAYS += \
     vendor/xperience/overlay/common
 
@@ -427,6 +415,8 @@ PRODUCT_NAME = Quetzalcoatlite
 ifndef XPERIENCE_CHANNEL
     XPERIENCE_CHANNEL := UNOFFICIAL
 endif
+
+XPE_ARCH :=$(TARGET_ARCH)
 
 ###########################################################################
 # Set XPE_BUILDTYPE from the env RELEASE_TYPE
@@ -533,4 +523,3 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
 endif
 endif
 
--include $(WORKSPACE)/build_env/image-auto-bits.mk
