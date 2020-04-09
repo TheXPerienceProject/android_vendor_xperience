@@ -230,7 +230,7 @@ PRODUCT_PACKAGES += \
 
 ifeq ($(TARGET_XPE_ARCH), arm64)
 PRODUCT_PACKAGES += \
-     turbo
+    Turbo
 endif
 
 ifneq ($(PRODUCT_SIZE), mini)
