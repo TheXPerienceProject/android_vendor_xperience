@@ -1,5 +1,8 @@
 PRODUCT_BRAND ?= XPerience
 
+#Add TARGET_ARCH By default we suppose is ARM64
+TARGET_XPE_ARCH ?= arm64
+
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
 TARGET_BOOTANIMATION_SIZE := $(shell \
