@@ -46,7 +46,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true \
-    setupwizard.theme=glif_v3
+    setupwizard.theme=glif_v3 \
+    ro.com.google.ime.theme_id=4
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # Thank you, please drive thru!
@@ -187,10 +188,6 @@ PRODUCT_PACKAGES += \
 
 endif
 
-#XPerience colour :v well not is from xpe but It will be added here so..
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.com.google.ime.theme_id=4
-
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= false
 
@@ -218,7 +215,7 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
 #SetupWizard
 ifneq ($(TARGET_BUILD_VARIANT), eng)
-    PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     XPerienceSetupWizard
 endif
 
@@ -529,7 +526,7 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
      endif
 endif
 endif
-#########################################################################3
+#########################################################################
 #Newer aditions
 # Enable ALLOW_MISSING_DEPENDENCIES on Vendorless Builds
 ifeq ($(BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE),)
@@ -542,3 +539,4 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.base@1.0.vendor \
     android.hidl.manager@1.0.vendor
+#########################################################################
