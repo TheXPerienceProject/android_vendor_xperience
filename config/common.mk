@@ -528,4 +528,10 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
      endif
 endif
 endif
+#########################################################################3
+#Newer aditions
+# Enable ALLOW_MISSING_DEPENDENCIES on Vendorless Builds
+ifeq ($(BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE),)
+  ALLOW_MISSING_DEPENDENCIES := true
+endif
 
