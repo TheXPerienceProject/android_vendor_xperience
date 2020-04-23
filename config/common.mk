@@ -209,6 +209,9 @@ ifeq ($(WITH_TWRP),true)
 include vendor/xperience/config/twrp.mk
 endif
 
+# Include Common Qualcomm Device Tree on Qualcomm Boards
+$(call inherit-product-if-exists, device/xperience/common/common.mk)
+
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
