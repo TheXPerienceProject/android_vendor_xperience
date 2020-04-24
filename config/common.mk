@@ -46,7 +46,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true \
-    setupwizard.theme=glif_v3 \
+    setupwizard.theme=glif_v3_light \
     ro.com.google.ime.theme_id=4
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
