@@ -110,6 +110,25 @@ Xiaomi Mi 8 Lite (platina)
 Xiaomi Redmi note 5 plus ? (vince)
 [*] Pablo ortiz
 
+Meizu X8
+[*] Alexis Amores
+[*] Edwin zuñiga
+[*] Artyom Goltsov
+[*] Stanislav Tyazhkin
+[*] Артур Саитов
+[*] Синкин Вилен Анатольевич
+[*] galimovich aslan
+[*] Daniel Rojas
+[*] Александр Попов
+[*] Евгений Батманов
+[*] Николай Платонов
+[*] Денис Станиславович
+[*] Darwin Daffi
+[*] Виктор Масалов
+
+
+Special thanks to Alexis amores and 4pda.ru users
+
 Thanks for help us with the build server
 [*] AsCarex (Jesus Alfredo) ☆☆☆☆☆
 [*] Julian Ku ☆
