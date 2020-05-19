@@ -577,6 +577,7 @@ PRODUCT_PACKAGES += \
 
 # XPerience Overlays
 PRODUCT_PACKAGES += \
+    NavigationBarNoHint \
     XPerienceBlackThemeOverlay
 
 # Wi-Fi Icons
