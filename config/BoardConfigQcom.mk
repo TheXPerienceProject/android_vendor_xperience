@@ -46,6 +46,13 @@ ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     TARGET_USES_DRM_PP := true
 endif
 
+# Enable libqdMetadata and libdisplayconfig on 4.9, 4.14, 4.19 targets
+ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/commonsys-intf/display/libdisplayconfig \
+    vendor/qcom/opensource/commonsys-intf/display/libqdmetadata
+endif
+
 # Mark GRALLOC_USAGE_HW_2D, GRALLOC_USAGE_EXTERNAL_DISP and GRALLOC_USAGE_PRIVATE_WFD as valid gralloc bits
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 10)
