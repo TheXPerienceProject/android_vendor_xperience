@@ -310,6 +310,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Exchange2
 
+# Etar
+PRODUCT_PACKAGES += \
+    Etar
+
 # Include AOSP audio files
 include vendor/xperience/config/aosp_audio.mk
 
