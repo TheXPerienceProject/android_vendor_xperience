@@ -60,6 +60,8 @@
 		<permission name="android.permission.PACKAGE_USAGE_STATS" />
 		<permission name="android.permission.FORCE_STOP_PACKAGES" />
 		<permission name="com.motorola.mod.permission.MOD_INTERNAL" />
+		<permission name="android.permission.RECOVERY" />
+		<permission name="android.permission.SHUTDOWN" />
     </privapp-permissions>
 
     <privapp-permissions package="com.cyngn.audiofx">
@@ -126,7 +128,6 @@
     </privapp-permissions>
 
 	<!--Googleshits some gapps doesn't have those perms -->
-
     <privapp-permissions package="com.google.android.apps.turbo">
        <permission name="android.permission.READ_LOGS" />
        <permission name="android.permission.REBOOT" />
@@ -138,6 +139,7 @@
        <permission name="android.permission.BATTERY_STATS"/>
        <permission name="android.permission.CHANGE_APP_IDLE_STATE"/>
        <permission name="android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"/>
+       <permission name="android.permission.POWER_SAVER"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.android.vending">
@@ -180,4 +182,7 @@
         <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
     </privapp-permissions>
 
+    <privapp-permissions package="org.omnirom.omnistyle">
+        <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
+    </privapp-permissions>
 </permissions>
