@@ -30,14 +30,6 @@
         <permission name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
     </privapp-permissions>
 
-    <!--We havent modified the name of the snapcamera so we need new perms-->
-    <privapp-permissions package="org.codeaurora.snapcam">
-        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-        <permission name="android.permission.PREVENT_POWER_KEY"/>
-        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
-        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
-    </privapp-permissions>
-
     <privapp-permissions package="mx.xperience.updater">
         <permission name="android.permission.ACCESS_CACHE_FILESYSTEM"/>
         <permission name="android.permission.REBOOT"/>
@@ -84,19 +76,6 @@
 
     <privapp-permissions package="org.omnirom.omnistyle">
         <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
-    </privapp-permissions>
-
-    <privapp-permissions package="mx.xperience.snapdragon">
-        <permission name="android.permission.PREVENT_POWER_KEY"/>
-        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
-    </privapp-permissions>
-
-    <privapp-permissions package="mx.xperience.camera">
-        <permission name="android.permission.PREVENT_POWER_KEY"/>
-        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
-        <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
     </privapp-permissions>
 
 </permissions>
