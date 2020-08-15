@@ -70,12 +70,6 @@
         <permission name="android.permission.MODIFY_AUDIO_ROUTING"/>
     </privapp-permissions>
 
-    <privapp-permissions package="mx.xperience.snapdragon">
-        <permission name="android.permission.PREVENT_POWER_KEY"/>
-        <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-        <permission name="android.permission.WRITE_MEDIA_STORAGE"/>
-    </privapp-permissions>
-
 	<privapp-permissions package="com.sonyericsson.home">
        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
        <permission name="android.permission.DELETE_PACKAGES" />
