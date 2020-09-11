@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-# Copyright (C) 2012-16, The CyanogenMod Projec
-# Copyright (C) 2017,    The LineageOS Project
-# Copyright (C) 2011-2018 The XPerience Project
+# Copyright (C) 2012-2013, The CyanogenMod Project
+#           (C) 2017,      The LineageOS Project
+#           (C) 2011-2020, The XPerience Project Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import argparse
+from __future__ import print_function
+
 import base64
 import json
-import sys
+import netrc
 import os
-import glob
-
+import re
+import sys
 try:
   # For python3
   import urllib.error
@@ -39,43 +40,60 @@ except ImportError:
 
 from xml.etree import ElementTree
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-d', '--depsonly', action='store_true')
-parser.add_argument('device')
+product = sys.argv[1]
 
-args = parser.parse_args()
-depsonly = args.depsonly
+if len(sys.argv) > 2:
+    depsonly = sys.argv[2]
+else:
+    depsonly = None
 
-ran_checkdeps_on = []
+try:
+    device = product[product.index("_") + 1:]
+except:
+    device = product
+
+if not depsonly:
+    print("Device %s not found. Attempting to retrieve device repository from XPerience Project Github (http://github.com/TheXPerienceProject)." % device)
+
+repositories = []
+
+try:
+    authtuple = netrc.netrc().authenticators("api.github.com")
+
+    if authtuple:
+        auth_string = ('%s:%s' % (authtuple[0], authtuple[2])).encode()
+        githubauth = base64.encodestring(auth_string).decode().replace('\n', '')
+    else:
+        githubauth = None
+except:
+    githubauth = None
+
+def add_auth(githubreq):
+    if githubauth:
+        githubreq.add_header("Authorization","Basic %s" % githubauth)
+
+if not depsonly:
+    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:TheXPerienceProject+in:name+fork:true" % device)
+    add_auth(githubreq)
+    try:
+        result = json.loads(urllib.request.urlopen(githubreq).read().decode())
+    except urllib.error.URLError:
+        print("Failed to search GitHub")
+        sys.exit()
+    except ValueError:
+        print("Failed to parse return data from GitHub")
+        sys.exit()
+    for res in result.get('items', []):
+        repositories.append(res)
 
 local_manifests = r'.repo/local_manifests'
 if not os.path.exists(local_manifests): os.makedirs(local_manifests)
 
-# Hold a copy of the main manifest
-try:
-    mm = ElementTree.parse(".repo/manifest.xml")
-    mm = mm.getroot()
-except:
-    mm = ElementTree.Element("manifest")
-
-try:
-    lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
-    lm = lm.getroot()
-    print("Got local manifest")
-except:
-    print("Did not get local manifest, will create a new one")
-    lm = ElementTree.Element("manifest")
-
-
-# Hold a copy of local manifest
-def reload_local_manifest():
-  try:
-      lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
-      lm = lm.getroot()
-      print("Got local manifest")
-  except:
-      print("Did not get local manifest, will create a new one")
-      lm = ElementTree.Element("manifest")
+def exists_in_tree(lm, path):
+    for child in lm.getchildren():
+        if child.attrib['path'] == path:
+            return True
+    return False
 
 # in-place prettyprint formatter
 def indent(elem, level=0):
@@ -93,152 +111,208 @@ def indent(elem, level=0):
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
 
-def write_out_local_manifest(manif):
-    indent(manif, 0)
-    raw_xml = ElementTree.tostring(manif).decode()
+def get_manifest_path():
+    '''Find the current manifest path
+    In old versions of repo this is at .repo/manifest.xml
+    In new versions, .repo/manifest.xml includes an include
+    to some arbitrary file in .repo/manifests'''
+
+    m = ElementTree.parse(".repo/manifest.xml")
+    try:
+        m.findall('default')[0]
+        return '.repo/manifest.xml'
+    except IndexError:
+        return ".repo/manifests/{}".format(m.find("include").get("name"))
+
+def get_default_revision():
+    m = ElementTree.parse(get_manifest_path())
+    d = m.findall('default')[0]
+    r = d.get('revision')
+    #return r.replace('refs/heads/', '').replace('refs/tags/', '')
+    # Hardcode this shit for now
+    return "xpe-14.0"
+
+def get_from_manifest(devicename):
+    try:
+        lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
+    for localpath in lm.findall("project"):
+        if re.search("android_device_.*_%s$" % device, localpath.get("name")):
+            return localpath.get("path")
+
+    return None
+
+def is_in_manifest(projectpath):
+    try:
+        lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
+    for localpath in lm.findall("project"):
+        if localpath.get("path") == projectpath:
+            return True
+
+    # Search in main manifest, too
+    try:
+        lm = ElementTree.parse(get_manifest_path())
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
+    for localpath in lm.findall("project"):
+        if localpath.get("path") == projectpath:
+            return True
+
+    # ... and don't forget the XPerience manifest
+    try:
+        lm = ElementTree.parse(".repo/manifests/xpe_default.xml")
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
+    for localpath in lm.findall("project"):
+        if localpath.get("path") == projectpath:
+            return True
+
+    return False
+
+def add_to_manifest(repositories, fallback_branch = None):
+    try:
+        lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
+        lm = lm.getroot()
+    except:
+        lm = ElementTree.Element("manifest")
+
+    for repository in repositories:
+        repo_name = repository['repository']
+        repo_target = repository['target_path']
+        print('Checking if %s is fetched from %s' % (repo_target, repo_name))
+        if is_in_manifest(repo_target):
+            print('XPerience/%s already fetched to %s' % (repo_name, repo_target))
+            continue
+
+        print('Adding dependency: XPerience/%s -> %s' % (repo_name, repo_target))
+        project = ElementTree.Element("project", attrib = { "path": repo_target,
+            "remote": "github", "name": "XPerience/%s" % repo_name })
+
+        if 'branch' in repository:
+            project.set('revision',repository['branch'])
+        elif fallback_branch:
+            print("Using fallback branch %s for %s" % (fallback_branch, repo_name))
+            project.set('revision', fallback_branch)
+        else:
+            print("Using default branch for %s" % repo_name)
+
+        lm.append(project)
+
+    indent(lm, 0)
+    raw_xml = ElementTree.tostring(lm).decode()
     raw_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + raw_xml
 
     f = open('.repo/local_manifests/roomservice.xml', 'w')
     f.write(raw_xml)
     f.close()
 
-def is_path_in_manifest(checkpath, name, remote, branch):
-    for defpath in mm.findall("project"):
-        if (defpath.get("path") == checkpath):
-            # print("Path %s is already tracked in default manifest from %s" % (checkpath, defpath.get("name")))
-            return True
-    for localpath in lm.findall("project"):
-        if (localpath.get("path") == checkpath):
-            if ((localpath.get("name") != name) or (localpath.get("remote") != remote) or (localpath.get("revision") != branch)):
-                print("Change in dependency : ")
-                print("OLD MAP: %s:%s:%s -> %s" % (localpath.get("remote"), localpath.get("name"),
-                    localpath.get("revision"), localpath.get("path")))
-                print("NEW MAP: %s:%s:%s -> %s" % (remote, name, branch, checkpath))
-                lm.remove(localpath)
-                return False
+def fetch_dependencies(repo_path, fallback_branch = None):
+    print('Looking for dependencies in %s' % repo_path)
+    dependencies_path = repo_path + '/xpe.dependencies'
+    syncable_repos = []
+    verify_repos = []
 
-            # print("Path %s is already tracked in local manifest from %s" % (checkpath, localpath.get("name")))
-            return True
+    if os.path.exists(dependencies_path):
+        dependencies_file = open(dependencies_path, 'r')
+        dependencies = json.loads(dependencies_file.read())
+        fetch_list = []
 
-def reposync(syncrepo):
-    os.system('repo sync --force-sync --no-tags --current-branch --no-clone-bundle %s' % syncrepo)
-
-
-def add_to_local_manifest(path, name, remote, branch=None):
-    if (remote == "cm"):
-        if (branch == None):
-            branch = "lineage-15.1"
-        if not (name.find("LineageOS/") == 0):
-            name = "LineageOS/" + name
-    if (remote == "xpe"):
-        if (branch == None):
-            branch = "xpe-14.0"
-        if not (name.find("TheXPerienceProject/") == 0):
-            name = "TheXPerienceProject/" + name
-
-    if is_path_in_manifest(path, name, remote, branch):
-        # Error messages are present in the called function, so just exit
-        return False
-    else:
-        print("Adding %s to track from %s (branch: %s) in local manifest" % (path, name, branch))
-        newproject = ElementTree.Element("project", attrib = { "path": path,
-            "remote": remote, "name": name, "revision": branch })
-        lm.append(newproject)
-        write_out_local_manifest(lm)
-        reload_local_manifest()
-        return True
-
-
-
-def get_from_github(device):
-        print("Going to fetch %s from TheXPerienceProject github" % device)
-        try:
-            authtuple = netrc.netrc().authenticators("api.github.com")
-
-            if authtuple:
-                auth_string = ('%s:%s' % (authtuple[0], authtuple[2])).encode()
-                githubauth = base64.encodestring(auth_string).decode().replace('\n', '')
+        for dependency in dependencies:
+            if not is_in_manifest(dependency['target_path']):
+                fetch_list.append(dependency)
+                syncable_repos.append(dependency['target_path'])
+                verify_repos.append(dependency['target_path'])
             else:
-                githubauth = None
-        except:
-            githubauth = None
+                verify_repos.append(dependency['target_path'])
 
-        githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:TheXPerienceProject+in:name+fork:true" % device)
-        if githubauth:
-            githubreq.add_header("Authorization","Basic %s" % githubauth)
+        dependencies_file.close()
 
-        try:
-            result = json.loads(urllib.request.urlopen(githubreq).read().decode())
-        except urllib.error.URLError:
-            print("Failed to search GitHub")
-            sys.exit()
-        except ValueError:
-            print("Failed to parse return data from GitHub")
-            sys.exit()
-
-        for res in result['items']:
-            if (res['name'].startswith("android_device_") and res['name'].endswith("_%s" % device)):
-                print("Found %s" % res['name'])
-                manufacturer = res['name'].replace("android_device_", "").replace("_" + device, "")
-                devicepath = "device/%s/%s" % (manufacturer, device)
-                #devicepath = res['name'].replace("android_","") and res['name'].replace("_","/")
-                if add_to_local_manifest(devicepath, res['full_name'], "xpe"):
-                    reposync(res['full_name'])
-                break
-
-def checkdeps(repo_path):
-    cmdeps = glob.glob(repo_path + "/lineage.dependencies")
-    xpedeps = glob.glob(repo_path + "/xpe.dependencies")
-    if ((len(cmdeps) + len(xpedeps)) < 1):
-        ran_checkdeps_on.append("NO_DEPS:\t\t" + repo_path)
-        return
+        if len(fetch_list) > 0:
+            print('Adding dependencies to manifest')
+            add_to_manifest(fetch_list, fallback_branch)
     else:
-        if (len(cmdeps) > 0):
-            ran_checkdeps_on.append("HAS_LINEAGE_DEPS:\t" + repo_path)
-            cmdeps = cmdeps[0]
-            cmdeps = open(cmdeps, 'r')
-            cmdeps = json.loads(cmdeps.read())
-            for dep in cmdeps:
-                try:
-                    branch = dep['branch']
-                except:
-                    branch = None
-                try:
-                    remote = dep['remote']
-                except:
-                    remote = "cm"
-                if add_to_local_manifest(dep['target_path'], dep['repository'], remote, branch):
-                    reposync(dep['target_path'])
-                checkdeps(dep['target_path'])
+        print('%s has no additional dependencies.' % repo_path)
 
+    if len(syncable_repos) > 0:
+        print('Syncing dependencies')
+        os.system('repo sync --force-sync %s' % ' '.join(syncable_repos))
 
-        if (len(xpedeps) > 0):
-            ran_checkdeps_on.append("HAS_XPE_DEPS:\t" + repo_path)
-            xpedeps = xpedeps[0]
-            xpedeps = open(xpedeps, 'r')
-            xpedeps = json.loads(xpedeps.read())
-            for dep in xpedeps:
-                try:
-                    branch = dep['branch']
-                except:
-                    branch = None
-                try:
-                    remote = dep['remote']
-                except:
-                    remote = "xpe"
-                if add_to_local_manifest(dep['target_path'], dep['repository'], remote, branch):
-                    reposync(dep['target_path'])
-                checkdeps(dep['target_path'])
+    for deprepo in verify_repos:
+        fetch_dependencies(deprepo)
 
-######## MAIN SCRIPT STARTS HERE ############
+def has_branch(branches, revision):
+    return revision in [branch['name'] for branch in branches]
 
-reload_local_manifest()
+if depsonly:
+    repo_path = get_from_manifest(device)
+    if repo_path:
+        fetch_dependencies(repo_path)
+    else:
+        print("Trying dependencies-only mode on a non-existing device tree?")
 
-if not depsonly:
-    get_from_github(args.device)
+    sys.exit()
 
-checkdeps("device/*/%s" % args.device)
+else:
+    for repository in repositories:
+        repo_name = repository['name']
+        if re.match(r"^android_device_[^_]*_" + device + "$", repo_name):
+            print("Found repository: %s" % repository['name'])
 
-print("Checked dependency tree over : ")
-for repo in ran_checkdeps_on:
-    print("    %s" % repo)
+            manufacturer = repo_name.replace("android_device_", "").replace("_" + device, "")
+
+            default_revision = get_default_revision()
+            print("Default revision: %s" % default_revision)
+            print("Checking branch info")
+            githubreq = urllib.request.Request(repository['branches_url'].replace('{/branch}', ''))
+            add_auth(githubreq)
+            result = json.loads(urllib.request.urlopen(githubreq).read().decode())
+
+            ## Try tags, too, since that's what releases use
+            if not has_branch(result, default_revision):
+                githubreq = urllib.request.Request(repository['tags_url'].replace('{/tag}', ''))
+                add_auth(githubreq)
+                result.extend (json.loads(urllib.request.urlopen(githubreq).read().decode()))
+
+            repo_path = "device/%s/%s" % (manufacturer, device)
+            adding = {'repository':repo_name,'target_path':repo_path}
+
+            fallback_branch = None
+            if not has_branch(result, default_revision):
+                if os.getenv('ROOMSERVICE_BRANCHES'):
+                    fallbacks = list(filter(bool, os.getenv('ROOMSERVICE_BRANCHES').split(' ')))
+                    for fallback in fallbacks:
+                        if has_branch(result, fallback):
+                            print("Using fallback branch: %s" % fallback)
+                            fallback_branch = fallback
+                            break
+
+                if not fallback_branch:
+                    print("Default revision %s not found in %s. Bailing." % (default_revision, repo_name))
+                    print("Branches found:")
+                    for branch in [branch['name'] for branch in result]:
+                        print(branch)
+                    print("Use the ROOMSERVICE_BRANCHES environment variable to specify a list of fallback branches.")
+                    sys.exit()
+
+            add_to_manifest([adding], fallback_branch)
+
+            print("Syncing repository to retrieve project.")
+            os.system('repo sync --force-sync %s' % repo_path)
+            print("Repository synced!")
+
+            fetch_dependencies(repo_path, fallback_branch)
+            print("Done")
+            sys.exit()
+
+print("Repository for %s not found in the XPerience Project Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
