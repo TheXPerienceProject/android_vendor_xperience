@@ -1,13 +1,13 @@
 function __print_lineage_functions_help() {
 cat <<EOF
-Additional LineageOS functions:
+Additional XPerience functions:
 - cout:            Changes directory to out.
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
-- lineagegerrit:   A Git wrapper that fetches/pushes patch from/to LineageOS Gerrit Review.
+- lineagegerrit:   A Git wrapper that fetches/pushes patch from/to XPerience Gerrit Review.
 - lineagerebase:   Rebase a Gerrit change and push it again.
-- lineageremote:   Add git remote for LineageOS Gerrit Review.
+- lineageremote:   Add git remote for XPerience Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
 - cafremote:       Add git remote for matching CodeAurora repository.
 - cafmerge:        Fetch and merge CodeAurora branch
@@ -405,14 +405,14 @@ MANIFEST="${TOP}/.repo/manifest.xml"
 BRANCH=$(grep "default revision" "${MANIFEST}" \
         | sed 's/^ *//g;s/<default revision=\"refs\/tags\///g;s/\"//g')
     git fetch caf
-    git branch rm xpe-14.0 2> /dev/null
-    git checkout -b xpe-14.0
+    git branch rm xpe-15.0 2> /dev/null
+    git checkout -b xpe-15.0
     git merge --no-edit --log $BRANCH
 }
 
 function xpepush()
 {
-    git push xpe HEAD:xpe-14.0  
+    git push xpe HEAD:xpe-15.0
 }
 
 function installboot()
