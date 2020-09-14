@@ -6,7 +6,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Quokka \
+    ro.xpe.codename=Red-Velvet-Cake \
     ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
