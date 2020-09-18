@@ -18,7 +18,8 @@ endif
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
-CAF_BRANCH := LA.UM.8.12.r1-13800-sm8250.0
+#Now called vendor branch
+CAF_BRANCH := LA.UM.9.1.r1-06700-SMxxx0.0
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
