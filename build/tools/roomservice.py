@@ -53,7 +53,7 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from XPerience Project Github (http://github.com/TheXPerienceProject)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from The XPerience Project Github (http://github.com/TheXPerienceProject)." % device)
 
 repositories = []
 
@@ -128,9 +128,9 @@ def get_default_revision():
     m = ElementTree.parse(get_manifest_path())
     d = m.findall('default')[0]
     r = d.get('revision')
-    #return r.replace('refs/heads/', '').replace('refs/tags/', '')
-    # Hardcode this shit for now
-    return "xpe-14.0"
+    #hax cuz default one is LA.UM.xxxxx im lazy to fix in the correct form
+    ref = 'refs/heads/xpe-15.0'
+    return ref.replace('refs/heads/', '').replace('refs/tags/', '')
 
 def get_from_manifest(devicename):
     try:
@@ -169,7 +169,7 @@ def is_in_manifest(projectpath):
 
     # ... and don't forget the XPerience manifest
     try:
-        lm = ElementTree.parse(".repo/manifests/xpe_default.xml")
+        lm = ElementTree.parse(".repo/manifests/snippets/xpe_default.xml")
         lm = lm.getroot()
     except:
         lm = ElementTree.Element("manifest")
@@ -192,12 +192,12 @@ def add_to_manifest(repositories, fallback_branch = None):
         repo_target = repository['target_path']
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('XPerience/%s already fetched to %s' % (repo_name, repo_target))
+            print('TheXPerienceProject/%s already fetched to %s' % (repo_name, repo_target))
             continue
 
-        print('Adding dependency: XPerience/%s -> %s' % (repo_name, repo_target))
+        print('Adding dependency: %s -> %s' % (repo_name, repo_target))
         project = ElementTree.Element("project", attrib = { "path": repo_target,
-            "remote": "github", "name": "XPerience/%s" % repo_name })
+            "remote": "github","revision":"xpe-15.0", "name": "TheXPerienceProject/%s" % repo_name })
 
         if 'branch' in repository:
             project.set('revision',repository['branch'])
@@ -285,7 +285,7 @@ else:
                 result.extend (json.loads(urllib.request.urlopen(githubreq).read().decode()))
 
             repo_path = "device/%s/%s" % (manufacturer, device)
-            adding = {'repository':repo_name,'target_path':repo_path}
+            adding = {'repository':repo_name,'target_path':repo_path,'revision':default_revision}
 
             fallback_branch = None
             if not has_branch(result, default_revision):
@@ -315,4 +315,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the XPerience Project Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in The XPerience Project Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
