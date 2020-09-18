@@ -107,3 +107,8 @@ endif
 
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true
+
+# Qualcomm variables
+SOONG_CONFIG_NAMESPACES += aosp_vs_qva
+SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
+SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
