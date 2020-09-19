@@ -143,9 +143,9 @@ ifneq ($(TARGET_KERNEL_ADDITIONAL_FLAGS),)
 endif
 
 TOOLS_PATH_OVERRIDE += \
-    PATH=$(BUILD_TOP)/prebuilts/tools-lineage/$(HOST_OS)-x86/bin:$$PATH \
-    LD_LIBRARY_PATH=$(BUILD_TOP)/prebuilts/tools-lineage/$(HOST_OS)-x86/lib:$$LD_LIBRARY_PATH \
-    PERL5LIB=$(BUILD_TOP)/prebuilts/tools-lineage/$(HOST_OS)-x86/lib/perl-base
+    PATH=$(BUILD_TOP)/prebuilts/tools-xperience/$(HOST_OS)-x86/bin:$$PATH \
+    LD_LIBRARY_PATH=$(BUILD_TOP)/prebuilts/tools-xperience/$(HOST_OS)-x86/lib:$$LD_LIBRARY_PATH \
+    PERL5LIB=$(BUILD_TOP)/prebuilts/tools-xperience/$(HOST_OS)-x86/lib/perl-base
 
 # Set DTBO image locations so the build system knows to build them
 ifeq (true,$(filter true, $(TARGET_NEEDS_DTBOIMAGE) $(BOARD_KERNEL_SEPARATED_DTBO)))
@@ -153,7 +153,7 @@ BOARD_PREBUILT_DTBOIMAGE ?= $(TARGET_OUT_INTERMEDIATES)/DTBO_OBJ/arch/$(KERNEL_A
 endif
 
 # Set use the full path to the dtc command
-KERNEL_DTC_CMD := $(BUILD_TOP)/prebuilts/tools-lineage/$(HOST_OS)-x86/bin/dtc
+KERNEL_DTC_CMD := $(BUILD_TOP)/prebuilts/tools-xperience/$(HOST_OS)-x86/bin/dtc
 
 # Set use the full path to the make command
 KERNEL_MAKE_CMD := $(BUILD_TOP)/prebuilts/build-tools/$(HOST_OS)-x86/bin/make
