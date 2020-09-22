@@ -520,6 +520,9 @@ ifeq ($(BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE),)
   ALLOW_MISSING_DEPENDENCIES := true
 endif
 
+# Build
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+
 # HIDL 
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
