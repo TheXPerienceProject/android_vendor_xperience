@@ -37,3 +37,8 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.vendor.at_library=libqti-at.so \
     persist.vendor.qti.games.gt.prof=1 \
     ro.build.version.qcom=$(CAF_BRANCH)
+
+# Gaussian Blur
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.sf.blurs_are_expensive=1 \
+    ro.surface_flinger.supports_background_blur=1
