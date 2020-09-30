@@ -20,3 +20,7 @@ PRODUCT_SOONG_NAMESPACES += $(PATHMAP_SOONG_NAMESPACES)
 #    frameworks/av/camera/cameraserver \
 #    frameworks/av/services/camera/libcameraservice
 #endif
+
+
+# Build
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
