@@ -217,7 +217,7 @@ PRODUCT_PACKAGES += \
     OmniStyle
 
 ifeq ($(TARGET_XPE_ARCH), arm64)
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     Turbo
 endif
 
