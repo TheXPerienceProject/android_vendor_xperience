@@ -214,8 +214,6 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_PACKAGES += \
-    Longshot \
-    MarkupGoogle \
     OmniStyle
 
 ifeq ($(TARGET_XPE_ARCH), arm64)
