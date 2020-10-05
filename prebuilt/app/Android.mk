@@ -71,3 +71,4 @@ LOCAL_CERTIFICATE := platform
 LOCAL_DEX_PREOPT := true
 LOCAL_OPTIONAL_USES_LIBRARIES := com.sony.device com.android.testruner
 include $(BUILD_PREBUILT)
+
