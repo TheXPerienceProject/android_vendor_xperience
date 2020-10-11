@@ -47,6 +47,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true \
     ro.opa.elegible_device=true \
     setupwizard.theme=glif_v3_light \
+    setupwizard.enable_assist_gesture_training=true \
     ro.com.google.ime.theme_id=4
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
