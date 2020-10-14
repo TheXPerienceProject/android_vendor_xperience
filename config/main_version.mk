@@ -19,7 +19,8 @@ endif
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
 #Now called vendor branch
-CAF_BRANCH := LA.UM.9.1.r1-06700-SMxxx0.0
+SYSTEM_CAF_BRANCH := LA.QSSI.11.0.r1-06500-qssi.0
+VENDOR_CAF_BRANCH := LA.UM.9.1.r1-06700-SMxxx0.0
 
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpe.display.version=$(XPE_DISPLAY_VERSION)
@@ -36,7 +37,8 @@ ADDITIONAL_BUILD_PROPERTIES += \
     vendor.perf.iop_v3.enable=1 \
     ro.vendor.at_library=libqti-at.so \
     persist.vendor.qti.games.gt.prof=1 \
-    ro.build.version.qcom=$(CAF_BRANCH)
+    ro.build.version.system.qcom=$(VENDOR_CAF_BRANCH) \
+    ro.build.version.vendor.qcom=$(SYSTEM_CAF_BRANCH)
 
 # Gaussian Blur
 ADDITIONAL_BUILD_PROPERTIES += \
