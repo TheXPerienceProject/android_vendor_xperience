@@ -125,3 +125,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true
+
+-include hardware/qcom/display/$(QCOM_HARDWARE_VARIANT)/config/display-product.mk
+-include hardware/qcom/display/$(QCOM_HARDWARE_VARIANT)/config/display-board.mk
