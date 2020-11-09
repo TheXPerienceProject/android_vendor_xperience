@@ -110,8 +110,10 @@ PRODUCT_PACKAGES += \
     XPerienceWallpapers
 endif
 
+# Overlays
 PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay
+    NavigationBarMode2ButtonOverlay \
+    XPerienceImmersiveNavigationOverlay
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
