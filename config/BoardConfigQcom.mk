@@ -59,6 +59,13 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display/libqdmetadata
 endif
 
+# faster shit i need sleep i'll fix later
+# enable display shits for SDM660 with 4.14 kernel
+ifeq ($(TARGET_USES_4_14_DISPLAY),true)
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/commonsys-intf/display/libdisplayconfig
+endif
+
 # Mark GRALLOC_USAGE_HW_2D, GRALLOC_USAGE_EXTERNAL_DISP and GRALLOC_USAGE_PRIVATE_WFD as valid gralloc bits
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS += | (1 << 10)
@@ -125,6 +132,3 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true
-
--include hardware/qcom/display/$(QCOM_HARDWARE_VARIANT)/config/display-product.mk
--include hardware/qcom/display/$(QCOM_HARDWARE_VARIANT)/config/display-board.mk
