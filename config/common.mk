@@ -1,12 +1,9 @@
-# Allow to configure xperience settings first
-$(call inherit-product, vendor/xperience/config/xperience_configuration.mk)
-
 PRODUCT_BRAND ?= XPerience
 
 #Add TARGET_ARCH By default we suppose is ARM64
 TARGET_XPE_ARCH ?= arm64
 
-ifneq ( $(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT), $(space))
+ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
 TARGET_BOOTANIMATION_SIZE := $(shell \
   if [ "$(TARGET_SCREEN_WIDTH)" -lt "$(TARGET_SCREEN_HEIGHT)" ]; then \
@@ -38,6 +35,10 @@ PRODUCT_COPY_FILES += $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/b
 
 endif
 
+
+# Allow to configure xperience settings first
+$(call inherit-product, vendor/xperience/config/xperience_configuration.mk)
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
@@ -65,8 +66,8 @@ PRODUCT_COPY_FILES += \
 ifneq ($(AB_OTA_PARTITIONS),)
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-		vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-		vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
