@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include $(TOPDIR)vendor/lineage/build/core/qcom_target.mk
+include $(TOPDIR)vendor/xperience/build/core/qcom_target.mk
 
 # We modify several neverallows, so let the build proceed
 ifneq ($(TARGET_BUILD_VARIANT),user)
