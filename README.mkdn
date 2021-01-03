@@ -1,0 +1,17 @@
+XPerience
+===========
+
+Getting Started
+---------------
+
+To get started with Android/XPerience, you'll need to get
+familiar with [Repo](https://source.android.com/source/using-repo.html) and [Version Control with Git](https://source.android.com/source/version-control.html).
+
+To initialize your local repository using the XPerience trees, use a command like this:
+
+    repo init -u git://github.com/XPerience/manifest.git -b xpe-13.0
+
+Then to sync up:
+
+    repo sync
+

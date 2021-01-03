@@ -1,0 +1,15 @@
+#!/system/bin/sh
+#
+# Print startup info
+#
+L="log -p i -t xpe"
+
+$L " __   _______"
+$L " \ \ / /  __ \        (_)"
+$L "  \ V /| |__) |__ _ __ _  ___ _ __   ___ ___"
+$L "   > < |  ___/ _ \ '__| |/ _ \ '_ \ / __/ _ \ "
+$L "  / . \| |  |  __/ |  | |  __/ | | | (__| __/ "
+$L " /_/ \_\_|   \___|_|  |_|\___|_| |_|\___\___| "
+$L " "
+$L "Welcome to Android `getprop ro.build.version.release` / XPerience-`getprop ro.xpe.version`";
+

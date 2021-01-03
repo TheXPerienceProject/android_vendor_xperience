@@ -1,0 +1,89 @@
+#!/system/bin/sh
+#XPerience Kernel Config
+# Autor: Carlos Jesús (KLOZZ) AKA TeamMEX@XDA
+############################
+# various tweaks from CM and xperience rom 
+#
+# V2.3
+
+target=`getprop ro.board.platform`
+debuggable=`getprop ro.debuggable`
+emmc_boot=`getprop ro.boot.emmc`
+
+echo 2 > /sys/module/lpm_levels/enable_low_power/l2
+soc_revision=`cat /sys/devices/soc0/revision`
+if [ "$soc_revision" != "1.0" ]; then
+		echo 1 > /sys/module/lpm_resources/enable_low_power/pxo
+fi
+
+product=`getprop ro.boot.device`
+if [ "$product" == "falcon" ]; then
+	if [ "$soc_revision" == "1.0" ]; then
+		echo 1 > /sys/kernel/debug/clk/cxo_lpm_clk/enable
+	fi
+fi
+
+case "$emmc_boot"
+    in "true")
+        chown -h system /sys/devices/platform/rs300000a7.65536/force_sync
+        chown -h system /sys/devices/platform/rs300000a7.65536/sync_sts
+        chown -h system /sys/devices/platform/rs300100a7.65536/force_sync
+        chown -h system /sys/devices/platform/rs300100a7.65536/sync_sts
+    ;;
+esac
+
+echo 1 > /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu1/power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu2/power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu3/power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/suspend_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu1/standalone_power_collapse/idle_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu2/standalone_power_collapse/idle_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu3/standalone_power_collapse/idle_enabled
+echo 1 > /sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled
+echo 1 > /sys/devices/system/cpu/cpu1/online
+echo 1 > /sys/devices/system/cpu/cpu2/online
+echo 1 > /sys/devices/system/cpu/cpu3/online
+echo 0 > /sys/kernel/power_suspend/power_suspend_mode
+chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+chown -h system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+chown -h system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+chown -h root.system /sys/devices/system/cpu/cpu1/online
+chown -h root.system /sys/devices/system/cpu/cpu2/online
+chown -h root.system /sys/devices/system/cpu/cpu3/online
+chmod -h 664 /sys/devices/system/cpu/cpu1/online
+chmod -h 664 /sys/devices/system/cpu/cpu2/online
+chmod -h 664 /sys/devices/system/cpu/cpu3/online
+
+
+############################
+# Showp's MPDEC activate
+#
+#echo 1 > /sys/kernel/msm_mpdecision/conf/enabled
+
+############################
+# Disable Faux's Intelliplug
+#
+#echo 0 > /sys/module/intelli_plug_parameters/intelli_plug_active
+
+############################
+# mount debugfs
+#
+mount -t debugfs nodev /sys/kernel/debug
+
+############################
+# XPerience
+#
+echo 8 > /proc/sys/vm/page-cluster
+echo 1 > /proc/sys/kernel/multi_threading
+
+## Some tweaks
+setprop net.ppp0.dns1 8.8.8.8;
+setprop net.ppp0.dns2 8.8.4.4;
+setprop net.dns1 8.8.8.8;
+setprop net.dns2 8.8.4.4;
+
