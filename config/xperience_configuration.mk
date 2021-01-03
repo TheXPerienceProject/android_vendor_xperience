@@ -1,4 +1,3 @@
-
 #well I add ringtones here for all devices
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.config.ringtone=XPerienceRing.ogg \
