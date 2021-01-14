@@ -6,6 +6,6 @@ PRODUCT_PACKAGES += \
     LatinIME
 
 # Include CM LatinIME dictionaries
-    PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries
+#PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries
 
 $(call inherit-product, vendor/xperience/config/telephony.mk)

@@ -86,32 +86,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/xperience/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/xperience/prebuilt/common/bin/50-xpe.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-xpe.sh \
-    vendor/xperience/prebuilt/common/bin/blacklist:$(TARGET_COPY_OUT_SYSTEM)/addon.d/blacklist
+    vendor/xperience/prebuilt/common/bin/50-xpe.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-xpe.sh
 
 ifneq ($(AB_OTA_PARTITIONS),)
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
     vendor/xperience/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
     vendor/xperience/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
 endif
 endif
-
-# Clean up packages cache to avoid wrong strings and resources
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/bin/clean_cache.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/clean_cache.sh
-
-# Fonts
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Regular.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Regular.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Medium.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Medium.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-MediumItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-MediumItalic.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Italic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Italic.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-Bold.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-Bold.ttf \
-    vendor/xperience/prebuilt/common/fonts/GoogleSans-BoldItalic.ttf:$(TARGET_COPY_OUT_SYSTEM)/fonts/GoogleSans-BoldItalic.ttf
 
 #Falcon Tweaking
 ifeq ($(XPE_BUILD), falcon)
@@ -161,9 +148,7 @@ PRODUCT_COPY_FILES += \
 
 # This is xperience!
 PRODUCT_COPY_FILES += \
-    vendor/xperience/config/permissions/mx.xperience.android.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/mx.xperience.android.xml \
-    vendor/xperience/config/permissions/privapp-permissions-xpe-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-xpe-product.xml \
-    vendor/xperience/config/permissions/privapp-permissions-xpe-system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-xpe-system.xml
+    vendor/xperience/config/permissions/mx.xperience.android.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/mx.xperience.android.xml
 
 # Hidden API whitelist
 PRODUCT_COPY_FILES += \
@@ -214,32 +199,18 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
-PRODUCT_PACKAGES += \
-    OmniStyle
-
-ifeq ($(TARGET_XPE_ARCH), arm64)
+#ifeq ($(TARGET_XPE_ARCH), arm64)
 #PRODUCT_PACKAGES += \
-    Turbo
-endif
+#    Turbo
+#endif
 
-ifneq ($(PRODUCT_SIZE), mini)
-# Required XPe packages
-PRODUCT_PACKAGES += \
-    BluetoothExt \
-    Development \
-    DownloadProvider \
-    MediaProvider
-
-# Optional packages
 PRODUCT_PACKAGES += \
     libemoji \
     Terminal
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    NightFallQuickStep \
     Settings \
     SystemUI \
-    XMusic \
     XPerienceOverlayStub
 
 # Include explicitly to work around GMS issues
@@ -249,57 +220,12 @@ PRODUCT_PACKAGES += \
 
 # Custom packages
 PRODUCT_PACKAGES += \
-    Alessa \
-    CommandCenter3 \
     ExactCalculator \
     DeskClock \
     Launcher3QuickStep \
     NightFallQuickStep \
-    Notes \
-    SubstratumSignature \
-    WeatherClient \
-    XPeriaHome \
-    XMusic \
-    XPeriaWeather \
-    XPerienceWallpapers \
     XPerienceOverlayStub \
     Yunikon
-else
-# Required XPe packages
-PRODUCT_PACKAGES += \
-    BluetoothExt \
-    DownloadProvider \
-    MediaProvider
-
-# Optional packages
-PRODUCT_PACKAGES += \
-    libemoji \
-    Terminal
-
-# Include explicitly to work around GMS issues
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full \
-    librsjni
-
-# Custom packages
-PRODUCT_PACKAGES += \
-    Alessa \
-    CommandCenter3 \
-    ExactCalculator \
-    Notes \
-    NightFallQuickStepGo \
-    Launcher3QuickStepGo \
-    WeatherClient \
-    XMusic \
-    XPerienceOverlayStub \
-    Yunikon
-
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    NightFallQuickStepGo \
-    Settings \
-    SystemUI \
-    XMusic
-endif
 
 # ThemePicker
 PRODUCT_PACKAGES += \
@@ -350,15 +276,7 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images \
-
-# Custom off-mode charger
-ifneq ($(WITH_XPE_CHARGER),false)
-PRODUCT_PACKAGES += \
-    xpe_charger_res_images \
-    font_log.png \
-    libhealthd.xpe
-endif
+    charger_res_images
 
 # Openssh
 PRODUCT_PACKAGES += \
@@ -397,8 +315,8 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
-DEVICE_PACKAGE_OVERLAYS += \
-    vendor/xperience/overlay/common
+#DEVICE_PACKAGE_OVERLAYS += \
+#    vendor/xperience/overlay/common
 
 PRODUCT_VERSION_MAJOR = 15
 PRODUCT_VERSION_MINOR = 0
@@ -524,7 +442,7 @@ endif
 # Build
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 
-# HIDL 
+# HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.manager@1.0 \
