@@ -25,4 +25,7 @@ PRODUCT_CFI_INCLUDE_PATHS += \
     hardware/qcom-caf/wlan/qcwcn/wpa_supplicant_8_lib
 else
 $(call set-device-specific-path,WLAN,wlan,hardware/qcom/wlan)
+$(call set-device-specific-path,AUDIO,audio,hardware/qcom/$(QCOM_HARDWARE_VARIANT)/audio)
+$(call set-device-specific-path,DISPLAY,display,hardware/qcom/$(QCOM_HARDWARE_VARIANT)/display)
+$(call set-device-specific-path,MEDIA,media,hardware/qcom/$(QCOM_HARDWARE_VARIANT)/media)
 endif
