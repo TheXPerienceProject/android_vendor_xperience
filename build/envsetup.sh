@@ -1,4 +1,4 @@
-function __print_lineage_functions_help() {
+function __print_xperience_functions_help() {
 cat <<EOF
 Additional LineageOS functions:
 - cout:            Changes directory to out.
@@ -85,7 +85,7 @@ function breakfast()
                 variant="userdebug"
             fi
 
-            lunch lineage_$target-$variant
+            lunch xperience_$target-$variant
         fi
     fi
     return $?

@@ -1,4 +1,6 @@
 PRODUCT_BRAND ?= XPerience
+# Versioning
+-include vendor/xperience/config/version.mk
 
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
@@ -95,17 +97,11 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
-# Versioning
--include vendor/xperience/config/version.mk
-
 # SELinux Policy
 -include vendor/xperience/sepolicy/sepolicy.mk
 
 # Themes and Theme overlays
-include vendor/themes/themes.mk
-
-# Wallpapers
-include vendor/xperience/config/wallpaper.mk
+#include vendor/themes/themes.mk
 
 # Add our overlays
 DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
