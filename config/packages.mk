@@ -34,9 +34,8 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
-    SearchLauncherQuickStep \
     Etar \
-    Jelly \
+    Yunikon \
     ExactCalculator \
     Terminal
 
@@ -62,10 +61,12 @@ PRODUCT_PACKAGES += \
 endif
 
 # Turbo
+ifneq ($(WITH_GAPPS), true)
 PRODUCT_PACKAGES += \
     Turbo \
     turbo.xml \
     privapp-permissions-turbo.xml
+endif
 
 # Custom off-mode charger
 #ifneq ($(WITH_LINEAGE_CHARGER),false)
@@ -116,3 +117,9 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
 
 -include vendor/qcom/common/perf/packages.mk
+
+ifeq ($(WITH_GAPPS), true)
+
+-include vendor/gapps/pixel-gapps.mk
+
+endif
