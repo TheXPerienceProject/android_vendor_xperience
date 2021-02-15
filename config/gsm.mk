@@ -7,7 +7,7 @@ PRODUCT_PACKAGES += \
     apns-conf.xml
 
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/etc/ apns-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/ apns-conf.xml \
+    vendor/xperience/prebuilt/etc/apns-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/apns-conf.xml \
     vendor/xperience/prebuilt/etc/selective-spn-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/selective-spn-conf.xml
 
 # SIM Toolkit
