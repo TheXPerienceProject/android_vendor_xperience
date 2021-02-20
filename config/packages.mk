@@ -34,6 +34,7 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
+    NightFallQuickStep \
     Etar \
     Yunikon \
     ExactCalculator \
@@ -115,6 +116,7 @@ PRODUCT_PACKAGES += \
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
+    NNightFallQuickStep
 
 -include vendor/qcom/common/perf/packages.mk
 
