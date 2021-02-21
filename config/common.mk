@@ -65,7 +65,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.alarm_alert=Fuego.ogg
 	
 # Backup Tool
-ifneq ($(WITH_GMS),true)
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/xperience/prebuilt/bin/backuptool.functions:install/bin/backuptool.functions \
@@ -76,7 +75,6 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
     vendor/xperience/prebuilt/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
     vendor/xperience/prebuilt/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
-endif
 endif
 
 # Enable Android Beam on all targets
