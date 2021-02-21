@@ -38,6 +38,7 @@ PRODUCT_PACKAGES += \
     Etar \
     Yunikon \
     ExactCalculator \
+    XPeriaWeather \
     Terminal
 
 # Config
@@ -115,7 +116,7 @@ PRODUCT_PACKAGES += \
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
+    SystemUI \
     NNightFallQuickStep
 
 -include vendor/qcom/common/perf/packages.mk
