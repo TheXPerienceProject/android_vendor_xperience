@@ -100,6 +100,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # SELinux Policy
 -include vendor/xperience/sepolicy/sepolicy.mk
 
+# GSM porque si
+-include vendor/xperience/config/gsm.mk
+
 # Themes and Theme overlays
 #include vendor/themes/themes.mk
 
