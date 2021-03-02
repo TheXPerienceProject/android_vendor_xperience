@@ -30,5 +30,12 @@
         <!-- Cached app freezer on supported devices -->
         <item>activity_manager_native_boot/use_freezer=true</item>
 
+        <!-- Adaptive Sound -->
+        <item>device_personalization_services/AdaptiveAudio__enable_adaptive_audio=true</item>
+        <item>device_personalization_services/AdaptiveAudio__show_promo_notification=true</item>
+
+        <!-- Now Playing -->
+        <item>device_personalization_services/NowPlaying__ambient_music_index_manifest_17_09_02=152:https://storage.googleapis.com/music-iq-db/recreate_ytm_db/20201028-000000/manifest.json</item>
+
     </string-array>
 </resources>
