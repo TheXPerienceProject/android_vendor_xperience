@@ -34,12 +34,13 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
-    NightFallQuickStep \
     Etar \
-    Yunikon \
     ExactCalculator \
+    NightFallQuickStep \
+    OmniStyle \
+    Terminal \
     XPeriaWeather \
-    Terminal
+    Yunikon
 
 # Config
 PRODUCT_PACKAGES += \
