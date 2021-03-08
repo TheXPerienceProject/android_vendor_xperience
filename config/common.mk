@@ -63,7 +63,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.ringtone=XPerienceRing.ogg \
     ro.config.notification_sound=Reminder.ogg \
     ro.config.alarm_alert=Fuego.ogg
-	
+
+# IORap app launch prefetching using Perfetto traces and madvise
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.iorapd.enable=true
+
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool.sh:install/bin/backuptool.sh \
