@@ -7,7 +7,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
     ro.xpe.codename=Red-Velvet-Cake \
-    ro.xpelegal.url=http://klozz.github.io/TheXPerienceProject/legal/ \
+    ro.xpelegal.url=http://thexperienceproject.org/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 # Build fingerprint

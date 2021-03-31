@@ -130,4 +130,4 @@ $(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # if exist track perf changes
-$(call inherit-product, vendor/extras/extras.mk)
+$(call inherit-product-if-exist, vendor/extras/extras.mk)
