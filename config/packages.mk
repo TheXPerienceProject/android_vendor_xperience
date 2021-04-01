@@ -55,20 +55,16 @@ ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
 PRODUCT_PACKAGES += \
     Updater
 
+# XPerience postboot based on qcom file
+PRODUCT_PACKAGES += \
+    init.xperience.postboot.sh
+
 endif
 
 #SetupWizard
 ifneq ($(TARGET_BUILD_VARIANT), eng)
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
-endif
-
-# Turbo
-ifneq ($(WITH_GAPPS), true)
-PRODUCT_PACKAGES += \
-    Turbo \
-    turbo.xml \
-    privapp-permissions-turbo.xml
 endif
 
 # Custom off-mode charger
