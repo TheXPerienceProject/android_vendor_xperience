@@ -120,6 +120,9 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 -include vendor/qcom/common/perf/packages.mk
 
+# if exist track perf changes
+-include vendor/extras/extras.mk
+
 ifeq ($(WITH_GMS), true)
 
 -include vendor/gapps/pixel-gapps.mk
