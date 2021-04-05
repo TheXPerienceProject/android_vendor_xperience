@@ -46,6 +46,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig
 
+# Wallet app for Power menu integration
+# https://source.android.com/devices/tech/connect/quick-access-wallet
+PRODUCT_PACKAGES += \
+    QuickAccessWallet
+
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
