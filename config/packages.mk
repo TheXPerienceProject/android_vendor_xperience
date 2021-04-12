@@ -110,6 +110,7 @@ PRODUCT_PACKAGES += \
 # Themes
 PRODUCT_PACKAGES += \
     ThemePicker \
+    WallpaperPicker2 \
     XPerienceWallpapers \
 	XPerienceOverlayStub
 
