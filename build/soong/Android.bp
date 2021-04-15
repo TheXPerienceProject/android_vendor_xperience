@@ -350,6 +350,9 @@ camera_boottime_timestamp {
     soong_config_variables: {
         needs_camera_boottime_timestamp: {
             cflags: ["-DTARGET_CAMERA_BOOTTIME_TIMESTAMP"],
+        },
+    },
+}
 
 soong_config_module_type {
     name: "qti_usb_hal_supported_modes",
