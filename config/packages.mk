@@ -67,10 +67,10 @@ PRODUCT_PACKAGES += \
 endif
 
 #SetupWizard
-ifneq ($(TARGET_BUILD_VARIANT), eng)
-PRODUCT_PACKAGES += \
-    XPerienceSetupWizard
-endif
+#ifneq ($(TARGET_BUILD_VARIANT), eng)
+#PRODUCT_PACKAGES += \
+#    XPerienceSetupWizard
+#endif
 
 # Custom off-mode charger
 #ifneq ($(WITH_LINEAGE_CHARGER),false)
