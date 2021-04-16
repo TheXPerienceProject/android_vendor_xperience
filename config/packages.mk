@@ -125,7 +125,7 @@ endif
 # Dex preopt
 #PRODUCT_DEXPREOPT_SPEED_APPS += \
 #    SystemUI \
-#	Settings \
+#    Settings \
 #    NightFallQuickStep \
 #    XPeriaWeather
 
