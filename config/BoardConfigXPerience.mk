@@ -10,6 +10,4 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
 include vendor/xperience/config/BoardConfigQcom.mk
 endif
 
--include vendor/xperience/perf/BoardConfigVendor.mk
-
 include vendor/xperience/config/BoardConfigSoong.mk
