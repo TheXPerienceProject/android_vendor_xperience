@@ -1,4 +1,6 @@
 # Additional packages
+#themes
+$(call inherit-product, vendor/themes/themes.mk)
 
 # Include AOSP audio files
 include vendor/xperience/config/aosp_audio.mk
@@ -72,8 +74,6 @@ endif
 #    XPerienceSetupWizard
 #endif
 
-# Custom off-mode charger
-#ifneq ($(WITH_LINEAGE_CHARGER),false)
 PRODUCT_PACKAGES += \
     charger_res_images \
     cm_charger_res_images \
@@ -134,3 +134,5 @@ ifeq ($(WITH_GMS), true)
 -include vendor/gapps/pixel-gapps.mk
 
 endif
+
+
