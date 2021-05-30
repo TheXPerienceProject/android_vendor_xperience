@@ -10,6 +10,14 @@ ADDITIONAL_BUILD_PROPERTIES += \
     ro.xpelegal.url=http://thexperienceproject.org/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
+#Now called vendor branch
+SYSTEM_CAF_BRANCH := $(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3)
+VENDOR_CAF_BRANCH := $(shell grep "refs/tags/LA.UM" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3)
+
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.build.version.system.qcom=$(VENDOR_CAF_BRANCH) \
+    ro.build.version.vendor.qcom=$(SYSTEM_CAF_BRANCH)
+
 # Build fingerprint
 ifneq ($(BUILD_FINGERPRINT),)
 ADDITIONAL_BUILD_PROPERTIES += \
