@@ -46,10 +46,8 @@ endif
 # error with prop override
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable extra StrictMode features on all non-engineering builds
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
-endif
 
 # general properties
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
