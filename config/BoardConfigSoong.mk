@@ -40,7 +40,8 @@ SOONG_CONFIG_xperienceGlobalVars += \
     target_ld_shim_libs \
     target_process_sdk_version_override \
     target_surfaceflinger_udfps_lib \
-    uses_camera_parameter_lib
+    uses_camera_parameter_lib \
+    needs_camera_boottime
 
 SOONG_CONFIG_NAMESPACES += xperienceNvidiaVars
 SOONG_CONFIG_xperienceNvidiaVars += \
@@ -70,6 +71,7 @@ SOONG_CONFIG_xperienceGlobalVars_has_legacy_camera_hal1 := $(TARGET_HAS_LEGACY_C
 SOONG_CONFIG_xperienceGlobalVars_ignores_ftp_pptp_conntrack_failure := $(TARGET_IGNORES_FTP_PPTP_CONNTRACK_FAILURE)
 SOONG_CONFIG_xperienceGlobalVars_needs_netd_direct_connect_rule := $(TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE)
 SOONG_CONFIG_xperienceGlobalVars_target_enforce_ab_ota_partition_list := $(TARGET_ENFORCE_AB_OTA_PARTITION_LIST)
+SOONG_CONFIG_xperienceGlobalVars_needs_camera_boottime := $(TARGET_CAMERA_BOOTTIME_TIMESTAMP)
 SOONG_CONFIG_xperienceNvidiaVars_uses_nv_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
 SOONG_CONFIG_xperienceQcomVars_should_wait_for_qsee := $(TARGET_KEYMASTER_WAIT_FOR_QSEE)
 SOONG_CONFIG_xperienceQcomVars_supports_audio_accessory := $(TARGET_QTI_USB_SUPPORTS_AUDIO_ACCESSORY)
