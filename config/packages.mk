@@ -111,8 +111,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ThemePicker \
     WallpaperPicker2 \
-    XPerienceWallpapers \
 	XPerienceOverlayStub
+
+#Coral cant include this due to lower superpartition size
+ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
+PRODUCT_PACKAGES += \
+    XPerienceWallpapers
+endif
 
 PRODUCT_PACKAGES += \
     NavigationBarMode2ButtonOverlay
