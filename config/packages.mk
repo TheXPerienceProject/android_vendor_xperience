@@ -66,6 +66,11 @@ endif
 PRODUCT_PACKAGES += \
     charger_res_images
 
+ifneq ($(WITH_XPERIENCE_CHARGER),false)
+PRODUCT_PACKAGES += \
+    xperience_charger_animation
+endif
+
 # FS tools
 PRODUCT_PACKAGES += \
     fsck.exfat \
