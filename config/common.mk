@@ -129,6 +129,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
+# Include definitions for Snapdragon Clang
+$(call inherit-product, vendor/qcom/sdclang/config/SnapdragonClang.mk)
+
 # SELinux Policy
 # -include vendor/xperience/sepolicy/sepolicy.mk
 
