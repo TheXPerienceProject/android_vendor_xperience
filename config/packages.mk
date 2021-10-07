@@ -1,6 +1,6 @@
 # Additional packages
-#themes
-$(call inherit-product, vendor/themes/themes.mk)
+# themes
+# $(call inherit-product, vendor/themes/themes.mk)
 
 # Include AOSP audio files
 include vendor/xperience/config/aosp_audio.mk
@@ -59,7 +59,7 @@ ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
 
 # Only build OTA if official
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     Updater
 
 # XPerience postboot based on qcom file
