@@ -98,7 +98,7 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/media/audio/notifications/BatteryPlugged_48k.ogg:$(TARGET_COPY_OUT_SYSTEM)/media/audio/ui/BatteryPlugged_48k.ogg
 
 # Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= true
+TARGET_FACE_UNLOCK_SUPPORTED ?= false
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
 PRODUCT_PACKAGES += \
     FaceUnlockService
@@ -110,13 +110,13 @@ endif
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.control_privapp_permissions=enforce
+    ro.control_privapp_permissions=log
 
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
 # SELinux Policy
--include vendor/xperience/sepolicy/sepolicy.mk
+# -include vendor/xperience/sepolicy/sepolicy.mk
 
 # GSM porque si
 -include vendor/xperience/config/gsm.mk
