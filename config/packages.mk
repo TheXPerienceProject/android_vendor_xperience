@@ -35,38 +35,38 @@ PRODUCT_PACKAGES += \
     Exchange2
 
 # Additional apps
-PRODUCT_PACKAGES += \
-    Etar \
-    ExactCalculator \
-    NightFallQuickStep \
-    OmniStyle \
-    Terminal \
-    XPeriaWeather \
-    Yunikon
+# PRODUCT_PACKAGES += \
+#    Etar \
+#    ExactCalculator \
+#    NightFallQuickStep \
+#    OmniStyle \
+#    Terminal \
+#    XPeriaWeather \
+#    Yunikon
 
 # Config
-PRODUCT_PACKAGES += \
-    SimpleDeviceConfig
+# PRODUCT_PACKAGES += \
+#    SimpleDeviceConfig
 
 # Wallet app for Power menu integration
 # https://source.android.com/devices/tech/connect/quick-access-wallet
-PRODUCT_PACKAGES += \
-    QuickAccessWallet
+#PRODUCT_PACKAGES += \
+#    QuickAccessWallet
 
 # Use signing keys for only official builds
-ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
-    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
-    PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
+#ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
+#    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
+#    PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
 
 # Only build OTA if official
 #PRODUCT_PACKAGES += \
-    Updater
+#    Updater
 
 # XPerience postboot based on qcom file
-PRODUCT_PACKAGES += \
-    init.xperience.postboot.sh
+#PRODUCT_PACKAGES += \
+#    init.xperience.postboot.sh
 
-endif
+#endif
 
 #SetupWizard
 #ifneq ($(TARGET_BUILD_VARIANT), eng)
@@ -108,10 +108,10 @@ PRODUCT_PACKAGES += \
     xperience-hiddenapi-package-whitelist.xml
 
 # Themes
-PRODUCT_PACKAGES += \
-    ThemePicker \
-    WallpaperPicker2 \
-	XPerienceOverlayStub
+#PRODUCT_PACKAGES += \
+#    ThemePicker \
+#    WallpaperPicker2 \
+#	XPerienceOverlayStub
 
 #Coral cant include this due to lower superpartition size
 ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
@@ -119,20 +119,20 @@ PRODUCT_PACKAGES += \
     XPerienceWallpapers
 endif
 
-PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay
+#PRODUCT_PACKAGES += \
+    #NavigationBarMode2ButtonOverlay
 
 # Dex preopt
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-	Settings \
-    NightFallQuickStep \
-    XPeriaWeather
+#PRODUCT_DEXPREOPT_SPEED_APPS += \
+#    SystemUI \
+#	Settings \
+#    NightFallQuickStep \
+#    XPeriaWeather
 
--include vendor/qcom/common/perf/packages.mk
+#-include vendor/qcom/common/perf/packages.mk
 
 # if exist track perf changes
--include vendor/extras/extras.mk
+#-include vendor/extras/extras.mk
 
 ifeq ($(WITH_GMS), true)
 
