@@ -244,7 +244,7 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 				return tools[toolFiles[0].Rel()].String(), nil
 			}
 		case "genDir":
-			return "__SBOX_OUT_DIR__", nil
+			return android.PathForModuleGen(ctx).String(), nil
 		default:
 			if strings.HasPrefix(name, "location ") {
 				label := strings.TrimSpace(strings.TrimPrefix(name, "location "))
@@ -266,17 +266,18 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	// Dummy output dep
 	dummyDep := android.PathForModuleGen(ctx, ".dummy_dep")
 
-	buildDir := android.PathForOutput(ctx)
+	buildDir := android.PathForOutput(ctx, "generator")
 	genDir := android.PathForModuleGen(ctx)
 
 	// Use a RuleBuilder to create a rule that runs the command inside an sbox sandbox.
 	rule := android.NewRuleBuilder(pctx, ctx).Sbox(genDir, buildDir).SandboxTools()
+
 	rule.Command().
 		Text(rawCommand).
-		Output(dummyDep).
-		Inputs(g.inputDeps).
+		ImplicitOutput(dummyDep).
+		Implicits(g.inputDeps).
 		Implicits(g.implicitDeps)
-	rule.Command().Text("touch")
+	rule.Command().Text("touch").Output(dummyDep)
 
 	g.outputDeps = append(g.outputDeps, dummyDep)
 
