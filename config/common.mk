@@ -143,3 +143,6 @@ PRODUCT_RESTRICT_VENDOR_FILES := false
 $(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
+# Optimize everything for preopt
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
+
