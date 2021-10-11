@@ -76,6 +76,10 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
 
+# Enable support of one-handed mode
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.support_one_handed_mode=true
+
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool.sh:install/bin/backuptool.sh \
