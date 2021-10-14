@@ -43,10 +43,12 @@ PRODUCT_PACKAGES += \
 #    Terminal \
 #    XPeriaWeather \
 #    Yunikon
+PRODUCT_PACKAGES += \
+    Yunikon
 
 # Config
-# PRODUCT_PACKAGES += \
-#    SimpleDeviceConfig
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
 
 # Wallet app for Power menu integration
 # https://source.android.com/devices/tech/connect/quick-access-wallet
@@ -108,10 +110,10 @@ PRODUCT_PACKAGES += \
     xperience-hiddenapi-package-whitelist.xml
 
 # Themes
-#PRODUCT_PACKAGES += \
-#    ThemePicker \
-#    WallpaperPicker2 \
-#	XPerienceOverlayStub
+PRODUCT_PACKAGES += \
+    ThemePicker \
+    WallpaperPicker2 \
+    XPerienceOverlayStub
 
 #Coral cant include this due to lower superpartition size
 ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
