@@ -2,6 +2,7 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
+ifeq ($(TARGET_USES_OLD_BOOTANIMATION), true)
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
 TARGET_BOOTANIMATION_SIZE := $(shell \
@@ -29,9 +30,13 @@ $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size
 
 PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 
-#We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
+# Use by default the new animation made in blender (im not graphic designer anyways xD)
 PRODUCT_COPY_FILES += $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
 
+endif
+else
+#We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
+PRODUCT_COPY_FILES += vendor/xperience/prebuilt/bootanimation/bootanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
 endif
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
