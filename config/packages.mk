@@ -44,7 +44,8 @@ PRODUCT_PACKAGES += \
 #    XPeriaWeather \
 #    Yunikon
 PRODUCT_PACKAGES += \
-    Yunikon
+    XPeriaWeather \
+    Terminal
 
 # Config
 PRODUCT_PACKAGES += \
@@ -56,9 +57,12 @@ PRODUCT_PACKAGES += \
 #    QuickAccessWallet
 
 # Use signing keys for only official builds
-#ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
-#    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
-#    PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
+ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
+    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
+    PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
+
+# Signing
+-include vendor/xperience/signing/keys.mk
 
 # Only build OTA if official
 #PRODUCT_PACKAGES += \
@@ -68,7 +72,7 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    init.xperience.postboot.sh
 
-#endif
+endif
 
 #SetupWizard
 #ifneq ($(TARGET_BUILD_VARIANT), eng)
@@ -121,15 +125,14 @@ PRODUCT_PACKAGES += \
     XPerienceWallpapers
 endif
 
-#PRODUCT_PACKAGES += \
-    #NavigationBarMode2ButtonOverlay
+PRODUCT_PACKAGES += \
+    NavigationBarMode2ButtonOverlay
 
 # Dex preopt
-#PRODUCT_DEXPREOPT_SPEED_APPS += \
-#    SystemUI \
-#    Settings \
-#    NightFallQuickStep \
-#    XPeriaWeather
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI \
+    Settings \
+    XPeriaWeather
 
 #-include vendor/qcom/common/perf/packages.mk
 
