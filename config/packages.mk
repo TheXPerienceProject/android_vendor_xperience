@@ -141,8 +141,20 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 ifeq ($(WITH_GMS), true)
 
--include vendor/gapps/pixel-gapps.mk
+# -include vendor/gapps/pixel-gapps.mk
+$(call inherit-product, vendor/gapps/common/common-vendor.mk)
+
+# SetupWizard and Google Assistant properties
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.setupwizard.rotation_locked=true \
+    setupwizard.theme=glif_v3_light \
+    ro.opa.eligible_device=true \
+
+# Gboard side padding
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.com.google.ime.kb_pad_port_l=4 \
+    ro.com.google.ime.kb_pad_port_r=4 \
+    ro.com.google.ime.kb_pad_land_l=64 \
+    ro.com.google.ime.kb_pad_land_r=64 \
 
 endif
-
-
