@@ -44,8 +44,10 @@ PRODUCT_PACKAGES += \
 #    XPeriaWeather \
 #    Yunikon
 PRODUCT_PACKAGES += \
-    XPeriaWeather \
-    Terminal
+    NightFallQuickStep \
+    Terminal \
+    XPeriaWeather
+
 
 # Config
 PRODUCT_PACKAGES += \
@@ -130,6 +132,7 @@ PRODUCT_PACKAGES += \
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
+    NightFallQuickStep \
     SystemUI \
     Settings \
     XPeriaWeather
