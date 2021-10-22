@@ -189,9 +189,6 @@
      -->
     <string name="config_defaultNetworkRecommendationProviderPackage" translatable="false">com.google.android.gms</string>
 
-    <!-- Flag indicating which package name can access the persistent data partition -->
-    <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
-
     <!-- Colon separated list of package names that should be granted Notification Listener access -->
     <string name="config_defaultListenerAccessPackages" translatable="false">com.google.android.apps.nexuslauncher:com.google.android.as</string>
 
