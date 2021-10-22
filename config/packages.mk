@@ -144,11 +144,20 @@ ifeq ($(WITH_GMS), true)
 # -include vendor/gapps/pixel-gapps.mk
 $(call inherit-product, vendor/gapps/common/common-vendor.mk)
 
+PRODUCT_PACKAGES += \
+    XPerienceSetupWizard
+
 # SetupWizard and Google Assistant properties
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.setupwizard.rotation_locked=true \
     setupwizard.theme=glif_v3_light \
-    ro.opa.eligible_device=true \
+    setupwizard.feature.skip_button_use_mobile_data.carrier1839=true \
+    setupwizard.feature.show_pai_screen_in_main_flow.carrier1839=false \
+    setupwizard.feature.show_pixel_tos=true \
+    setupwizard.feature.baseline_setupwizard_enabled=true \
+    ro.setupwizard.esim_cid_ignore=00000001 \
+    setupwizard.feature.show_support_link_in_deferred_setup=false \
+    ro.setupwizard.rotation_locked=true \
+    ro.opa.eligible_device=true
 
 # Gboard side padding
 PRODUCT_PRODUCT_PROPERTIES += \
