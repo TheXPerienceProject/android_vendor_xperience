@@ -40,5 +40,14 @@
 
     <!-- SystemUIFactory component -->
     <string name="config_systemUIFactoryComponent" translatable="false">org.protonaosp.systemui.CustomSystemUIFactory</string>
+
+    <!-- Screenshot editing default activity.  Must handle ACTION_EDIT image/png intents.
+         Blank sends the user to the Chooser first.
+         This name is in the ComponentName flattened format (package/class)  -->
+    <string name="config_screenshotEditor" translatable="false">com.google.android.markup/com.google.android.markup.AnnotateActivity</string>
+
+    <string name="launcher_overlayable_package">com.google.android.apps.nexuslauncher</string>
+    <string name="themepicker_overlayable_package">com.google.android.apps.wallpaper</string>
+
 </resources>
 
