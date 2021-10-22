@@ -69,8 +69,8 @@ ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
 #    Updater
 
 # XPerience postboot based on qcom file
-#PRODUCT_PACKAGES += \
-#    init.xperience.postboot.sh
+PRODUCT_PACKAGES += \
+    init.xperience.postboot.sh
 
 endif
 
@@ -138,7 +138,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 #-include vendor/qcom/common/perf/packages.mk
 
 # if exist track perf changes
-#-include vendor/extras/extras.mk
+-include vendor/extras/extras.mk
 
 ifeq ($(WITH_GMS), true)
 
