@@ -22,12 +22,23 @@
 
 LOCAL_PATH := $(call my-dir)
 
+#java lib
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := $(call all-subdir-java-files)
+LOCAL_MODULE := com.sony.device
+LOCAL_MODULE_TAGS := optional
+LOCAL_NO_STANDARD_LIBRARIES := true
+#LOCAL_JAVA_LIBRARIES := core-oj framework
+LOCAL_MODULE_OWNER := xperience
+LOCAL_PROGUARD_ENABLED := disabled
+include $(BUILD_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := XPeriaWeather
 LOCAL_MODULE_OWNER := sony
 LOCAL_SRC_FILES := Weather.apk
 LOCAL_MODULE_TAGS := optional
+LOCAL_ENFORCE_USES_LIBRARIES := com.sony.device android.test.runner
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_CLASS := APPS
 LOCAL_CERTIFICATE := PRESIGNED
