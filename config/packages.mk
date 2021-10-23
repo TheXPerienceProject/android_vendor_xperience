@@ -68,9 +68,6 @@ ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
     PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
 
-# Signing
--include vendor/xperience/signing/keys.mk
-
 # Only build OTA if official
 #PRODUCT_PACKAGES += \
 #    Updater
