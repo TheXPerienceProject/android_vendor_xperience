@@ -166,3 +166,13 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
     vendor/qcom/opensource/commonsys/system/bt/conf
 endif #TARGET_USE_QTI_BT_STACK
+
+# Enable libqdMetadata and libdisplayconfig on 4.9, 4.14, 4.19 targets
+ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/commonsys-intf/display/libdisplayconfig \
+    vendor/qcom/opensource/commonsys-intf/display/libqdmetadata
+endif
+
+# Disable qmi EAP-SIM security
+DISABLE_EAP_PROXY := true
