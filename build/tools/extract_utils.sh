@@ -1,19 +1,9 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-#               2017-2020 The LineageOS Project
+# Copyright (C) 2017-2020 The LineageOS Project
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# SPDX-License-Identifier: Apache-2.0
 #
 
 PRODUCT_COPY_FILES_LIST=()
@@ -48,7 +38,7 @@ trap cleanup 0
 #
 # $1: device name
 # $2: vendor name
-# $3: Lineage root directory
+# $3: Android root directory
 # $4: is common device - optional, default to false
 # $5: cleanup - optional, default to true
 # $6: custom vendor makefile name - optional, default to false
@@ -69,15 +59,15 @@ function setup_vendor() {
         exit 1
     fi
 
-    export LINEAGE_ROOT="$3"
-    if [ ! -d "$LINEAGE_ROOT" ]; then
-        echo "\$LINEAGE_ROOT must be set and valid before including this script!"
+    export ANDROID_ROOT="$3"
+    if [ ! -d "$ANDROID_ROOT" ]; then
+        echo "\$ANDROID_ROOT must be set and valid before including this script!"
         exit 1
     fi
 
     export OUTDIR=vendor/"$VENDOR"/"$DEVICE"
-    if [ ! -d "$LINEAGE_ROOT/$OUTDIR" ]; then
-        mkdir -p "$LINEAGE_ROOT/$OUTDIR"
+    if [ ! -d "$ANDROID_ROOT/$OUTDIR" ]; then
+        mkdir -p "$ANDROID_ROOT/$OUTDIR"
     fi
 
     VNDNAME="$6"
@@ -85,10 +75,10 @@ function setup_vendor() {
         VNDNAME="$DEVICE"
     fi
 
-    export PRODUCTMK="$LINEAGE_ROOT"/"$OUTDIR"/"$VNDNAME"-vendor.mk
-    export ANDROIDBP="$LINEAGE_ROOT"/"$OUTDIR"/Android.bp
-    export ANDROIDMK="$LINEAGE_ROOT"/"$OUTDIR"/Android.mk
-    export BOARDMK="$LINEAGE_ROOT"/"$OUTDIR"/BoardConfigVendor.mk
+    export PRODUCTMK="$ANDROID_ROOT"/"$OUTDIR"/"$VNDNAME"-vendor.mk
+    export ANDROIDBP="$ANDROID_ROOT"/"$OUTDIR"/Android.bp
+    export ANDROIDMK="$ANDROID_ROOT"/"$OUTDIR"/Android.mk
+    export BOARDMK="$ANDROID_ROOT"/"$OUTDIR"/BoardConfigVendor.mk
 
     if [ "$4" == "true" ] || [ "$4" == "1" ]; then
         COMMON=1
@@ -104,8 +94,19 @@ function setup_vendor() {
         VENDOR_RADIO_STATE=0
     fi
 
+    export BINARIES_LOCATION="$ANDROID_ROOT"/prebuilts/extract-tools/${HOST}-x86/bin
+
+    for version in 0_8 0_9; do
+        export PATCHELF_${version}="$BINARIES_LOCATION"/patchelf-"${version}"
+    done
+
+    if [ -z "$PATCHELF_VERSION" ]; then
+        export PATCHELF_VERSION=0_9
+    fi
+
     if [ -z "$PATCHELF" ]; then
-        export PATCHELF="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/patchelf
+        local patchelf_variable="PATCHELF_${PATCHELF_VERSION}"
+        export PATCHELF=${!patchelf_variable}
     fi
 }
 
@@ -357,6 +358,7 @@ function write_blueprint_packages() {
     local EXTENSION=
     local PKGNAME=
     local SRC=
+    local OVERRIDEPKG=
 
     for P in "${FILELIST[@]}"; do
         FILE=$(target_file "$P")
@@ -422,11 +424,22 @@ function write_blueprint_packages() {
                 SRC="$SRC/app"
             fi
             printf '\tapk: "%s/%s",\n' "$SRC" "$FILE"
-            if [ "$ARGS" = "PRESIGNED" ]; then
-                printf '\tpresigned: true,\n'
-            elif [ ! -z "$ARGS" ]; then
-                printf '\tcertificate: "%s",\n' "$ARGS"
-            else
+            ARGS=(${ARGS//;/ })
+            USE_PLATFORM_CERTIFICATE="true"
+            for ARG in "${ARGS[@]}"; do
+                if [ "$ARG" = "PRESIGNED" ]; then
+                    USE_PLATFORM_CERTIFICATE="false"
+                    printf '\tpresigned: true,\n'
+                elif [[ "$ARG" =~ "OVERRIDES" ]]; then
+                    OVERRIDEPKG=${ARG#*=}
+                    OVERRIDEPKG=${OVERRIDEPKG//,/\", \"}
+                    printf '\toverrides: ["%s"],\n' "$OVERRIDEPKG"
+                elif [ ! -z "$ARG" ]; then
+                    USE_PLATFORM_CERTIFICATE="false"
+                    printf '\tcertificate: "%s",\n' "$ARG"
+                fi
+            done
+            if [ "$USE_PLATFORM_CERTIFICATE" = "true" ]; then
                 printf '\tcertificate: "platform",\n'
             fi
         elif [ "$CLASS" = "JAVA_LIBRARIES" ]; then
@@ -464,6 +477,9 @@ function write_blueprint_packages() {
                 SRC="$SRC/bin"
             fi
             printf '\tsrcs: ["%s/%s"],\n' "$SRC" "$FILE"
+            if [ "$EXTENSION" != "sh" ]; then
+                printf '\tcheck_elf_files: false,\n'
+            fi
             unset EXTENSION
         else
             printf '\tsrcs: ["%s/%s"],\n' "$SRC" "$FILE"
@@ -920,7 +936,7 @@ function write_product_packages() {
 #
 # $1: file which will be written to
 #
-# writes out the copyright header with the current year.
+# writes out the warning message regarding manual file modifications.
 # note that this is not an append operation, and should
 # be executed first!
 #
@@ -929,42 +945,12 @@ function write_blueprint_header() {
         rm $1
     fi
 
-    YEAR=$(date +"%Y")
-
     [ "$COMMON" -eq 1 ] && local DEVICE="$DEVICE_COMMON"
 
-    printf "/**\n" > $1
-    NUM_REGEX='^[0-9]+$'
-    if [[ ! $INITIAL_COPYRIGHT_YEAR =~ $NUM_REGEX ]] || [ $INITIAL_COPYRIGHT_YEAR -lt 2019 ]; then
-        BLUEPRINT_INITIAL_COPYRIGHT_YEAR=2019
-    else
-        BLUEPRINT_INITIAL_COPYRIGHT_YEAR=$INITIAL_COPYRIGHT_YEAR
-    fi
-
-    if [ $BLUEPRINT_INITIAL_COPYRIGHT_YEAR -eq $YEAR ]; then
-        printf " * Copyright (C) $YEAR The LineageOS Project\n" >> $1
-    elif [ $BLUEPRINT_INITIAL_COPYRIGHT_YEAR -le 2019 ]; then
-        printf " * Copyright (C) 2019-$YEAR The LineageOS Project\n" >> $1
-    else
-        printf " * Copyright (C) $BLUEPRINT_INITIAL_COPYRIGHT_YEAR-$YEAR The LineageOS Project\n" >> $1
-    fi
-
     cat << EOF >> $1
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * This file is generated by device/$VENDOR/$DEVICE/setup-makefiles.sh
- */
+// Automatically generated file. DO NOT MODIFY
+//
+// This file is generated by device/$VENDOR/$DEVICE/setup-makefiles.sh
 
 EOF
 }
@@ -974,7 +960,7 @@ EOF
 #
 # $1: file which will be written to
 #
-# writes out the copyright header with the current year.
+# writes out the warning message regarding manual file modifications.
 # note that this is not an append operation, and should
 # be executed first!
 #
@@ -983,44 +969,11 @@ function write_makefile_header() {
         rm $1
     fi
 
-    YEAR=$(date +"%Y")
-
     [ "$COMMON" -eq 1 ] && local DEVICE="$DEVICE_COMMON"
 
-    NUM_REGEX='^[0-9]+$'
-    if [[ $INITIAL_COPYRIGHT_YEAR =~ $NUM_REGEX ]] && [ $INITIAL_COPYRIGHT_YEAR -le $YEAR ]; then
-        if [ $INITIAL_COPYRIGHT_YEAR -lt 2016 ]; then
-            printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-2016 The CyanogenMod Project\n" > $1
-        elif [ $INITIAL_COPYRIGHT_YEAR -eq 2016 ]; then
-            printf "# Copyright (C) 2016 The CyanogenMod Project\n" > $1
-        fi
-        if [ $YEAR -eq 2017 ]; then
-            printf "# Copyright (C) 2017 The LineageOS Project\n" >> $1
-        elif [ $INITIAL_COPYRIGHT_YEAR -eq $YEAR ]; then
-            printf "# Copyright (C) $YEAR The LineageOS Project\n" >> $1
-        elif [ $INITIAL_COPYRIGHT_YEAR -le 2017 ]; then
-            printf "# Copyright (C) 2017-$YEAR The LineageOS Project\n" >> $1
-        else
-            printf "# Copyright (C) $INITIAL_COPYRIGHT_YEAR-$YEAR The LineageOS Project\n" >> $1
-        fi
-    else
-        printf "# Copyright (C) $YEAR The LineageOS Project\n" > $1
-    fi
-
     cat << EOF >> $1
+# Automatically generated file. DO NOT MODIFY
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 # This file is generated by device/$VENDOR/$DEVICE/setup-makefiles.sh
 
 EOF
@@ -1249,23 +1202,23 @@ function get_file() {
 # Convert apk|jar .odex in the corresposing classes.dex
 #
 function oat2dex() {
-    local LINEAGE_TARGET="$1"
+    local CUSTOM_TARGET="$1"
     local OEM_TARGET="$2"
     local SRC="$3"
     local TARGET=
     local OAT=
 
     if [ -z "$BAKSMALIJAR" ] || [ -z "$SMALIJAR" ]; then
-        export BAKSMALIJAR="$LINEAGE_ROOT"/prebuilts/tools-lineage/common/smali/baksmali.jar
-        export SMALIJAR="$LINEAGE_ROOT"/prebuilts/tools-lineage/common/smali/smali.jar
+        export BAKSMALIJAR="$ANDROID_ROOT"/prebuilts/extract-tools/common/smali/baksmali.jar
+        export SMALIJAR="$ANDROID_ROOT"/prebuilts/extract-tools/common/smali/smali.jar
     fi
 
     if [ -z "$VDEXEXTRACTOR" ]; then
-        export VDEXEXTRACTOR="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/vdexExtractor
+        export VDEXEXTRACTOR="$ANDROID_ROOT"/prebuilts/extract-tools/${HOST}-x86/bin/vdexExtractor
     fi
 
     if [ -z "$CDEXCONVERTER" ]; then
-        export CDEXCONVERTER="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/compact_dex_converter
+        export CDEXCONVERTER="$ANDROID_ROOT"/prebuilts/extract-tools/${HOST}-x86/bin/compact_dex_converter
     fi
 
     # Extract existing boot.oats to the temp folder
@@ -1285,11 +1238,11 @@ function oat2dex() {
         FULLY_DEODEXED=1 && return 0 # system is fully deodexed, return
     fi
 
-    if [ ! -f "$LINEAGE_TARGET" ]; then
+    if [ ! -f "$CUSTOM_TARGET" ]; then
         return;
     fi
 
-    if grep "classes.dex" "$LINEAGE_TARGET" >/dev/null; then
+    if grep "classes.dex" "$CUSTOM_TARGET" >/dev/null; then
         return 0 # target apk|jar is already odexed, return
     fi
 
@@ -1317,7 +1270,7 @@ function oat2dex() {
                 java -jar "$BAKSMALIJAR" deodex -o "$TMPDIR/dexout" -b "$BOOTOAT" -d "$TMPDIR" "$TMPDIR/$(basename "$OAT")"
                 java -jar "$SMALIJAR" assemble "$TMPDIR/dexout" -o "$TMPDIR/classes.dex"
             fi
-        elif [[ "$LINEAGE_TARGET" =~ .jar$ ]]; then
+        elif [[ "$CUSTOM_TARGET" =~ .jar$ ]]; then
             JAROAT="$TMPDIR/system/framework/$ARCH/boot-$(basename ${OEM_TARGET%.*}).oat"
             JARVDEX="/system/framework/boot-$(basename ${OEM_TARGET%.*}).vdex"
             if [ ! -f "$JAROAT" ]; then
@@ -1512,7 +1465,7 @@ function extract() {
     local FIXUP_HASHLIST=( ${PRODUCT_COPY_FILES_FIXUP_HASHES[@]} ${PRODUCT_PACKAGES_FIXUP_HASHES[@]} )
     local PRODUCT_COPY_FILES_COUNT=${#PRODUCT_COPY_FILES_LIST[@]}
     local COUNT=${#FILELIST[@]}
-    local OUTPUT_ROOT="$LINEAGE_ROOT"/"$OUTDIR"/proprietary
+    local OUTPUT_ROOT="$ANDROID_ROOT"/"$OUTDIR"/proprietary
     local OUTPUT_TMP="$TMPDIR"/"$OUTDIR"/proprietary
 
     if [ "$SRC" = "adb" ]; then
@@ -1549,7 +1502,7 @@ function extract() {
                 fi
                 if [ -a "$DUMPDIR"/"$PARTITION".new.dat ]; then
                     echo "Converting "$PARTITION".new.dat to "$PARTITION".img"
-                    python "$LINEAGE_ROOT"/vendor/carbon/build/tools/sdat2img.py "$DUMPDIR"/"$PARTITION".transfer.list "$DUMPDIR"/"$PARTITION".new.dat "$DUMPDIR"/"$PARTITION".img 2>&1
+                    python "$ANDROID_ROOT"/tools/extract-utils/sdat2img.py "$DUMPDIR"/"$PARTITION".transfer.list "$DUMPDIR"/"$PARTITION".new.dat "$DUMPDIR"/"$PARTITION".img 2>&1
                     rm -rf "$DUMPDIR"/"$PARTITION".new.dat "$DUMPDIR"/"$PARTITION"
                     mkdir "$DUMPDIR"/"$PARTITION" "$DUMPDIR"/tmp
                     echo "Requesting sudo access to mount the "$PARTITION".img"
@@ -1636,10 +1589,14 @@ function extract() {
         fi
 
         if [ "$KEEP" = "1" ]; then
-            printf '    + keeping pinned file with hash %s\n' "${HASH}"
+            if [ "${FIXUP_HASH}" != "x" ]; then
+                printf '    + keeping pinned file with hash %s\n' "${FIXUP_HASH}"
+            else
+                printf '    + keeping pinned file with hash %s\n' "${HASH}"
+            fi
         else
             FOUND=false
-            # Try Lineage target first.
+            # Try custom target first.
             # Also try to search for files stripped of
             # the "/system" prefix, if we're actually extracting
             # from a system image.
@@ -1651,53 +1608,53 @@ function extract() {
             done
 
             if [ "${FOUND}" = false ]; then
-                printf '    !! %s: file not found in source\n' "${BLOB_DISPLAY_NAME}"
+                colored_echo red "    !! ${BLOB_DISPLAY_NAME}: file not found in source"
                 continue
             fi
-        fi
 
-        # Blob fixup pipeline has 2 parts: one that is fixed and
-        # one that is user-configurable
-        local PRE_FIXUP_HASH=$(get_hash ${VENDOR_REPO_FILE})
-        # Deodex apk|jar if that's the case
-        if [[ "$FULLY_DEODEXED" -ne "1" && "${VENDOR_REPO_FILE}" =~ .(apk|jar)$ ]]; then
-            oat2dex "${VENDOR_REPO_FILE}" "${SRC_FILE}" "$SRC"
-            if [ -f "$TMPDIR/classes.dex" ]; then
-                touch -t 200901010000 "$TMPDIR/classes"*
-                zip -gjq "${VENDOR_REPO_FILE}" "$TMPDIR/classes"*
-                rm "$TMPDIR/classes"*
-                printf '    (updated %s from odex files)\n' "${SRC_FILE}"
+            # Blob fixup pipeline has 2 parts: one that is fixed and
+            # one that is user-configurable
+            local PRE_FIXUP_HASH=$(get_hash ${VENDOR_REPO_FILE})
+            # Deodex apk|jar if that's the case
+            if [[ "$FULLY_DEODEXED" -ne "1" && "${VENDOR_REPO_FILE}" =~ .(apk|jar)$ ]]; then
+                oat2dex "${VENDOR_REPO_FILE}" "${SRC_FILE}" "$SRC"
+                if [ -f "$TMPDIR/classes.dex" ]; then
+                    touch -t 200901010000 "$TMPDIR/classes"*
+                    zip -gjq "${VENDOR_REPO_FILE}" "$TMPDIR/classes"*
+                    rm "$TMPDIR/classes"*
+                    printf '    (updated %s from odex files)\n' "${SRC_FILE}"
+                fi
+            elif [[ "${VENDOR_REPO_FILE}" =~ .xml$ ]]; then
+                fix_xml "${VENDOR_REPO_FILE}"
             fi
-        elif [[ "${VENDOR_REPO_FILE}" =~ .xml$ ]]; then
-            fix_xml "${VENDOR_REPO_FILE}"
-        fi
-        # Now run user-supplied fixup function
-        blob_fixup "${BLOB_DISPLAY_NAME}" "${VENDOR_REPO_FILE}"
-        local POST_FIXUP_HASH=$(get_hash ${VENDOR_REPO_FILE})
+            # Now run user-supplied fixup function
+            blob_fixup "${BLOB_DISPLAY_NAME}" "${VENDOR_REPO_FILE}"
+            local POST_FIXUP_HASH=$(get_hash ${VENDOR_REPO_FILE})
 
-        if [ -f "${VENDOR_REPO_FILE}" ]; then
-            local DIR=$(dirname "${VENDOR_REPO_FILE}")
-            local TYPE="${DIR##*/}"
-            if [ "$TYPE" = "bin" -o "$TYPE" = "sbin" ]; then
-                chmod 755 "${VENDOR_REPO_FILE}"
-            else
-                chmod 644 "${VENDOR_REPO_FILE}"
+            if [ -f "${VENDOR_REPO_FILE}" ]; then
+                local DIR=$(dirname "${VENDOR_REPO_FILE}")
+                local TYPE="${DIR##*/}"
+                if [ "$TYPE" = "bin" -o "$TYPE" = "sbin" ]; then
+                    chmod 755 "${VENDOR_REPO_FILE}"
+                else
+                    chmod 644 "${VENDOR_REPO_FILE}"
+                fi
             fi
-        fi
 
-        if [ "${KANG}" =  true ]; then
-            print_spec "${IS_PRODUCT_PACKAGE}" "${SPEC_SRC_FILE}" "${SPEC_DST_FILE}" "${SPEC_ARGS}" "${PRE_FIXUP_HASH}" "${POST_FIXUP_HASH}"
-        fi
+            if [ "${KANG}" =  true ]; then
+                print_spec "${IS_PRODUCT_PACKAGE}" "${SPEC_SRC_FILE}" "${SPEC_DST_FILE}" "${SPEC_ARGS}" "${PRE_FIXUP_HASH}" "${POST_FIXUP_HASH}"
+            fi
 
-        # Check and print whether the fixup pipeline actually did anything.
-        # This isn't done right after the fixup pipeline because we want this print
-        # to come after print_spec above, when in kang mode.
-        if [ "${PRE_FIXUP_HASH}" != "${POST_FIXUP_HASH}" ]; then
-            printf "    + Fixed up %s\n" "${BLOB_DISPLAY_NAME}"
-            # Now sanity-check the spec for this blob.
-            if [ "${KANG}" = false ] && [ "${FIXUP_HASH}" = "x" ] && [ "${HASH}" != "x" ]; then
-                printf "WARNING: The %s file was fixed up, but it is pinned.\n" ${BLOB_DISPLAY_NAME}
-                printf "This is a mistake and you want to either remove the hash completely, or add an extra one.\n"
+            # Check and print whether the fixup pipeline actually did anything.
+            # This isn't done right after the fixup pipeline because we want this print
+            # to come after print_spec above, when in kang mode.
+            if [ "${PRE_FIXUP_HASH}" != "${POST_FIXUP_HASH}" ]; then
+                printf "    + Fixed up %s\n" "${BLOB_DISPLAY_NAME}"
+                # Now sanity-check the spec for this blob.
+                if [ "${KANG}" = false ] && [ "${FIXUP_HASH}" = "x" ] && [ "${HASH}" != "x" ]; then
+                    colored_echo yellow "WARNING: The ${BLOB_DISPLAY_NAME} file was fixed up, but it is pinned."
+                    colored_echo yellow "This is a mistake and you want to either remove the hash completely, or add an extra one."
+                fi
             fi
         fi
 
@@ -1727,7 +1684,7 @@ function extract_firmware() {
     local FILELIST=( ${PRODUCT_COPY_FILES_LIST[@]} )
     local COUNT=${#FILELIST[@]}
     local SRC="$2"
-    local OUTPUT_DIR="$LINEAGE_ROOT"/"$OUTDIR"/radio
+    local OUTPUT_DIR="$ANDROID_ROOT"/"$OUTDIR"/radio
 
     if [ "$VENDOR_RADIO_STATE" -eq "0" ]; then
         echo "Cleaning firmware output directory ($OUTPUT_DIR).."
@@ -1818,6 +1775,9 @@ function generate_prop_list_from_image() {
 
     find "$image_dir" -not -type d | sed "s#^$image_dir/##" | while read -r FILE
     do
+        if suffix_match_file ".odex" "$FILE" || suffix_match_file ".vdex" "$FILE" ; then
+            continue
+        fi
         # Skip VENDOR_SKIP_FILES since it will be re-generated at build time
         if array_contains "$FILE" "${VENDOR_SKIP_FILES[@]}"; then
             continue
@@ -1838,4 +1798,25 @@ function generate_prop_list_from_image() {
 
     # Clean-up
     rm -f "$output_list_tmp"
+}
+
+function colored_echo() {
+    IFS=" "
+    local color=$1;
+    shift
+    if ! [[ $color =~ '^[0-9]$' ]] ; then
+        case $(echo $color | tr '[:upper:]' '[:lower:]') in
+        black) color=0 ;;
+        red) color=1 ;;
+        green) color=2 ;;
+        yellow) color=3 ;;
+        blue) color=4 ;;
+        magenta) color=5 ;;
+        cyan) color=6 ;;
+        white|*) color=7 ;; # white or invalid color
+        esac
+    fi
+    if [ -t 1 ] ; then tput setaf $color; fi
+    printf '%s\n' "$*"
+    if [ -t 1 ] ; then tput sgr0; fi
 }
