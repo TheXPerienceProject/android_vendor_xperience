@@ -24,6 +24,9 @@
     <!-- Control whether status bar should distinguish HSPA data icon form UMTS data icon on devices -->
     <bool name="config_hspa_data_distinguishable">true</bool>
 
+    <!-- Whether to show activity indicators in the status bar -->
+    <bool name="config_showActivity">false</bool>
+
     <!-- If true, enable the advance anti-falsing classifier on the lockscreen. On some devices it
          does not work well, particularly with noisy touchscreens. Note that disabling it may
          increase the rate of unintentional unlocks. -->
