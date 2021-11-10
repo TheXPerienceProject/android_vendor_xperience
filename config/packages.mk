@@ -53,6 +53,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	com.sony.device
 
+# CAF packages
+PRODUCT_PACKAGES += \
+    Mms \
+    QtiSoundRecorder \
+ifneq ($(TARGET_HAS_LOW_RAM),true)
+    SnapdragonMusic \
+endif
+    SnapdragonCamera \
+    librmnetctl \
 
 # Config
 PRODUCT_PACKAGES += \
