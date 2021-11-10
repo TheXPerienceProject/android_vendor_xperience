@@ -139,7 +139,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
     XPeriaWeather
 
-#-include vendor/qcom/common/perf/packages.mk
+-include vendor/xperience/xperience-performance/common/perf-common.mk
 
 # if exist track perf changes
 -include vendor/extras/extras.mk
