@@ -146,7 +146,7 @@ DEVICE_PACKAGE_OVERLAYS += device/qcom/common/device/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/product/overlay
 endif
 
--include vendor/xperience/xperience-performance/common/perf-common.mk
+# -include vendor/xperience/xperience-performance/common/perf-common.mk
 
 # if exist track perf changes
 -include vendor/extras/extras.mk
