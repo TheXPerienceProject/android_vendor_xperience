@@ -38,7 +38,6 @@ endif
 
 # Packages
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0 \
     libpsi.vendor \
     libtflite \
     vendor.qti.hardware.servicetracker@1.2.vendor
