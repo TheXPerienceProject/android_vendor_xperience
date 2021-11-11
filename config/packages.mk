@@ -138,6 +138,14 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
     XPeriaWeather
 
+
+ifneq ($(strip $(TARGET_USES_RRO)),true)
+# enable overlays to use our version of
+# source/resources etc.
+DEVICE_PACKAGE_OVERLAYS += device/qcom/common/device/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/product/overlay
+endif
+
 -include vendor/xperience/xperience-performance/common/perf-common.mk
 
 # if exist track perf changes
