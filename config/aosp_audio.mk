@@ -198,7 +198,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ringtones/Vespa.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Vespa.ogg
 
 # Newer sounds
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     vendor/xperience_themes/audio/ui/WirelessChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/WirelessChargingStarted.ogg \
     vendor/xperience_themes/audio/ui/WirelessChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/WirelessChargingStarted.ogg \
     vendor/xperience_themes/audio/ui/camera_click.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/camera_click.ogg \
