@@ -142,9 +142,14 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 ifneq ($(strip $(TARGET_USES_RRO)),true)
 # enable overlays to use our version of
 # source/resources etc.
+ifeq ($(TARGET_USE_QTI_BT_STACK),true)
 DEVICE_PACKAGE_OVERLAYS += device/qcom/common/device/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/qcom/common/product/overlay
-endif
+else
+DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/qcom/common/device/overlay
+PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/qcom/common/product/overlay
+endif #TARGET_USE_QTI_BT_STACK
+endif #TARGET_USES_RRO
 
 # -include vendor/xperience/xperience-performance/common/perf-common.mk
 
