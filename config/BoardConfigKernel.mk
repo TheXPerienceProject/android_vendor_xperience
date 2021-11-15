@@ -56,7 +56,7 @@ else
 KERNEL_ARCH := $(TARGET_KERNEL_ARCH)
 endif
 
-CLANG_PREBUILTS := $(BUILD_TOP)/vendor/qcom/sdclang/compiler
+CLANG_PREBUILTS := $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TAG)/clang-r416183b
 GCC_PREBUILTS := $(BUILD_TOP)/prebuilts/gcc/$(HOST_PREBUILT_TAG)
 # arm64 toolchain
 KERNEL_TOOLCHAIN_arm64 := $(GCC_PREBUILTS)/aarch64/aarch64-linux-android-4.9/bin
