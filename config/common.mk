@@ -179,3 +179,5 @@ $(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
 # Optimize everything for preopt
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 
+# Skip boot JAR checks.
+SKIP_BOOT_JARS_CHECK := true
