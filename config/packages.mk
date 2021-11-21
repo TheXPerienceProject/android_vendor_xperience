@@ -1,6 +1,4 @@
 # Additional packages
-# themes
-# $(call inherit-product, vendor/themes/themes.mk)
 
 # Include AOSP audio files
 include vendor/xperience/config/aosp_audio.mk
@@ -12,31 +10,6 @@ include vendor/xperience/config/xpe_audio.mk
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librsjni
-
-# Telephony
-PRODUCT_PACKAGES += \
-    extphonelib \
-    extphonelib-product \
-    extphonelib.xml \
-    extphonelib_product.xml \
-    ims-ext-common \
-    ims_ext_common.xml \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-hidl-wrapper-prd \
-    qti_telephony_hidl_wrapper_prd.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    tcmiface \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    tcmiface \
-    telephony-ext
-
-# CellBroadcastReceiver
-PRODUCT_PACKAGES += \
-CellBroadcastReceiver
 
 # Exchange support
 PRODUCT_PACKAGES += \
@@ -85,12 +58,7 @@ PRODUCT_PACKAGES += \
 
 endif
 
-#SetupWizard
-#ifneq ($(TARGET_BUILD_VARIANT), eng)
-#PRODUCT_PACKAGES += \
-#    XPerienceSetupWizard
-#endif
-
+# Charger
 PRODUCT_PACKAGES += \
     charger_res_images \
     cm_charger_res_images \
