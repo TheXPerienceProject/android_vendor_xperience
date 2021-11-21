@@ -27,10 +27,12 @@ PRODUCT_PACKAGES += \
     qti_telephony_hidl_wrapper_prd.xml \
     qti-telephony-utils \
     qti_telephony_utils.xml \
+    tcmiface \
     telephony-ext
 
-#PRODUCT_BOOT_JARS += \
-#    telephony-ext
+PRODUCT_BOOT_JARS += \
+    tcmiface \
+    telephony-ext
 
 # CellBroadcastReceiver
 PRODUCT_PACKAGES += \
