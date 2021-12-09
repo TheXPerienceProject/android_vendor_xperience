@@ -457,6 +457,34 @@ function githubremote()
     echo "Remote 'gh' created"
 }
 
+function apb()
+{
+echo -e "${CLR_BLD_GRN}Setting up the environment ${CLR_RST}"
+echo -e ""
+export XPERIENCE_CHANNEL=OFFICIAL
+export SELINUX_IGNORE_NEVERALLOWS=true
+export SELINUX_IGNORE_NEVERALLOWS_ON_USER=true
+# Setting up CCACHE
+ccache_path=$(which ccache)
+if [ ! -z "$ccache_path" ]; then
+  export CCACHE_EXEC="$ccache_path"
+  echo "ccache found and CCACHE_EXEC has been set to : $ccache_path"
+else
+  echo "ccache not found/installed!"
+fi
+export CCACHE_SLOPPINESS=time_macros,include_file_mtime,file_macro
+export USE_CCACHE=true
+export CCACHE_DIR=~/.ccache16
+export CCACHE_CPP2=yes
+ccache -M 30G
+
+if [ -f $dir/out/.lock ]; then
+rm out/.lock
+fi
+	m -j "$@"
+
+}
+
 function installboot()
 {
     if [ ! -e "$OUT/recovery/root/system/etc/recovery.fstab" ];
