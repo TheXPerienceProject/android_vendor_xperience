@@ -49,7 +49,7 @@ PRODUCT_PACKAGES += \
     libvndfwk_detect_jni.qti.vendor \
     libqti_vndfwk_detect.vendor
 
-#PRODUCT_BOOT_JARS += \
-#    tcmiface \
-#    telephony-ext
+PRODUCT_BOOT_JARS += \
+    tcmiface \
+    telephony-ext
 
