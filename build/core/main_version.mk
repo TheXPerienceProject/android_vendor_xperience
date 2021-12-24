@@ -25,10 +25,6 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
 
 XPE_DISPLAY_VERSION := $(XPE_VERSION)
 
-# Gaussian Blur
-ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.sf.blurs_are_expensive=1 \
-    ro.surface_flinger.supports_background_blur=1
 
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
 # Signing
