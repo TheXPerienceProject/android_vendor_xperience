@@ -178,6 +178,8 @@ KERNEL_MAKE_CMD := $(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)/bin/m
 # Set the full path to the clang command
 KERNEL_MAKE_FLAGS += HOSTCC=$(CLANG_PREBUILTS)/bin/clang
 KERNEL_MAKE_FLAGS += HOSTCXX=$(CLANG_PREBUILTS)/bin/clang++
+KERNEL_MAKE_FLAGS += HOSTAR=$(CLANG_PREBUILTS)/bin/llvm-ar
+KERNEL_MAKE_FLAGS += HOSTLD=$(CLANG_PREBUILTS)/bin/ld.lld
 
 # Since Linux 4.16, flex and bison are required
 ifeq ($(TARGET_NEEDS_PREBUILT_FLEX_BISON), true)
