@@ -87,10 +87,7 @@ PRODUCT_PACKAGES += \
 #endif
 
 PRODUCT_PACKAGES += \
-    charger_res_images \
-    cm_charger_res_images \
-    font_log.png \
-    libhealthd.lineage
+    charger_res_images
 
 # FS tools
 PRODUCT_PACKAGES += \
