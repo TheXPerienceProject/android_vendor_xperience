@@ -183,3 +183,7 @@ PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 
 # Skip boot JAR checks.
 SKIP_BOOT_JARS_CHECK := true
+
+# Increase volume level steps
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.config.media_vol_steps=30
