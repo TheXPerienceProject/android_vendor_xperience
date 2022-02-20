@@ -158,3 +158,7 @@ $(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
 # Optimize everything for preopt
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 
+# Increase volume level steps
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.config.media_vol_steps=30
+
