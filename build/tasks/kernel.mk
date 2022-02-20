@@ -469,6 +469,18 @@ $(file) : $(KERNEL_BIN) | $(ACP)
 ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 endif
 
+ifeq ($(RECOVERY_KERNEL_COPY),true)
+file := $(INSTALLED_RECOVERY_KERNEL_TARGET)
+ALL_PREBUILT += $(file)
+$(file) : $(RECOVERY_BIN) | $(ACP)
+	$(transform-prebuilt-to-target)
+
+ALL_PREBUILT += $(INSTALLED_RECOVERY_KERNEL_TARGET)
+endif
+
+.PHONY: recovery-kernel
+recovery-kernel: $(INSTALLED_RECOVERY_KERNEL_TARGET)
+
 .PHONY: kernel
 kernel: $(INSTALLED_KERNEL_TARGET)
 
