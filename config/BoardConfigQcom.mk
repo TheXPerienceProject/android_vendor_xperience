@@ -170,7 +170,7 @@ PRODUCT_SOONG_NAMESPACES += \
 endif #TARGET_USE_QTI_BT_STACK
 
 # Enable libqdMetadata and libdisplayconfig on 4.9, 4.14, 4.19 targets
-ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY),$(TARGET_BOARD_PLATFORM)),)
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display/libdisplayconfig \
     vendor/qcom/opensource/commonsys-intf/display/libqdmetadata
