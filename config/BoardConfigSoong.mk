@@ -40,7 +40,8 @@ SOONG_CONFIG_xperienceGlobalVars += \
     target_ld_shim_libs \
     target_process_sdk_version_override \
     target_surfaceflinger_udfps_lib \
-    uses_camera_parameter_lib
+    uses_camera_parameter_lib \
+    uses_egl_display_array
 
 SOONG_CONFIG_NAMESPACES += xperienceNvidiaVars
 SOONG_CONFIG_xperienceNvidiaVars += \
@@ -81,6 +82,7 @@ SOONG_CONFIG_xperienceQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES
 SOONG_CONFIG_xperienceQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
 SOONG_CONFIG_xperienceQcomVars_uses_qti_camera_device := $(TARGET_USES_QTI_CAMERA_DEVICE)
 SOONG_CONFIG_xperienceQcomVars_needs_camera_boottime_timestamp := $(TARGET_CAMERA_BOOTTIME_TIMESTAMP)
+SOONG_CONFIG_xperienceQcomVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_ARRAY)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0
