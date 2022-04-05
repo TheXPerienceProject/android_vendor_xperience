@@ -152,6 +152,14 @@ $(call inherit-product, vendor/gapps/common/common-vendor.mk)
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
 
+# Gapps overlays
+PRODUCT_PACKAGES += \
+    PixelSetupWizardOverlay \
+    PixelSetupWizardOverlay2019 \
+    PixelConfigOverlay2019Midyear \
+    PixelConfigOverlay2018 \
+    PixelConfigOverlay2019
+
 # Gboard side padding
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.ime.kb_pad_port_l=4 \
