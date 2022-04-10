@@ -54,3 +54,6 @@ PRODUCT_BOOT_JARS += \
     tcmiface \
     telephony-ext
 
+# WiFi
+PRODUCT_PACKAGES += \
+    libwpa_client
