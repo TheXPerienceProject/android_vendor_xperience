@@ -57,12 +57,14 @@ SOONG_CONFIG_xperienceQcomVars += \
     uses_pre_uplink_features_netmgrd \
     uses_qcom_bsp_legacy \
     uses_qti_camera_device \
-    needs_camera_boottime_timestamp
+    needs_camera_boottime_timestamp \
+    uses_qcom_old_display_hal
 
 # Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
 ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 SOONG_CONFIG_xperienceQcomVars += \
-    qcom_display_headers_namespace
+    qcom_display_headers_namespace \
+    qcom_display_intf_headers_namespace
 endif
 
 # Soong bool variables
@@ -81,6 +83,7 @@ SOONG_CONFIG_xperienceQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES
 SOONG_CONFIG_xperienceQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
 SOONG_CONFIG_xperienceQcomVars_uses_qti_camera_device := $(TARGET_USES_QTI_CAMERA_DEVICE)
 SOONG_CONFIG_xperienceQcomVars_needs_camera_boottime_timestamp := $(TARGET_CAMERA_BOOTTIME_TIMESTAMP)
+SOONG_CONFIG_xperienceQcomVars_uses_qcom_old_display_hal := $(TARGET_USES_OLD_DISPLAY_HAL)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0
@@ -99,8 +102,15 @@ SOONG_CONFIG_xperienceGlobalVars_target_surfaceflinger_udfps_lib := $(TARGET_SUR
 SOONG_CONFIG_xperienceGlobalVars_uses_camera_parameter_lib := $(TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY)
 ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := vendor/qcom/opensource/commonsys-intf/display
+SOONG_CONFIG_xperienceQcomVars_qcom_display_intf_headers_namespace := vendor/qcom/opensource/commonsys-intf/display
 else
 SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := $(QCOM_SOONG_NAMESPACE)/display
+ifeq ($(TARGET_USES_OLD_DISPLAY_HAL),true)
+SOONG_CONFIG_xperienceQcomVars_qcom_display_intf_headers_namespace := device/xperience/common/legacy/aidl/config
+PRODUCT_SOONG_NAMESPACES += device/xperience/common/legacy/aidl/config
+else
+SOONG_CONFIG_xperienceQcomVars_qcom_display_intf_headers_namespace := $(QCOM_SOONG_NAMESPACE)/display
+endif # TARGET_USES_OLD_DISPLAY_HAL
 endif
 
 ifneq ($(TARGET_USE_QTI_BT_STACK),true)
