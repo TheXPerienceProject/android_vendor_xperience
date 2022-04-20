@@ -496,39 +496,3 @@ stagefright_qcom_legacy {
         },
     },
 }
-
-soong_config_module_type {
-    name: "display_intf_headers_ext",
-    module_type: "cc_defaults",
-    config_namespace: "conquerQcomVars",
-    bool_variables: ["uses_qcom_old_display_hal"],
-    properties: ["header_libs"],
-}
-
-display_intf_headers_ext {
-    name: "display_intf_headers_qssi",
-    soong_config_variables: {
-        uses_qcom_old_display_hal: {
-            header_libs: ["display_intf_headers_sf"],
-        },
-    },
-}
-
-soong_config_module_type {
-    name: "surfaceflinger_qcom_extensions_display_intf",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceQcomVars",
-    value_variables: ["qcom_display_intf_headers_namespace"],
-    properties: [
-        "shared_libs",
-    ],
-}
-
-surfaceflinger_qcom_extensions_display_intf {
-    name: "surfaceflinger_qcom_display_intf",
-    soong_config_variables: {
-        qcom_display_intf_headers_namespace: {
-            shared_libs: ["//%s:vendor.qti.hardware.display.config-V5-ndk_platform"],
-        },
-    },
-}
