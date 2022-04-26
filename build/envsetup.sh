@@ -305,31 +305,143 @@ function aospremote()
     echo "Remote 'aosp' created"
 }
 
-function cafremote()
-{
-    if ! git rev-parse --git-dir &> /dev/null
-    then
-        echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
-        return 1
-    fi
-    git remote rm caf 2> /dev/null
-    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
-     # Google moved the repo location in Oreo
-    if [ $PROJECT = "build/make" ]
-    then
-        PROJECT="build"
-    fi
-    if [[ $PROJECT =~ "qcom/opensource" ]];
-    then
-        PROJECT=$(echo $PROJECT | sed -e "s#qcom\/opensource#qcom-opensource#")
-    fi
-    if (echo $PROJECT | grep -qv "^device")
-    then
-        local PFX="platform/"
-    fi
-    git remote add caf https://git.codelinaro.org/clo/la/$PFX$PROJECT
-    echo "Remote 'caf' created"
+function cafremote() {
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+    return 1
+  fi
+
+  git remote rm caf 2>/dev/null
+  local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+
+  # Google moved the repo location in Oreo
+  if [ $PROJECT = "build/make" ]; then
+    PROJECT="build"
+  fi
+  # Qcom opensource path
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth" ]; then
+    PROJECT="vendor/qcom-opensource/bluetooth"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth_ext" ]; then
+    PROJECT="vendor/qcom-opensource/bluetooth_ext"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys-intf/bluetooth" ]; then
+    PROJECT="vendor/qcom-opensource/bluetooth-commonsys-intf"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/core-utils" ]; then
+    PROJECT="vendor/qcom-opensource/core-utils"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/cryptfs_hw" ]; then
+    PROJECT="vendor/qcom-opensource/cryptfs_hw"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/data-ipa-cfg-mgr" ]; then
+    PROJECT="vendor/qcom-opensource/data-ipa-cfg-mgr"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys-intf/display" ]; then
+    PROJECT="vendor/qcom-opensource/display-commonsys-intf"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/fm" ]; then
+    PROJECT="vendor/qcom-opensource/fm-commonsys"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/fst-manager" ]; then
+    PROJECT="vendor/qcom-opensource/fst-manager"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/interfaces" ]; then
+    PROJECT="vendor/qcom-opensource/interfaces"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/system/bt" ]; then
+    PROJECT="vendor/qcom-opensource/system/bt"
+  fi
+  if [ $PROJECT = "vendor/codeaurora/commonsys/telephony" ]; then
+    PROJECT="vendor/codeaurora/telephony"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/usb" ]; then
+    PROJECT="vendor/qcom-opensource/usb"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/vibrator" ]; then
+    PROJECT="vendor/qcom-opensource/vibrator"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/power" ]; then
+    PROJECT="vendor/qcom-opensource/power"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/recovery-ext" ]; then
+    PROJECT="vendor/qcom-opensource/recovery-ext"
+  fi
+  ### FINISH
+  if (echo $PROJECT | grep -qv "^device"); then
+    local PFX="platform/"
+  fi
+  git remote add caf https://git.codelinaro.org/clo/la/$PFX$PROJECT
+  echo "Remote 'caf' created"
 }
+
+function cafmerge() {
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+    return 1
+  fi
+
+  TOP="${ANDROID_BUILD_TOP}"
+  MANIFEST="${TOP}/.repo/manifests/default.xml"
+  QSSIBRANCH=$(grep "refs/tags/LA.QSSI" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
+  VENDORBRANCH=$(grep "refs/tags/LA.UM" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
+  XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
+
+  git fetch caf
+
+  local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+
+  if (echo $PROJECT | grep -qv "^vendor"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  else
+    local BRANCH=${VENDORBRANCH}
+    echo "Setting VENDOR branch"
+  fi
+
+  if (echo $PROJECT | grep -q "device/qcom/common"); then
+    local BRANCH=${VENDORBRANCH}
+    echo "Setting VENDOR branch"
+  fi
+
+  if (echo $PROJECT | grep -q "device/qcom/vendor-common"); then
+    local BRANCH=${VENDORBRANCH}
+    echo "Setting VENDOR branch"
+  fi
+
+  if (echo $PROJECT | grep -q "vendor/codeaurora/commonsys/telephony"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys-intf/display"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/interfaces"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/core-utils"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+
+  #git branch -d ${XPERIENCEBR}
+  git checkout -b ${XPERIENCEBR}
+  git merge --no-edit --log $BRANCH
+}
+
+function xpepush() {
+  TOP="${ANDROID_BUILD_TOP}"
+  MANIFEST="${TOP}/.repo/manifests/default.xml"
+  XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
+
+  git push xpe HEAD:${XPERIENCEBR}
+}
+
 
 function githubremote()
 {
