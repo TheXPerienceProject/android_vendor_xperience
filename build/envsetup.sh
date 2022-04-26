@@ -316,7 +316,7 @@ function cafremote() {
 
   # Google moved the repo location in Oreo
   if [ $PROJECT = "build/make" ]; then
-    PROJECT="build"
+    PROJECT="build_repo"
   fi
   # Qcom opensource path
   if [ $PROJECT = "vendor/qcom/opensource/commonsys/bluetooth" ]; then
