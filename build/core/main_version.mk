@@ -6,7 +6,7 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Draugr \
+    ro.xpe.codename=Skyfall \
     ro.xpelegal.url=http://thexperienceproject.org/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
