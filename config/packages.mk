@@ -37,12 +37,24 @@ PRODUCT_PACKAGES += \
 # Additional apps
 # PRODUCT_PACKAGES += \
 #    Etar \
-#    ExactCalculator \
-#    NightFallQuickStep \
 #    OmniStyle \
 #    Terminal \
 #    XPeriaWeather \
 #    Yunikon
+PRODUCT_PACKAGES += \
+    ExactCalculator \
+    NightFallQuickStep \
+    Seedvault \
+    XPeriaWeather \
+    Yunikon
+
+# Repainter integration
+PRODUCT_PACKAGES += \
+    RepainterServicePriv
+
+# Dummy for the weather
+PRODUCT_PACKAGES += \
+	com.sony.device
 
 # Config
 # PRODUCT_PACKAGES += \
