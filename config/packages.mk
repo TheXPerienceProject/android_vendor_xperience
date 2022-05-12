@@ -66,19 +66,19 @@ PRODUCT_PACKAGES += \
 #    QuickAccessWallet
 
 # Use signing keys for only official builds
-#ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
-#    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
-#    PRODUCT_OTA_PUBLIC_KEYS = .keys/otakey.x509.pem
+ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
+    PRODUCT_DEFAULT_DEV_CERTIFICATE := .keys/releasekey
+    PRODUCT_OTA_PUBLIC_KEYS := .keys/otakey.x509.pem
 
 # Only build OTA if official
-#PRODUCT_PACKAGES += \
-#    Updater
+PRODUCT_PACKAGES += \
+    Updater
 
 # XPerience postboot based on qcom file
-#PRODUCT_PACKAGES += \
-#    init.xperience.postboot.sh
+PRODUCT_PACKAGES += \
+    init.xperience.postboot.sh
 
-#endif
+endif
 
 PRODUCT_PACKAGES += \
     charger_res_images
