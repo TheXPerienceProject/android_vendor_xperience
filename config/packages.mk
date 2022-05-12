@@ -122,10 +122,10 @@ PRODUCT_PACKAGES += \
     xperience-hiddenapi-package-whitelist.xml
 
 # Themes
-#PRODUCT_PACKAGES += \
-#    ThemePicker \
-#    WallpaperPicker2 \
-#	XPerienceOverlayStub
+PRODUCT_PACKAGES += \
+    ThemePicker \
+    WallpaperPicker2 \
+	XPerienceOverlayStub
 
 #Coral cant include this due to lower superpartition size
 ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
