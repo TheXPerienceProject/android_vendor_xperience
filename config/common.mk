@@ -179,3 +179,7 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 # Enable whole-program R8 Java optimizations for SystemUI and system_server
 SYSTEM_OPTIMIZE_JAVA := true
 SYSTEMUI_OPTIMIZE_JAVA := true
+
+# Set default refresh rate threshold
+PRODUCT_VENDOR_PROPERTIES += \
+    debug.sf.frame_rate_multiple_threshold=60
