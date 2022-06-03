@@ -39,6 +39,7 @@ xperience_generator {
         "include/**/*",
         "arch/$(KERNEL_ARCH)/include/**/*",
         "techpack/audio/include/**/*",
+        "techpack/*/include/uapi/*/**/*.h",
     ],
 }
 
