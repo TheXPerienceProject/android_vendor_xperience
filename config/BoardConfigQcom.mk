@@ -11,15 +11,21 @@ LAHAINA := lahaina #SM8350
 B_FAMILY := msm8226 msm8610 msm8974
 B64_FAMILY := msm8992 msm8994
 BR_FAMILY := msm8909 msm8916
-UM_3_18_FAMILY := msm8937 msm8953 msm8996
+UM_3_18_FAMILY := msm8937 msm8996
 UM_4_4_FAMILY := msm8998 sdm660
 UM_4_9_FAMILY := sdm845 sdm710
 UM_4_14_FAMILY := $(MSMNILE) $(MSMSTEPPE) $(TRINKET) $(ATOLL)
 UM_4_19_FAMILY := $(KONA) $(LITO) $(BENGAL)
 UM_5_4_FAMILY := $(LAHAINA)
 UM_PLATFORMS := $(UM_3_18_FAMILY) $(UM_4_4_FAMILY) $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY)
-QSSI_SUPPORTED_PLATFORMS := $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY)  $(UM_5_4_FAMILY)
+QSSI_SUPPORTED_PLATFORMS := $(UM_4_9_FAMILY) $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY)
 PORTED_TO_UM_4_19_FAMILY := msm8953 msm8937 sdm660
+
+ifeq (,$(TARGET_ENFORCES_QSSI))
+UM_3_18_FAMILY += msm8953
+else
+QSSI_SUPPORTED_PLATFORMS += msm8953
+endif
 
 #Add this flag to allow the device to uses QSSI display headers
 ifeq ($(TARGET_USES_UM_4_19),true)
@@ -149,8 +155,11 @@ QCOM_SOONG_NAMESPACE ?= hardware/qcom-caf/$(QCOM_HARDWARE_VARIANT)
 PRODUCT_SOONG_NAMESPACES += $(QCOM_SOONG_NAMESPACE)
 
 # Add display-commonsys-intf to PRODUCT_SOONG_NAMESPACES for QSSI supported platforms
-ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS) $(UM_5_4_FAMILY),$(TARGET_BOARD_PLATFORM)),)
-    PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/commonsys-intf/display
+ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/commonsys/display \
+    vendor/qcom/opensource/commonsys-intf/display \
+    vendor/qcom/opensource/display
 endif
 
 # Add data-ipa-cfg-mgr to PRODUCT_SOONG_NAMESPACES if needed
@@ -166,7 +175,8 @@ endif
 ifeq ($(TARGET_USE_QTI_BT_STACK),true)
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
-    vendor/qcom/opensource/commonsys/system/bt/conf
+    vendor/qcom/opensource/commonsys/system/bt/conf \
+    vendor/qcom/opensource/commonsys/system/bt/main
 endif #TARGET_USE_QTI_BT_STACK
 
 # Enable libqdMetadata and libdisplayconfig on 4.9, 4.14, 4.19 targets
@@ -178,3 +188,7 @@ endif
 
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true
+
+# Default mount point symlinks to false
+# since they are not used on 8998 and up
+TARGET_MOUNT_POINTS_SYMLINKS ?= false
