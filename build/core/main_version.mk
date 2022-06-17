@@ -6,13 +6,16 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Skyfall \
+    ro.xpe.codename=Skydrow \
     ro.xpelegal.url=http://thexperienceproject.org/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
-   ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
-   ro.qcom.vendor=$(shell grep "refs/tags/LA.UM" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
+   ro.qcom.system=$(shell grep "refs/tags/android-12.1" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+   ro.qcom.vendor=LA.UM.9.14.r1-19600.01-LAHAINA.QSSI12.0
+
+# ro.qcom.vendor=$(shell grep "refs/tags/LA.UM" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
+# ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
 
 # Build fingerprint
 ifneq ($(BUILD_FINGERPRINT),)
