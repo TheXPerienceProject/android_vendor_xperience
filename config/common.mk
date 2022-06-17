@@ -125,9 +125,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
 
-# Include Common Qualcomm Device Tree.
-$(call inherit-product, device/xperience/common/common.mk)
-
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
