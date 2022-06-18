@@ -80,6 +80,9 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
+# PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
+
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool.sh:install/bin/backuptool.sh \
