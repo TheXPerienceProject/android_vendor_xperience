@@ -250,6 +250,24 @@ ifneq ($(TARGET_KERNEL_CLANG_COMPILE),false)
     endif
 endif
 
+# As
+ifeq ($(KERNEL_SUPPORTS_LLVM_TOOLS),true)
+    LLVM_TOOLS ?= $(TARGET_KERNEL_CLANG_PATH)/bin
+    KERNEL_LD := LD=$(LLVM_TOOLS)/ld.lld
+    KERNEL_AR := AR=$(LLVM_TOOLS)/llvm-ar
+    KERNEL_OBJCOPY := OBJCOPY=$(LLVM_TOOLS)/llvm-objcopy
+    KERNEL_OBJDUMP := OBJDUMP=$(LLVM_TOOLS)/llvm-objdump
+    KERNEL_NM := NM=$(LLVM_TOOLS)/llvm-nm
+    KERNEL_STRIP := STRIP=$(LLVM_TOOLS)/llvm-strip
+else
+    KERNEL_LD :=
+    KERNEL_AR :=
+    KERNEL_OBJCOPY :=
+    KERNEL_OBJDUMP :=
+    KERNEL_NM :=
+    KERNEL_STRIP :=
+endif
+
 ifneq ($(TARGET_KERNEL_MODULES),)
     $(error TARGET_KERNEL_MODULES is no longer supported!)
 endif
