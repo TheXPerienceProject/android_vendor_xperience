@@ -239,6 +239,7 @@ ifneq ($(TARGET_KERNEL_CLANG_COMPILE),false)
         # Use the default version of clang if TARGET_KERNEL_CLANG_VERSION hasn't been set by the device config
         KERNEL_CLANG_VERSION := $(LLVM_PREBUILTS_VERSION)
     endif
+
     TARGET_KERNEL_CLANG_PATH ?= $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TAG)/$(KERNEL_CLANG_VERSION)
     ifeq ($(KERNEL_ARCH),arm64)
         KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=aarch64-linux-gnu-
@@ -254,6 +255,24 @@ ifneq ($(TARGET_KERNEL_CLANG_COMPILE),false)
     ifeq ($(KERNEL_LD),)
         KERNEL_LD :=
     endif
+endif
+
+# As
+ifeq ($(KERNEL_SUPPORTS_LLVM_TOOLS),true)
+    LLVM_TOOLS ?= $(TARGET_KERNEL_CLANG_PATH)/bin
+    KERNEL_LD := LD=$(LLVM_TOOLS)/ld.lld
+    KERNEL_AR := AR=$(LLVM_TOOLS)/llvm-ar
+    KERNEL_OBJCOPY := OBJCOPY=$(LLVM_TOOLS)/llvm-objcopy
+    KERNEL_OBJDUMP := OBJDUMP=$(LLVM_TOOLS)/llvm-objdump
+    KERNEL_NM := NM=$(LLVM_TOOLS)/llvm-nm
+    KERNEL_STRIP := STRIP=$(LLVM_TOOLS)/llvm-strip
+else
+    KERNEL_LD :=
+    KERNEL_AR :=
+    KERNEL_OBJCOPY :=
+    KERNEL_OBJDUMP :=
+    KERNEL_NM :=
+    KERNEL_STRIP :=
 endif
 
 ifneq ($(TARGET_KERNEL_MODULES),)
