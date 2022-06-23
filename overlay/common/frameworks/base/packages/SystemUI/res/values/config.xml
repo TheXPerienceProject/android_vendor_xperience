@@ -40,11 +40,5 @@
         <item>com.android.systemui</item>
         <item>com.android.systemui.plugin.globalactions.wallet</item>
     </string-array>
-
-    <!-- SystemUIFactory component -->
-    <string name="config_systemUIFactoryComponent" translatable="false">mx.xperience.android.systemui.XPerienceSystemUIFactory</string>
-
-    <!-- SystemUI vendor service, used in config_systemUIServiceComponents. -->
-    <string name="config_systemUIVendorServiceComponent">mx.xperience.android.systemui.XPerienceServices</string>
 </resources>
 
