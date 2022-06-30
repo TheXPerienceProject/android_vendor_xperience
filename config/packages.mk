@@ -119,7 +119,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ThemePicker \
     WallpaperPicker2 \
-	XPerienceOverlayStub
+    XPerienceOverlayStub
 
 #Coral cant include this due to lower superpartition size
 ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
@@ -128,7 +128,8 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay
+    NavigationBarMode2ButtonOverlay \
+    XPerienceImmersiveNavigationOverlay
 
 # Dex preopt
 #PRODUCT_DEXPREOPT_SPEED_APPS += \
