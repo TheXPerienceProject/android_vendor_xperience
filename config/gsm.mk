@@ -12,17 +12,19 @@ PRODUCT_COPY_FILES += \
 
 # SIM Toolkit
 PRODUCT_PACKAGES += \
-    messaging \
-    Stk \
-    CellBroadcastReceiver
+    messaging
 
 # Tethering - allow without requiring a provisioning app
 # (for devices that check this)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
+# Telephony - AOSP
+PRODUCT_PACKAGES += \
+    CellBroadcastReceiver \
+    Stk
 
-# Telephony
+# Telephony - CLO
 PRODUCT_PACKAGES += \
     extphonelib \
     extphonelib-product \
@@ -30,12 +32,18 @@ PRODUCT_PACKAGES += \
     extphonelib_product.xml \
     ims-ext-common \
     ims_ext_common.xml \
+    tcmiface \
+    telephony-ext \
     qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
     qti-telephony-hidl-wrapper-prd \
+    qti_telephony_hidl_wrapper.xml \
     qti_telephony_hidl_wrapper_prd.xml \
     qti-telephony-utils \
+    qti-telephony-utils-prd \
     qti_telephony_utils.xml \
+    qti_telephony_utils_prd.xml
+
+PRODUCT_BOOT_JARS += \
     tcmiface \
     telephony-ext
 

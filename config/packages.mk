@@ -26,10 +26,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_BOOT_JARS += \
 #    telephony-ext
 
-# CellBroadcastReceiver
-PRODUCT_PACKAGES += \
-CellBroadcastReceiver
-
 # Exchange support
 PRODUCT_PACKAGES += \
     Exchange2
