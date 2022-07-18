@@ -57,14 +57,6 @@ KERNEL_ARCH := $(TARGET_KERNEL_ARCH)
 endif
 
 CLANG_PREBUILTS := $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TAG)/clang-r416183b
-ifeq ($(TARGET_CLANG_WITH_GNU_BINUTILS),true)
-# arm64 toolchain
-KERNEL_TOOLCHAIN_arm64 := $(CLANG_PREBUILTS)/bin
-KERNEL_TOOLCHAIN_PREFIX_arm64 := aarch64-linux-gnu-
-# arm toolchain
-KERNEL_TOOLCHAIN_arm := $(KERNEL_TOOLCHAIN_arm64)
-KERNEL_TOOLCHAIN_PREFIX_arm := arm-linux-gnueabi-
-else
 GCC_PREBUILTS := $(BUILD_TOP)/prebuilts/gcc/$(HOST_PREBUILT_TAG)
 # arm64 toolchain
 KERNEL_TOOLCHAIN_arm64 := $(GCC_PREBUILTS)/aarch64/aarch64-linux-android-4.9/bin
@@ -75,7 +67,6 @@ KERNEL_TOOLCHAIN_PREFIX_arm := arm-linux-androidkernel-
 # x86 toolchain
 KERNEL_TOOLCHAIN_x86 := $(GCC_PREBUILTS)/x86/x86_64-linux-android-4.9/bin
 KERNEL_TOOLCHAIN_PREFIX_x86 := x86_64-linux-android-
-endif
 
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(strip $(TARGET_KERNEL_CROSS_COMPILE_PREFIX))
 ifneq ($(TARGET_KERNEL_CROSS_COMPILE_PREFIX),)
