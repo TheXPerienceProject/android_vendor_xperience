@@ -357,6 +357,9 @@ function cafremote() {
   if [ $PROJECT = "vendor/qcom/opensource/recovery-ext" ]; then
     PROJECT="vendor/qcom-opensource/recovery-ext"
   fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/audio" ]; then
+    PROJECT="vendor/qcom-opensource/audio"
+  fi
   ### FINISH
   if (echo $PROJECT | grep -qv "^device"); then
     local PFX="platform/"
