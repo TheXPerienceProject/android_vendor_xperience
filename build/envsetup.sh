@@ -365,6 +365,24 @@ function cafremote() {
   echo "Remote 'caf' created"
 }
 
+function aospmerge() {
+
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+    return 1
+  fi
+#  git remote rm aosp 2>/dev/null
+  TOP="${ANDROID_BUILD_TOP}"
+  MANIFEST="${TOP}/.repo/manifests/default.xml"
+  XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3 | tail -1)
+  BRANCH=$(grep "refs/tags/android-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
+
+  #git branch -d ${XPERIENCEBR}
+  git fetch aosp
+  git checkout -b ${XPERIENCEBR}
+  git merge --no-edit --log $BRANCH
+}
+
 function cafmerge() {
   if ! git rev-parse --git-dir &>/dev/null; then
     echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
@@ -432,7 +450,7 @@ function cafmerge() {
 function xpepush() {
   TOP="${ANDROID_BUILD_TOP}"
   MANIFEST="${TOP}/.repo/manifests/default.xml"
-  XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
+  XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3 | tail -1)
 
   git push xpe HEAD:${XPERIENCEBR}
 }
