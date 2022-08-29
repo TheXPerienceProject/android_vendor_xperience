@@ -164,6 +164,9 @@ SQUISHER_SCRIPT := vendor/xperience/tools/squisher
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
+# Require all requested packages to exist
+$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(XPERIENCE_BUILD)/$(TARGET_PRODUCT).mk),)
+
 # Copy all xperience-specific init rc files
 $(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
