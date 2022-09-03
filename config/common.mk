@@ -54,10 +54,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
-    ro.opa.eligible_device=true \
-    setupwizard.theme=glif_v3_light \
-    setupwizard.enable_assist_gesture_training=true \
-    ro.com.google.ime.theme_id=4
+    setupwizard.enable_assist_gesture_training=true
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.selinux=1

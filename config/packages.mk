@@ -146,7 +146,9 @@ PRODUCT_PACKAGES += \
 
 ifeq ($(WITH_GMS), true)
 
-$(call inherit-product, vendor/gapps/common/common-vendor.mk)
+#$(call inherit-product, vendor/gapps/common/common-vendor.mk)
+$(call inherit-product, vendor/google/pixel/config.mk)
+$(call inherit-product, vendor/google/gms/config.mk)
 
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
