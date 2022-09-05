@@ -46,9 +46,6 @@ endif
 # error with prop override
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-# Disable extra StrictMode features on all non-engineering builds
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
-
 # general properties
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
@@ -88,6 +85,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # Backup Tool
+ifneq ($(WITH_GMS),true)
+
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/xperience/prebuilt/bin/backuptool.functions:install/bin/backuptool.functions \
@@ -98,6 +97,8 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
     vendor/xperience/prebuilt/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
     vendor/xperience/prebuilt/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+endif
+
 endif
 
 # Enable Android Beam on all targets
@@ -114,7 +115,7 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/media/audio/notifications/BatteryPlugged_48k.ogg:$(TARGET_COPY_OUT_SYSTEM)/media/audio/ui/BatteryPlugged_48k.ogg
 
 # Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= true
+TARGET_FACE_UNLOCK_SUPPORTED ?= false
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
 PRODUCT_PACKAGES += \
     FaceUnlockService
