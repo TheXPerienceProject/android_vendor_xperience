@@ -96,7 +96,8 @@ PRODUCT_PACKAGES += \
     mount.ntfs \
     mke2fs \
     mkfs.exfat \
-    mkfs.ntfs
+    mkfs.ntfs \
+    tune2fs
 
 # Permissions
 PRODUCT_PACKAGES += \

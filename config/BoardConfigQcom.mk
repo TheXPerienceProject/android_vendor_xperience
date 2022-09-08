@@ -172,13 +172,6 @@ ifneq ($(USE_DEVICE_SPECIFIC_DATASERVICES),true)
     PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/dataservices
 endif
 
-ifeq ($(TARGET_USE_QTI_BT_STACK),true)
-PRODUCT_SOONG_NAMESPACES += \
-    vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
-    vendor/qcom/opensource/commonsys/system/bt/conf \
-    vendor/qcom/opensource/commonsys/system/bt/main
-endif #TARGET_USE_QTI_BT_STACK
-
 # Enable libqdMetadata and libdisplayconfig on 4.9, 4.14, 4.19 targets
 ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 PRODUCT_SOONG_NAMESPACES += \
