@@ -156,4 +156,98 @@ PRODUCT_PACKAGES += \
 
 endif
 
+# fonts
+PRODUCT_PACKAGES += \
+    HarmonyOS-Sans-Italic.ttf \
+    HarmonyOS-Sans.ttf \
+    Lexend-VF.ttf \
+    Manrope-VF.ttf \
+    RobotoFallback-VF.ttf
 
+# Font overlays
+PRODUCT_PACKAGES += \
+    FontAccuratistOverlay \
+    FontAclonicaOverlay \
+    FontAmaranteOverlay \
+    FontAntipastoProOverlay \
+    FontArbutusSourceOverlay \
+    FontArvoLatoOverlay \
+    FontBariolOverlay \
+    FontCagliostroOverlay \
+    FontCoconOverlay \
+    FontComfortaaOverlay \
+    FontComicSansOverlay \
+    FontCoolstoryOverlay \
+    FontEvolveSansOverlay \
+    FontExotwoOverlay \
+    FontFifa2018Overlay \
+    FontFluidSansOverlay \
+    FontFucekOverlay \
+    FontGrandHotelOverlay \
+    FontHarmonySansOverlay \
+    FontInterSourceOverlay \
+    FontJTLeonorOverlay \
+    FontLGSmartGothicOverlay \
+    FontLemonMilkOverlay \
+    FontLinotteOverlay \
+    FontManropeOverlay \
+    FontMiSansOverlay \
+    FontNokiaPureOverlay \
+    FontNothingDotHeadlineOverlay \
+    FontNothingDotOverlay \
+    FontNotoSerifSource \
+    FontNunitoOverlay \
+    FontOdudaOverlay \
+    FontOnePlusSansOverlay \
+    FontOnePlusSlateOverlay \
+    FontOneUISansOverlay \
+    FontOppoSansOverlay \
+    FontOswaldOverlay \
+    FontProductSansVHOverlay \
+    FontQuandoOverlay \
+    FontRedressedOverlay \
+    FontReemKufiOverlay \
+    FontRobotoCondensedOverlay \
+    FontRobotoOverlay \
+    FontRosemaryOverlay \
+    FontRubikRubikOverlay \
+    FontSamsungOneOverlay \
+    FontSanFranciscoDisplayProSourceOverlay \
+    FontSimpleDaySourceOverlay \
+    FontSonySketchOverlay \
+    FontStoropiaOverlay \
+    FontSurferOverlay \
+    FontUbuntuOverlay
+
+# Statusbar Icons
+PRODUCT_PACKAGES += \
+    AquariumSignalOverlay \
+    BarsSignalOverlay \
+    DeepSignalOverlay \
+    HuaweiSignalOverlay \
+    InsideSignalOverlay \
+    IosSignalOverlay \
+    PillsSignalOverlay \
+    RoundSignalOverlay \
+    SneakySignalOverlay \
+    StrokeSignalOverlay \
+    WavySignalOverlay \
+    WeedWiFiOverlay \
+    XperiaSignalOverlay \
+    ZigZagSignalOverlay
+
+# Wi-Fi Icons
+PRODUCT_PACKAGES += \
+    BarsWiFiOverlay \
+    InsideWiFiOverlay \
+    RoundWiFiOverlay \
+    SneakyWiFiOverlay \
+    StrokeWiFiOverlay \
+    WavyWiFiOverlay \
+    XperiaWiFiOverlay \
+    ZigZagWiFiOverlay
+
+# Register vendor fonts
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,vendor/xperience_themes/product/fonts/,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
+    vendor/xperience_themes/product/etc/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
