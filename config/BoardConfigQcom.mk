@@ -179,6 +179,14 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display/libqdmetadata
 endif
 
+ifeq ($(TARGET_USES_AOSP_NFC),true)
+PRODUCT_SOONG_NAMESPACES += \
+    hardware/nxp/
+else 
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/nxp/opensource/  
+endif
+
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true
 
