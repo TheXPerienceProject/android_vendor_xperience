@@ -21,7 +21,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
-
+ifneq ($(TARGET_COMMON_QTI_COMPONENTS), telephony)
 # Telephony
 PRODUCT_PACKAGES += \
     extphonelib \
@@ -51,7 +51,9 @@ PRODUCT_PACKAGES += \
     libqti_vndfwk_detect.vendor
 
 PRODUCT_BOOT_JARS += \
+    tcmiface \
     telephony-ext
+endif
 
 # WiFi
 PRODUCT_PACKAGES += \

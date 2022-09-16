@@ -11,11 +11,11 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
-   ro.qcom.system=$(shell grep "refs/tags/android-13.0" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
-   ro.qcom.vendor=LA.UM.9.14.r1-19600.01-LAHAINA.QSSI12.0
+    ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+    ro.qcom.vendor=$(shell grep "refs/tags/LA.UM" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
 
-# ro.qcom.vendor=$(shell grep "refs/tags/LA.UM" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
-# ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+#   ro.qcom.system=$(shell grep "refs/tags/android-13.0" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+#   ro.qcom.vendor=LA.UM.9.14.r1-19600.01-LAHAINA.QSSI12.0
 
 # Build fingerprint
 ifneq ($(BUILD_FINGERPRINT),)
