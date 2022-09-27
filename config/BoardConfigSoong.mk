@@ -112,3 +112,14 @@ DISABLE_EAP_PROXY := true
 SOONG_CONFIG_NAMESPACES += aosp_vs_qva
 SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
 SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
+
+SOONG_CONFIG_NAMESPACES += bredr_vs_btadva
+SOONG_CONFIG_bredr_vs_btadva += bredr_or_btadva
+
+ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
+    $(warning bt_adv_audio dir is present)
+    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := btadva
+else
+    $(warning bt_adv_audio dir is not present)
+    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := bredr
+endif #ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
