@@ -165,7 +165,7 @@ SQUISHER_SCRIPT := vendor/xperience/tools/squisher
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Require all requested packages to exist
-$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(XPERIENCE_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml rild)
+$(call enforce-product-packages-exist-internal,$(wildcard device/*/$(XPERIENCE_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml rild Calendar Launcher3 Launcher3Go Launcher3QuickStep Launcher3QuickStepGo)
 
 # Copy all xperience-specific init rc files
 $(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
