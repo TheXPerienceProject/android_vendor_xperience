@@ -186,11 +186,8 @@
     -->
     <string name="config_wallpaperCropperPackage" translatable="false">com.android.wallpaper</string>
 
-    <!-- Fingerprint from a certified device against current platform SPL level -->
-    <string name="config_certifiedFingerprint" translatable="false">google/raven/raven:13/TP1A.220905.004/8927612:user/release-keys</string>
-
-    <!-- Model from a certified device -->
-    <string name="config_certifiedModel" translatable="false">Pixel 6 Pro</string>
+    <!-- Build fingerprint from a GMS certified device -->
+    <string name="config_certifiedFingerprint" translatable="false">google/angler/angler:6.0/MDB08L/2343525:user/release-keys</string>
 
     <!-- Default list of files pinned by the Pinner Service -->
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
