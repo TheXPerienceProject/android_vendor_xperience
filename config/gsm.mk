@@ -51,7 +51,8 @@ PRODUCT_PACKAGES += \
     libqti_vndfwk_detect.vendor
 
 PRODUCT_BOOT_JARS += \
-    telephony-ext
+    telephony-ext  \
+    tcmiface
 
 # WiFi
 PRODUCT_PACKAGES += \
