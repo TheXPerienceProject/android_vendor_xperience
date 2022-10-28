@@ -115,6 +115,10 @@ ifneq ($(filter $(UM_5_4_FAMILY) $(UM_5_10_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     SOONG_CONFIG_qtidisplay_gralloc4 := true
 endif
 
+ifneq ($(filter $(UM_5_10_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+    TARGET_USES_QCOM_AUDIO_AR ?= true
+endif
+
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
 
 # Mark GRALLOC_USAGE_HW_2D as valid gralloc bit on legacy platforms that support it
