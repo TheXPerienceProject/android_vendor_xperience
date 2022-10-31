@@ -94,16 +94,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.charger.enable_suspend=1
 
-# Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= false
-ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
+# Face Unlock with paranoidsense
 PRODUCT_PACKAGES += \
-    FaceUnlockService
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.face_unlock_service.enabled=$(TARGET_FACE_UNLOCK_SUPPORTED)
+    ParanoidSense
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
-endif
+
+# Enable Sense service for 64-bit only
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.face.sense_service=$(TARGET_SUPPORTS_64_BIT_APPS)
 
 # Disable remote keyguard animation
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
