@@ -357,6 +357,19 @@ function cafremote() {
   if [ $PROJECT = "vendor/qcom/opensource/recovery-ext" ]; then
     PROJECT="vendor/qcom-opensource/recovery-ext"
   fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/packages/apps/Bluetooth" ]; then
+    PROJECT="vendor/qcom-opensource/packages/apps/Bluetooth"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/system/bt" ]; then
+    PROJECT="vendor/qcom-opensource/system/bt"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys-intf/bluetooth" ]; then
+    PROJECT="vendor/qcom-opensource/bluetooth-commonsys-intf"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/thermal-engine" ]; then
+    PROJECT="vendor/qcom-opensource/thermal-engine"
+  fi
+
   ### FINISH
   if (echo $PROJECT | grep -qv "^device"); then
     local PFX="platform/"
@@ -438,6 +451,22 @@ function cafmerge() {
   fi
 
   if (echo $PROJECT | grep -q "vendor/qcom/opensource/core-utils"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys/packages/apps/Bluetooth"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys/system/bt"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/codeaurora/telephony"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys-intf/bluetooth"); then
     local BRANCH=${QSSIBRANCH}
     echo "Setting QSSI branch"
   fi

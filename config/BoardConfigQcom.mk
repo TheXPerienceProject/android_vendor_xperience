@@ -182,7 +182,8 @@ endif
 ifneq ($(TARGET_USES_IN_TREE_NFC), true)
 ifeq ($(TARGET_USES_AOSP_NFC),true)
 PRODUCT_SOONG_NAMESPACES += \
-    hardware/nxp/
+    hardware/nxp/ \
+    hardware/nxp/secure_element	
 else 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/nxp/opensource/  
