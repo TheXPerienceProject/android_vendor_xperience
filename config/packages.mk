@@ -236,6 +236,10 @@ PRODUCT_PACKAGES += \
     XperiaSignalOverlay \
     ZigZagSignalOverlay
 
+# Theme
+PRODUCT_PACKAGES += \
+    XPerienceBlackThemeOverlay
+
 # Wi-Fi Icons
 PRODUCT_PACKAGES += \
     BarsWiFiOverlay \
