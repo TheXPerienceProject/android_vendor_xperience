@@ -108,7 +108,7 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/media/audio/notifications/BatteryPlugged_48k.ogg:$(TARGET_COPY_OUT_SYSTEM)/media/audio/ui/BatteryPlugged_48k.ogg
 
 # Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= false
+TARGET_FACE_UNLOCK_SUPPORTED ?= true
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
 PRODUCT_PACKAGES += \
     FaceUnlockService
