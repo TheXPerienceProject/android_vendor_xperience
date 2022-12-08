@@ -369,6 +369,12 @@ function cafremote() {
   if [ $PROJECT = "vendor/qcom/opensource/thermal-engine" ]; then
     PROJECT="vendor/qcom-opensource/thermal-engine"
   fi
+  if [ $PROJECT = "vendor/qcom/opensource/commonsys/audio" ]; then
+    PROJECT="vendor/qcom-opensource/audio"
+  fi
+  if [ $PROJECT = "vendor/qcom/opensource/core-utils-sys" ]; then
+    PROJECT="vendor/qcom-opensource/core-utils-sys"
+  fi
 
   ### FINISH
   if (echo $PROJECT | grep -qv "^device"); then
@@ -467,6 +473,18 @@ function cafmerge() {
     echo "Setting QSSI branch"
   fi
   if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys-intf/bluetooth"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys/audio"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/commonsys/bluetooth"); then
+    local BRANCH=${QSSIBRANCH}
+    echo "Setting QSSI branch"
+  fi
+  if (echo $PROJECT | grep -q "vendor/qcom/opensource/core-utils-sys"); then
     local BRANCH=${QSSIBRANCH}
     echo "Setting QSSI branch"
   fi
