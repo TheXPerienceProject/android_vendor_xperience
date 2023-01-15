@@ -59,7 +59,8 @@ SOONG_CONFIG_xperienceQcomVars += \
     uses_qcom_bsp_legacy \
     uses_qti_camera_device \
     needs_camera_boottime_timestamp \
-    uses_oplus_camera
+    uses_oplus_camera \
+    uses_nothing_camera
 
 # Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
 ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
@@ -101,6 +102,7 @@ SOONG_CONFIG_xperienceGlobalVars_target_process_sdk_version_override := $(TARGET
 SOONG_CONFIG_xperienceGlobalVars_target_surfaceflinger_udfps_lib := $(TARGET_SURFACEFLINGER_UDFPS_LIB)
 SOONG_CONFIG_xperienceGlobalVars_uses_camera_parameter_lib := $(TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY)
 SOONG_CONFIG_xperienceGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA)
+SOONG_CONFIG_xperienceGlobalVars_uses_nothing_camera := $(TARGET_USES_NOTHING_CAMERA)
 ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := vendor/qcom/opensource/commonsys-intf/display
 else
