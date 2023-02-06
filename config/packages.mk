@@ -184,6 +184,7 @@ PRODUCT_PACKAGES += \
     FontFluidSansOverlay \
     FontFucekOverlay \
     FontGrandHotelOverlay \
+    FontGoogleSansOverlay \
     FontHarmonySansOverlay \
     FontInterSourceOverlay \
     FontJTLeonorOverlay \
