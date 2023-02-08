@@ -158,9 +158,17 @@ PRODUCT_SOONG_NAMESPACES += $(QCOM_SOONG_NAMESPACE)
 ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys/display \
-    vendor/qcom/opensource/commonsys-intf/display \
-    vendor/qcom/opensource/display
+    vendor/qcom/opensource/commonsys-intf/display
 endif
+
+ifneq ($(filter $(UM_4_19_FAMILY) $(UM_5_4_FAMILY),$(TARGET_BOARD_PLATFORM)),)
+    $(warning enable vendor/qcom/opensource/display on $(UM_4_19_FAMILY) $(UM_5_4_FAMILY) )
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/display
+else
+    $(warning disabled vendor/qcom/opensource/display on $(UM_4_14_FAMILY) )
+endif
+
 
 # Add data-ipa-cfg-mgr to PRODUCT_SOONG_NAMESPACES if needed
 ifneq ($(USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR),true)
