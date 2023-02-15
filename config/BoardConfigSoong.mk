@@ -41,7 +41,9 @@ SOONG_CONFIG_xperienceGlobalVars += \
     target_process_sdk_version_override \
     target_surfaceflinger_udfps_lib \
     uses_camera_parameter_lib \
-    needs_camera_boottime
+    needs_camera_boottime \
+    uses_oplus_camera \
+    uses_nothing_camera
 
 SOONG_CONFIG_NAMESPACES += xperienceNvidiaVars
 SOONG_CONFIG_xperienceNvidiaVars += \
@@ -58,9 +60,7 @@ SOONG_CONFIG_xperienceQcomVars += \
     uses_pre_uplink_features_netmgrd \
     uses_qcom_bsp_legacy \
     uses_qti_camera_device \
-    needs_camera_boottime_timestamp \
-    uses_oplus_camera \
-    uses_nothing_camera
+    needs_camera_boottime_timestamp
 
 # Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
 ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
