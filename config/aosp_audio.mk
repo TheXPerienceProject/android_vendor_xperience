@@ -196,6 +196,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ringtones/Testudo.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Testudo.ogg \
     $(LOCAL_PATH)/ringtones/Vespa.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Vespa.ogg
 
+# Newer sounds
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/effects/ogg/ChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/ChargingStarted.ogg \
-    $(LOCAL_PATH)/effects/material/ogg/WirelessChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/WirelessChargingStarted.ogg
+    vendor/xperience_themes/audio/ui/WirelessChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/WirelessChargingStarted.ogg \
+    vendor/xperience_themes/audio/ui/WirelessChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/WirelessChargingStarted.ogg \
+    vendor/xperience_themes/audio/ui/camera_click.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/camera_click.ogg \
+    vendor/xperience_themes/audio/ui/camera_focus.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/camera_focus.ogg \
+    vendor/xperience_themes/audio/ui/ChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/ChargingStarted.ogg \
+    vendor/xperience_themes/audio/ui/Effect_Tick.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/Effect_Tick.ogg \
+    vendor/xperience_themes/audio/ui/Lock.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/Lock.ogg \
+    vendor/xperience_themes/audio/ui/LowBattery.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/LowBattery.ogg \
+    vendor/xperience_themes/audio/ui/Unlock.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/Unlock.ogg
