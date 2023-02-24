@@ -9,8 +9,7 @@ UI_PATH := vendor/xperience/prebuilt/media/audio/ui
 
 #UI 
 PRODUCT_COPY_FILES += \
-    $(UI_PATH)/boot.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/boot.ogg \
-    $(UI_PATH)/LowBattery.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/alarms/LowBattery.ogg
+    $(UI_PATH)/boot.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/boot.ogg
 
 # Alarms
 PRODUCT_COPY_FILES += \
