@@ -94,24 +94,17 @@ else
 endif
 
 ###########################################################################
--include vendor/XPe-priv/keys/keys.mk
-
-ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
-ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-    ifneq ($(XPE_BUILDTYPE), UNOFFICIAL)
-        ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-            ifneq ($(XPE_EXTRAVERSION),)
-        		# Remove leading dash from XPE_EXTRAVERSION
-                XPE_EXTRAVERSION := $(shell echo $(XPE_EXTRAVERSION) | sed 's/-//')
-                TARGET_VENDOR_RELEASE_BUILD_ID := $(XPE_EXTRAVERSION)
-            else
-                TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
-            endif
-        else
-            TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
-        endif
-            XPE_DISPLAY_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
-     endif
+# Signing
+ifeq (user,$(TARGET_BUILD_VARIANT))
+ifneq (,$(wildcard .android-certs/releasekey.pk8))
+PRODUCT_DEFAULT_DEV_CERTIFICATE := .android-certs/releasekey
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.oem_unlock_supported=1
+endif
+ifneq (,$(wildcard .android-certs/verity.pk8))
+PRODUCT_VERITY_SIGNING_KEY := .android-certs/verity
+endif
+ifneq (,$(wildcard .android-certs/otakey.x509.pem))
+PRODUCT_OTA_PUBLIC_KEYS := .android-certs/otakey.x509.pem
 endif
 endif
 #########################################################################
@@ -120,3 +113,4 @@ endif
 ifeq ($(BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE),)
   ALLOW_MISSING_DEPENDENCIES := true
 endif
+
