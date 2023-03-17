@@ -202,7 +202,6 @@ PRODUCT_PACKAGES += \
     FontOnePlusSansOverlay \
     FontOnePlusSlateOverlay \
     FontOneUISansOverlay \
-    FontOppoSansOverlay \
     FontOswaldOverlay \
     FontProductSansVHOverlay \
     FontQuandoOverlay \
