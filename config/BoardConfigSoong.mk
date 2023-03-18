@@ -28,6 +28,7 @@ $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
 SOONG_CONFIG_NAMESPACES += xperienceGlobalVars
 SOONG_CONFIG_xperienceGlobalVars += \
+    bootloader_message_offset \
     aapt_version_code \
     additional_gralloc_10_usage_bits \
     camera_override_format_from_reserved \
@@ -102,6 +103,7 @@ TARGET_TRUST_USB_CONTROL_ENABLE ?= 1
 TARGET_TRUST_USB_CONTROL_DISABLE ?= 0
 
 # Soong value variables
+SOONG_CONFIG_xperienceGlobalVars_bootloader_message_offset := $(BOOTLOADER_MESSAGE_OFFSET)
 SOONG_CONFIG_xperienceGlobalVars_aapt_version_code := $(shell date -u +%Y%m%d)
 SOONG_CONFIG_xperienceGlobalVars_additional_gralloc_10_usage_bits := $(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS)
 SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_charging_path := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH)
@@ -129,17 +131,17 @@ SOONG_CONFIG_xperienceQcomVars_qti_vibrator_effect_lib := $(TARGET_QTI_VIBRATOR_
 DISABLE_EAP_PROXY := true
 
 # Qualcomm variables
-SOONG_CONFIG_NAMESPACES += aosp_vs_qva
-SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
-SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
+#SOONG_CONFIG_NAMESPACES += aosp_vs_qva
+#SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
+#SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
 
-SOONG_CONFIG_NAMESPACES += bredr_vs_btadva
-SOONG_CONFIG_bredr_vs_btadva += bredr_or_btadva
+#SOONG_CONFIG_NAMESPACES += bredr_vs_btadva
+#SOONG_CONFIG_bredr_vs_btadva += bredr_or_btadva
 
-ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
-    $(warning bt_adv_audio dir is present)
-    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := btadva
-else
-    $(warning bt_adv_audio dir is not present)
-    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := bredr
-endif #ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
+#ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
+#    $(warning bt_adv_audio dir is present)
+#    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := btadva
+#else
+#    $(warning bt_adv_audio dir is not present)
+#    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := bredr
+#endif #ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""

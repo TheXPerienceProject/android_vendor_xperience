@@ -70,7 +70,6 @@ PRODUCT_PACKAGES += \
     Stk
 
 PRODUCT_BOOT_JARS += \
-    tcmiface \
     telephony-ext
 endif
 
