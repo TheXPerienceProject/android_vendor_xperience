@@ -6,8 +6,8 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Taerve-Uni \
-    ro.xpelegal.url=http://thexperienceproject.org/legal/ \
+    ro.xpe.codename=NCC-1701​ \
+    ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
