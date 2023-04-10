@@ -1,3 +1,10 @@
+# Hidl
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0 \
+    android.hidl.base@1.0.vendor \
+    android.hidl.manager@1.0.vendor
+
 # Sensitive Phone Numbers list
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
