@@ -31,10 +31,6 @@
 #
 #   TARGET_KERNEL_CLANG_COMPILE        = Compile kernel with clang, defaults to true
 #
-#   TARGET_KERNEL_CLANG_VERSION        = Clang prebuilts version, optional, defaults to clang-stable
-#
-#   TARGET_KERNEL_CLANG_PATH           = Clang prebuilts path, optional
-#
 #   BOARD_KERNEL_IMAGE_NAME            = Built image name
 #                                          for ARM use: zImage
 #                                          for ARM64 use: Image.gz
@@ -54,8 +50,6 @@
 #
 #   KERNEL_CC                          = The C Compiler used. This is automatically set based
 #                                          on whether the clang version is set, optional.
-#   KERNEL_LD                          = The Linker used. This is automatically set based
-#                                          on whether the clang/gcc version is set, optional.
 #
 #   KERNEL_CLANG_TRIPLE                = Target triple for clang (e.g. aarch64-linux-gnu-)
 #                                          defaults to arm-linux-gnu- for arm
@@ -168,7 +162,7 @@ else
         $(error "NO KERNEL CONFIG")
     else
         ifneq ($(TARGET_FORCE_PREBUILT_KERNEL),)
-            ifneq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LINEAGE_BUILDTYPE)),)
+            ifneq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(XPE_BUILDTYPE)),)
                 $(error "PREBUILT KERNEL IS NOT ALLOWED ON OFFICIAL BUILDS!")
             else
                 $(warning **********************************************************)
@@ -233,32 +227,17 @@ ifeq ($(or $(FULL_RECOVERY_KERNEL_BUILD), $(FULL_KERNEL_BUILD)),true)
 # Add host bin out dir to path
 PATH_OVERRIDE := PATH=$(KERNEL_BUILD_OUT_PREFIX)$(HOST_OUT_EXECUTABLES):$$PATH
 ifneq ($(TARGET_KERNEL_CLANG_COMPILE),false)
-    ifneq ($(TARGET_KERNEL_CLANG_VERSION),)
-        ifeq ($(TARGET_KERNEL_CLANG_VERSION),r450784d)
-            # Set the latest version of clang
-            KERNEL_CLANG_VERSION := $(shell ls -d $(BUILD_TOP)/prebuilts/clang/host/$(HOST_OS)-x86/clang-r* | xargs -n 1 basename | tail -1)
-        else
-            # Find the clang-* directory containing the specified version
-            KERNEL_CLANG_VERSION := clang-$(TARGET_KERNEL_CLANG_VERSION)
+    ifneq ($(KERNEL_NO_GCC), true)
+        ifeq ($(KERNEL_ARCH),arm64)
+            KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=aarch64-linux-gnu-
+        else ifeq ($(KERNEL_ARCH),arm)
+            KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=arm-linux-gnu-
+        else ifeq ($(KERNEL_ARCH),x86)
+            KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=x86_64-linux-gnu-
         endif
-    else
-        # Use the default version of clang if TARGET_KERNEL_CLANG_VERSION hasn't been set by the device config
-        KERNEL_CLANG_VERSION := $(LLVM_PREBUILTS_VERSION)
+        PATH_OVERRIDE += LD_LIBRARY_PATH=$(TARGET_KERNEL_CLANG_PATH)/lib64:$$LD_LIBRARY_PATH
     endif
-
-    TARGET_KERNEL_CLANG_PATH ?= $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TAG)/$(KERNEL_CLANG_VERSION)
-    ifeq ($(KERNEL_ARCH),arm64)
-        KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=aarch64-linux-gnu-
-    else ifeq ($(KERNEL_ARCH),arm)
-        KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=arm-linux-gnu-
-    else ifeq ($(KERNEL_ARCH),x86)
-        KERNEL_CLANG_TRIPLE ?= CLANG_TRIPLE=x86_64-linux-gnu-
-    endif
-    ifeq (,$(filter 5.10, $(TARGET_KERNEL_VERSION)))
-        PATH_OVERRIDE += PATH=$(TARGET_KERNEL_CLANG_PATH)/bin:$$PATH LD_LIBRARY_PATH=$(TARGET_KERNEL_CLANG_PATH)/lib64:$$LD_LIBRARY_PATH
-    else
-        PATH_OVERRIDE += PATH=$(TARGET_KERNEL_CLANG_PATH)/bin:$$PATH
-    endif
+    PATH_OVERRIDE += PATH=$(TARGET_KERNEL_CLANG_PATH)/bin:$$PATH
     ifeq ($(KERNEL_CC),)
         CLANG_EXTRA_FLAGS := --cuda-path=/dev/null
         ifeq ($(shell $(TARGET_KERNEL_CLANG_PATH)/bin/clang -v --hip-path=/dev/null >/dev/null 2>&1; echo $$?),0)
@@ -266,30 +245,11 @@ ifneq ($(TARGET_KERNEL_CLANG_COMPILE),false)
         endif
         KERNEL_CC := CC="$(CCACHE_BIN) clang $(CLANG_EXTRA_FLAGS)"
     endif
-    ifeq ($(KERNEL_LD),)
-        KERNEL_LD :=
-    endif
 endif
 
-# As
-ifeq ($(KERNEL_SUPPORTS_LLVM_TOOLS),true)
-    LLVM_TOOLS ?= $(TARGET_KERNEL_CLANG_PATH)/bin
-    KERNEL_LD := LD=$(LLVM_TOOLS)/ld.lld
-    KERNEL_AR := AR=$(LLVM_TOOLS)/llvm-ar
-    KERNEL_OBJCOPY := OBJCOPY=$(LLVM_TOOLS)/llvm-objcopy
-    KERNEL_OBJDUMP := OBJDUMP=$(LLVM_TOOLS)/llvm-objdump
-    KERNEL_NM := NM=$(LLVM_TOOLS)/llvm-nm
-    KERNEL_STRIP := STRIP=$(LLVM_TOOLS)/llvm-strip
-else
-    KERNEL_LD :=
-    KERNEL_AR :=
-    KERNEL_OBJCOPY :=
-    KERNEL_OBJDUMP :=
-    KERNEL_NM :=
-    KERNEL_STRIP :=
+ifneq ($(KERNEL_NO_GCC), true)
+    PATH_OVERRIDE += PATH=$(KERNEL_TOOLCHAIN_PATH_gcc):$$PATH
 endif
-
-PATH_OVERRIDE += PATH=$(KERNEL_TOOLCHAIN_PATH_gcc):$$PATH
 
 # System tools are no longer allowed on 10+
 PATH_OVERRIDE += $(TOOLS_PATH_OVERRIDE)
@@ -306,7 +266,7 @@ endif
 # $(1): output path (The value passed to O=)
 # $(2): target to build (eg. defconfig, modules, dtbo.img)
 define internal-make-kernel-target
-$(PATH_OVERRIDE) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(KERNEL_SRC) O=$(KERNEL_BUILD_OUT_PREFIX)$(1) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) $(KERNEL_CLANG_TRIPLE) $(KERNEL_CC) $(KERNEL_LD) $(2)
+$(PATH_OVERRIDE) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(KERNEL_SRC) O=$(KERNEL_BUILD_OUT_PREFIX)$(1) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) $(KERNEL_CLANG_TRIPLE) $(KERNEL_CC) $(2)
 endef
 
 # Make an external module target
@@ -314,7 +274,7 @@ endef
 # $(2): module root path
 # $(3): target to build (eg. modules_install)
 define make-external-module-target
-$(PATH_OVERRIDE) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_EXT_MODULE_ROOT)/$(1) M=$(2)/$(1) KERNEL_SRC=$(BUILD_TOP)/$(KERNEL_SRC) OUT_DIR=$(KERNEL_BUILD_OUT_PREFIX)$(KERNEL_OUT) O=$(KERNEL_BUILD_OUT_PREFIX)$(KERNEL_OUT) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) $(KERNEL_CLANG_TRIPLE) $(KERNEL_CC) $(KERNEL_LD) $(3)
+$(PATH_OVERRIDE) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_EXT_MODULE_ROOT)/$(1) M=$(2)/$(1) KERNEL_SRC=$(BUILD_TOP)/$(KERNEL_SRC) OUT_DIR=$(KERNEL_BUILD_OUT_PREFIX)$(KERNEL_OUT) O=$(KERNEL_BUILD_OUT_PREFIX)$(KERNEL_OUT) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) $(KERNEL_CLANG_TRIPLE) $(KERNEL_CC) $(3)
 endef
 
 # Generate kernel .config from a given defconfig
@@ -518,6 +478,7 @@ $(BOARD_PREBUILT_DTBOIMAGE): $(DTC) $(MKDTIMG) $(MKDTBOIMG) $(DTBO_OUT)
 $(BOARD_PREBUILT_DTBOIMAGE):
 	@echo "Building dtbo.img"
 	$(hide) find $(DTBO_OUT)/arch/$(KERNEL_ARCH)/boot/dts -type f -name "*.dtbo" | xargs rm -f
+	$(call make-dtbo-target,$(KERNEL_DEFCONFIG))
 	$(call make-dtbo-target,$(TARGET_KERNEL_DTB))
 ifeq ($(BOARD_KERNEL_SEPARATED_DTBO),true)
 ifdef BOARD_DTBO_CFG
