@@ -86,6 +86,7 @@ endif
 
 ifeq ($(TARGET_KERNEL_NO_GCC), true)
     KERNEL_NO_GCC := true
+    $(warning, "Building kernel without GCC support")
 endif
 
 ifneq ($(TARGET_KERNEL_CLANG_VERSION),)
@@ -220,6 +221,26 @@ KERNEL_MAKE_FLAGS += LEX=$(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)
 KERNEL_MAKE_FLAGS += YACC=$(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)/bin/bison
 KERNEL_MAKE_FLAGS += M4=$(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)/bin/m4
 TOOLS_PATH_OVERRIDE += BISON_PKGDATADIR=$(BUILD_TOP)/prebuilts/build-tools/common/bison
+KERNEL_MAKE_FLAGS += HOSTAR=$(CLANG_PREBUILTS)/bin/llvm-ar
+KERNEL_MAKE_FLAGS += HOSTLD=$(CLANG_PREBUILTS)/bin/ld.lld
+
+# As
+ifeq ($(KERNEL_SUPPORTS_LLVM_TOOLS),true)
+    LLVM_TOOLS ?= $(TARGET_KERNEL_CLANG_PATH)/bin
+    KERNEL_LD := LD=$(LLVM_TOOLS)/ld.lld
+    KERNEL_AR := AR=$(LLVM_TOOLS)/llvm-ar
+    KERNEL_OBJCOPY := OBJCOPY=$(LLVM_TOOLS)/llvm-objcopy
+    KERNEL_OBJDUMP := OBJDUMP=$(LLVM_TOOLS)/llvm-objdump
+    KERNEL_NM := NM=$(LLVM_TOOLS)/llvm-nm
+    KERNEL_STRIP := STRIP=$(LLVM_TOOLS)/llvm-strip
+else
+    KERNEL_LD :=
+    KERNEL_AR :=
+    KERNEL_OBJCOPY :=
+    KERNEL_OBJDUMP :=
+    KERNEL_NM :=
+    KERNEL_STRIP :=
+endif
 
 # Set the out dir for the kernel's O= arg
 # This needs to be an absolute path, so only set this if the standard out dir isn't used
