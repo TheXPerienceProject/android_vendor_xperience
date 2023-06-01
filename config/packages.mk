@@ -99,6 +99,17 @@ PRODUCT_PACKAGES += \
     mkfs.ntfs \
     tune2fs
 
+# Include fs tools for dedicated recovery and ramdisk partitions.
+PRODUCT_PACKAGES += \
+    e2fsck_ramdisk \
+    resize2fs_ramdisk \
+    tune2fs_ramdisk
+
+PRODUCT_PACKAGES += \
+    e2fsck.recovery \
+    resize2fs.recovery \
+    tune2fs.recovery
+
 # Permissions
 PRODUCT_PACKAGES += \
     privapp-permissions-xperience.xml \
