@@ -30,6 +30,7 @@ $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
 SOONG_CONFIG_NAMESPACES += xperienceGlobalVars
 SOONG_CONFIG_xperienceGlobalVars += \
+    aapt_version_code \
     additional_gralloc_10_usage_bits \
     gralloc_handle_has_reserved_size \
     bootloader_message_offset \
@@ -72,6 +73,7 @@ SOONG_CONFIG_xperienceQcomVars += \
 endif
 
 # Soong bool variables
+SOONG_CONFIG_xperienceGlobalVars_aapt_version_code := $(shell date -u +%Y%m%d)
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE)
 SOONG_CONFIG_xperienceGlobalVars_has_legacy_camera_hal1 := $(TARGET_HAS_LEGACY_CAMERA_HAL1)
 SOONG_CONFIG_xperienceGlobalVars_ignores_ftp_pptp_conntrack_failure := $(TARGET_IGNORES_FTP_PPTP_CONNTRACK_FAILURE)
