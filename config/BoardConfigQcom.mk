@@ -194,11 +194,13 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display
 endif
 
-$(warning disabled vendor/qcom/opensource/display on $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY)  $(PORTED_TO_UM_4_19_FAMILY) )
+$(warning disabled vendor/qcom/opensource/display on $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY) $(PORTED_TO_UM_4_19_FAMILY) $(UM_5_10_FAMILY) )
 
 # Add data-ipa-cfg-mgr to PRODUCT_SOONG_NAMESPACES if needed
-ifneq ($(USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR),true)
+ifneq ($(filter $(UM_5_4_FAMILY) $(UM_5_10_FAMILY),$(TARGET_BOARD_PLATFORM)),)
     PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr
+else
+    PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/data-ipa-cfg-mgr-legacy    
 endif
 
 # Add dataservices to PRODUCT_SOONG_NAMESPACES if needed
