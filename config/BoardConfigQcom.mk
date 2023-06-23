@@ -222,6 +222,9 @@ ifeq ($(TARGET_USES_AOSP_NFC),true)
 PRODUCT_SOONG_NAMESPACES += \
     hardware/nxp/ \
     hardware/nxp/secure_element	
+else ifeq ($(TARGET_USES_AOSP_ST_NFC),true)
+PRODUCT_SOONG_NAMESPACES += \
+    hardware/st
 else 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/nxp/opensource/  
