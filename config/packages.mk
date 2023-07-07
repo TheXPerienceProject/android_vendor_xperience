@@ -409,8 +409,12 @@ PRODUCT_PACKAGES += \
     ShishuNightsThemeSystemUIOverlay \
     ShishuAmalgamationThemeAndroidOverlay \
     ShishuAmalgamationThemeSettingsOverlay \
-    ShishuAmalgamationThemeSystemUIOverlay \
-    XPerienceBlackThemeOverlay
+    ShishuAmalgamationThemeSystemUIOverlay
+
+# XPerience Overlays
+PRODUCT_PACKAGES += \
+    XPerienceBlackThemeOverlay \
+    XPerienceWifiOverlay
 
 # Wi-Fi Icons
 PRODUCT_PACKAGES += \
