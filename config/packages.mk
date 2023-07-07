@@ -35,12 +35,6 @@ PRODUCT_PACKAGES += \
     Exchange2
 
 # Additional apps
-# PRODUCT_PACKAGES += \
-#    Etar \
-#    OmniStyle \
-#    Terminal \
-#    XPeriaWeather \
-#    Yunikon
 PRODUCT_PACKAGES += \
     GameSpace \
     ExactCalculator \
@@ -145,11 +139,10 @@ PRODUCT_PACKAGES += \
     XPerienceImmersiveNavigationOverlay
 
 # Dex preopt
-#PRODUCT_DEXPREOPT_SPEED_APPS += \
-#    SystemUI \
-#    Settings \
-#    NightFallQuickStep \
-#    XPeriaWeather
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI \
+    Settings \
+    XPeriaWeather
 
 #-include vendor/qcom/common/perf/packages.mk
 

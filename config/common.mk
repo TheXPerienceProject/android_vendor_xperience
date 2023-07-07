@@ -135,9 +135,6 @@ $(call inherit-product, device/xperience/common/common.mk)
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
-# SELinux Policy
-# -include vendor/xperience/sepolicy/sepolicy.mk
-
 # GSM porque si
 -include vendor/xperience/config/gsm.mk
 
