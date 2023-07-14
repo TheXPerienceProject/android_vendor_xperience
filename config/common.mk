@@ -27,10 +27,16 @@ $(eval TARGET_BOOTANIMATION_NAME := $(shell \
 endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
+ifeq ($(TARGET_USES_LEGACY_BOOTANIMATION),true)
 PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+else
+PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/bootanimation.zip
+endif
 
 #We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
-PRODUCT_COPY_FILES += $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
+PRODUCT_COPY_FILES += \
+    $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip \
+    vendor/xperience_shutdown/prebuilt/bootanimation/shutdownanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/shutdownanimation.zip
 
 endif
 
