@@ -36,7 +36,7 @@ endif
 #We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
 PRODUCT_COPY_FILES += \
     $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip \
-    vendor/xperience_shutdown/prebuilt/bootanimation/shutdownanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/shutdownanimation.zip
+    vendor/xperience_shutdown/shutdownanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/shutdownanimation.zip
 
 endif
 
