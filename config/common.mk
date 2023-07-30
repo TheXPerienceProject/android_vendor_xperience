@@ -2,6 +2,8 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
+TARGET_DISABLE_SHUTDOWNANIMATION ?= false
+
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
 TARGET_BOOTANIMATION_SIZE := $(shell \
@@ -35,9 +37,15 @@ endif
 
 #We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
 PRODUCT_COPY_FILES += \
-    $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip \
-    vendor/xperience_shutdown/shutdownanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/shutdownanimation.zip
+    $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
 
+ifneq ($(TARGET_DISABLE_SHUTDOWNANIMATION), true)
+$(warning Enabled shutdown animation)
+PRODUCT_COPY_FILES += \
+    vendor/xperience_shutdown/shutdownanimation.zip:$(TARGET_COPY_OUT_SYSTEM)/media/shutdownanimation.zip
+else
+    $(warning Disabled shutdown animation)
+endif
 endif
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
