@@ -404,6 +404,14 @@ PRODUCT_PACKAGES += \
     ShishuAmalgamationThemeSettingsOverlay \
     ShishuAmalgamationThemeSystemUIOverlay
 
+# Udfps
+$(warning EXTRA_UDFPS_ANIMATIONS IS ${EXTRA_UDFPS_ANIMATIONS})
+ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
+$(warning EXTRA_UDFPS_ANIMATIONS IS ${EXTRA_UDFPS_ANIMATIONS})
+PRODUCT_PACKAGES += \
+    UdfpsResources
+endif
+
 # XPerience Overlays
 PRODUCT_PACKAGES += \
     XPerienceBlackThemeOverlay \
