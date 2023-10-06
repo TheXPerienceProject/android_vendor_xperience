@@ -2,7 +2,7 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
-TARGET_DISABLE_SHUTDOWNANIMATION ?= false
+TARGET_DISABLE_SHUTDOWNANIMATION ?= true
 
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
 # determine the smaller dimension
@@ -125,7 +125,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.charger.enable_suspend=1
 
 # Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= true
+TARGET_FACE_UNLOCK_SUPPORTED ?= false
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
 PRODUCT_PACKAGES += \
     FaceUnlockService
@@ -144,13 +144,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
 
 # Include Common Qualcomm Device Tree.
-$(call inherit-product, device/xperience/common/common.mk)
+# $(call inherit-product, device/xperience/common/common.mk)
 
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
 # GSM porque si
--include vendor/xperience/config/gsm.mk
+#-include vendor/xperience/config/gsm.mk
 
 # Themes and Theme overlays
 #include vendor/themes/themes.mk
@@ -191,5 +191,5 @@ SYSTEM_OPTIMIZE_JAVA := true
 SYSTEMUI_OPTIMIZE_JAVA := true
 
 # Set default refresh rate threshold
-PRODUCT_VENDOR_PROPERTIES += \
+#PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.frame_rate_multiple_threshold=60

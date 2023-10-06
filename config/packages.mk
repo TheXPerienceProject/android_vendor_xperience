@@ -151,9 +151,8 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 ifeq ($(WITH_GMS), true)
 
-#$(call inherit-product, vendor/gapps/common/common-vendor.mk)
-$(call inherit-product, vendor/google/pixel/config.mk)
-$(call inherit-product, vendor/google/gms/config.mk)
+#$(call inherit-product, vendor/google/pixel/config.mk)
+#$(call inherit-product, vendor/google/gms/config.mk)
 
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
@@ -429,7 +428,7 @@ PRODUCT_PACKAGES += \
     ZigZagWiFiOverlay
 
 # Register vendor fonts
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/xperience_themes/product/fonts/,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
     vendor/xperience_themes/product/etc/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
 
