@@ -29,10 +29,6 @@ SOONG_CONFIG_xperienceGlobalVars += \
     camera_needs_miui_camera_mode_support \
     camera_needs_camera_needs_depth_sensor_override
 
-ifneq ($(TARGET_CAMERA_SERVICE_EXT_LIB),)
-    $(call soong_config_set,libcameraservice,ext_lib,$(TARGET_CAMERA_SERVICE_EXT_LIB))
-endif
-
 # Soong bool variables
 SOONG_CONFIG_xperienceGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_miui_camera := $(TARGET_USES_MIUI_CAMERA)
@@ -67,6 +63,14 @@ DISABLE_EAP_PROXY := true
 ifneq ($(TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED),)
     $(warning TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED is deprecated, please migrate to soong_config_set,camera,override_format_from_reserved)
     $(call soong_config_set,camera,override_format_from_reserved,$(TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED))
+endif
+
+ifneq ($(TARGET_CAMERA_PACKAGE_NAME),)
+    $(call soong_config_set,camera,package_name,$(TARGET_CAMERA_PACKAGE_NAME))
+endif
+
+ifneq ($(TARGET_CAMERA_SERVICE_EXT_LIB),)
+    $(call soong_config_set,libcameraservice,ext_lib,$(TARGET_CAMERA_SERVICE_EXT_LIB))
 endif
 
 # Libui
