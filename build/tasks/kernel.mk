@@ -71,7 +71,6 @@
 #   TARGET_MERGE_DTBS_WILDCARD         = Optional, limits the .dtb files used to generate the
 #                                          final DTB image when using QCOM's merge_dtbs script.
 
-ifneq ($(TARGET_USES_KERNEL_PLATFORM),true)
 ifneq ($(TARGET_NO_KERNEL),true)
 ifneq ($(TARGET_NO_KERNEL_OVERRIDE),true)
 
@@ -642,4 +641,3 @@ dtbimage: $(INSTALLED_DTBIMAGE_TARGET)
 
 endif # TARGET_NO_KERNEL_OVERRIDE
 endif # TARGET_NO_KERNEL
-endif # TARGET_USES_KERNEL_PLATFORM
