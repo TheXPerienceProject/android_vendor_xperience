@@ -53,6 +53,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.iorapd.enable=true
 
+# EGL - Blobcache configuration
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.egl.blobcache.multifile=true \
+    ro.egl.blobcache.multifile_limit=33554432
+
 ifneq ($(TARGET_BUILD_VARIANT),eng)
 # Disable extra StrictMode features on all non-engineering builds
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.strictmode.disable=true
@@ -134,7 +139,7 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay
 
 PRODUCT_PACKAGES += \
     DocumentsUIOverlay \
-    NetworkStackOverlay 
+    NetworkStackOverlay
 
 # Include CM LatinIME dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries
