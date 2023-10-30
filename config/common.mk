@@ -186,7 +186,7 @@ SYSTEM_OPTIMIZE_JAVA := true
 SYSTEMUI_OPTIMIZE_JAVA := true
 
 # EGL - Blobcache configuration
-PRODUCT_VENDOR_PROPERTIES += \
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.egl.blobcache.multifile=true \
     ro.egl.blobcache.multifile_limit=33554432
 
