@@ -172,11 +172,6 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/commonsys-intf/display
 endif
 
-ifneq ($(filter $(UM_5_10_FAMILY),$(TARGET_BOARD_PLATFORM)),)
-PRODUCT_SOONG_NAMESPACES += \
-    vendor/qcom/opensource/display
-endif
-
 $(warning disabled vendor/qcom/opensource/display on $(UM_4_14_FAMILY) $(UM_4_19_FAMILY) $(UM_5_4_FAMILY) $(PORTED_TO_UM_4_19_FAMILY) $(UM_5_10_FAMILY) )
 
 # Add data-ipa-cfg-mgr to PRODUCT_SOONG_NAMESPACES if needed
