@@ -61,8 +61,6 @@ SOONG_CONFIG_xperienceQcomVars += \
     qti_vibrator_effect_lib \
     qti_vibrator_use_effect_stream \
     supports_extended_compress_format \
-    supports_hw_fde \
-    supports_hw_fde_perf \
     uses_pre_uplink_features_netmgrd \
     uses_qcom_bsp_legacy \
     uses_qti_camera_device \
@@ -87,8 +85,6 @@ SOONG_CONFIG_xperienceQcomVars_should_wait_for_qsee := $(TARGET_KEYMASTER_WAIT_F
 SOONG_CONFIG_xperienceQcomVars_supports_audio_accessory := $(TARGET_QTI_USB_SUPPORTS_AUDIO_ACCESSORY)
 SOONG_CONFIG_xperienceQcomVars_supports_debug_accessory := $(TARGET_QTI_USB_SUPPORTS_DEBUG_ACCESSORY)
 SOONG_CONFIG_xperienceQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
-SOONG_CONFIG_xperienceQcomVars_supports_hw_fde := $(TARGET_HW_DISK_ENCRYPTION)
-SOONG_CONFIG_xperienceQcomVars_supports_hw_fde_perf := $(TARGET_HW_DISK_ENCRYPTION_PERF)
 SOONG_CONFIG_xperienceQcomVars_qti_vibrator_use_effect_stream := $(TARGET_QTI_VIBRATOR_USE_EFFECT_STREAM)
 SOONG_CONFIG_xperienceQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 SOONG_CONFIG_xperienceQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
