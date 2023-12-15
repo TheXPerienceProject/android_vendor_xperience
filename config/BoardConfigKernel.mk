@@ -1,4 +1,4 @@
-# Copyright (C) 2018-2022 The LineageOS Project
+# Copyright (C) 2018-2023 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -62,10 +62,6 @@ BUILD_TOP := $(abspath .)
 TARGET_AUTO_KDIR := $(shell echo $(TARGET_DEVICE_DIR) | sed -e 's/^device/kernel/g')
 TARGET_KERNEL_SOURCE ?= $(TARGET_AUTO_KDIR)
 
-ifneq ($(TARGET_KERNEL_SOURCE),)
-TARGET_KERNEL_HEADER_SOURCE := $(TARGET_KERNEL_SOURCE)
-endif
-
 TARGET_KERNEL_ARCH := $(strip $(TARGET_KERNEL_ARCH))
 ifeq ($(TARGET_KERNEL_ARCH),)
     KERNEL_ARCH := $(TARGET_ARCH)
@@ -73,20 +69,21 @@ else
     KERNEL_ARCH := $(TARGET_KERNEL_ARCH)
 endif
 
-TARGET_KERNEL_HEADERS ?= $(TARGET_KERNEL_SOURCE)
-
 KERNEL_VERSION := $(shell grep -s "^VERSION = " $(TARGET_KERNEL_SOURCE)/Makefile | awk '{ print $$3 }')
 KERNEL_PATCHLEVEL := $(shell grep -s "^PATCHLEVEL = " $(TARGET_KERNEL_SOURCE)/Makefile | awk '{ print $$3 }')
 TARGET_KERNEL_VERSION ?= $(shell echo $(KERNEL_VERSION)"."$(KERNEL_PATCHLEVEL))
 
 # 5.10+ can fully compile without GCC by default
-ifneq (,$(filter 5.10, $(TARGET_KERNEL_VERSION)))
-    TARGET_KERNEL_NO_GCC ?= true
+ifneq ($(KERNEL_VERSION),)
+    ifeq ($(shell expr $(KERNEL_VERSION) \>= 5), 1)
+        ifeq ($(shell expr $(KERNEL_PATCHLEVEL) \>= 10), 1)
+            TARGET_KERNEL_NO_GCC ?= true
+        endif
+    endif
 endif
 
 ifeq ($(TARGET_KERNEL_NO_GCC), true)
     KERNEL_NO_GCC := true
-    $(warning, "Building kernel without GCC support")
 endif
 
 ifneq ($(TARGET_KERNEL_CLANG_VERSION),)
@@ -216,31 +213,17 @@ ifneq ($(TARGET_KERNEL_CLANG_COMPILE), false)
     endif
 endif
 
+# Pass prebuilt LZ4 path
+KERNEL_MAKE_FLAGS += LZ4=$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/bin/lz4
+
 # Since Linux 4.16, flex and bison are required
 KERNEL_MAKE_FLAGS += LEX=$(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)/bin/flex
 KERNEL_MAKE_FLAGS += YACC=$(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)/bin/bison
 KERNEL_MAKE_FLAGS += M4=$(BUILD_TOP)/prebuilts/build-tools/$(HOST_PREBUILT_TAG)/bin/m4
 TOOLS_PATH_OVERRIDE += BISON_PKGDATADIR=$(BUILD_TOP)/prebuilts/build-tools/common/bison
-KERNEL_MAKE_FLAGS += HOSTAR=$(CLANG_PREBUILTS)/bin/llvm-ar
-KERNEL_MAKE_FLAGS += HOSTLD=$(CLANG_PREBUILTS)/bin/ld.lld
 
-# As
-ifeq ($(KERNEL_SUPPORTS_LLVM_TOOLS),true)
-    LLVM_TOOLS ?= $(TARGET_KERNEL_CLANG_PATH)/bin
-    KERNEL_LD := LD=$(LLVM_TOOLS)/ld.lld
-    KERNEL_AR := AR=$(LLVM_TOOLS)/llvm-ar
-    KERNEL_OBJCOPY := OBJCOPY=$(LLVM_TOOLS)/llvm-objcopy
-    KERNEL_OBJDUMP := OBJDUMP=$(LLVM_TOOLS)/llvm-objdump
-    KERNEL_NM := NM=$(LLVM_TOOLS)/llvm-nm
-    KERNEL_STRIP := STRIP=$(LLVM_TOOLS)/llvm-strip
-else
-    KERNEL_LD :=
-    KERNEL_AR :=
-    KERNEL_OBJCOPY :=
-    KERNEL_OBJDUMP :=
-    KERNEL_NM :=
-    KERNEL_STRIP :=
-endif
+# Since Linux 5.10, pahole is required
+KERNEL_MAKE_FLAGS += PAHOLE=$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/bin/pahole
 
 # Set the out dir for the kernel's O= arg
 # This needs to be an absolute path, so only set this if the standard out dir isn't used
