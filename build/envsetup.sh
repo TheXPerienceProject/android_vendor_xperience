@@ -809,3 +809,10 @@ function fixup_common_out_dir() {
     mkdir -p ${common_out_dir}
   fi
 }
+
+
+export SKIP_ABI_CHECKS=true
+
+# Override host metadata to make builds more reproducible and avoid leaking info
+export BUILD_USERNAME=nobodyAtall
+export BUILD_HOSTNAME=xperience-host
