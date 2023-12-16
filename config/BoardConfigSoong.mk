@@ -4,14 +4,12 @@ PATH_OVERRIDE_SOONG := $(shell echo $(TOOLS_PATH_OVERRIDE))
 EXPORT_TO_SOONG := \
     KERNEL_ARCH \
     KERNEL_BUILD_OUT_PREFIX \
-    KERNEL_CC \
-    KERNEL_CLANG_TRIPLE \
     KERNEL_CROSS_COMPILE \
     KERNEL_MAKE_CMD \
     KERNEL_MAKE_FLAGS \
     PATH_OVERRIDE_SOONG \
     TARGET_KERNEL_CONFIG \
-    TARGET_KERNEL_HEADER_SOURCE
+    TARGET_KERNEL_SOURCE
 
 # Setup SOONG_CONFIG_* vars to export the vars listed above.
 # Documentation here:
@@ -32,19 +30,20 @@ SOONG_CONFIG_NAMESPACES += xperienceGlobalVars
 SOONG_CONFIG_xperienceGlobalVars += \
     aapt_version_code \
     additional_gralloc_10_usage_bits \
+    camera_override_format_from_reserved \
     gralloc_handle_has_custom_content_md_reserved_size \
     gralloc_handle_has_reserved_size \
-    bootloader_message_offset \
-    has_legacy_camera_hal1 \
-    ignores_ftp_pptp_conntrack_failure \
-    needs_netd_direct_connect_rule \
-    target_enforce_ab_ota_partition_list \
+    target_health_charging_control_charging_path \
+    target_health_charging_control_charging_enabled \
+    target_health_charging_control_charging_disabled \
+    target_health_charging_control_deadline_path \
+    target_health_charging_control_supports_bypass \
+    target_health_charging_control_supports_deadline \
+    target_health_charging_control_supports_toggle \
     target_init_vendor_lib \
     target_ld_shim_libs \
-    target_process_sdk_version_override \
     target_surfaceflinger_udfps_lib \
-    uses_camera_parameter_lib \
-    needs_camera_boottime \
+    uses_egl_display_array \
     uses_oplus_camera \
     uses_nothing_camera \
     camera_needs_miui_camera_mode_support \
@@ -52,20 +51,14 @@ SOONG_CONFIG_xperienceGlobalVars += \
 
 SOONG_CONFIG_NAMESPACES += xperienceNvidiaVars
 SOONG_CONFIG_xperienceNvidiaVars += \
-    uses_nv_enhancements
+    uses_nvidia_enhancements
 
 SOONG_CONFIG_NAMESPACES += xperienceQcomVars
 SOONG_CONFIG_xperienceQcomVars += \
-    should_wait_for_qsee \
-    supports_audio_accessory \
-    supports_debug_accessory \
     qti_vibrator_effect_lib \
     qti_vibrator_use_effect_stream \
     supports_extended_compress_format \
-    uses_pre_uplink_features_netmgrd \
-    uses_qcom_bsp_legacy \
-    uses_qti_camera_device \
-    needs_camera_boottime_timestamp
+    uses_pre_uplink_features_netmgrd
 
 # Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
 ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
@@ -74,43 +67,48 @@ SOONG_CONFIG_xperienceQcomVars += \
 endif
 
 # Soong bool variables
-SOONG_CONFIG_xperienceGlobalVars_aapt_version_code := $(shell date -u +%Y%m%d)
+SOONG_CONFIG_xperienceGlobalVars_camera_override_format_from_reserved := $(TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED)
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_custom_content_md_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE)
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE)
-SOONG_CONFIG_xperienceGlobalVars_has_legacy_camera_hal1 := $(TARGET_HAS_LEGACY_CAMERA_HAL1)
-SOONG_CONFIG_xperienceGlobalVars_ignores_ftp_pptp_conntrack_failure := $(TARGET_IGNORES_FTP_PPTP_CONNTRACK_FAILURE)
-SOONG_CONFIG_xperienceGlobalVars_needs_netd_direct_connect_rule := $(TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE)
-SOONG_CONFIG_xperienceGlobalVars_target_enforce_ab_ota_partition_list := $(TARGET_ENFORCE_AB_OTA_PARTITION_LIST)
-SOONG_CONFIG_xperienceGlobalVars_needs_camera_boottime := $(TARGET_CAMERA_BOOTTIME_TIMESTAMP)
-SOONG_CONFIG_xperienceNvidiaVars_uses_nv_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
-SOONG_CONFIG_xperienceQcomVars_should_wait_for_qsee := $(TARGET_KEYMASTER_WAIT_FOR_QSEE)
-SOONG_CONFIG_xperienceQcomVars_supports_audio_accessory := $(TARGET_QTI_USB_SUPPORTS_AUDIO_ACCESSORY)
-SOONG_CONFIG_xperienceQcomVars_supports_debug_accessory := $(TARGET_QTI_USB_SUPPORTS_DEBUG_ACCESSORY)
-SOONG_CONFIG_xperienceQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
+SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_ubwcp_format := $(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT)
+SOONG_CONFIG_xperienceGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_ARRAY)
+SOONG_CONFIG_xperienceNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
 SOONG_CONFIG_xperienceQcomVars_qti_vibrator_use_effect_stream := $(TARGET_QTI_VIBRATOR_USE_EFFECT_STREAM)
+SOONG_CONFIG_xperienceQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_xperienceQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
-SOONG_CONFIG_xperienceQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
-SOONG_CONFIG_xperienceQcomVars_uses_qti_camera_device := $(TARGET_USES_QTI_CAMERA_DEVICE)
-SOONG_CONFIG_xperienceQcomVars_needs_camera_boottime_timestamp := $(TARGET_CAMERA_BOOTTIME_TIMESTAMP)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
-TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE ?= false
+TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED ?= false
 TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE ?= false
+TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE ?= false
+TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT ?= false
+TARGET_HEALTH_CHARGING_CONTROL_CHARGING_ENABLED ?= 1
+TARGET_HEALTH_CHARGING_CONTROL_CHARGING_DISABLED ?= 0
+TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS ?= true
+TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_DEADLINE ?= false
+TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_TOGGLE ?= true
 TARGET_INIT_VENDOR_LIB ?= vendor_init
-TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY ?= libcamera_parameters
-TARGET_SURFACEFLINGER_UDFPS_LIB ?= surfaceflinger_udfps_lib
 TARGET_QTI_VIBRATOR_EFFECT_LIB ?= libqtivibratoreffect
+TARGET_SURFACEFLINGER_UDFPS_LIB ?= surfaceflinger_udfps_lib
+TARGET_TRUST_USB_CONTROL_PATH ?= /proc/sys/kernel/deny_new_usb
+TARGET_TRUST_USB_CONTROL_ENABLE ?= 1
+TARGET_TRUST_USB_CONTROL_DISABLE ?= 0
 
 # Soong value variables
+SOONG_CONFIG_xperienceGlobalVars_aapt_version_code := $(shell date -u +%Y%m%d)
 SOONG_CONFIG_xperienceGlobalVars_additional_gralloc_10_usage_bits := $(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS)
-SOONG_CONFIG_xperienceGlobalVars_bootloader_message_offset := $(BOOTLOADER_MESSAGE_OFFSET)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_charging_path := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_charging_enabled := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_ENABLED)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_charging_disabled := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_DISABLED)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_deadline_path := $(TARGET_HEALTH_CHARGING_CONTROL_DEADLINE_PATH)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_supports_bypass := $(TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_supports_deadline := $(TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_DEADLINE)
+SOONG_CONFIG_xperienceGlobalVars_target_health_charging_control_supports_toggle := $(TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_TOGGLE)
 SOONG_CONFIG_xperienceGlobalVars_target_init_vendor_lib := $(TARGET_INIT_VENDOR_LIB)
 SOONG_CONFIG_xperienceGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
-SOONG_CONFIG_xperienceGlobalVars_target_process_sdk_version_override := $(TARGET_PROCESS_SDK_VERSION_OVERRIDE)
 SOONG_CONFIG_xperienceGlobalVars_target_surfaceflinger_udfps_lib := $(TARGET_SURFACEFLINGER_UDFPS_LIB)
-SOONG_CONFIG_xperienceGlobalVars_uses_camera_parameter_lib := $(TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY)
 SOONG_CONFIG_xperienceGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_nothing_camera := $(TARGET_USES_NOTHING_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_camera_needs_miui_camera_mode_support := $(TARGET_USES_MIUI_CAMERA)
@@ -120,24 +118,4 @@ SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := vendor/qcom/ope
 else
 SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := $(QCOM_SOONG_NAMESPACE)/display
 endif
-
-# Disable qmi EAP-SIM security
-DISABLE_EAP_PROXY := true
-
-# Qualcomm variables
-SOONG_CONFIG_NAMESPACES += aosp_vs_qva
-SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
-SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
-
-SOONG_CONFIG_NAMESPACES += bredr_vs_btadva
-SOONG_CONFIG_bredr_vs_btadva += bredr_or_btadva
-
-ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
-    $(warning bt_adv_audio dir is present)
-    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := btadva
-else
-    $(warning bt_adv_audio dir is not present)
-    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := bredr
-endif #ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
-
 SOONG_CONFIG_xperienceQcomVars_qti_vibrator_effect_lib := $(TARGET_QTI_VIBRATOR_EFFECT_LIB)
