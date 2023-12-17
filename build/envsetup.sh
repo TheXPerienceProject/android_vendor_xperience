@@ -6,8 +6,6 @@ Additional LineageOS functions:
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
-- carbongerrit:    A Git wrapper that fetches/pushes patch from/to CarbonROM Gerrit Review.
-- carbonrebase:    Rebase a Gerrit change and push it again.
 - crremote:        Add gerrit remote for matching Carbon repository.
 - lineageremote:   Add git remote for LineageOS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
@@ -505,7 +503,7 @@ function cafmerge() {
 
 function xpepush() {
   TOP="${ANDROID_BUILD_TOP}"
-  MANIFEST="${TOP}/.repo/manifests/default.xml"
+  MANIFEST="${TOP}/.repo/manifests/snippets/xperience.xml"
   XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3 | tail -1)
 
   git push xpe HEAD:${XPERIENCEBR}
@@ -525,7 +523,7 @@ function githubremote() {
 
   local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
 
-  git remote add gh https://github.com/CarbonROM/$PROJECT
+  git remote add gh https://github.com/TheXPerienceProject/$PROJECT
   echo "Remote 'gh' created"
 }
 
