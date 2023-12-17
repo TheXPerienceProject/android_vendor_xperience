@@ -405,6 +405,8 @@ function aospmerge() {
 
   #git branch -d ${XPERIENCEBR}
   git fetch aosp
+  # also fetch tags
+  git fetch aosp --tags
   git checkout -b ${XPERIENCEBR}
   git merge --no-edit --log $BRANCH
 }
