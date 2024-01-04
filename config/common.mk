@@ -150,7 +150,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 -include vendor/xperience/config/packages.mk
 
 # GSM porque si
-#-include vendor/xperience/config/gsm.mk
+-include vendor/xperience/config/gsm.mk
 
 # Themes and Theme overlays
 #include vendor/themes/themes.mk
