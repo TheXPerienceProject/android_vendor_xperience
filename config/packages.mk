@@ -417,8 +417,7 @@ endif
 
 # XPerience Overlays
 PRODUCT_PACKAGES += \
-    XPerienceBlackThemeOverlay \
-    XPerienceWifiOverlay
+    XPerienceBlackThemeOverlay
 
 # Wi-Fi Icons
 PRODUCT_PACKAGES += \
