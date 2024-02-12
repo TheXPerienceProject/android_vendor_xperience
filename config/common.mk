@@ -167,6 +167,9 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries
 # Squisher Location
 SQUISHER_SCRIPT := vendor/xperience/tools/squisher
 
+# Snapdragon Clang
+$(call inherit-product, vendor/qcom/sdclang/config/SnapdragonClang.mk)
+
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
