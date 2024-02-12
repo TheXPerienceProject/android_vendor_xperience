@@ -10,7 +10,7 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
-#ADDITIONAL_SYSTEM_PROPERTIES += \
+ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
     ro.qcom.vendor=$(shell grep "refs/tags/LA.UM" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
 
