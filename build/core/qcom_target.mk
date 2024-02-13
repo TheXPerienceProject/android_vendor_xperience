@@ -1,4 +1,5 @@
 # Set device-specific HALs into project pathmap
+$(warning QCOM_TARGET)
 define set-device-specific-path
 $(if $(USE_DEVICE_SPECIFIC_$(1)), \
     $(if $(DEVICE_SPECIFIC_$(1)_PATH), \
