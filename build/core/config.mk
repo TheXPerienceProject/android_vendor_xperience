@@ -22,3 +22,6 @@ endef
 include vendor/xperience/build/core/utils.mk
 
 BUILD_RRO_SYSTEM_PACKAGE := $(TOPDIR)vendor/xperience/build/core/system_rro.mk
+
+# Rules for QCOM targets
+include $(TOPDIR)vendor/xperience/build/core/qcom_target.mk
