@@ -23,8 +23,8 @@ PRODUCT_PACKAGES += \
     qti_telephony_utils.xml \
     telephony-ext
 
-#PRODUCT_BOOT_JARS += \
-#    telephony-ext
+PRODUCT_BOOT_JARS += \
+    telephony-ext
 
 # CellBroadcastReceiver
 PRODUCT_PACKAGES += \
@@ -151,15 +151,11 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 # if exist track perf changes
 -include vendor/extras/extras.mk
 
-ifeq ($(WITH_GMS), true)
-
-#$(call inherit-product, vendor/google/pixel/config.mk)
-#$(call inherit-product, vendor/google/gms/config.mk)
-
 # GApps
-WITH_GMS := true
-$(call inherit-product-if-exists, vendor/google/gms/config.mk)
-$(call inherit-product-if-exists, vendor/google/pixel/config.mk)
+WITH_GMS ?= true
+ifeq ($(WITH_GMS), true)
+#TARGET_STOCK_GAPPS ?= true
+$(call inherit-product, vendor/gapps/products/gapps.mk)
 
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
