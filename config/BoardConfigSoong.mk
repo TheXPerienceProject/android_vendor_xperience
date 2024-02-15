@@ -119,3 +119,22 @@ else
 SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := $(QCOM_SOONG_NAMESPACE)/display
 endif
 SOONG_CONFIG_xperienceQcomVars_qti_vibrator_effect_lib := $(TARGET_QTI_VIBRATOR_EFFECT_LIB)
+
+# Disable qmi EAP-SIM security
+DISABLE_EAP_PROXY := true
+
+# Qualcomm variables
+SOONG_CONFIG_NAMESPACES += aosp_vs_qva
+SOONG_CONFIG_aosp_vs_qva += aosp_or_qva
+SOONG_CONFIG_aosp_vs_qva_aosp_or_qva := qva
+
+SOONG_CONFIG_NAMESPACES += bredr_vs_btadva
+SOONG_CONFIG_bredr_vs_btadva += bredr_or_btadva
+
+ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""
+    $(warning bt_adv_audio dir is present)
+    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := btadva
+else
+    $(warning bt_adv_audio dir is not present)
+    SOONG_CONFIG_bredr_vs_btadva_bredr_or_btadva := bredr
+endif #ifneq "$(wildcard vendor/qcom/proprietary/commonsys/bt/bt_adv_audio)" ""

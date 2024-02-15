@@ -23,8 +23,10 @@ PRODUCT_PACKAGES += \
     qti_telephony_utils.xml \
     telephony-ext
 
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+#ifneq (,$(filter telephony, $(TARGET_COMMON_QTI_COMPONENTS)))
+#PRODUCT_BOOT_JARS += \
+#    telephony-ext
+#endif
 
 # CellBroadcastReceiver
 PRODUCT_PACKAGES += \

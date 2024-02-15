@@ -66,6 +66,7 @@ PRODUCT_PACKAGES += \
     libqti_vndfwk_detect.vendor
 
 PRODUCT_BOOT_JARS += \
+    tcmiface \
     telephony-ext
 endif
 

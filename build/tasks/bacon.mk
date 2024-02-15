@@ -24,8 +24,8 @@ else
 MD5 := md5sum
 endif
 
-.PHONY: bacon
-bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
+.PHONY: xpe bacon
+xpe: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(XPE_TARGET_PACKAGE)
 	$(hide) $(MD5) $(XPE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(XPE_TARGET_PACKAGE).md5sum
 	@echo ""
@@ -41,3 +41,5 @@ bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e ${CL_CYN}"Package md5: "${CL_MAG}" `cat $(XPE_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
 	@echo -e ${CL_CYN}"Package size:"${CL_MAG}" `du -h $(XPE_TARGET_PACKAGE) | cut -f 1`            "${CL_RST}
 	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+
+bacon: xpe
