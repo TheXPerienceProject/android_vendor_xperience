@@ -95,7 +95,7 @@ endif
 
 ###########################################################################
 # Signing
-ifeq (user,$(TARGET_BUILD_VARIANT))
+ifneq (eng,$(TARGET_BUILD_VARIANT))
 fneq (,$(wildcard vendor/xperience/signing/keys/releasekey.pk8))
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/xperience/signing/keys/releasekey
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.oem_unlock_supported=1
