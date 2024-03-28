@@ -54,8 +54,9 @@ PRODUCT_PACKAGES += \
 	com.sony.device
 
 # Config
-# PRODUCT_PACKAGES += \
-#    SimpleDeviceConfig
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig \
+    SimpleSettingsConfig
 
 # Wallet app for Power menu integration
 # https://source.android.com/devices/tech/connect/quick-access-wallet
@@ -438,3 +439,18 @@ PRODUCT_PACKAGES += \
 # Neural Network
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full-rtti
+
+# Sensors
+PRODUCT_PACKAGES += \
+    android.frameworks.sensorservice@1.0.vendor
+
+# TextClassifier
+PRODUCT_PACKAGES += \
+    libtextclassifier_annotator_en_model \
+    libtextclassifier_annotator_universal_model \
+    libtextclassifier_actions_suggestions_universal_model \
+    libtextclassifier_lang_id_model
+
+# Volume panel dialog - SystemUI
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    sys.fflag.override.settings_volume_panel_in_systemui=true

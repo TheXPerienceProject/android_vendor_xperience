@@ -178,6 +178,9 @@
     <!-- Whether this device is supporting the camera toggle -->
     <bool name="config_supportsCamToggle">true</bool>
 
+    <!-- Flag indicating which package name can access DeviceConfig table -->
+    <string name="config_deviceConfiguratorPackageName" translatable="false">org.protonaosp.deviceconfig</string>
+
     <!-- Wallpaper cropper package. Used as the default cropper if the active launcher doesn't
          handle wallpaper cropping.
     -->
@@ -286,5 +289,12 @@
     <!-- The type of the light sensor to be used by the display framework for things like
          auto-brightness. If unset, then it just gets the default sensor of type TYPE_LIGHT. -->
     <string name="config_displayLightSensorType" translatable="false">android.sensor.light</string>
+
+    <!-- The default value used for RawContacts.ACCOUNT_NAME when contacts are inserted without this
+         column set. These contacts are stored locally on the device and will not be removed even
+         if no android.account.Account with this name exists. A null string will be used if the
+         value is left empty. When this is non-empty then config_rawContactsLocalAccountType
+         should also be non-empty.  -->
+    <string name="config_rawContactsLocalAccountName" translatable="false">DEVICE</string>
 
 </resources>

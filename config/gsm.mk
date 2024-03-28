@@ -65,6 +65,10 @@ PRODUCT_PACKAGES += \
     libvndfwk_detect_jni.qti.vendor \
     libqti_vndfwk_detect.vendor
 
+# Telephony - AOSP
+PRODUCT_PACKAGES += \
+    Stk
+
 PRODUCT_BOOT_JARS += \
     tcmiface \
     telephony-ext

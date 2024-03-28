@@ -2,6 +2,9 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
+# Include Common Qualcomm Device Tree.
+$(call inherit-product, device/xperience/common/common.mk)
+
 TARGET_DISABLE_SHUTDOWNANIMATION ?= true
 
 PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/bootanimation.zip
@@ -79,10 +82,6 @@ endif
 
 endif
 
-# Enable Android Beam on all targets
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/etc/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
-
 # Enable SIP and VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.sip.voip.xml
@@ -114,9 +113,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
 
-# Include Common Qualcomm Device Tree.
-$(call inherit-product, device/xperience/common/common.mk)
-
 # Additional packages
 -include vendor/xperience/config/packages.mk
 
@@ -131,6 +127,10 @@ DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
 
 # Exclude from RRO
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay
+
+PRODUCT_PACKAGES += \
+    DocumentsUIOverlay \
+    NetworkStackOverlay 
 
 # Include CM LatinIME dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries

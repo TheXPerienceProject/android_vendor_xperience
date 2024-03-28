@@ -17,17 +17,12 @@
 
 XPE_TARGET_PACKAGE := $(PRODUCT_OUT)/xperience-$(XPE_VERSION).zip
 
-# It's called md5 on Mac OS and md5sum on Linux
-ifeq ($(HOST_OS),darwin)
-MD5 := md5 -q
-else
-MD5 := md5sum
-endif
+SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
 .PHONY: xpe bacon
 xpe: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(XPE_TARGET_PACKAGE)
-	$(hide) $(MD5) $(XPE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(XPE_TARGET_PACKAGE).md5sum
+	$(hide) $(SHA256) $(XPE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(XPE_TARGET_PACKAGE).SHA256
 	@echo ""
 	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 	@echo -e ${CL_BLU}"██╗░░██╗██████╗░███████╗██████╗░██╗███████╗███╗░░██╗░█████╗░███████╗"           ${CL_RST}
@@ -38,7 +33,7 @@ xpe: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e ${CL_BLU}"╚═╝░░╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═╝╚══════╝╚═╝░░╚══╝░╚════╝░╚══════╝"           ${CL_RST}
 	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 	@echo -e ${CL_CYN}"Package Complete: $(XPE_TARGET_PACKAGE)" >&2                                     ${CL_RST}
-	@echo -e ${CL_CYN}"Package md5: "${CL_MAG}" `cat $(XPE_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
+	@echo -e ${CL_CYN}"Package SHA256: "${CL_MAG}" `cat $(XPE_TARGET_PACKAGE).SHA256 | cut -d ' ' -f 1`"${CL_RST}
 	@echo -e ${CL_CYN}"Package size:"${CL_MAG}" `du -h $(XPE_TARGET_PACKAGE) | cut -f 1`            "${CL_RST}
 	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 
