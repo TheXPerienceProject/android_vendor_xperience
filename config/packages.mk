@@ -444,6 +444,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0.vendor
 
+# SetupWizard
+PRODUCT_PRODUCT_PROPERTIES += \
+    setupwizard.theme=glif_v4 \
+    setupwizard.feature.day_night_mode_enabled=true
+
 # TextClassifier
 PRODUCT_PACKAGES += \
     libtextclassifier_annotator_en_model \
@@ -454,3 +459,10 @@ PRODUCT_PACKAGES += \
 # Volume panel dialog - SystemUI
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sys.fflag.override.settings_volume_panel_in_systemui=true
+
+# Translations
+CUSTOM_LOCALES += \
+    ast_ES \
+    gd_GB \
+    cy_GB \
+    fur_IT
