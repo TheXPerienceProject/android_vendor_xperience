@@ -167,3 +167,8 @@ SYSTEMUI_OPTIMIZE_JAVA := true
 # Set default refresh rate threshold
 #PRODUCT_VENDOR_PROPERTIES += \
     debug.sf.frame_rate_multiple_threshold=60
+
+# Rescue Party
+# Disable RescueParty due to high risk of data loss
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.sys.disable_rescue=true
