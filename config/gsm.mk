@@ -77,3 +77,12 @@ endif
 # WiFi
 PRODUCT_PACKAGES += \
     libwpa_client
+
+ifneq ($(TARGET_COMMON_QTI_COMPONENTS), wlan)
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.wifi.supplicant \
+    vendor.qti.hardware.wifi.hostapd@1.3 \
+    vendor.qti.hardware.wifi@1.0 \
+    android.hardware.wifi.supplicant-V1-ndk.vendor \
+    vendor.qti.hardware.wifi.supplicant-V1-ndk.vendor
+endif
