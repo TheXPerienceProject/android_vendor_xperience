@@ -230,7 +230,7 @@ PRODUCT_PACKAGES += \
     FontUbuntuOverlay
 
 # LS Clock Fonts
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     ClockFontOppoSansOverlay \
     ClockFontGoogleSansOverlay \
     ClockFontNothingDotOverlay \
@@ -360,7 +360,7 @@ PRODUCT_PACKAGES += \
     ClockFontRoundheadsOverlay
 
 # Statusbar Icons
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     AquariumSignalOverlay \
     BarsSignalOverlay \
     DeepSignalOverlay \
@@ -377,7 +377,7 @@ PRODUCT_PACKAGES += \
     ZigZagSignalOverlay
 
 # Themes
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     DarkBgOverlay \
     UnmonetThemeAndroidOverlay \
     UnmonetThemeSettingsOverlay \
@@ -412,7 +412,7 @@ PRODUCT_PACKAGES += \
 # Udfps
 ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 $(warning EXTRA_UDFPS_ANIMATIONS IS ${EXTRA_UDFPS_ANIMATIONS})
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     UdfpsResources
 endif
 
@@ -421,7 +421,7 @@ PRODUCT_PACKAGES += \
     XPerienceBlackThemeOverlay
 
 # Wi-Fi Icons
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     BarsWiFiOverlay \
     InsideWiFiOverlay \
     RoundWiFiOverlay \
@@ -432,7 +432,7 @@ PRODUCT_PACKAGES += \
     ZigZagWiFiOverlay
 
 # Register vendor fonts
-#PRODUCT_COPY_FILES += \
+PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/xperience_themes/product/fonts/,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
     vendor/xperience_themes/product/etc/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
 
