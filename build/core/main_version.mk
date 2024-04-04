@@ -10,6 +10,13 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
+# Settings props
+ADDITIONAL_SYSTEM_PROPERTIES += \
+    ro.xpe.battery?=$(XPERIENCE_BATTERY) \
+    ro.xpe.chipset?=$(XPERIENCE_CHIPSET) \
+    ro.xpe.display_resolution?=$(XPERIENCE_DISPLAY) \
+    ro.xpe.maintainer?=$(XPERIENCE_MAINTAINER)
+
 ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
     ro.qcom.vendor=$(shell grep "refs/tags/LA.VENDOR" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
