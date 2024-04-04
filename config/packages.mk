@@ -230,7 +230,7 @@ PRODUCT_PACKAGES += \
     FontUbuntuOverlay
 
 # LS Clock Fonts
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     ClockFontOppoSansOverlay \
     ClockFontGoogleSansOverlay \
     ClockFontNothingDotOverlay \
