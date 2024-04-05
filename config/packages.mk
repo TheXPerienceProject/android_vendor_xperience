@@ -65,10 +65,6 @@ PRODUCT_PACKAGES += \
 
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
-    PRODUCT_DEFAULT_DEV_CERTIFICATE := keys/releasekey
-    DEFAULT_SYSTEM_DEV_CERTIFICATE := $(PRODUCT_DEFAULT_DEV_CERTIFICATE)
-    PRODUCT_OTA_PUBLIC_KEYS := keys/otakey.x509.pem
-    extra_ota_keys := $(addsuffix keys/.x509.pem,$(PRODUCT_EXTRA_OTA_KEYS))
 
 # Only build OTA if official
 PRODUCT_PACKAGES += \
