@@ -151,7 +151,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 -include vendor/extras/extras.mk
 
 # SystemUI Clocks
-$(call inherit-product, vendor/SystemuiClocks/products.mk)
+$(call inherit-product, vendor/SystemuiClocks/product.mk)
 
 # GApps
 WITH_GMS ?= true
@@ -411,7 +411,7 @@ PRODUCT_PACKAGES += \
 # Udfps
 ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 $(warning EXTRA_UDFPS_ANIMATIONS IS ${EXTRA_UDFPS_ANIMATIONS})
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     UdfpsResources
 endif
 
