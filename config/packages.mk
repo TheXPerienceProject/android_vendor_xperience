@@ -150,9 +150,6 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 # if exist track perf changes
 -include vendor/extras/extras.mk
 
-# SystemUI Clocks
-$(call inherit-product, vendor/SystemuiClocks/product.mk)
-
 # GApps
 WITH_GMS ?= true
 ifeq ($(WITH_GMS), true)
