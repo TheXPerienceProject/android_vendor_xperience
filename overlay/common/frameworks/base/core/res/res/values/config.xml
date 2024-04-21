@@ -187,11 +187,14 @@
     <string name="config_wallpaperCropperPackage" translatable="false">com.android.wallpaper</string>
 
     <!-- Build properties from a GMS certified device against current platform SPL level -->
-    <string-array name="config_certifiedBuildProperties" translatable="false">
-        <item>marlin</item>   <!-- Build.DEVICE -->
-        <item>marlin</item>   <!-- Build.PRODUCT -->
-        <item>Pixel XL</item> <!-- Build.MODEL -->
-        <item>google/marlin/marlin:7.1.2/NJH47F/4146041:user/release-keys</item> <!-- Build.FINGERPRINT -->
+    <string-array name="config_certifiedBuildProperties">
+        <item>PRODUCT:A6020a46</item>
+        <item>DEVICE:A6020a46</item>
+        <item>MANUFACTURER:LENOVO</item>
+        <item>BRAND:Lenovo</item>
+        <item>MODEL:Lenovo A6020a46</item>
+        <item>FINGERPRINT:Lenovo/A6020a46/A6020a46:5.1.1/LMY47V/A6020a46_S042_160516_ROW:user/release-keys</item>
+        <item>VERSION.DEVICE_INITIAL_SDK_INT:21</item>
     </string-array>
 
     <!-- Default list of files pinned by the Pinner Service -->
