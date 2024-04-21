@@ -462,3 +462,6 @@ CUSTOM_LOCALES += \
     gd_GB \
     cy_GB \
     fur_IT
+
+#Microsoft Windows link
+$(call inherit-product, vendor/xperience/prebuilt/microsoft/packages.mk)
