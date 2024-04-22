@@ -40,7 +40,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     GameSpace \
     ExactCalculator \
-    NightFallQuickStep \
+    Launcher3QuickStep \
     Seedvault \
     XPeriaWeather \
     Yunikon
