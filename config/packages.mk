@@ -125,9 +125,10 @@ PRODUCT_PACKAGES += \
 
 # Themes
 PRODUCT_PACKAGES += \
-    ThemePicker \
+    XPerienceThemePicker \
     WallpaperPicker2 \
-    XPerienceOverlayStub
+    XPerienceOverlayStub \
+    XPerienceThemePickerOverlay
 
 #Coral cant include this due to lower superpartition size
 ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
