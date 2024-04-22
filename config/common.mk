@@ -5,6 +5,11 @@ PRODUCT_BRAND ?= XPerience
 # Include Common Qualcomm Device Tree.
 $(call inherit-product, device/xperience/common/common.mk)
 
+# Implementation of lineage HEALTH
+# HIDL
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    vendor/xperience/interfaces/vendor_framework_compatibility_matrix.xml
+
 TARGET_DISABLE_SHUTDOWNANIMATION ?= true
 
 PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/bootanimation.zip
@@ -181,8 +186,3 @@ SYSTEMUI_OPTIMIZE_JAVA := true
 # Disable RescueParty due to high risk of data loss
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.disable_rescue=true
-
-# Implementation of lineage HEALTH
-# HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    vendor/xperience/interfaces/vendor_framework_compatibility_matrix.xml
