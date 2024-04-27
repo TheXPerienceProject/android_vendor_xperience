@@ -64,6 +64,7 @@
         <item>com.qualcomm.qti.cne</item>
         <!-- ImsService -->
         <item>com.shannon.imsservice</item>
+        <item>com.google.android.gms.location.history</item>
     </string-array>
 
     <bool name="config_cellBroadcastAppLinks">true</bool>

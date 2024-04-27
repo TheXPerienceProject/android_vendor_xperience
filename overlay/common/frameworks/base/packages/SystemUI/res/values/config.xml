@@ -40,5 +40,11 @@
         <item>com.android.systemui</item>
         <item>com.android.systemui.plugin.globalactions.wallet</item>
     </string-array>
+
+    <!-- The default tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_default" translatable="false">
+        internet,bt,flashlight,nfc,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,custom(com.google.android.gms/.nearby.sharing.SharingTileService),mictoggle,cameratoggle,custom(com.android.permissioncontroller/.permission.service.SafetyCenterQsTileService)
+    </string>
+
 </resources>
 
