@@ -125,7 +125,6 @@ PRODUCT_PACKAGES += \
 # Themes
 PRODUCT_PACKAGES += \
     ThemePicker \
-    ParanoidThemePicker \
     WallpaperPicker2 \
     XPerienceOverlayStub
 
