@@ -189,12 +189,12 @@
 
     <!-- Build properties from a GMS certified device against current platform SPL level -->
     <string-array name="config_certifiedBuildProperties">
-        <item>PRODUCT:motorola</item>
-        <item>DEVICE:motorola</item>
-        <item>MANUFACTURER:motorola</item>
-        <item>BRAND:motorola</item>
-        <item>MODEL:XT1575</item>
-        <item>FINGERPRINT:motorola/clark_retus/clark:6.0/MPHS24.49-18-8/4:user/release-keys</item>
+        <item>PRODUCT:Pixel</item>
+        <item>DEVICE:sailfish</item>
+        <item>MANUFACTURER:Google</item>
+        <item>BRAND:Pixel</item>
+        <item>MODEL:Pixel</item>
+        <item>FINGERPRINT:google/sailfish/sailfish:8.1.0/OPM1.171019.011/4448085:user/release-keys</item>
         <item>VERSION.DEVICE_INITIAL_SDK_INT:25</item>
     </string-array>
 
