@@ -189,13 +189,13 @@
 
     <!-- Build properties from a GMS certified device against current platform SPL level -->
     <string-array name="config_certifiedBuildProperties">
-        <item>PRODUCT:A6020a46</item>
-        <item>DEVICE:A6020a46</item>
-        <item>MANUFACTURER:LENOVO</item>
-        <item>BRAND:Lenovo</item>
-        <item>MODEL:Lenovo A6020a46</item>
-        <item>FINGERPRINT:Lenovo/A6020a46/A6020a46:5.1.1/LMY47V/A6020a46_S042_160516_ROW:user/release-keys</item>
-        <item>VERSION.DEVICE_INITIAL_SDK_INT:21</item>
+        <item>PRODUCT:motorola</item>
+        <item>DEVICE:motorola</item>
+        <item>MANUFACTURER:motorola</item>
+        <item>BRAND:motorola</item>
+        <item>MODEL:XT1575</item>
+        <item>FINGERPRINT:motorola/clark_retus/clark:6.0/MPHS24.49-18-8/4:user/release-keys</item>
+        <item>VERSION.DEVICE_INITIAL_SDK_INT:25</item>
     </string-array>
 
     <!-- Default list of files pinned by the Pinner Service -->
