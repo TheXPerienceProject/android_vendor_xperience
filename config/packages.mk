@@ -235,6 +235,27 @@ PRODUCT_PACKAGES += \
     FontSurferOverlay \
     FontUbuntuOverlay
 
+# Icon shapes
+PRODUCT_PACKAGES += \
+    IconShapeFlowerOverlay \
+    IconShapeHeartOverlay \
+    IconShapeHexagonOverlay \
+    IconShapeLeafOverlay \
+    IconShapeCloudyOverlay \
+    IconShapeCylindricalOverlay \
+    IconShapeStretchedOverlay \
+    IconShapePebbleOverlay \
+    IconShapeRiceBallsOverlay \
+    IconShapeRoundedRectOverlay \
+    IconShapeSquareOverlay \
+    IconShapeSquircleOverlay \
+    IconShapeTaperedRectOverlay \
+    IconShapeTeardropOverlay \
+    IconShapeVesselOverlay \
+    IconShapeRoundedHexagonOverlay \
+    IconShapeIosOverlay \
+    RohieIconMeowOverlay
+
 # LS Clock Fonts
 PRODUCT_PACKAGES += \
     ClockFontOppoSansOverlay \
@@ -366,14 +387,22 @@ PRODUCT_PACKAGES += \
     ClockFontRoundheadsOverlay
 
 # Statusbar Icons
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
+    AcherusSignalOverlay \
+    AcherusSubsSignalGOverlay \
+    AcherusSubsSignalTOverlay \
     AquariumSignalOverlay \
     BarsSignalOverlay \
     DeepSignalOverlay \
     HuaweiSignalOverlay \
+    GradiconSignalOverlay \
     InsideSignalOverlay \
     IosSignalOverlay \
+    LivSignalOverlay \
+    NothingDotSignalOverlay \
+    OdineeSignalOverlay \
     PillsSignalOverlay \
+    PUISignalOverlay \
     RoundSignalOverlay \
     SneakySignalOverlay \
     StrokeSignalOverlay \
@@ -427,9 +456,16 @@ PRODUCT_PACKAGES += \
     XPerienceBlackThemeOverlay
 
 # Wi-Fi Icons
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
+    AcherusSubsWifiGOverlay \
+    AcherusSubsWifiTOverlay \
+    AcherusWiFiOverlay \
     BarsWiFiOverlay \
+    GradiconWiFiOverlay \
     InsideWiFiOverlay \
+    LivWifiOverlay \
+    NothingDotWiFiOverlay \
+    PavlovaWiFiOverlay \
     RoundWiFiOverlay \
     SneakyWiFiOverlay \
     StrokeWiFiOverlay \
