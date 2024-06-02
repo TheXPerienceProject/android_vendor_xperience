@@ -133,6 +133,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # GSM porque si
 -include vendor/xperience/config/gsm.mk
 
+# Pixel customization
+TARGET_IS_PIXEL ?= false
+TARGET_PIXEL_STAND_SUPPORTED ?= false
+TARGET_SUPPORTS_QUICK_TAP ?= true
+TARGET_USES_MINI_GAPPS ?= false
+TARGET_USES_PICO_GAPPS ?= false
+
 # Themes and Theme overlays
 #include vendor/themes/themes.mk
 

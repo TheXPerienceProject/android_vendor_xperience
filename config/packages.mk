@@ -126,7 +126,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ThemePicker \
     WallpaperPicker2 \
-    XPerienceOverlayStub
+    XPerienceOverlayStub \
+    XPerienceThemesStub
 
 #Coral cant include this due to lower superpartition size
 ifneq ($(TARGET_DONT_INCLUDE_XPEWALLS), true)
@@ -153,7 +154,17 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 WITH_GMS ?= true
 ifeq ($(WITH_GMS), true)
 #TARGET_STOCK_GAPPS ?= true
-$(call inherit-product, vendor/gapps/products/gapps.mk)
+#$(call inherit-product, vendor/gapps/products/gapps.mk)
+# GMS
+# Inherit from GMS product config
+ifeq ($(TARGET_USES_MINI_GAPPS),true)
+$(call inherit-product, vendor/gms/gms_mini.mk)
+else ifeq ($(TARGET_USES_PICO_GAPPS),true)
+$(call inherit-product, vendor/gms/gms_pico.mk)
+else
+$(call inherit-product, vendor/gms/gms_full.mk)
+endif
+
 
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
