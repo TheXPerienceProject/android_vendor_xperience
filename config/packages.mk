@@ -479,7 +479,6 @@ PRODUCT_PACKAGES += \
     RealmeVolteOverlay \
     TypeAVolteOverlay \
     TypeBVolteOverlay \
-    VCircleVolteOverlay \
     Vivox60VolteOverlay \
     XPeVolteOverlay \
     XPe2VolteOverlay \
