@@ -386,6 +386,22 @@ PRODUCT_PACKAGES += \
     ClockFontMonbijouxClownpieceOverlay \
     ClockFontRoundheadsOverlay
 
+# Data icons
+PRODUCT_PACKAGES += \
+    AuroraDataOverlay \
+    FaintUIDataOverlay \
+    GradiconDataOverlay \
+    LornDataOverlay \
+    PlumpyDataOverlay
+
+# Icon Data
+PRODUCT_PACKAGES += \
+    IconDataFive \
+    IconDataFour \
+    IconDataOne \
+    IconDataThree \
+    IconDataTwo
+
 # Statusbar Icons
 PRODUCT_PACKAGES += \
     AcherusSignalOverlay \
