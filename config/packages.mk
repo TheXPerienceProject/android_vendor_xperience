@@ -467,6 +467,24 @@ PRODUCT_PACKAGES += \
     UdfpsResources
 endif
 
+#Volte Icons
+PRODUCT_PACKAGES += \
+    ArisVolteOverlay \
+    BeastVolteOverlay \
+    iOSVolteOverlay \
+    lrVolteOverlay \
+    MargaritovVolteOverlay \
+    Margaritov2VolteOverlay \
+    miuiVolteOverlay \
+    RealmeVolteOverlay \
+    TypeAVolteOverlay \
+    TypeBVolteOverlay \
+    VCircleVolteOverlay \
+    Vivox60VolteOverlay \
+    XPeVolteOverlay \
+    XPe2VolteOverlay \
+    ZircoVolteOverlay
+
 # XPerience Overlays
 PRODUCT_PACKAGES += \
     XPerienceBlackThemeOverlay
