@@ -38,6 +38,7 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
+    Datura \
     GameSpace \
     ExactCalculator \
     Seedvault \
