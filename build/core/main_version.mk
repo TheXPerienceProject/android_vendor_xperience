@@ -6,7 +6,7 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Uranus​ \
+    ro.xpe.codename=Cháak \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
