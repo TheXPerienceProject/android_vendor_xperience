@@ -76,13 +76,16 @@ PRODUCT_PACKAGES += \
 
 endif
 
+# Charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
 ifneq ($(WITH_XPERIENCE_CHARGER),false)
 PRODUCT_PACKAGES += \
-    xperience_charger_animation
+    xperience_charger_animation \
+    xperience_charger_animation_vendor
 endif
+
 
 # FS tools
 PRODUCT_PACKAGES += \
