@@ -60,9 +60,9 @@ LOCAL_OPTIONAL_USES_LIBRARIES := com.sony.device com.android.testruner
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := Music
+LOCAL_MODULE := MusicXPeria
 LOCAL_MODULE_OWNER := sony
-LOCAL_SRC_FILES := Music.apk.apk
+LOCAL_SRC_FILES := Music.apk
 LOCAL_MODULE_TAGS := optional
 LOCAL_ENFORCE_USES_LIBRARIES := com.sony.device android.test.runner
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)

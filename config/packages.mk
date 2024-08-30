@@ -42,7 +42,7 @@ PRODUCT_PACKAGES += \
     Datura \
     GameSpace \
     ExactCalculator \
-    Music \
+    MusicXPeria \
     Seedvault \
     XPeriaWeather \
     Yunikon
