@@ -38,9 +38,11 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
+    Battery-Adviser \
     Datura \
     GameSpace \
     ExactCalculator \
+    Music \
     Seedvault \
     XPeriaWeather \
     Yunikon

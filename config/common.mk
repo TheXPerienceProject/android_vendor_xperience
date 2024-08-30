@@ -50,9 +50,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.build.selinux=1
 
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.ringtone=XPerienceRing.ogg \
-    ro.config.notification_sound=Reminder.ogg \
-    ro.config.alarm_alert=Fuego.ogg
+    ro.config.ringtone=Rasalas.ogg \
+    ro.config.notification_sound=Notification_H.ogg \
+    ro.config.alarm_alert=Xperia_alarm.ogg
 
 # IORap app launch prefetching using Perfetto traces and madvise
 PRODUCT_PRODUCT_PROPERTIES += \

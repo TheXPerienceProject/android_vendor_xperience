@@ -6,6 +6,8 @@ ALARM_PATH := vendor/xperience/prebuilt/media/audio/alarms
 NOTIFICATION_PATH := vendor/xperience/prebuilt/media/audio/notifications
 RINGTONE_PATH := vendor/xperience/prebuilt/media/audio/ringtones
 UI_PATH := vendor/xperience/prebuilt/media/audio/ui
+EXTERNAL_RINGTONE_PATH := vendor/xperience_themes/audio/ringtones
+EXTERNAL_NOTIFICATION_PATH := vendor/xperience_themes/audio/notifications
 
 #UI 
 PRODUCT_COPY_FILES += \
@@ -29,7 +31,8 @@ PRODUCT_COPY_FILES += \
     $(NOTIFICATION_PATH)/Pong.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Pong.ogg \
     $(NOTIFICATION_PATH)/Rang.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Rang.ogg \
     $(NOTIFICATION_PATH)/Stone.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Stone.ogg \
-    $(NOTIFICATION_PATH)/Reminder.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Reminder.ogg
+    $(NOTIFICATION_PATH)/Reminder.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Reminder.ogg \
+    $(EXTERNAL_NOTIFICATION_PATH)/Notification_H.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/Notification_H.ogg
 
 # Ringtones
 PRODUCT_COPY_FILES += \
@@ -43,4 +46,8 @@ PRODUCT_COPY_FILES += \
     $(RINGTONE_PATH)/XPerienceRing.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/XPerienceRing.ogg \
     $(RINGTONE_PATH)/Music_box.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Music_box.ogg \
     $(RINGTONE_PATH)/generic_xperia.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/generic_xperia.ogg \
-    $(RINGTONE_PATH)/garden_waltz.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/garden_waltz.ogg
+    $(RINGTONE_PATH)/garden_waltz.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/garden_waltz.ogg \
+    $(EXTERNAL_RINGTONE_PATH)/Rasalas.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Rasalas.ogg \
+    $(EXTERNAL_RINGTONE_PATH)/Rigel.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Rigel.ogg \
+    $(EXTERNAL_RINGTONE_PATH)/Scarabaeus.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Scarabaeus.ogg \
+    $(EXTERNAL_RINGTONE_PATH)/Themos.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ringtones/Themos.ogg
