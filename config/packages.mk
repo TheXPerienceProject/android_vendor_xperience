@@ -475,40 +475,40 @@ PRODUCT_PACKAGES += \
     AcherusSubsSignalGOverlay \
     AcherusSubsSignalTOverlay \
     AquariumSignalOverlay \
-    AuroraSignal \
+    AuroraSignalOverlay \
     BarsSignalOverlay \
-    ButterflySignal \
-    CircleSignal \
-    DaunSignal \
-    DecSignal \
+    ButterflySignalOverlay \
+    CircleSignalOverlay \
+    DaunSignalOverlay \
+    DecSignalOverlay \
     DeepSignalOverlay \
-    DoraSignal \
-    FanSignal \
-    ForlornSignal \
+    DoraSignalOverlay \
+    FanSignalOverlay \
+    ForlornSignalOverlay \
     HuaweiSignalOverlay \
     GradiconSignalOverlay \
     InsideSignalOverlay \
     IosSignalOverlay \
     LivSignalOverlay \
-    MiniSignal \
+    MiniSignalOverlay \
     NothingDotSignalOverlay \
     OdineeSignalOverlay \
     PillsSignalOverlay \
-    PlumpySignal \
+    PlumpySignalOverlay \
     PUISignalOverlay \
-    RelSignal \
-    RomanSignal \
+    RelSignalOverlay \
+    RomanSignalOverlay \
     RoundSignalOverlay \
-    ScrollSignal \
-    SeaSignal \
+    ScrollSignalOverlay \
+    SeaSignalOverlay \
     SneakySignalOverlay \
-    StackSignal \
+    StackSignalOverlay \
     StrokeSignalOverlay \
-    WannuiSignal \
+    WannuiSignalOverlay \
     WavySignalOverlay \
     WeedWiFiOverlay \
-    WindowsSignal \
-    WingSignal \
+    WindowsSignalOverlay \
+    WingSignalOverlay \
     XperiaSignalOverlay \
     ZigZagSignalOverlay
 
@@ -578,17 +578,17 @@ PRODUCT_PACKAGES += \
     AcherusSubsWifiGOverlay \
     AcherusSubsWifiTOverlay \
     AcherusWiFiOverlay \
-    AuroraWiFi \
+    AuroraWiFiOverlay \
     BarsWiFiOverlay \
-    DoraWiFi \
-    FaintUIWiFi \
-    ForlornWiFi \
+    DoraWiFiOverlay \
+    FaintUIWiFiOverlay \
+    ForlornWiFiOverlay \
     GradiconWiFiOverlay \
     InsideWiFiOverlay \
     LivWifiOverlay \
     NothingDotWiFiOverlay \
     PavlovaWiFiOverlay \
-    PlumpyWiFi \
+    PlumpyWiFiOverlay \
     RoundWiFiOverlay \
     SneakyWiFiOverlay \
     StrokeWiFiOverlay \
