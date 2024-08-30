@@ -240,6 +240,68 @@ PRODUCT_PACKAGES += \
     FontSurferOverlay \
     FontUbuntuOverlay
 
+# Icon Packs
+PRODUCT_PACKAGES += \
+    IconPackCircularAndroidOverlay \
+    IconPackCircularLauncherOverlay \
+    IconPackCircularSettingsOverlay \
+    IconPackCircularSystemUIOverlay \
+    IconPackCircularThemePickerOverlay \
+    IconPackVictorAndroidOverlay \
+    IconPackVictorLauncherOverlay \
+    IconPackVictorSettingsOverlay \
+    IconPackVictorSystemUIOverlay \
+    IconPackVictorThemePickerOverlay \
+    IconPackSamAndroidOverlay \
+    IconPackSamLauncherOverlay \
+    IconPackSamSettingsOverlay \
+    IconPackSamSystemUIOverlay \
+    IconPackSamThemePickerOverlay \
+    IconPackKaiAndroidOverlay \
+    IconPackKaiLauncherOverlay \
+    IconPackKaiSettingsOverlay \
+    IconPackKaiSystemUIOverlay \
+    IconPackKaiThemePickerOverlay \
+    IconPackFilledAndroidOverlay \
+    IconPackFilledLauncherOverlay \
+    IconPackFilledSettingsOverlay \
+    IconPackFilledSystemUIOverlay \
+    IconPackFilledThemePickerOverlay \
+    IconPackPUIAndroidOverlay \
+    IconPackPUILauncherOverlay \
+    IconPackPUISettingsOverlay \
+    IconPackPUISystemUIOverlay \
+    IconPackPUIThemePickerOverlay \
+    IconPackRoundedAndroidOverlay \
+    IconPackRoundedLauncherOverlay \
+    IconPackRoundedSettingsOverlay \
+    IconPackRoundedSystemUIOverlay \
+    IconPackRoundedThemePickerOverlay \
+    IconPackOOSAndroidOverlay \
+    IconPackOOSLauncherOverlay \
+    IconPackOOSSettingsOverlay \
+    IconPackOOSSystemUIOverlay \
+    IconPackOOSThemePickerOverlay \
+    IconPackOutlineAndroidOverlay \
+    IconPackOutlineLauncherOverlay \
+    IconPackOutlineSettingsOverlay \
+    IconPackOutlineSystemUIOverlay \
+    IconPackAcherusAndroidOverlay \
+    IconPackAcherusLauncherOverlay \
+    IconPackAcherusSettingsOverlay \
+    IconPackAcherusSystemUIOverlay \
+    IconPackAuroraAndroidOverlay \
+    IconPackAuroraSystemUIOverlay \
+    IconPackGradiconAndroidOverlay \
+    IconPackGradiconSystemUIOverlay \
+    IconPackLornAndroidOverlay \
+    IconPackLornSystemUIOverlay \
+    IconPackPlumpySystemUIOverlay \
+    IconPackPlumpyAndroidOverlay \
+    IconPackXperiaAndroidOverlay \
+    IconPackXperiaSettingsOverlay \
+    IconPackXperiaSystemUIOverlay
+
 # Icon shapes
 PRODUCT_PACKAGES += \
     IconShapeFlowerOverlay \
@@ -413,22 +475,40 @@ PRODUCT_PACKAGES += \
     AcherusSubsSignalGOverlay \
     AcherusSubsSignalTOverlay \
     AquariumSignalOverlay \
+    AuroraSignal \
     BarsSignalOverlay \
+    ButterflySignal \
+    CircleSignal \
+    DaunSignal \
+    DecSignal \
     DeepSignalOverlay \
+    DoraSignal \
+    FanSignal \
+    ForlornSignal \
     HuaweiSignalOverlay \
     GradiconSignalOverlay \
     InsideSignalOverlay \
     IosSignalOverlay \
     LivSignalOverlay \
+    MiniSignal \
     NothingDotSignalOverlay \
     OdineeSignalOverlay \
     PillsSignalOverlay \
+    PlumpySignal \
     PUISignalOverlay \
+    RelSignal \
+    RomanSignal \
     RoundSignalOverlay \
+    ScrollSignal \
+    SeaSignal \
     SneakySignalOverlay \
+    StackSignal \
     StrokeSignalOverlay \
+    WannuiSignal \
     WavySignalOverlay \
     WeedWiFiOverlay \
+    WindowsSignal \
+    WingSignal \
     XperiaSignalOverlay \
     ZigZagSignalOverlay
 
@@ -498,12 +578,17 @@ PRODUCT_PACKAGES += \
     AcherusSubsWifiGOverlay \
     AcherusSubsWifiTOverlay \
     AcherusWiFiOverlay \
+    AuroraWiFi \
     BarsWiFiOverlay \
+    DoraWiFi \
+    FaintUIWiFi \
+    ForlornWiFi \
     GradiconWiFiOverlay \
     InsideWiFiOverlay \
     LivWifiOverlay \
     NothingDotWiFiOverlay \
     PavlovaWiFiOverlay \
+    PlumpyWiFi \
     RoundWiFiOverlay \
     SneakyWiFiOverlay \
     StrokeWiFiOverlay \
