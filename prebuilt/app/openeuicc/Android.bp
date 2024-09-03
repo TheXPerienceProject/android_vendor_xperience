@@ -1,0 +1,37 @@
+//
+//
+// SPDX-License-Identifier: Apache-2.0
+// (C) The XPerience Project 2024
+//
+
+android_app_import {
+	name: "OpenEUICC",
+	owner: "xperience",
+	apk: "OpenEUICC.apk",
+	required: ["privapp_whitelist_im.angry.openeuicc.xml","liblpac-jni"],
+	//shared_libs: ["lib/arm64/liblpac-jni.so"],
+	certificate: "platform",
+	dex_preopt: {
+		enabled: true,
+	},
+	privileged: true,
+	system_ext_specific: true,
+    optional_uses_libs:["androidx.window.extensions", "androidx.window.sidecar"],
+}
+
+prebuilt_etc {
+    name: "privapp_whitelist_im.angry.openeuicc.xml",
+    system_ext_specific: true,
+    src: "privapp_whitelist_im.angry.openeuicc.xml",
+    sub_dir: "permissions",
+}
+
+cc_prebuilt_library {
+    name: "liblpac-jni",
+    srcs: [
+        "lib/arm64/liblpac-jni.so",
+    ],
+	shared_libs: ["libc++", "liblog"],
+	check_elf_files: false,
+	system_ext_specific: true,
+}
