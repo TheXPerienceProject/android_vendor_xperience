@@ -51,6 +51,30 @@ function mk_timer() {
   return $ret
 }
 
+# check to see if the supplied product is one we can build
+function check_product()
+{
+    local T=$(gettop)
+    if [ ! "$T" ]; then
+        echo "Couldn't locate the top of the tree. Try setting TOP." >&2
+        return
+    fi
+    if (echo -n $1 | grep -q -e "^xperience_") ; then
+        XPERIENCE_BUILD=$(echo -n $1 | sed -e 's/^xperience_//g')
+    else
+        XPERIENCE_BUILD=
+    fi
+    export XPERIENCE_BUILD
+
+        TARGET_PRODUCT=$1 \
+        TARGET_RELEASE=$2 \
+        TARGET_BUILD_VARIANT= \
+        TARGET_BUILD_TYPE= \
+        TARGET_BUILD_APPS= \
+        get_build_var TARGET_DEVICE > /dev/null
+    # hide successful answers, but allow the errors to show
+}
+
 function brunch() {
   breakfast $*
   if [ $? -eq 0 ]; then
