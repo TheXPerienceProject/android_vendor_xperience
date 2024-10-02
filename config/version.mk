@@ -1,3 +1,36 @@
+# Apply it to build.prop
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.xpe.version=$(XPE_VERSION) \
+    ro.xpe.releasetype=$(XPE_BUILDTYPE) \
+    ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.xpe.version.minor=$(PRODUCT_VERSION_MAJOR) \
+    ro.xpe.version.major=$(PRODUCT_VERSION_MINOR) \
+    ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
+    ro.modversion=$(XPE_VERSION) \
+    ro.xpe.model=$(XPERIENCE_BUILD) \
+    ro.xpe.codename=Cháak \
+    ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
+    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
+
+
+# Settings props
+#PRODUCT_PRODUCT_PROPERTIES += \
+    ro.xpe.battery?=$(XPERIENCE_BATTERY) \
+    ro.xpe.chipset?=$(XPERIENCE_CHIPSET) \
+    ro.xpe.display_resolution?=$(XPERIENCE_DISPLAY) \
+    ro.xpe.maintainer?=$(XPERIENCE_MAINTAINER)
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+    ro.qcom.vendor=$(shell grep "refs/tags/LA.VENDOR" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
+
+#   ro.qcom.system=$(shell grep "refs/tags/android-13.0" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+#   ro.qcom.vendor=LA.UM.9.14.r1-19600.01-LAHAINA.QSSI12.0
+
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.build.stock_fingerprint=$(PRODUCT_OVERRIDE_FINGERPRINT)
+
 #Version of the ROM
 PRODUCT_VERSION_MAJOR = 19
 PRODUCT_VERSION_MINOR = 0
