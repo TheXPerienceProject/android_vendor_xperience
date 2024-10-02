@@ -3,6 +3,8 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpe.version=$(XPE_VERSION) \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
     ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.xpe.version.minor=$(PRODUCT_VERSION_MAJOR) \
+    ro.xpe.version.major=$(PRODUCT_VERSION_MINOR) \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
@@ -11,7 +13,7 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 # Settings props
-ADDITIONAL_SYSTEM_PROPERTIES += \
+#ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.xpe.battery?=$(XPERIENCE_BATTERY) \
     ro.xpe.chipset?=$(XPERIENCE_CHIPSET) \
     ro.xpe.display_resolution?=$(XPERIENCE_DISPLAY) \

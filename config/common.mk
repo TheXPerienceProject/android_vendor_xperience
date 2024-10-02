@@ -16,6 +16,8 @@ PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/bootanimation.z
 
 #We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
 $(warning bootanimation from $(PRODUCT_BOOTANIMATION))
+$(warning XPERIENCE_BUILD is $(XPERIENCE_BUILD))
+
 PRODUCT_COPY_FILES += \
     $(PRODUCT_BOOTANIMATION):$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
 

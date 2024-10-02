@@ -9,7 +9,7 @@ Additional LineageOS functions:
 - crremote:        Add gerrit remote for matching Carbon repository.
 - lineageremote:   Add git remote for LineageOS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
-- cafremote:       Add git remote for matching CodeAurora repository.
+- cloremote:       Add git remote for matching CodeAurora repository.
 - githubremote:    Add git remote for LineageOS Github.
 - mka:             Builds using SCHED_BATCH on all processors.
 - mkap:            Builds the module(s) using mka and pushes them to the device.
@@ -65,6 +65,7 @@ function brunch() {
 function breakfast() {
   target=$1
   local variant=$2
+  source ${ANDROID_BUILD_TOP}/vendor/xperience/vars/aosp_target_release 
 
   if [ $# -eq 0 ]; then
     # No arguments, so let's have the full menu
@@ -79,7 +80,7 @@ function breakfast() {
         variant="userdebug"
       fi
 
-      lunch xperience_$target-$variant
+      lunch xperience_$target-$aosp_target_release-$variant
     fi
   fi
   return $?
@@ -299,13 +300,13 @@ function aospremote() {
     echo "Remote 'aosp' created"
 }
 
-function cafremote() {
+function cloremote() {
   if ! git rev-parse --git-dir &>/dev/null; then
     echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
     return 1
   fi
 
-  git remote rm caf 2>/dev/null
+  git remote rm clo 2>/dev/null
   local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
 
   # Google moved the repo location in Oreo
@@ -387,8 +388,8 @@ function cafremote() {
   if (echo $PROJECT | grep -qv "^device"); then
     local PFX="platform/"
   fi
-  git remote add caf https://git.codelinaro.org/clo/la/$PFX$PROJECT
-  echo "Remote 'caf' created"
+  git remote add clo https://git.codelinaro.org/clo/la/$PFX$PROJECT
+  echo "Remote 'clo' created"
 }
 
 function aospmerge() {
@@ -411,7 +412,7 @@ function aospmerge() {
   git merge --no-edit --log $BRANCH
 }
 
-function cafmerge() {
+function clomerge() {
   if ! git rev-parse --git-dir &>/dev/null; then
     echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
     return 1
@@ -423,9 +424,9 @@ function cafmerge() {
   VENDORBRANCH=$(grep "refs/tags/LA.UM" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
   XPERIENCEBR=$(grep "refs/heads/xpe-" "${MANIFEST}" | cut -d '"' -f2 | cut -d "/" -f3)
 
-  git fetch caf
+  git fetch clo
 
-  local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+  local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#.*##; s#\/default##")
 
   if (echo $PROJECT | grep -qv "^vendor"); then
     local BRANCH=${QSSIBRANCH}

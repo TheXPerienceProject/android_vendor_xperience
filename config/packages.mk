@@ -158,19 +158,19 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 -include vendor/extras/extras.mk
 
 # GApps
-WITH_GMS ?= true
+WITH_GMS ?= false
 ifeq ($(WITH_GMS), true)
 #TARGET_STOCK_GAPPS ?= true
 #$(call inherit-product, vendor/gapps/products/gapps.mk)
 # GMS
 # Inherit from GMS product config
-ifeq ($(TARGET_USES_MINI_GAPPS),true)
-$(call inherit-product, vendor/gms/gms_mini.mk)
-else ifeq ($(TARGET_USES_PICO_GAPPS),true)
-$(call inherit-product, vendor/gms/gms_pico.mk)
-else
-$(call inherit-product, vendor/gms/gms_full.mk)
-endif
+#ifeq ($(TARGET_USES_MINI_GAPPS),true)
+#$(call inherit-product, vendor/gms/gms_mini.mk)
+#else ifeq ($(TARGET_USES_PICO_GAPPS),true)
+#$(call inherit-product, vendor/gms/gms_pico.mk)
+#else
+#$(call inherit-product, vendor/gms/gms_full.mk)
+#endif
 
 
 PRODUCT_PACKAGES += \
@@ -635,7 +635,7 @@ CUSTOM_LOCALES += \
     fur_IT
 
 #Microsoft Windows link
-$(call inherit-product, vendor/xperience/prebuilt/microsoft/packages.mk)
+#$(call inherit-product, vendor/xperience/prebuilt/microsoft/packages.mk)
 
 # Freeform Multiwindow
 PRODUCT_COPY_FILES += \
