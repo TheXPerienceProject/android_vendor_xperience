@@ -31,6 +31,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.build.stock_fingerprint=$(PRODUCT_OVERRIDE_FINGERPRINT)
 
+# Gaussian Blur
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.sf.blurs_are_expensive=1 \
+    ro.surface_flinger.supports_background_blur=1
+
 #Version of the ROM
 PRODUCT_VERSION_MAJOR = 19
 PRODUCT_VERSION_MINOR = 0
