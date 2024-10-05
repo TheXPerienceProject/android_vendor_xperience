@@ -1,18 +1,3 @@
-# Apply it to build.prop
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.xpe.version=$(XPE_VERSION) \
-    ro.xpe.releasetype=$(XPE_BUILDTYPE) \
-    ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.xpe.version.minor=$(PRODUCT_VERSION_MAJOR) \
-    ro.xpe.version.major=$(PRODUCT_VERSION_MINOR) \
-    ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \
-    ro.modversion=$(XPE_VERSION) \
-    ro.xpe.model=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=vanadium \
-    ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
-    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
-
-
 # Settings props
 #PRODUCT_PRODUCT_PROPERTIES += \
     ro.xpe.battery?=$(XPERIENCE_BATTERY) \
