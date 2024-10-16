@@ -195,6 +195,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     debug.sf.frame_rate_multiple_threshold=60 \
     ro.surface_flinger.enable_frame_rate_override=false
 
+
 # Rescue Party
 # Disable RescueParty due to high risk of data loss
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -229,3 +230,5 @@ persist.sys.binary_xml=false
 PRODUCT_PRODUCT_PROPERTIES += \
     debug.graphics.game_default_frame_rate.disabled=true
 
+PRODUCT_PACKAGES += \
+    nano_recovery
