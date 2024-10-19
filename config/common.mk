@@ -216,3 +216,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.xpe.codename=vanadium \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
+
+PRODUCT_CFI_EXCLUDE_PATHS += \
+    external/wpa_supplicant_8/wpa_supplicant
