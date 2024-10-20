@@ -158,19 +158,11 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 -include vendor/extras/extras.mk
 
 # GApps
-WITH_GMS ?= false
+WITH_GMS ?= true
 ifeq ($(WITH_GMS), true)
-#TARGET_STOCK_GAPPS ?= true
-#$(call inherit-product, vendor/gapps/products/gapps.mk)
-# GMS
-# Inherit from GMS product config
-#ifeq ($(TARGET_USES_MINI_GAPPS),true)
-#$(call inherit-product, vendor/gms/gms_mini.mk)
-#else ifeq ($(TARGET_USES_PICO_GAPPS),true)
-#$(call inherit-product, vendor/gms/gms_pico.mk)
-#else
-#$(call inherit-product, vendor/gms/gms_full.mk)
-#endif
+
+$(call inherit-product, vendor/google/gms/config.mk)
+$(call inherit-product, vendor/google/pixel/config.mk)
 
 
 PRODUCT_PACKAGES += \
@@ -613,7 +605,6 @@ PRODUCT_PACKAGES += \
 
 # SetupWizard
 PRODUCT_PRODUCT_PROPERTIES += \
-    setupwizard.theme=glif_v4 \
     setupwizard.feature.day_night_mode_enabled=true
 
 # TextClassifier
