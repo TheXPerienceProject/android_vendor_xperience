@@ -821,8 +821,63 @@ function fixup_common_out_dir() {
 }
 
 
+function generate_keys() {
+    local subject="/C=MX/ST=Michoacan/L=LZC/O=TheXPerienceProject/OU=TheXPerienceProject/CN=TheXPerienceProject"
+    echo "Subject string: $subject"
+    local key_names=("${@}")
+    if [ -d "$ANDROID_KEY_PATH" ]; then
+        echo "Cleaning up $ANDROID_KEY_PATH while preserving .git..."
+    #    find "$ANDROID_KEY_PATH" -mindepth 1 -maxdepth 1 ! -name ".git" -exec rm -rf {} +
+    fi
+    mkdir -p "$ANDROID_KEY_PATH"
+    for key_name in "${key_names[@]}"; do
+        if [ -f "$ANDROID_KEY_PATH/$key_name.pk8" ] || [ -f "$ANDROID_KEY_PATH/$key_name.x509.pem" ]; then
+            echo "Deleting existing files for $key_name..."
+            rm -f "$ANDROID_KEY_PATH/$key_name.pk8" "$ANDROID_KEY_PATH/$key_name.x509.pem"
+        fi
+        echo "Executing make_key for $key_name without password..."
+        echo "" | ./development/tools/make_key "$ANDROID_KEY_PATH/$key_name" "$subject"
+    done
+}
+
+function gk() {
+    local mode="$1"
+    case "$mode" in
+        -h|--help)
+            show_help
+            return 0
+            ;;
+        -s)
+            local key_names=("nfc" "bluetooth" "media" "networkstack" "platform" "releasekey" "sdk_sandbox" "shared" "testkey" "verifiedboot")
+            ;;
+        -f)
+            local key_names=("nfc" "bluetooth" "media" "networkstack" "platform" "releasekey" "sdk_sandbox" "shared" "testcert" "testkey" "verity")
+            ;;
+        *)
+            show_help
+            return 0
+            ;;
+    esac
+    echo "Generating keys..."
+    generate_keys "${key_names[@]}"
+    if [ "$mode" == "-f" ]; then
+        local subject="/C=MX/ST=Michoacan/L=LZC/O=TheXPerienceProject/OU=TheXPerienceProject/CN=TheXPerienceProject"
+        cp ./development/tools/make_key $ANDROID_KEY_PATH/
+        sed -i 's|2048|4096|g' $ANDROID_KEY_PATH/make_key
+        for apex in com.android.adbd com.android.adservices com.android.adservices.api com.android.appsearch com.android.art com.android.bluetooth com.android.btservices com.android.cellbroadcast com.android.compos com.android.configinfrastructure com.android.connectivity.resources com.android.conscrypt com.android.devicelock com.android.extservices com.android.graphics.pdf com.android.hardware.biometrics.face.virtual com.android.hardware.biometrics.fingerprint.virtual com.android.hardware.boot com.android.hardware.cas com.android.hardware.wifi com.android.healthfitness com.android.hotspot2.osulogin com.android.i18n com.android.ipsec com.android.media com.android.media.swcodec com.android.mediaprovider com.android.nearby.halfsheet com.android.networkstack.tethering com.android.neuralnetworks com.android.ondevicepersonalization com.android.os.statsd com.android.permission com.android.resolv com.android.rkpd com.android.runtime com.android.safetycenter.resources com.android.scheduling com.android.sdkext com.android.support.apexer com.android.telephony com.android.telephonymodules com.android.tethering com.android.tzdata com.android.uwb com.android.uwb.resources com.android.virt com.android.vndk.current com.android.vndk.current.on_vendor com.android.wifi com.android.wifi.dialog com.android.wifi.resources com.google.pixel.camera.hal com.google.pixel.vibrator.hal com.qorvo.uwb; do
+            if [ -f "$ANDROID_KEY_PATH/$apex.pk8" ] || [ -f "$ANDROID_KEY_PATH/$apex.x509.pem" ]; then
+                echo "Deleting existing files for $apex..."
+                rm -f "$ANDROID_KEY_PATH/$apex.pk8" "$ANDROID_KEY_PATH/$apex.x509.pem"
+            fi
+            echo "" | $ANDROID_KEY_PATH/make_key $ANDROID_KEY_PATH/$apex "$subject"
+            openssl pkcs8 -in $ANDROID_KEY_PATH/$apex.pk8 -inform DER -nocrypt -out $ANDROID_KEY_PATH/$apex.pem
+        done
+    fi
+}
+
 export SKIP_ABI_CHECKS=true
 
 # Override host metadata to make builds more reproducible and avoid leaking info
 export BUILD_USERNAME=nobodyAtall
 export BUILD_HOSTNAME=xperience-host
+export ANDROID_KEY_PATH="$ANDROID_BUILD_TOP/vendor/xperience/signing/keys/"
