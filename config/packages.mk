@@ -38,9 +38,12 @@ PRODUCT_PACKAGES += \
 
 # Additional apps
 PRODUCT_PACKAGES += \
+    app \
+    AvatarPicker \
     Battery-Adviser \
     Datura \
     GameSpace \
+    GmsCompat \
     ExactCalculator \
     MusicXPeria \
     Seedvault \
