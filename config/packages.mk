@@ -43,7 +43,6 @@ PRODUCT_PACKAGES += \
     Battery-Adviser \
     Datura \
     GameSpace \
-    GmsCompat \
     ExactCalculator \
     MusicXPeria \
     Seedvault \
