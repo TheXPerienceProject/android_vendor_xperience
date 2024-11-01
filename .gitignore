@@ -1,3 +1,4 @@
 signing/keys/*
+signing/keys/*.pk8
+signing/keys/*.x509.pem
 !signing/keys/BUILD
-

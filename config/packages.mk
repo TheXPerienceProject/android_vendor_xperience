@@ -59,6 +59,7 @@ PRODUCT_PACKAGES += \
 
 # Config
 PRODUCT_PACKAGES += \
+    DeviceConfigOverlay \
     SimpleDeviceConfig \
     SimpleSettingsConfig
 
