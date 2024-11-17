@@ -218,4 +218,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 PRODUCT_CFI_EXCLUDE_PATHS += \
-    external/wpa_supplicant_8/wpa_supplicant
+    external/wpa_supplicant_8/wpa_supplicant \
+    external/wpa_supplicant_8/hostapd
