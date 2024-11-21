@@ -1,5 +1,5 @@
 # Settings props
-#PRODUCT_PRODUCT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.xpe.battery?=$(XPERIENCE_BATTERY) \
     ro.xpe.chipset?=$(XPERIENCE_CHIPSET) \
     ro.xpe.display_resolution?=$(XPERIENCE_DISPLAY) \

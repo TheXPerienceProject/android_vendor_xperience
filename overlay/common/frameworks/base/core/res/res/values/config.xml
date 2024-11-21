@@ -187,16 +187,6 @@
     -->
     <string name="config_wallpaperCropperPackage" translatable="false">com.android.wallpaper</string>
 
-    <!-- Build properties from a GMS certified device against current platform SPL level -->
-    <string-array name="config_certifiedBuildProperties">
-        <item>PRODUCT:komodo</item>
-        <item>DEVICE:komodo</item>
-        <item>MANUFACTURER:Google</item>
-        <item>BRAND:google</item>
-        <item>MODEL:Pixel 9 Pro XL</item>
-        <item>FINGERPRINT:google/komodo/komodo:14/AD1A.240905.004/12196292:user/release-keys</item>
-        <item>VERSION.SECURITY_PATCH:2024-09-05</item>
-    </string-array>
     <!-- Default list of files pinned by the Pinner Service -->
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
        <item>"/system/bin/surfaceflinger"</item>
