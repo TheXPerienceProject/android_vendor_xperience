@@ -41,6 +41,7 @@ PRODUCT_PACKAGES += \
     app \
     AvatarPicker \
     Battery-Adviser \
+    Camelot \
     Datura \
     GameSpace \
     ExactCalculator \
