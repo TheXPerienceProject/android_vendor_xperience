@@ -45,6 +45,8 @@ PRODUCT_PACKAGES += \
     Datura \
     GameSpace \
     ExactCalculator \
+    LMOFreeform \
+    LMOFreeformSidebar \
     MusicXPeria \
     Seedvault \
     XPeriaWeather \
