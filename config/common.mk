@@ -221,3 +221,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_CFI_EXCLUDE_PATHS += \
     external/wpa_supplicant_8/wpa_supplicant \
     external/wpa_supplicant_8/hostapd
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.ota.allow_downgrade=true
