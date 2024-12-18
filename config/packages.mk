@@ -49,6 +49,7 @@ PRODUCT_PACKAGES += \
     LMOFreeformSidebar \
     MusicXPeria \
     Seedvault \
+    TapTap \
     XPeriaWeather \
     Yunikon
 
