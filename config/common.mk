@@ -224,3 +224,6 @@ PRODUCT_CFI_EXCLUDE_PATHS += \
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
+
+# System
+persist.sys.binary_xml=false
