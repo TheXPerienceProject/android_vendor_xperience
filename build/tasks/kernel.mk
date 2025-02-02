@@ -105,10 +105,12 @@ KERNEL_CONFIG := $(KERNEL_OUT)/.config
 KERNEL_RELEASE := $(KERNEL_OUT)/include/config/kernel.release
 RECOVERY_KERNEL_CONFIG := $(RECOVERY_KERNEL_OUT)/.config
 RECOVERY_KERNEL_RELEASE := $(RECOVERY_KERNEL_OUT)/include/config/kernel.release
-ifneq ($(BOARD_SYSTEM_DLKM_USES_GKI_SUFFIX),false)
+ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ifeq ($(shell expr $(TARGET_KERNEL_VERSION) \>= 5.15), 1)
+ifeq ($(shell expr $(TARGET_KERNEL_VERSION) \<= 6.1), 1)
 GKI_SUFFIX := /$(shell echo android$(PLATFORM_VERSION)-$(TARGET_KERNEL_VERSION))
-else
-GKI_SUFFIX :=
+endif
+endif
 endif
 
 ifeq ($(KERNEL_ARCH),x86_64)
