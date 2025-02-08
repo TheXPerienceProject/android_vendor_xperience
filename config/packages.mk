@@ -43,15 +43,15 @@ PRODUCT_PACKAGES += \
     Battery-Adviser \
     Camelot \
     Datura \
-    GameSpace \
     ExactCalculator \
+    GameSpace \
+    LMOFreeform \
+    LMOFreeformSidebar \
     MusicXPeria \
     Seedvault \
     TapTap \
     XPeriaWeather \
     Yunikon
-#    LMOFreeform \
-#    LMOFreeformSidebar \
 
 # Repainter integration
 PRODUCT_PACKAGES += \
