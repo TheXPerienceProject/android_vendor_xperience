@@ -31,6 +31,15 @@ SPDX-License-Identifier: Apache-2.0
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- Charging -->
+    <hal format="hidl" optional="true">
+        <name>vendor.xperience.fastcharge</name>
+        <version>1.0</version>
+        <interface>
+            <name>IFastCharge</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="aidl" optional="true">
         <name>vendor.lineage.health</name>
         <interface>
@@ -40,6 +49,14 @@ SPDX-License-Identifier: Apache-2.0
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.lineage.powershare</name>
+        <version>1.0</version>
+        <interface>
+            <name>IPowerShare</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.xperience.powershare</name>
         <version>1.0</version>
         <interface>
             <name>IPowerShare</name>
@@ -126,6 +143,35 @@ SPDX-License-Identifier: Apache-2.0
     <!-- Touch -->
     <hal format="hidl" optional="true">
         <name>vendor.lineage.touch</name>
+        <version>1.0</version>
+        <interface>
+            <name>IGloveMode</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IHighTouchPollingRate</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IKeyDisabler</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IKeySwapper</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>ITouchscreenGesture</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IStylusMode</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <!-- Touch -->
+    <hal format="hidl" optional="true">
+        <name>vendor.xperience.touch</name>
         <version>1.0</version>
         <interface>
             <name>IGloveMode</name>
