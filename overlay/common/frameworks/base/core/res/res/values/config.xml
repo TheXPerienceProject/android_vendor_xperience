@@ -324,4 +324,7 @@
         <!-- Youtube -->
         <item>com.google.android.youtube</item>
     </string-array>
+
+    <!-- Circle to search -->
+    <string name="config_defaultContextualSearchPackageName" translatable="false">com.google.android.googlequicksearchbox</string>
 </resources>
