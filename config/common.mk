@@ -214,7 +214,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
     ro.xpe.device=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=vanadium \
+    ro.xpe.codename=vibranium \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
