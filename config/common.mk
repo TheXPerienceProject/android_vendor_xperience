@@ -164,9 +164,14 @@ SQUISHER_SCRIPT := vendor/xperience/tools/squisher
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
+TARGET_DISABLE_EPPE ?= false
+$(warning TARGET_DISABLE_EPPE is $(TARGET_DISABLE_EPPE))
 ifneq ($(TARGET_DISABLE_EPPE),true)
+$(warning EPPE is enforced! )
 # Require all requested packages to exist
 $(call enforce-product-packages-exist-internal,$(wildcard device/*/$(XPERIENCE_BUILD)/$(TARGET_PRODUCT).mk),product_manifest.xml rild Calendar Launcher3 Launcher3Go Launcher3QuickStep Launcher3QuickStepGo android.hidl.memory@1.0-impl.vendor vndk_apex_snapshot_package)
+else
+$(warning EPPE is disabled! )
 endif
 
 # Copy all xperience-specific init rc files
