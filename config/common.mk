@@ -216,6 +216,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.xpe.version=$(XPE_VERSION) \
     ro.xpe.releasetype=$(XPE_BUILDTYPE) \
     ro.xperience.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.xperience.build.version2=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)-$(BUILD_DATE)-$(XPE_BUILDTYPE)-$(XPERIENCE_BUILD) \
     ro.xpe.version.minor=$(PRODUCT_VERSION_MAJOR) \
     ro.xpe.version.major=$(PRODUCT_VERSION_MINOR) \
     ro.xpe.channeltype=$(XPERIENCE_CHANNEL) \

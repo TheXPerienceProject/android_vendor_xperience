@@ -8,6 +8,11 @@ include vendor/xperience/config/aosp_audio.mk
 # Include xperience audio files
 include vendor/xperience/config/xpe_audio.mk
 
+# Build LHDC files
+PRODUCT_PACKAGES += \
+    liblhdcBT_enc \
+    liblhdcv5BT_enc
+
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
