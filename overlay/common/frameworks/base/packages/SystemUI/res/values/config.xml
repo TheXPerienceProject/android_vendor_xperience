@@ -39,6 +39,7 @@
     <string-array name="config_pluginWhitelist" translatable="false">
         <item>com.android.systemui</item>
         <item>com.android.systemui.plugin.globalactions.wallet</item>
+        <item>org.lineageos.settings.device</item>
     </string-array>
 
     <!-- The default tiles to display in QuickSettings -->
