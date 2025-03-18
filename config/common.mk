@@ -175,8 +175,10 @@ $(warning EPPE is disabled! )
 endif
 
 # Copy all xperience-specific init rc files
-$(foreach f,$(wildcard vendor/xperience/prebuilt/etc/init/*.rc),\
-	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
+PRODUCT_COPY_FILES += \
+    vendor/xperience/prebuilt/etc/init/init.xperience-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-system_ext.rc \
+    vendor/xperience/prebuilt/etc/init/xperience-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/int.xperience.openssh.rc \
+    vendor/xperience/prebuilt/etc/init/xperience-updates.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-updater.rc
 
 # Optimize everything for preopt
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
