@@ -52,9 +52,6 @@ SOONG_CONFIG_xperienceGlobalVars += \
     camera_needs_miui_camera_mode_support \
     camera_needs_camera_needs_depth_sensor_override
 
-SOONG_CONFIG_NAMESPACES += xperienceNvidiaVars
-SOONG_CONFIG_xperienceNvidiaVars += \
-    uses_nvidia_enhancements
 
 ifneq ($(TARGET_CAMERA_SERVICE_EXT_LIB),)
     $(call soong_config_set,libcameraservice,ext_lib,$(TARGET_CAMERA_SERVICE_EXT_LIB))
@@ -67,8 +64,6 @@ SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_reserved_size := $(TARGET_GR
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_ubwcp_format := $(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT)
 SOONG_CONFIG_xperienceGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_miui_camera := $(TARGET_USES_MIUI_CAMERA)
-SOONG_CONFIG_xperienceNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
-
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0

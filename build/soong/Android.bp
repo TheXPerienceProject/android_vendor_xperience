@@ -291,24 +291,6 @@ health_charging_control {
     },
 }
 
-// NVIDIA specific config modules
-soong_config_module_type {
-    name: "nvidia_enhancements",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceNvidiaVars",
-    bool_variables: ["uses_nvidia_enhancements"],
-    properties: ["cppflags"],
-}
-
-nvidia_enhancements {
-    name: "nvidia_enhancements_defaults",
-    soong_config_variables: {
-        uses_nvidia_enhancements: {
-            cppflags: ["-DNV_ANDROID_FRAMEWORK_ENHANCEMENTS"],
-        },
-    },
-}
-
 soong_config_module_type {
     name: "camera_needs_miui_camera_mode_support",
     module_type: "cc_defaults",
@@ -370,6 +352,7 @@ camera_needs_camera_needs_depth_sensor_override {
     soong_config_variables: {
         camera_needs_camera_needs_depth_sensor_override: {
             cppflags: ["-DCAMERA_NEEDS_CAMERA_NEEDS_DEPTH_SENSOR_OVERRIDE"],
+
         },
     },
 }
