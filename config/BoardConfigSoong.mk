@@ -58,8 +58,6 @@ SOONG_CONFIG_xperienceNvidiaVars += \
     uses_nvidia_enhancements
 
 SOONG_CONFIG_NAMESPACES += xperienceQcomVars
-SOONG_CONFIG_xperienceQcomVars += \
-    uses_pre_uplink_features_netmgrd
 
 # Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
 ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
@@ -80,7 +78,6 @@ SOONG_CONFIG_xperienceGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DIS
 SOONG_CONFIG_xperienceGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_miui_camera := $(TARGET_USES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
-SOONG_CONFIG_xperienceQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 
 
 # Set default values
