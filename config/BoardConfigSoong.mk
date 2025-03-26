@@ -57,14 +57,6 @@ SOONG_CONFIG_NAMESPACES += xperienceNvidiaVars
 SOONG_CONFIG_xperienceNvidiaVars += \
     uses_nvidia_enhancements
 
-SOONG_CONFIG_NAMESPACES += xperienceQcomVars
-
-# Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
-ifneq ($(filter $(UM_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
-SOONG_CONFIG_xperienceQcomVars += \
-    qcom_display_headers_namespace
-endif
-
 ifneq ($(TARGET_CAMERA_SERVICE_EXT_LIB),)
     $(call soong_config_set,libcameraservice,ext_lib,$(TARGET_CAMERA_SERVICE_EXT_LIB))
 endif
@@ -117,11 +109,6 @@ SOONG_CONFIG_xperienceGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA
 SOONG_CONFIG_xperienceGlobalVars_uses_nothing_camera := $(TARGET_USES_NOTHING_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_camera_needs_miui_camera_mode_support := $(TARGET_USES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_camera_needs_camera_needs_depth_sensor_override := $(TARGET_USES_DEPTHSENSOR_OVERRIDE)
-ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
-SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := vendor/qcom/opensource/commonsys-intf/display
-else
-SOONG_CONFIG_xperienceQcomVars_qcom_display_headers_namespace := $(QCOM_SOONG_NAMESPACE)/display
-endif
 
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true

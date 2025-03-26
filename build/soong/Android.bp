@@ -327,27 +327,6 @@ nvidia_enhancements {
 }
 
 soong_config_module_type {
-    name: "surfaceflinger_qcom_extensions",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceQcomVars",
-    value_variables: ["qcom_display_headers_namespace"],
-    properties: [
-        "cppflags",
-        "header_libs",
-    ],
-}
-
-surfaceflinger_qcom_extensions {
-    name: "surfaceflinger_qcom_ext_defaults",
-    soong_config_variables: {
-        qcom_display_headers_namespace: {
-            cppflags: ["-DQCOM_UM_FAMILY"],
-            header_libs: ["//%s:display_intf_headers"],
-        },
-    },
-}
-
-soong_config_module_type {
     name: "camera_needs_miui_camera_mode_support",
     module_type: "cc_defaults",
     config_namespace: "xperienceGlobalVars",
