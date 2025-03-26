@@ -59,7 +59,6 @@ SOONG_CONFIG_xperienceNvidiaVars += \
 
 SOONG_CONFIG_NAMESPACES += xperienceQcomVars
 SOONG_CONFIG_xperienceQcomVars += \
-    supports_extended_compress_format \
     uses_pre_uplink_features_netmgrd
 
 # Only create display_headers_namespace var if dealing with UM platforms to avoid breaking build for all other platforms
@@ -81,7 +80,6 @@ SOONG_CONFIG_xperienceGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DIS
 SOONG_CONFIG_xperienceGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_miui_camera := $(TARGET_USES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
-SOONG_CONFIG_xperienceQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_xperienceQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 
 
