@@ -45,7 +45,6 @@ SOONG_CONFIG_xperienceGlobalVars += \
     target_ld_shim_libs \
     target_power_libperfmgr_mode_extension_lib \
     target_surfaceflinger_udfps_lib \
-    uses_egl_display_array \
     include_miui_camera \
     uses_miui_camera \
     uses_oplus_camera \
@@ -66,7 +65,6 @@ SOONG_CONFIG_xperienceGlobalVars_camera_override_format_from_reserved := $(TARGE
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_custom_content_md_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE)
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE)
 SOONG_CONFIG_xperienceGlobalVars_gralloc_handle_has_ubwcp_format := $(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT)
-SOONG_CONFIG_xperienceGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_ARRAY)
 SOONG_CONFIG_xperienceGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_miui_camera := $(TARGET_USES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
