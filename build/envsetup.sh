@@ -878,7 +878,16 @@ function gk() {
 export SKIP_ABI_CHECKS=true
 
 # Override host metadata to make builds more reproducible and avoid leaking info
-export BUILD_USERNAME=nobodyAtall
-export BUILD_HOSTNAME=xperience-host
 export ANDROID_KEY_PATH="$ANDROID_BUILD_TOP/vendor/xperience/signing/keys/"
 export USE_THINLTO_CACHE=true
+
+function generate_host_overrides() {
+    export BUILD_USERNAME=android-buildAdd commentMore actions
+    HEX=$(openssl rand -hex 8)
+    ALPHA=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 4 | head -n 1)
+    export BUILD_HOSTNAME="r-${HEX}-${ALPHA}"
+    echo "BUILD_USERNAME=$BUILD_USERNAME"
+    echo "BUILD_HOSTNAME=$BUILD_HOSTNAME"
+}
+
+generate_host_overrides
