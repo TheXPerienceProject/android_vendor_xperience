@@ -165,6 +165,9 @@ ifneq ($(TARGET_KERNEL_CLANG_AUTOFDO_PROFILE),none)
     endif
 endif
 
+# Pass board platform to kernel build
+TARGET_KERNEL_ADDITIONAL_FLAGS += TARGET_BOARD_PLATFORM=$(TARGET_BOARD_PLATFORM)
+
 # Set the out dir for the kernel's O= arg
 # This needs to be an absolute path, so only set this if the standard out dir isn't used
 OUT_DIR_PREFIX := $(shell echo $(OUT_DIR) | sed -e 's|/target/.*$$||g')
