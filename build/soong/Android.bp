@@ -42,6 +42,22 @@ xperience_generator {
     ],
 }
 
+lineage_generator {
+    name: "prebuilt_kernel_includes",
+
+    // The headers extract command
+    cmd: "mkdir -p $(KERNEL_BUILD_OUT_PREFIX)$(genDir) && gzip -d < $(TARGET_PREBUILT_KERNEL_HEADERS) | tar -x -C $(KERNEL_BUILD_OUT_PREFIX)$(genDir) && vendor/lineage/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
+
+    // Directories that can be imported by a cc_* module generated_headers property
+    export_include_dirs: [
+        "usr/audio/include/uapi",
+        "usr/include",
+        "usr/include/audio",
+        "usr/include/audio/include/uapi",
+        "usr/techpack/audio/include",
+    ],
+}
+
 bootstrap_go_package {
     name: "soong-lineage-mkdir",
     pkgPath: "xperience/soong/mkdir",
@@ -58,20 +74,27 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-cc_library_headers {
-    name: "generated_kernel_headers",
-    generated_headers: ["generated_kernel_includes"],
-    export_generated_headers: ["generated_kernel_includes"],
-    vendor_available: true,
-    recovery_available: true,
-}
-
 soong_config_module_type {
     name: "target_shim_libs",
     module_type: "cc_defaults",
     config_namespace: "xperienceGlobalVars",
     value_variables: ["target_ld_shim_libs"],
     properties: ["cppflags"],
+}
+
+cc_defaults {
+    name: "prebuilt_kernel_header_defaults",
+    generated_headers: ["prebuilt_kernel_includes"],
+    export_generated_headers: ["prebuilt_kernel_includes"],
+    vendor_available: true,
+    recovery_available: true,
+}
+
+cc_library_headers {
+    name: "generated_kernel_headers",
+    defaults: ["generated_kernel_header_defaults"],
+    vendor_available: true,
+    recovery_available: true,
 }
 
 target_shim_libs {
@@ -149,4 +172,9 @@ camera_needs_camera_needs_depth_sensor_override {
         },
     },
 
+}
+
+cc_library_headers {
+    name: "prebuilt_kernel_headers",
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
