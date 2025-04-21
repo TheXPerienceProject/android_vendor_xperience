@@ -45,6 +45,7 @@ PRODUCT_PACKAGES += \
     app \
     AvatarPicker \
     Battery-Adviser \
+    BatteryStatsViewer \
     Camelot \
     Datura \
     ExactCalculator \
