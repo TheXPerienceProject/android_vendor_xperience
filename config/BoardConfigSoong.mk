@@ -31,10 +31,8 @@ SOONG_CONFIG_xperienceGlobalVars += \
     bootloader_message_offset \
     additional_gralloc_10_usage_bits \
     camera_override_format_from_reserved \
-
     target_init_vendor_lib \
     target_ld_shim_libs \
-    target_power_libperfmgr_mode_extension_lib \
     include_miui_camera \
     uses_miui_camera \
     uses_oplus_camera \
@@ -56,7 +54,6 @@ BOOTLOADER_MESSAGE_OFFSET ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
 TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED ?= false
 TARGET_INIT_VENDOR_LIB ?= vendor_init
-TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB ?= libperfmgr-ext
 TARGET_TRUST_USB_CONTROL_PATH ?= /proc/sys/kernel/deny_new_usb
 TARGET_TRUST_USB_CONTROL_ENABLE ?= 1
 TARGET_TRUST_USB_CONTROL_DISABLE ?= 0
@@ -66,7 +63,6 @@ SOONG_CONFIG_xperienceGlobalVars_bootloader_message_offset := $(BOOTLOADER_MESSA
 SOONG_CONFIG_xperienceGlobalVars_additional_gralloc_10_usage_bits := $(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS)
 SOONG_CONFIG_xperienceGlobalVars_target_init_vendor_lib := $(TARGET_INIT_VENDOR_LIB)
 SOONG_CONFIG_xperienceGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
-SOONG_CONFIG_xperienceGlobalVars_target_power_libperfmgr_mode_extension_lib := $(TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB)
 SOONG_CONFIG_xperienceGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_uses_nothing_camera := $(TARGET_USES_NOTHING_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_camera_needs_miui_camera_mode_support := $(TARGET_USES_MIUI_CAMERA)
@@ -131,4 +127,9 @@ ifneq ($(TARGET_POWERSHARE_ENABLED),)
 endif
 ifneq ($(TARGET_POWERSHARE_DISABLED),)
     $(call soong_config_set,lineage_powershare,powershare_disabled,$(TARGET_POWERSHARE_DISABLED))
+endif
+
+# Power HAL
+ifneq ($(TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB),)
+    $(call soong_config_set,power_libperfmgr,mode_extension_lib,$(TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB))
 endif
