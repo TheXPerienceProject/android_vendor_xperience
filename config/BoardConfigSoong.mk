@@ -28,7 +28,6 @@ $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
 SOONG_CONFIG_NAMESPACES += xperienceGlobalVars
 SOONG_CONFIG_xperienceGlobalVars += \
-    bootloader_message_offset \
     additional_gralloc_10_usage_bits \
     camera_override_format_from_reserved \
     target_ld_shim_libs \
@@ -49,7 +48,6 @@ SOONG_CONFIG_xperienceGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_C
 SOONG_CONFIG_xperienceGlobalVars_uses_miui_camera := $(TARGET_USES_MIUI_CAMERA)
 
 # Set default values
-BOOTLOADER_MESSAGE_OFFSET ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
 TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED ?= false
 TARGET_TRUST_USB_CONTROL_PATH ?= /proc/sys/kernel/deny_new_usb
@@ -57,7 +55,6 @@ TARGET_TRUST_USB_CONTROL_ENABLE ?= 1
 TARGET_TRUST_USB_CONTROL_DISABLE ?= 0
 
 # Soong value variables
-SOONG_CONFIG_xperienceGlobalVars_bootloader_message_offset := $(BOOTLOADER_MESSAGE_OFFSET)
 SOONG_CONFIG_xperienceGlobalVars_additional_gralloc_10_usage_bits := $(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS)
 SOONG_CONFIG_xperienceGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
 SOONG_CONFIG_xperienceGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA)
@@ -128,6 +125,11 @@ endif
 # Power HAL
 ifneq ($(TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB),)
     $(call soong_config_set,power_libperfmgr,mode_extension_lib,$(TARGET_POWER_LIBPERFMGR_MODE_EXTENSION_LIB))
+endif
+
+# Recovery
+ifneq ($(BOOTLOADER_MESSAGE_OFFSET),)
+    $(call soong_config_set,lineage_recovery,bootloader_message_offset,$(BOOTLOADER_MESSAGE_OFFSET))
 endif
 
 # Vendor init
