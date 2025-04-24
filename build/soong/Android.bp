@@ -66,24 +66,6 @@ cc_library_headers {
     recovery_available: true,
 }
 
-// Target platform agnostic config modules
-soong_config_module_type {
-    name: "gralloc_10_usage_bits",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceGlobalVars",
-    value_variables: ["additional_gralloc_10_usage_bits"],
-    properties: ["cppflags"],
-}
-
-gralloc_10_usage_bits {
-    name: "gralloc_10_usage_bits_defaults",
-    soong_config_variables: {
-        additional_gralloc_10_usage_bits: {
-            cppflags: ["-DADDNL_GRALLOC_10_USAGE_BITS=%s"],
-        },
-    },
-}
-
 soong_config_module_type {
     name: "target_shim_libs",
     module_type: "cc_defaults",
@@ -166,4 +148,5 @@ camera_needs_camera_needs_depth_sensor_override {
 
         },
     },
+
 }
