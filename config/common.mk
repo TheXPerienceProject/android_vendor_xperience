@@ -114,6 +114,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/etc/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
 
+# Credential storage
+PRODUCT_PACKAGES += \
+    android.software.credentials.prebuilt.xml
+
 # Charger
 #PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.charger.enable_suspend=1
