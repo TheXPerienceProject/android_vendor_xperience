@@ -15,16 +15,8 @@ EXPORT_TO_SOONG := \
 # Documentation here:
 # https://github.com/LineageOS/android_build_soong/commit/8328367c44085b948c003116c0ed74a047237a69
 
-SOONG_CONFIG_NAMESPACES += xperienceVarsPlugin
-
-SOONG_CONFIG_xperienceVarsPlugin :=
-
-define addVar
-  SOONG_CONFIG_xperienceVarsPlugin += $(1)
-  SOONG_CONFIG_xperienceVarsPlugin_$(1) := $($1)
-endef
-
-$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
+$(call add_soong_config_namespace,xperienceVarsPlugin)
+$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,xperienceVarsPlugin,$(v))))
 
 SOONG_CONFIG_NAMESPACES += xperienceGlobalVars
 SOONG_CONFIG_xperienceGlobalVars += \
