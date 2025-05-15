@@ -12,7 +12,17 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 
 TARGET_DISABLE_SHUTDOWNANIMATION ?= true
 
-PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/bootanimation.zip
+TARGET_BOOT_ANIMATION_SIZE ?= $(TARGET_SCREEN_WIDTH)
+
+PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/$(TARGET_BOOT_ANIMATION_SIZE).zip
+
+ifeq ($(TARGET_IS_LOW_RAM),true)
+PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/1080-lowram.zip
+endif
+
+ifeq ($(TARGET_HAS_OLD_BOOTANIM), true)
+PRODUCT_BOOTANIMATION := vendor/xperience/prebuilt/bootanimation/1080-old.zip
+endif
 
 #We aren't using this old form anymore so for now i will use all other info with copy file then i will change it
 $(warning bootanimation from $(PRODUCT_BOOTANIMATION))
@@ -242,7 +252,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
     debug.graphics.game_default_frame_rate.disabled=true
 
 PRODUCT_PACKAGES += \
-    nano_recovery
+    nano_recovery \
+    htop \
+    ncurses
 
 # TFLite service.
 PRODUCT_PACKAGES += libtensorflowlite_jni
@@ -257,3 +269,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.google.android.bluetooth=off \
     persist.arm64.memtag.app.com.android.nfc=off \
     persist.arm64.memtag.process.system_server=off
+
+# sony extra features
+$(call inherit-product, vendor/sony/extra/extra.mk)
