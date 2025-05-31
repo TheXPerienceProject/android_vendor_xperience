@@ -1806,6 +1806,7 @@
   <apn carrier="Weex Internet" numeric="334030" mcc="334" mnc="030" apn="internet.weex.mx" user="" type="default" mvno_type="spn" mvno_match_data="weex" authtype="1" />
   <apn carrier="Azteca Movil" mcc="334" mnc="020" apn="internet.mvne1.com" type="default,dun" mvno_type="spn" mvno_match_data="AZTECA MOVIL" authtype="1" />
   <apn carrier="Oui móvil" mcc="334" mnc="020" apn="internet.mvne1.com" proxy="" port="" user="" password="" mmsc="" type="default,supl" />
+  <apn carrier="Bait Internet" mcc="334" mnc="140" apn="internet.wm.com" proxy="" port="" user="" password="" server="" mmsc="" mmsproxy="" mmsport="" authtype="1" type="default,supl" protocol="IPV4V6" roaming_protocol="IPV4V6" />
   <apn carrier="LIME Prepaid Internet" mcc="338" mnc="180" apn="ppinternet" mmsc="" user="" password="" proxy="" port="8799" type="default,supl" />
   <apn carrier="LIME Postpaid Internet" mcc="338" mnc="180" apn="internet" mmsc="" user="" password="" proxy="" port="8799" type="default,supl" />
   <apn carrier="LIME Prepaid MMS" mcc="338" mnc="180" apn="ppmms" mmsc="http://mmsc" user="" password="" proxy="10.20.5.34" port="8799" type="mms" />
