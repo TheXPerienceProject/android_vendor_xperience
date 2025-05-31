@@ -881,3 +881,4 @@ export SKIP_ABI_CHECKS=true
 export BUILD_USERNAME=nobodyAtall
 export BUILD_HOSTNAME=xperience-host
 export ANDROID_KEY_PATH="$ANDROID_BUILD_TOP/vendor/xperience/signing/keys/"
+export USE_THINLTO_CACHE=true
