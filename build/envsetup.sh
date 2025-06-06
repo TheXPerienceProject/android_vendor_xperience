@@ -882,7 +882,7 @@ export ANDROID_KEY_PATH="$ANDROID_BUILD_TOP/vendor/xperience/signing/keys/"
 export USE_THINLTO_CACHE=true
 
 function generate_host_overrides() {
-    export BUILD_USERNAME=android-buildAdd commentMore actions
+    export BUILD_USERNAME=android-build
     HEX=$(openssl rand -hex 8)
     ALPHA=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 4 | head -n 1)
     export BUILD_HOSTNAME="r-${HEX}-${ALPHA}"
