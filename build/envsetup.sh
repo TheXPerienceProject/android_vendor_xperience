@@ -890,4 +890,11 @@ function generate_host_overrides() {
     echo "BUILD_HOSTNAME=$BUILD_HOSTNAME"
 }
 
+function patch_clang() {
+  echo "patching clang to fix build issues"
+  bash $ANDROID_BUILD_TOP/vendor/xperience/patch/patch_clang.sh
+  echo "Done!!!"
+}
+
 generate_host_overrides
+patch_clang
