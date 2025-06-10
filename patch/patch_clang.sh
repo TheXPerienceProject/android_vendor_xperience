@@ -4,39 +4,29 @@ set -e
 echo "🔧 [Xperience Patch] Applying Clang and Soong patches..."
 
 PATCH_DIR="vendor/xperience/patch"
+CLANG_DIR="prebuilts/clang/host/linux-x86"
+PATCH_FILE="$PATCH_DIR/0001-fix-preqpr2-build.patch"
 
-backup_file() {
-    local target="$1"
-    if [ -f "$target" ] && [ ! -f "$target.bak" ]; then
-        cp "$target" "$target.bak"
-        echo "🗂  Backed up $target to $target.bak"
-    fi
-}
+# Verifica que sea un repo git válido
+if [ ! -d "$CLANG_DIR/.git" ]; then
+    echo "⚠️  $CLANG_DIR is not a Git repository. Initializing..."
+    git -C "$CLANG_DIR" init
+    git -C "$CLANG_DIR" add .
+    git -C "$CLANG_DIR" commit -m "Initial commit for patching" >/dev/null 2>&1 || true
+fi
 
-replace_if_different() {
-    local src="$1"
-    local dst="$2"
+# Aplica el parche si no se ha aplicado antes
+echo "📌 Applying patch: $PATCH_FILE"
+if [ ! -f "$PATCH_FILE" ]; then
+    echo "❗ Patch file $PATCH_FILE not found."
+    exit 1
+fi
 
-    if [ ! -f "$src" ]; then
-        echo "❗ Source patch $src not found, skipping"
-        return
-    fi
-
-    if [ ! -f "$dst" ]; then
-        echo "❗ Target $dst does not exist, skipping"
-        return
-    fi
-
-    if cmp -s "$src" "$dst"; then
-        echo "✅ $dst is already patched, skipping"
-    else
-        backup_file "$dst"
-        echo "📁 Replacing $dst"
-        rsync -a "$src" "$dst"
-    fi
-}
-
-replace_if_different "$PATCH_DIR/Android.bp.bk" "prebuilts/clang/host/linux-x86/Android.bp"
-replace_if_different "$PATCH_DIR/clangprebuilts.go.bk" "build/soong/cc/config/clangprebuilts.go"
+if git -C "$CLANG_DIR" apply --check "$PATCH_FILE"; then
+    git -C "$CLANG_DIR" am "$PATCH_FILE"
+    echo "✅ Patch applied successfully."
+else
+    echo "⚠️  Patch may already be applied or conflicts found. Skipping."
+fi
 
 echo "✅ [Xperience Patch] Done."
