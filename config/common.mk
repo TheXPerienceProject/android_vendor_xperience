@@ -207,6 +207,8 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     debug.sf.frame_rate_multiple_threshold=60 \
     ro.surface_flinger.enable_frame_rate_override=false
 
+# Audio files
+$(call inherit-product, vendor/xperience/audio/audio.mk)
 
 # Rescue Party
 # Disable RescueParty due to high risk of data loss
