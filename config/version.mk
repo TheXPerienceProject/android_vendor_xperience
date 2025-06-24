@@ -5,9 +5,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.xpe.display_resolution?=$(XPERIENCE_DISPLAY) \
     ro.xpe.maintainer?=$(XPERIENCE_MAINTAINER)
 
-# PRODUCT_PRODUCT_PROPERTIES += \
-#    ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
-#    ro.qcom.vendor=$(shell grep "refs/tags/LA.VENDOR" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.qcom.system=$(shell grep "refs/tags/LA.QSSI" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
+    ro.qcom.vendor=$(shell grep "refs/tags/LA.VENDOR" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) 
 
 #   ro.qcom.system=$(shell grep "refs/tags/android-13.0" .repo/manifests/default.xml | cut -d '"' -f2 | cut -d "/" -f3) \
 #   ro.qcom.vendor=LA.UM.9.14.r1-19600.01-LAHAINA.QSSI12.0
@@ -22,8 +22,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1
 
 #Version of the ROM
-PRODUCT_VERSION_MAJOR = 19
-PRODUCT_VERSION_MINOR = 1
+PRODUCT_VERSION_MAJOR = 20
+PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE = 0
 
 BUILD_DATE := $(shell date +%Y%m%d-%H%M%S)

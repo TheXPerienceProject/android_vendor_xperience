@@ -170,7 +170,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 -include vendor/extras/extras.mk
 
 # GApps
-WITH_GMS ?= true
+WITH_GMS ?= false
 ifeq ($(WITH_GMS), true)
 
 $(call inherit-product, vendor/google/gms/config.mk)
@@ -183,7 +183,7 @@ PRODUCT_PACKAGES += \
 endif
 
 # fonts
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     HarmonyOS-Sans-Italic.ttf \
     HarmonyOS-Sans.ttf \
     Lexend-VF.ttf \
@@ -191,7 +191,7 @@ PRODUCT_PACKAGES += \
     RobotoFallback-VF.ttf
 
 # Font overlays
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     FontAccuratistOverlay \
     FontAclonicaOverlay \
     FontAmaranteOverlay \
@@ -247,7 +247,7 @@ PRODUCT_PACKAGES += \
     FontUbuntuOverlay
 
 # Icon Packs
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     IconPackCircularAndroidOverlay \
     IconPackCircularLauncherOverlay \
     IconPackCircularSettingsOverlay \
@@ -309,7 +309,7 @@ PRODUCT_PACKAGES += \
     IconPackXperiaSystemUIOverlay
 
 # Icon shapes
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     IconShapeFlowerOverlay \
     IconShapeHeartOverlay \
     IconShapeHexagonOverlay \
@@ -330,7 +330,7 @@ PRODUCT_PACKAGES += \
     RohieIconMeowOverlay
 
 # LS Clock Fonts
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     ClockFontOppoSansOverlay \
     ClockFontGoogleSansOverlay \
     ClockFontNothingDotOverlay \
@@ -460,7 +460,7 @@ PRODUCT_PACKAGES += \
     ClockFontRoundheadsOverlay
 
 # Data icons
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     AuroraDataOverlay \
     FaintUIDataOverlay \
     GradiconDataOverlay \
@@ -468,7 +468,7 @@ PRODUCT_PACKAGES += \
     PlumpyDataOverlay
 
 # Icon Data
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     IconDataFive \
     IconDataFour \
     IconDataOne \
@@ -476,7 +476,7 @@ PRODUCT_PACKAGES += \
     IconDataTwo
 
 # Statusbar Icons
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     AcherusSignalOverlay \
     AcherusSubsSignalGOverlay \
     AcherusSubsSignalTOverlay \
@@ -554,12 +554,12 @@ PRODUCT_PACKAGES += \
 # Udfps
 ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 $(warning EXTRA_UDFPS_ANIMATIONS IS ${EXTRA_UDFPS_ANIMATIONS})
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     UdfpsResources
 endif
 
 #Volte Icons
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     ArisVolteOverlay \
     BeastVolteOverlay \
     iOSVolteOverlay \
@@ -576,12 +576,12 @@ PRODUCT_PACKAGES += \
     ZircoVolteOverlay
 
 # XPerience Overlays
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     NavigationBarNoHint \
     XPerienceBlackThemeOverlay
 
 # Wi-Fi Icons
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     AcherusSubsWifiGOverlay \
     AcherusSubsWifiTOverlay \
     AcherusWiFiOverlay \

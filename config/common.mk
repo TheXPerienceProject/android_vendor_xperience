@@ -115,7 +115,7 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/etc/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
 
 # Charger
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
+#PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.charger.enable_suspend=1
 
 # Face Unlock with paranoidsense
@@ -142,13 +142,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # GSM porque si
 -include vendor/xperience/config/gsm.mk
-
-# Pixel customization
-TARGET_IS_PIXEL ?= false
-TARGET_PIXEL_STAND_SUPPORTED ?= false
-TARGET_SUPPORTS_QUICK_TAP ?= true
-TARGET_USES_MINI_GAPPS ?= false
-TARGET_USES_PICO_GAPPS ?= false
 
 # Themes and Theme overlays
 #include vendor/themes/themes.mk
@@ -234,7 +227,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
     ro.xpe.device=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=vibranium \
+    ro.xpe.codename=Boro \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
