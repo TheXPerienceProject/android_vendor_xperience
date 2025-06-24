@@ -121,3 +121,14 @@ endif
 ifneq ($(TARGET_SURFACEFLINGER_UDFPS_LIB),)
     $(call soong_config_set,surfaceflinger,udfps_lib,$(TARGET_SURFACEFLINGER_UDFPS_LIB))
 endif
+
+# Lineage PowerShare HAL
+ifneq ($(TARGET_POWERSHARE_PATH),)
+    $(call soong_config_set,lineage_powershare,powershare_path,$(TARGET_POWERSHARE_PATH))
+endif
+ifneq ($(TARGET_POWERSHARE_ENABLED),)
+    $(call soong_config_set,lineage_powershare,powershare_enabled,$(TARGET_POWERSHARE_ENABLED))
+endif
+ifneq ($(TARGET_POWERSHARE_DISABLED),)
+    $(call soong_config_set,lineage_powershare,powershare_disabled,$(TARGET_POWERSHARE_DISABLED))
+endif
