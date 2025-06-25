@@ -184,7 +184,7 @@ endif
 
 # Copy all xperience-specific init rc files
 PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/etc/init/init.xperience-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-system_ext.rc \
+    vendor/xperience/prebuilt/etc/init/xperience-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-system_ext.rc \
     vendor/xperience/prebuilt/etc/init/xperience-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/int.xperience.openssh.rc \
     vendor/xperience/prebuilt/etc/init/xperience-updates.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-updater.rc
 
