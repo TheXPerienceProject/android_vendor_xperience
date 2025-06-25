@@ -271,7 +271,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.process.system_server=off
 
 # sony extra features
-$(call inherit-product, vendor/sony/extra/extra.mk)
+$(call inherit-product-if-exist, vendor/sony/extra/extra.mk)
 
 # Performance tuning per SoC
 ifneq ($(filter pineapple volcano,$(TARGET_BOARD_PLATFORM)),)

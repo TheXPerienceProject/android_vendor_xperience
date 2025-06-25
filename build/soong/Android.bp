@@ -42,7 +42,7 @@ xperience_generator {
     ],
 }
 
-lineage_generator {
+xperience_generator {
     name: "prebuilt_kernel_includes",
 
     // The headers extract command
