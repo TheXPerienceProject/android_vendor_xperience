@@ -97,6 +97,14 @@ cc_library_headers {
     recovery_available: true,
 }
 
+cc_defaults {
+    name: "generated_kernel_header_defaults",
+    generated_headers: ["generated_kernel_includes"],
+    export_generated_headers: ["generated_kernel_includes"],
+    vendor_available: true,
+    recovery_available: true,
+}
+
 target_shim_libs {
     name: "shim_libs_defaults",
     soong_config_variables: {
