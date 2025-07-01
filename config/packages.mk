@@ -56,10 +56,6 @@ PRODUCT_PACKAGES += \
     Seedvault \
     TapTap
 
-# Repainter integration
-PRODUCT_PACKAGES += \
-    RepainterServicePriv
-
 # Dummy for the weather
 PRODUCT_PACKAGES += \
 	com.sony.device
