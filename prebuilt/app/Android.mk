@@ -34,19 +34,6 @@ LOCAL_PROGUARD_ENABLED := disabled
 include $(BUILD_JAVA_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := XPeriaWeather
-LOCAL_MODULE_OWNER := sony
-LOCAL_SRC_FILES := Weather.apk
-LOCAL_MODULE_TAGS := optional
-LOCAL_ENFORCE_USES_LIBRARIES := com.sony.device android.test.runner
-LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_CLASS := APPS
-LOCAL_CERTIFICATE := PRESIGNED
-LOCAL_DEX_PREOPT := false
-LOCAL_OPTIONAL_USES_LIBRARIES := com.sony.device com.android.testruner
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := Battery-Adviser
 LOCAL_MODULE_OWNER := sony
 LOCAL_SRC_FILES := Battery-Adviser.apk

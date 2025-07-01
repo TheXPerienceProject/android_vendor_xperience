@@ -55,7 +55,6 @@ PRODUCT_PACKAGES += \
     MusicXPeria \
     Seedvault \
     TapTap \
-    XPeriaWeather \
     Yunikon
 
 # Repainter integration
@@ -161,8 +160,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     Launcher3QuickStep \
     SystemUI \
-    Settings \
-    XPeriaWeather
+    Settings
 
 #-include vendor/qcom/common/perf/packages.mk
 
