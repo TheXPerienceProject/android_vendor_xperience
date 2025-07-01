@@ -9,7 +9,7 @@ include vendor/xperience/config/aosp_audio.mk
 include vendor/xperience/config/xpe_audio.mk
 
 # Build LHDC files
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     liblhdcBT_enc \
     liblhdcv5BT_enc
 
@@ -27,11 +27,6 @@ PRODUCT_PACKAGES += \
     qti-telephony-utils \
     qti_telephony_utils.xml \
     telephony-ext
-
-#ifneq (,$(filter telephony, $(TARGET_COMMON_QTI_COMPONENTS)))
-#PRODUCT_BOOT_JARS += \
-#    telephony-ext
-#endif
 
 # CellBroadcastReceiver
 PRODUCT_PACKAGES += \
@@ -156,8 +151,6 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Launcher3QuickStep \
     SystemUI \
     Settings
-
-#-include vendor/qcom/common/perf/packages.mk
 
 # if exist track perf changes
 -include vendor/extras/extras.mk
@@ -452,7 +445,7 @@ PRODUCT_PACKAGES += \
     ClockFontRoundheadsOverlay
 
 # Data icons
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     AuroraDataOverlay \
     FaintUIDataOverlay \
     GradiconDataOverlay \
@@ -460,7 +453,7 @@ PRODUCT_PACKAGES += \
     PlumpyDataOverlay
 
 # Icon Data
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     IconDataFive \
     IconDataFour \
     IconDataOne \
@@ -468,7 +461,7 @@ PRODUCT_PACKAGES += \
     IconDataTwo
 
 # Statusbar Icons
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     AcherusSignalOverlay \
     AcherusSubsSignalGOverlay \
     AcherusSubsSignalTOverlay \
@@ -551,7 +544,7 @@ $(warning EXTRA_UDFPS_ANIMATIONS IS ${EXTRA_UDFPS_ANIMATIONS})
 endif
 
 #Volte Icons
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     ArisVolteOverlay \
     BeastVolteOverlay \
     iOSVolteOverlay \
@@ -573,7 +566,7 @@ endif
     XPerienceBlackThemeOverlay
 
 # Wi-Fi Icons
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     AcherusSubsWifiGOverlay \
     AcherusSubsWifiTOverlay \
     AcherusWiFiOverlay \
