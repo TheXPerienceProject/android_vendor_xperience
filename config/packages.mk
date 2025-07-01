@@ -54,8 +54,7 @@ PRODUCT_PACKAGES += \
     LMOFreeformSidebar \
     MusicXPeria \
     Seedvault \
-    TapTap \
-    Yunikon
+    TapTap
 
 # Repainter integration
 PRODUCT_PACKAGES += \
