@@ -68,8 +68,8 @@ PRODUCT_PACKAGES += \
 
 # Wallet app for Power menu integration
 # https://source.android.com/devices/tech/connect/quick-access-wallet
-#PRODUCT_PACKAGES += \
-#    QuickAccessWallet
+PRODUCT_PACKAGES += \
+    QuickAccessWallet
 
 # Use signing keys for only official builds
 ifeq ($(XPERIENCE_CHANNEL),OFFICIAL)
