@@ -176,14 +176,13 @@ ifeq ($(WITH_GMS), true)
 $(call inherit-product, vendor/google/gms/config.mk)
 $(call inherit-product, vendor/google/pixel/config.mk)
 
+endif
 
 PRODUCT_PACKAGES += \
     XPerienceSetupWizard
 
-endif
-
 # fonts
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     HarmonyOS-Sans-Italic.ttf \
     HarmonyOS-Sans.ttf \
     Lexend-VF.ttf \
@@ -191,7 +190,7 @@ endif
     RobotoFallback-VF.ttf
 
 # Font overlays
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     FontAccuratistOverlay \
     FontAclonicaOverlay \
     FontAmaranteOverlay \
@@ -309,7 +308,7 @@ endif
     IconPackXperiaSystemUIOverlay
 
 # Icon shapes
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     IconShapeFlowerOverlay \
     IconShapeHeartOverlay \
     IconShapeHexagonOverlay \
@@ -330,7 +329,7 @@ endif
     RohieIconMeowOverlay
 
 # LS Clock Fonts
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     ClockFontOppoSansOverlay \
     ClockFontGoogleSansOverlay \
     ClockFontNothingDotOverlay \
