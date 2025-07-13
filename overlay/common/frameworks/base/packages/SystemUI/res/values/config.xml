@@ -48,7 +48,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_default" translatable="false">
-        internet,bt,flashlight,nfc,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,custom(com.google.android.gms/.nearby.sharing.SharingTileService),mictoggle,cameratoggle,custom(com.android.permissioncontroller/.permission.service.SafetyCenterQsTileService)
+        internet,bt,flashlight,nfc,dnd,alarm,airplane,controls,wallet,onthego,rotation,battery,cast,screenrecord,custom(com.google.android.gms/.nearby.sharing.SharingTileService),mictoggle,cameratoggle,custom(com.android.permissioncontroller/.permission.service.SafetyCenterQsTileService)
     </string>
 
     <!-- A collection of defaults for the quick affordances on the lock screen. Each item must be a
