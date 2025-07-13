@@ -16,14 +16,19 @@
 
 package mx.xperience.framework.preference;
 
+import android.content.ContentResolver;
 import android.content.Context;
-import androidx.preference.ListPreference;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.provider.Settings;
+
+import androidx.preference.ListPreference;
 
 public class SystemSettingListPreference extends ListPreference {
     private boolean mAutoSummary = false;
+
+    private ContentResolver mContentResolver;
 
     public SystemSettingListPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -46,6 +51,14 @@ public class SystemSettingListPreference extends ListPreference {
         if (mAutoSummary || TextUtils.isEmpty(getSummary())) {
             setSummary(getEntry(), true);
         }
+    }
+
+    public int getInt(String key, int defValue) {
+        return Settings.System.getIntForUser(mContentResolver, key, defValue, UserHandle.USER_CURRENT);
+    }
+
+    public int getIntValue(int defValue) {
+        return getValue() == null ? defValue : Integer.valueOf(getValue());
     }
 
     @Override
