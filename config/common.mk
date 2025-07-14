@@ -89,23 +89,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
-# Backup Tool
-ifneq ($(WITH_GMS),true)
-
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/xperience/prebuilt/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/xperience/prebuilt/bin/50-hosts.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-hosts.sh
-
-ifeq ($(AB_OTA_UPDATER),true)
-PRODUCT_COPY_FILES += \
-    vendor/xperience/prebuilt/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/xperience/prebuilt/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/xperience/prebuilt/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
-endif
-
-endif
-
 # Enable SIP and VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.sip.voip.xml
