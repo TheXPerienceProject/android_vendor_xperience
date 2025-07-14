@@ -162,9 +162,6 @@ ifeq ($(WITH_GMS), true)
 $(call inherit-product, vendor/google/gms/config.mk)
 $(call inherit-product, vendor/google/pixel/config.mk)
 
-else 
-PRODUCT_PACKAGES += \
-    LatinIME
 endif
 
 PRODUCT_PACKAGES += \

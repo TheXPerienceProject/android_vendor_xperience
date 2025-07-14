@@ -176,10 +176,12 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/etc/init/xperience-updates.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-updater.rc
 
 # Optimize everything for preopt
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
+# PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
+PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := speed-profile
 
 # Compile SystemUI on device with `speed`.
 PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.systemservercompilerfilter=speed \
     dalvik.vm.systemuicompilerfilter=speed
 
 # Strip the local variable table and the local variable type table to reduce
@@ -195,6 +197,8 @@ SYSTEMUI_OPTIMIZE_JAVA := true
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.egl.blobcache.multifile=true \
     ro.egl.blobcache.multifile_limit=33554432
+
+DONT_DEXPREOPT_PREBUILTS := false
 
 # Set default refresh rate threshold
 # Display
