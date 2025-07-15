@@ -141,10 +141,14 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
             Log.e(TAG, "Error binding view: " + ex.toString());
         }
         mStatusText = (TextView) view.findViewById(R.id.seekBarPrefValue);
-        if (mCurrentValue == mDefaultValue) {
-            mStatusText.setText(mDefaultText);
+        if (mStatusText != null) {
+            if (mCurrentValue == mDefaultValue) {
+                mStatusText.setText(mDefaultText);
+            } else {
+                mStatusText.setText(String.valueOf(mCurrentValue) + mUnits);
+            }
         } else {
-            mStatusText.setText(String.valueOf(mCurrentValue) + mUnits);
+            Log.w(TAG, "seekBarPrefValue TextView is missing in layout!");
         }
         mSeekBar.setProgress(mCurrentValue - mMin);
         mTitle = (TextView) view.findViewById(android.R.id.title);
@@ -235,7 +239,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (mDefaultValue > mMax) {
             mDefaultValue = mMax;
         }
-        if (mCurrentValue == mDefaultValue) {
+        if (mCurrentValue == mDefaultValue && mStatusText != null) {
             mStatusText.setText(mDefaultText);
         }
     }

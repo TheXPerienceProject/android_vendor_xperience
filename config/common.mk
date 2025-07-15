@@ -198,8 +198,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.egl.blobcache.multifile=true \
     ro.egl.blobcache.multifile_limit=33554432
 
-DONT_DEXPREOPT_PREBUILTS := false
-
 # Set default refresh rate threshold
 # Display
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
