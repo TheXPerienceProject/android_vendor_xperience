@@ -222,7 +222,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.modversion=$(XPE_VERSION) \
     ro.xpe.model=$(XPERIENCE_BUILD) \
     ro.xpe.device=$(XPERIENCE_BUILD) \
-    ro.xpe.codename=Boro \
+    ro.xpe.codename=Mictlán \
     ro.xpelegal.url=http://thexperienceproject.klozz.dev/legal/ \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
