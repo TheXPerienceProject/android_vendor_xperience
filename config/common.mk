@@ -2,6 +2,9 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
+# Allow vendor prebuilt repos to exclude themselves from bp scanning
+-include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
+
 # Include Common Qualcomm Device Tree.
 $(call inherit-product, device/xperience/common/common.mk)
 
