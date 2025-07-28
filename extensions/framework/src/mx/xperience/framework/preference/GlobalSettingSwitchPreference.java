@@ -17,11 +17,11 @@
 package mx.xperience.framework.preference;
 
 import android.content.Context;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 import android.util.AttributeSet;
 import android.provider.Settings;
 
-public class GlobalSettingSwitchPreference extends SwitchPreference {
+public class GlobalSettingSwitchPreference extends SwitchPreferenceCompat {
 
     public GlobalSettingSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

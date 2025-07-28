@@ -18,10 +18,11 @@ package mx.xperience.framework.preference;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.provider.Settings;
 import android.view.View;
 import androidx.core.content.res.TypedArrayUtils;
 
-public class SwitchPreference extends androidx.preference.SwitchPreference {
+public class SwitchPreference extends androidx.preference.SwitchPreferenceCompat {
 
     public SwitchPreference(Context context, AttributeSet attrs, int defStyleAttr,
             int defStyleRes) {
@@ -33,9 +34,7 @@ public class SwitchPreference extends androidx.preference.SwitchPreference {
     }
 
     public SwitchPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, TypedArrayUtils.getAttr(context,
-                androidx.preference.R.attr.switchPreferenceStyle,
-                android.R.attr.switchPreferenceStyle));
+        this(context, attrs, androidx.preference.R.attr.switchPreferenceCompatStyle);
     }
 
     public SwitchPreference(Context context) {
