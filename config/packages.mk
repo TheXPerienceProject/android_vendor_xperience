@@ -561,7 +561,7 @@ PRODUCT_PACKAGES += \
     ZircoVolteOverlay
 
 # XPerience Overlays
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     NavigationBarNoHint \
     XPerienceBlackThemeOverlay
 
