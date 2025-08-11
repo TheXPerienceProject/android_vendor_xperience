@@ -2,11 +2,11 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
-# boost framework
-include vendor/xperience/config/boost.mk
-
 # Include Common Qualcomm Device Tree.
 $(call inherit-product, device/xperience/common/common.mk)
+
+# boost framework
+include vendor/xperience/config/boost.mk
 
 # Implementation of lineage HEALTH
 # HIDL
