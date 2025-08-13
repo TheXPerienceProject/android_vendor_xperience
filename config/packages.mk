@@ -165,6 +165,7 @@ $(call inherit-product, vendor/google/pixel/config.mk)
 endif
 
 PRODUCT_PACKAGES += \
+    XPerienceOptimizer \
     XPerienceSetupWizard
 
 # fonts

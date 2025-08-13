@@ -276,8 +276,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.dex2oat64.enabled=true \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed-profile \
-    pm.dexopt.install=speed-profile
+    pm.dexopt.boot=speed \
+    pm.dexopt.install=speed
 
 # Snapdragon 8 Elite (SM8750) — codename sun
 else ifneq ($(filter sun,$(TARGET_BOARD_PLATFORM)),)
@@ -290,8 +290,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.dex2oat-filter=speed \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed-profile \
-    pm.dexopt.install=speed-profile
+    pm.dexopt.boot=speed \
+    pm.dexopt.install=speed
 
 else ifneq ($(filter kailua,$(TARGET_BOARD_PLATFORM)),)
   $(warning "Perf tuning for KAILUA platform.")
@@ -303,8 +303,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.dex2oat64.enabled=true \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed-profile \
-    pm.dexopt.install=speed-profile
+    pm.dexopt.boot=speed \
+    pm.dexopt.install=speed
 
 else ifneq ($(filter lahaina,$(TARGET_BOARD_PLATFORM)),)
   $(warning "Perf tuning for LAHAINA platform.")
@@ -316,8 +316,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.dex2oat-filter=speed \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed-profile \
-    pm.dexopt.install=speed-profile
+    pm.dexopt.boot=speed \
+    pm.dexopt.install=speed
 endif
 
 # PIF values
