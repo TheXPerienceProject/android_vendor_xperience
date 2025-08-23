@@ -131,6 +131,7 @@ PRODUCT_PACKAGES += \
 
 # Themes
 PRODUCT_PACKAGES += \
+    OmniJaws \
     ThemePicker \
     WallpaperPicker2 \
     XPerienceOverlayStub \
@@ -596,6 +597,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/xperience_themes/product/fonts/,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
     vendor/xperience_themes/product/etc/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
+
+# Utility Overlays
+PRODUCT_PACKAGES += \
+    HideSmartSpace \
+    SmartSpaceOffset \
+    HideClock
+
+# Aod wallpaper
+PRODUCT_PACKAGES += \
+    AODWALL
 
 # Neural Network
 PRODUCT_PACKAGES += \
