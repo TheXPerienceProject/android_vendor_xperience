@@ -2,6 +2,9 @@
 CLANG_VERSION=$(build/soong/scripts/get_clang_version.py)
 export LLVM_AOSP_PREBUILTS_VERSION="${CLANG_VERSION}"
 
+RUST_VERSION=$(grep 'RustDefaultVersion =' build/soong/rust/config/global.go | awk '{print $3}' | awk -F '"' '{print $2}')
+export RUST_AOSP_PREBUILTS_VERSION="${RUST_VERSION}"
+
 function __print_xperience_functions_help() {
   cat <<EOF
 Additional LineageOS functions:
