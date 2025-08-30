@@ -156,7 +156,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 -include vendor/extras/extras.mk
 
 # GApps
-WITH_GMS ?= false
+WITH_GMS ?= true
 ifeq ($(WITH_GMS), true)
 
 $(call inherit-product, vendor/google/gms/config.mk)
