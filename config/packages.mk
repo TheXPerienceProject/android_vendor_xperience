@@ -168,8 +168,8 @@ PRODUCT_PACKAGES += \
     LatinIME
 endif
 
-
 PRODUCT_PACKAGES += \
+    XPerienceOptimizer \
     XPerienceSetupWizard
 
 # fonts
