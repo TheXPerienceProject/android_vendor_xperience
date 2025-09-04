@@ -21,7 +21,7 @@ package mx.xperience.framework.colorpicker;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import mx.xperience.framework.preferences.SecureSettingsStore;
+import mx.xperience.framework.preference.SecureSettingsStore;
 
 public class ColorPickerSecurePreference extends ColorPickerPreference {
 

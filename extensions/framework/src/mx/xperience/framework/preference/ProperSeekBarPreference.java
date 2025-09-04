@@ -34,9 +34,9 @@ import android.widget.Toast;
 import androidx.core.content.res.TypedArrayUtils;
 import androidx.preference.*;
 
-import mx.xperience.framework.preference.R;
-import mx.xperience.framework.preference.util.Utils;
-import mx.xperience.framework.preference.util.VibrationUtils;
+import mx.xperience.framework.R;
+import mx.xperience.framework.util.Utils;
+import mx.xperience.framework.util.VibrationUtils;
 
 public class ProperSeekBarPreference extends Preference implements SeekBar.OnSeekBarChangeListener,
         View.OnClickListener, View.OnLongClickListener {
