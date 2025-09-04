@@ -33,9 +33,12 @@
 
     <!-- Value to pass to callback when restore button is pressed -->
     <declare-styleable name="ColorPickerPreference">
-        <attr name="defaultColorValue" format="integer" />
-        <attr name="ledPreview" format="boolean" />
         <attr name="alphaSlider" format="boolean" />
+        <attr name="showPreview" format="boolean" />
+        <attr name="showReset" format="boolean" />
+        <attr name="dividerAbove" format="boolean" />
+        <attr name="dividerBelow" format="boolean" />
+        <attr name="ledPreview" format="boolean" />
     </declare-styleable>
 
     <!-- LineageOS -->
