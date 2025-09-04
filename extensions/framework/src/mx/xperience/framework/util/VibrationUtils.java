@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package mx.xperience.framework.preference.util;
+package mx.xperience.framework.util;
 
 import android.content.Context;
 import android.os.VibrationEffect;
