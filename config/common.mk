@@ -338,3 +338,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsFp="google/caiman_beta/caiman:16/BP31.250610.004/13769805:user/release-keys" \
     PihooksGmsModel="Pixel 9 Pro"
+
+# Lindroid
+ifeq ($(TARGET_BUILD_LINDROID),true)
+    $(call inherit-product, vendor/lindroid/lindroid.mk)
+endif
