@@ -169,6 +169,7 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
+    CertifiedKeyboxOverlay \
     XPerienceOptimizer \
     XPerienceSetupWizard
 
