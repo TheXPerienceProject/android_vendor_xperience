@@ -268,61 +268,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 # sony extra features
 $(call inherit-product-if-exist, vendor/sony/extra/extra.mk)
 
-# Performance tuning per SoC
-ifneq ($(filter pineapple volcano,$(TARGET_BOARD_PLATFORM)),)
-  $(warning "Perf tuning for LANAI platform.")
-PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6,7 \
-    dalvik.vm.dex2oat-threads=8 \
-    dalvik.vm.image-dex2oat-threads=8 \
-    dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.dex2oat64.enabled=true \
-    pm.dexopt.bg-dexopt=everything \
-    pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed \
-    pm.dexopt.install=speed
-
-# Snapdragon 8 Elite (SM8750) — codename sun
-else ifneq ($(filter sun,$(TARGET_BOARD_PLATFORM)),)
-  $(warning "Perf tuning for SUN (Snapdragon 8 Elite / SM8750).")
-PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6,7,8,9 \
-    dalvik.vm.dex2oat-threads=10 \
-    dalvik.vm.image-dex2oat-threads=10 \
-    dalvik.vm.dex2oat64.enabled=true \
-    dalvik.vm.dex2oat-filter=speed \
-    pm.dexopt.bg-dexopt=everything \
-    pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed \
-    pm.dexopt.install=speed
-
-else ifneq ($(filter kailua,$(TARGET_BOARD_PLATFORM)),)
-  $(warning "Perf tuning for KAILUA platform.")
-PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6 \
-    dalvik.vm.dex2oat-threads=6 \
-    dalvik.vm.image-dex2oat-threads=6 \
-    dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.dex2oat64.enabled=true \
-    pm.dexopt.bg-dexopt=everything \
-    pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed \
-    pm.dexopt.install=speed
-
-else ifneq ($(filter lahaina,$(TARGET_BOARD_PLATFORM)),)
-  $(warning "Perf tuning for LAHAINA platform.")
-PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4 \
-    dalvik.vm.dex2oat-threads=4 \
-    dalvik.vm.image-dex2oat-threads=4 \
-    dalvik.vm.dex2oat64.enabled=true \
-    dalvik.vm.dex2oat-filter=speed \
-    pm.dexopt.bg-dexopt=everything \
-    pm.dexopt.first-boot=speed \
-    pm.dexopt.boot=speed \
-    pm.dexopt.install=speed
-endif
-
 # PIF values
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.pihooks_MANUFACTURER?=Google \
