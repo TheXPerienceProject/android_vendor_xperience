@@ -237,7 +237,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
 
 # System
-persist.sys.binary_xml=false
+#persist.sys.binary_xml=false
 
 # Disable default frame rate limit for games
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -274,6 +274,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.image-dex2oat-threads=8 \
     dalvik.vm.dex2oat-filter=speed \
     dalvik.vm.dex2oat64.enabled=true \
+    dalvik.vm.dexopt.thermal-cutoff=true \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
     pm.dexopt.boot=speed-profile \
@@ -288,6 +289,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.image-dex2oat-threads=10 \
     dalvik.vm.dex2oat64.enabled=true \
     dalvik.vm.dex2oat-filter=speed \
+    dalvik.vm.dexopt.thermal-cutoff=true \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
     pm.dexopt.boot=speed-profile \
@@ -296,11 +298,13 @@ PRODUCT_PRODUCT_PROPERTIES += \
 else ifneq ($(filter kailua,$(TARGET_BOARD_PLATFORM)),)
   $(warning "Perf tuning for KAILUA platform.")
 PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6 \
-    dalvik.vm.dex2oat-threads=6 \
+    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4,5,6,7 \
+    dalvik.vm.dex2oat-thread-count=6 \
+    dalvik.vm.background-dex2oat-thread-count=4 \
     dalvik.vm.image-dex2oat-threads=6 \
     dalvik.vm.dex2oat-filter=speed \
     dalvik.vm.dex2oat64.enabled=true \
+    dalvik.vm.dexopt.thermal-cutoff=true \
     pm.dexopt.bg-dexopt=everything \
     pm.dexopt.first-boot=speed \
     pm.dexopt.boot=speed-profile \
@@ -309,15 +313,20 @@ PRODUCT_PRODUCT_PROPERTIES += \
 else ifneq ($(filter lahaina,$(TARGET_BOARD_PLATFORM)),)
   $(warning "Perf tuning for LAHAINA platform.")
 PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.dex2oat-cpu-set=0,1,2,3,4 \
-    dalvik.vm.dex2oat-threads=4 \
-    dalvik.vm.image-dex2oat-threads=4 \
+    dalvik.vm.background-dex2oat-thread-count=2 \
+    dalvik.vm.dex2oat-thread-count=4 \
+    dalvik.vm.dex2oat-cpu-set=4,5,6,7 \
     dalvik.vm.dex2oat64.enabled=true \
-    dalvik.vm.dex2oat-filter=speed \
-    pm.dexopt.bg-dexopt=everything \
-    pm.dexopt.first-boot=speed \
+    dalvik.vm.dexopt.thermal-cutoff=true \
+    dalvik.vm.dexopt.secondary=true \
+    pm.dexopt.first-boot=quicken \
     pm.dexopt.boot=speed-profile \
-    pm.dexopt.install=speed-profile
+    pm.dexopt.install=speed-profile \
+    pm.dexopt.bg-dexopt=speed-profile \
+    pm.dexopt.inactive=verify \
+    pm.dexopt.shared=quicken \
+    pm.dexopt.ab-ota=extract
+
 endif
 
 # PIF values
@@ -335,3 +344,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsFp="google/caiman_beta/caiman:16/BP31.250610.004/13769805:user/release-keys" \
     PihooksGmsModel="Pixel 9 Pro"
+
+# Lindroid
+ifeq ($(TARGET_BUILD_LINDROID),true)
+    $(call inherit-product, vendor/lindroid/lindroid.mk)
+endif
