@@ -274,14 +274,14 @@ $(call inherit-product-if-exist, vendor/sony/extra/extra.mk)
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.pihooks_MANUFACTURER?=Google \
     persist.sys.pihooks_BRAND?=google \
-    persist.sys.pihooks_PRODUCT?=caiman_beta \
-    persist.sys.pihooks_DEVICE?=caiman \
-    persist.sys.pihooks_ID?=BP31.250610.004 \
+    persist.sys.pihooks_PRODUCT?=tegu_beta \
+    persist.sys.pihooks_DEVICE?=tegu \
+    persist.sys.pihooks_ID?=BP41.250822.010 \
     persist.sys.pihooks_RELEASE?=12 \
-    persist.sys.pihooks_SECURITY_PATCH?=2025-07-05 \
+    persist.sys.pihooks_SECURITY_PATCH?=2025-09-05 \
     persist.sys.pihooks_DEVICE_INITIAL_SDK_INT?=21 \
     persist.sys.pihooks_SDK_INT?=32
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PihooksGmsFp="google/caiman_beta/caiman:16/BP31.250610.004/13769805:user/release-keys" \
-    PihooksGmsModel="Pixel 9 Pro"
+    PihooksGmsFp="google/tegu_beta/tegu:16/BP41.250822.010/14082742:user/release-keys" \
+    PihooksGmsModel="Pixel 9a"
