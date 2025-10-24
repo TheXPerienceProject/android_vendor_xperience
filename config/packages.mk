@@ -54,6 +54,7 @@ PRODUCT_PACKAGES += \
     LMOFreeform \
     LMOFreeformSidebar \
     MusicXPeria \
+    Recorder \
     Seedvault \
     TapTap
 
