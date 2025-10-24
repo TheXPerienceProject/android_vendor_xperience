@@ -49,6 +49,7 @@ PRODUCT_PACKAGES += \
     Camelot \
     Datura \
     ExactCalculator \
+    GameBar \
     GameSpace \
     LMOFreeform \
     LMOFreeformSidebar \
