@@ -13,6 +13,10 @@ include vendor/xperience/config/xpe_audio.mk
     liblhdcBT_enc \
     liblhdcv5BT_enc
 
+# Component overrides
+PRODUCT_PACKAGES += \
+    xperience-component-overrides.xml
+
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
