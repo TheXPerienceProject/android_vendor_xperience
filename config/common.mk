@@ -268,4 +268,5 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 $(call inherit-product-if-exist, vendor/sony/extra/extra.mk)
 
 # PIF
+DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/certification
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay/certification
