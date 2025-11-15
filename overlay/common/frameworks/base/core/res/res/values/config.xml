@@ -269,6 +269,9 @@
     <!-- Whether glanceable hub is enabled by default. -->
     <bool name="config_glanceableHubEnabledByDefault">true</bool>
 
+    <!-- AOD wallpaper -->
+    <bool name="config_dozeSupportsAodWallpaper">true</bool>
+
     <!-- Smartspace -->
     <item>device_personalization_services/EchoSmartspace__always_send_weather_to_home_screen=true</item>
     <item>device_personalization_services/EchoSmartspace__doorbell_when_for_update_time=true</item>
