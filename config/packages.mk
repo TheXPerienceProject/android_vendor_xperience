@@ -1,4 +1,8 @@
 # Additional packages
+# Include {GoogleSansFlex,Lato,Rubik} fonts
+$(call inherit-product-if-exists, external/google-fonts/google-sans-flex/fonts.mk)
+$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
+$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 # themes
 # $(call inherit-product, vendor/themes/themes.mk)
 
@@ -212,9 +216,11 @@ PRODUCT_PACKAGES += \
     FontFucekOverlay \
     FontGrandHotelOverlay \
     FontGoogleSansOverlay \
+    FontGoogleSansFlexOverlay \
     FontHarmonySansOverlay \
     FontInterSourceOverlay \
     FontJTLeonorOverlay \
+    FontLatoOverlay \
     FontLGSmartGothicOverlay \
     FontLemonMilkOverlay \
     FontLinotteOverlay \
