@@ -183,6 +183,10 @@ PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/etc/init/xperience-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/int.xperience.openssh.rc \
     vendor/xperience/prebuilt/etc/init/xperience-updates.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.xperience-updater.rc
 
+# XPerience interfaces
+PRODUCT_PACKAGES += \
+    framework_compatibility_matrix.xperience.xml
+
 # Optimize everything for preopt
 # PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
 PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := speed-profile
@@ -324,3 +328,7 @@ $(call inherit-product-if-exist, vendor/sony/extra/extra.mk)
 # PIF
 DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/certification
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay/certification
+
+# sepolicy
+SELINUX_IGNORE_NEVERALLOWS := true
+
