@@ -1,0 +1,14 @@
+android_app_import {
+    name: "dynamicisland",
+    apk: "dynamicisland.apk",
+    certificate: "platform",
+    privileged: true,
+    
+    overrides: [],
+    
+    dex_preopt: {
+        enabled: false,
+    },
+    
+    product_specific: true,
+}
