@@ -29,4 +29,6 @@
          Override to disable immersive mode confirmation for certain packages. -->
     <string name="def_immersive_mode_confirmations" translatable="false">confirmed</string>
 
+    <!-- Whether vibrate icon is shown in the status bar by default. -->
+    <integer name="def_statusBarVibrateIconEnabled">1</integer>
 </resources>
