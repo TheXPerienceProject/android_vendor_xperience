@@ -44,7 +44,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     app \
     AvatarPicker \
-    Battery-Adviser \
+    BatteryAdviser \
     BatteryStatsViewer \
     Camelot \
     Datura \
@@ -57,7 +57,8 @@ PRODUCT_PACKAGES += \
     MusicXPeria \
     Recorder \
     Seedvault \
-    TapTap
+    TapTap \
+    XPerienceWeather
 
 # Dummy for the weather
 PRODUCT_PACKAGES += \
