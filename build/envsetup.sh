@@ -921,4 +921,33 @@ function generate_host_overrides() {
     echo "BUILD_HOSTNAME=$BUILD_HOSTNAME"
 }
 
+#
+# Invalidate selected prebuilt intermediates (Soong cache)
+# This is required when updating prebuilt APKs, since Soong does not
+# automatically invalidate android_app_import outputs.
+#
+
+invalidate_prebuilt_intermediates() {
+    local out_dir="${OUT:-out}"
+    local soong_intermediates="${out_dir}/soong/.intermediates"
+
+    # List of prebuilt intermediate paths (relative to .intermediates)
+    local prebuilts=(
+        "vendor/xperience/prebuilt/app/DynamicIsland"
+        "vendor/xperience/prebuilt/app/XPerienceWeather"
+    )
+
+    for prebuilt in "${prebuilts[@]}"; do
+        local target="${soong_intermediates}/${prebuilt}"
+
+        if [ -d "${target}" ]; then
+            echo ">> Invalidating prebuilt intermediates: ${target}"
+            rm -rf "${target}"
+        else
+            echo ">> Prebuilt intermediates not found (skipping): ${target}"
+        fi
+    done
+}
+
 generate_host_overrides
+invalidate_prebuilt_intermediates
