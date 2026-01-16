@@ -34,6 +34,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
+ifeq ($(filter mt%,$(TARGET_BOARD_PLATFORM)),)
 ifneq ($(TARGET_COMMON_QTI_COMPONENTS), telephony)
 # Telephony
 PRODUCT_PACKAGES += \
@@ -72,11 +73,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 endif
+endif # dont add this if the device is mediatek
 
 # WiFi
 PRODUCT_PACKAGES += \
     libwpa_client
 
+ifeq ($(filter mt%,$(TARGET_BOARD_PLATFORM)),)
 ifneq ($(TARGET_COMMON_QTI_COMPONENTS), wlan)
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.wifi.supplicant \
@@ -85,6 +88,7 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi.supplicant-V1-ndk.vendor \
     vendor.qti.hardware.wifi.supplicant-V1-ndk.vendor
 endif
+endif # dont add this if the device is mediatek
 
 PRODUCT_PRODUCT_PROPERTIES += \
     remote_provisioning.enable_rkpd=true \
