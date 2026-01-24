@@ -171,11 +171,9 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # GApps
 WITH_GMS ?= true
+$(call inherit-product-if-exists, vendor/gapps/permissions/permissions.mk)
 ifeq ($(WITH_GMS), true)
-
-$(call inherit-product, vendor/google/gms/config.mk)
-$(call inherit-product, vendor/google/pixel/config.mk)
-
+$(call inherit-product-if-exists, vendor/gapps/arm64/arm64-vendor.mk)
 else
 PRODUCT_PACKAGES += \
     LatinIME
