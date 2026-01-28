@@ -1,6 +1,0 @@
-flag_value {
-  package: "com.android.settingslib.flags"
-  name: "bluetooth_qs_tile_dialog_auto_on_toggle"
-  state: ENABLED
-  permission: READ_ONLY
-}
