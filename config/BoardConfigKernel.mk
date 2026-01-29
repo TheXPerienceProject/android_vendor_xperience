@@ -60,6 +60,8 @@
 #                                          is in PATH
 #   USE_CCACHE                         = Enable ccache (global Android flag)
 
+include vendor/xperience/build/core/utils.mk
+
 BUILD_TOP := $(abspath .)
 
 TARGET_AUTO_KDIR := $(shell echo $(TARGET_DEVICE_DIR) | sed -e 's/^device/kernel/g')
@@ -78,24 +80,14 @@ TARGET_KERNEL_VERSION ?= $(shell echo $(KERNEL_VERSION)"."$(KERNEL_PATCHLEVEL))
 
 # 5.10+ can fully compile without GCC by default
 ifneq ($(KERNEL_VERSION),)
-    ifeq ($(shell expr $(KERNEL_VERSION) \>= 6), 1)
+    ifeq ($(call is-version-greater-or-equal,$(TARGET_KERNEL_VERSION),5.10),true)
         TARGET_KERNEL_NO_GCC ?= true
-    else ifeq ($(shell expr $(KERNEL_VERSION) \>= 5), 1)
-        ifeq ($(shell expr $(KERNEL_PATCHLEVEL) \>= 10), 1)
-            TARGET_KERNEL_NO_GCC ?= true
-        endif
     endif
 endif
 
 # 6.11+ can no longer use aosp glibc sysroot headers (too old)
 ifneq ($(KERNEL_VERSION),)
-    ifeq ($(shell expr $(KERNEL_VERSION) \< 6), 1)
-        # empty
-    else ifeq ($(KERNEL_VERSION), 6)
-        ifeq ($(shell expr $(KERNEL_PATCHLEVEL) \>= 11), 1)
-            TARGET_KERNEL_LIBC_SYSROOT_USE ?= host
-        endif
-    else
+    ifeq ($(call is-version-greater-or-equal,$(TARGET_KERNEL_VERSION),6.11),true)
         TARGET_KERNEL_LIBC_SYSROOT_USE ?= host
     endif
 endif
@@ -235,8 +227,8 @@ else
         KERNEL_HOST_C_LD_FLAGS_SYSROOT := --sysroot=$(BUILD_TOP)/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/sysroot
     endif
 
-    KERNEL_MAKE_FLAGS += HOSTCFLAGS='$(KERNEL_HOST_C_LD_FLAGS_SYSROOT) -I$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/include'
-    KERNEL_MAKE_FLAGS += HOSTLDFLAGS='$(KERNEL_HOST_C_LD_FLAGS_SYSROOT) -Wl,-rpath,$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/lib64 -L $(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/lib64 -fuse-ld=lld --rtlib=compiler-rt'
+    KERNEL_MAKE_FLAGS += HOSTCFLAGS="$(KERNEL_HOST_C_LD_FLAGS_SYSROOT) -I$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/include"
+    KERNEL_MAKE_FLAGS += HOSTLDFLAGS="$(KERNEL_HOST_C_LD_FLAGS_SYSROOT) -Wl,-rpath,$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/lib64 -L $(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/lib64 -fuse-ld=lld --rtlib=compiler-rt"
 
     TOOLS_PATH_OVERRIDE += PATH=$(BUILD_TOP)/prebuilts/tools-lineage/$(HOST_PREBUILT_TAG)/bin:$(TARGET_KERNEL_CLANG_PATH)/bin:$(BUILD_TOP)/prebuilts/rust/$(HOST_PREBUILT_TAG)/$(TARGET_KERNEL_RUST_VERSION)/bin:$(BUILD_TOP)/prebuilts/clang-tools/$(HOST_PREBUILT_TAG)/bin:$$PATH
 endif
@@ -276,6 +268,9 @@ TOOLS_PATH_OVERRIDE += BISON_PKGDATADIR=$(BUILD_TOP)/prebuilts/build-tools/commo
 
 # Since Linux 5.10, pahole is required
 KERNEL_MAKE_FLAGS += PAHOLE=$(BUILD_TOP)/prebuilts/kernel-build-tools/linux-x86/bin/pahole
+
+# Rust bindgen wants matching Clang and libclang versions
+KERNEL_MAKE_FLAGS += LIBCLANG_PATH=$(TARGET_KERNEL_CLANG_PATH)/lib
 
 # Set the out dir for the kernel's O= arg
 # This needs to be an absolute path, so only set this if the standard out dir isn't used

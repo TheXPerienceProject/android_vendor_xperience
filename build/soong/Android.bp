@@ -23,15 +23,15 @@ xperience_generator {
 
     // The headers make command
     cmd: "if [ -n \"$(TARGET_KERNEL_PLATFORM_TARGET)\" ]; then " +
-         "    pushd $(KERNEL_PATH); " +
-         "    ./tools/bazel --output_user_root=$(KERNEL_BUILD_OUT_PREFIX)$(genDir)/bazel-out --output_root=$(KERNEL_BUILD_OUT_PREFIX)$(genDir)/bazel-out run --experimental_convenience_symlinks=ignore --cpu=$(KERNEL_ARCH) //$(TARGET_KERNEL_SOURCE):$(TARGET_KERNEL_PLATFORM_TARGET)_uapi_headers_dist -- --destdir=$(KERNEL_BUILD_OUT_PREFIX)$(genDir); " +
-         "    popd; " +
-         "    gzip -d $(KERNEL_BUILD_OUT_PREFIX)$(genDir)/kernel-uapi-headers.tar.gz; " +
-         "    tar -xf $(KERNEL_BUILD_OUT_PREFIX)$(genDir)/kernel-uapi-headers.tar -C $(KERNEL_BUILD_OUT_PREFIX)$(genDir); " +
-         "else " +
-         "    $(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install; " +
-         "fi; " +
-         "vendor/xperience/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
+    "    pushd $(KERNEL_PATH); " +
+    "    ./tools/bazel --output_user_root=$(KERNEL_BUILD_OUT_PREFIX)$(genDir)/bazel-out --output_root=$(KERNEL_BUILD_OUT_PREFIX)$(genDir)/bazel-out run --experimental_convenience_symlinks=ignore --cpu=$(KERNEL_ARCH) //$(TARGET_KERNEL_SOURCE):$(TARGET_KERNEL_PLATFORM_TARGET)_uapi_headers_dist -- --destdir=$(KERNEL_BUILD_OUT_PREFIX)$(genDir); " +
+    "    popd; " +
+    "    gzip -d $(KERNEL_BUILD_OUT_PREFIX)$(genDir)/kernel-uapi-headers.tar.gz; " +
+    "    tar -xf $(KERNEL_BUILD_OUT_PREFIX)$(genDir)/kernel-uapi-headers.tar -C $(KERNEL_BUILD_OUT_PREFIX)$(genDir); " +
+    "else " +
+    "    $(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install; " +
+    "fi; " +
+    "vendor/xperience/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
 
     // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
@@ -69,6 +69,22 @@ xperience_generator {
 }
 
 bootstrap_go_package {
+    name: "soong-xperience-mkdir",
+    pkgPath: "xperience/soong/mkdir",
+    deps: [
+        "blueprint",
+        "blueprint-pathtools",
+        "soong",
+        "soong-android",
+    ],
+    srcs: [
+        "mkdir/init.go",
+        "mkdir/mkdir.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+bootstrap_go_package {
     name: "soong-lineage-mkdir",
     pkgPath: "xperience/soong/mkdir",
     deps: [
@@ -84,12 +100,12 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-soong_config_module_type {
-    name: "target_shim_libs",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceGlobalVars",
-    value_variables: ["target_ld_shim_libs"],
-    properties: ["cppflags"],
+cc_defaults {
+    name: "generated_kernel_header_defaults",
+    generated_headers: ["generated_kernel_includes"],
+    export_generated_headers: ["generated_kernel_includes"],
+    vendor_available: true,
+    recovery_available: true,
 }
 
 cc_defaults {
@@ -103,93 +119,6 @@ cc_defaults {
 cc_library_headers {
     name: "generated_kernel_headers",
     defaults: ["generated_kernel_header_defaults"],
-    vendor_available: true,
-    recovery_available: true,
-}
-
-cc_defaults {
-    name: "generated_kernel_header_defaults",
-    generated_headers: ["generated_kernel_includes"],
-    export_generated_headers: ["generated_kernel_includes"],
-    vendor_available: true,
-    recovery_available: true,
-}
-
-target_shim_libs {
-    name: "shim_libs_defaults",
-    soong_config_variables: {
-        target_ld_shim_libs: {
-            cppflags: ["-DLD_SHIM_LIBS=\"%s\""],
-        },
-    },
-}
-
-
-soong_config_module_type {
-    name: "camera_needs_miui_camera_mode_support",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceGlobalVars",
-    bool_variables: ["camera_needs_miui_camera_mode_support"],
-    properties: ["cppflags"],
-}
-
-camera_needs_miui_camera_mode_support {
-    name: "camera_needs_miui_camera_mode_support_defaults",
-    soong_config_variables: {
-        camera_needs_miui_camera_mode_support: {
-            cppflags: ["-DCAMERA_NEEDS_MIUI_CAMERA_MODE_SUPPORT"],
-        },
-    },
-}
-
-soong_config_module_type {
-    name: "include_miui_camera",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceGlobalVars",
-    bool_variables: ["include_miui_camera"],
-    properties: ["cppflags"],
-}
-include_miui_camera {
-    name: "includes_miui_camera",
-    soong_config_variables: {
-        include_miui_camera: {
-            cppflags: ["-DINCLUDES_MIUI_CAMERA"],
-        },
-    },
-}
-soong_config_module_type {
-    name: "uses_miui_camera",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceGlobalVars",
-    bool_variables: ["uses_miui_camera"],
-    properties: ["cppflags"],
-}
-uses_miui_camera {
-    name: "uses_miui_camera_defaults",
-    soong_config_variables: {
-        uses_miui_camera: {
-            cppflags: ["-DUSES_MIUI_CAMERA"],
-        },
-    },
-}
-
-soong_config_module_type {
-    name: "camera_needs_camera_needs_depth_sensor_override",
-    module_type: "cc_defaults",
-    config_namespace: "xperienceGlobalVars",
-    bool_variables: ["camera_needs_camera_needs_depth_sensor_override"],
-    properties: ["cppflags"],
-}
-
-camera_needs_camera_needs_depth_sensor_override {
-    name: "camera_needs_camera_needs_depth_sensor_override_defaults",
-    soong_config_variables: {
-        camera_needs_camera_needs_depth_sensor_override: {
-            cppflags: ["-DCAMERA_NEEDS_CAMERA_NEEDS_DEPTH_SENSOR_OVERRIDE"],
-
-        },
-    },
-
 }
 
 cc_library_headers {
