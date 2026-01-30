@@ -14,12 +14,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-define uniq
-$(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
-endef
-
-# Include board/platform macros
-include vendor/xperience/build/core/utils.mk
-
 # Rules for QCOM targets
 include $(TOPDIR)vendor/xperience/build/core/qcom_target.mk

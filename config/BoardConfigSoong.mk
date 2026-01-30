@@ -25,6 +25,8 @@ SOONG_CONFIG_NAMESPACES += xperienceGlobalVars
 SOONG_CONFIG_xperienceGlobalVars += \
     target_ld_shim_libs \
     include_miui_camera \
+    disable_bluetooth_le_read_buffer_size_v2 \
+    disable_bluetooth_le_set_host_feature \
     uses_miui_camera \
     uses_oplus_camera \
     uses_nothing_camera \
@@ -41,6 +43,8 @@ SOONG_CONFIG_xperienceGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA
 SOONG_CONFIG_xperienceGlobalVars_uses_nothing_camera := $(TARGET_USES_NOTHING_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_camera_needs_miui_camera_mode_support := $(TARGET_USES_MIUI_CAMERA)
 SOONG_CONFIG_xperienceGlobalVars_camera_needs_camera_needs_depth_sensor_override := $(TARGET_USES_DEPTHSENSOR_OVERRIDE)
+SOONG_CONFIG_xperienceGlobalVars_disable_bluetooth_le_read_buffer_size_v2 := $(TARGET_DISABLE_BLUETOOTH_LE_READ_BUFFER_SIZE_V2)
+SOONG_CONFIG_xperienceGlobalVars_disable_bluetooth_le_set_host_feature := $(TARGET_DISABLE_BLUETOOTH_LE_SET_HOST_FEATURE)
 
 # Disable qmi EAP-SIM security
 DISABLE_EAP_PROXY := true

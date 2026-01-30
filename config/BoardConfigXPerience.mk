@@ -4,6 +4,9 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
 include hardware/qcom-caf/common/BoardConfigQcom.mk
 endif
 
+# Recovery
+BOARD_USES_FULL_RECOVERY_IMAGE ?= true
+
 include vendor/xperience/config/BoardConfigSoong.mk
 
 # Disable qmi EAP-SIM security
