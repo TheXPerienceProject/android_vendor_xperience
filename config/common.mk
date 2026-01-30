@@ -5,11 +5,6 @@ PRODUCT_BRAND ?= XPerience
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
-ifeq ($(filter mt%,$(TARGET_BOARD_PLATFORM)),)
-# Include Common Qualcomm Device Tree.
-$(call inherit-product, device/xperience/common/common.mk)
-endif # dont enable if the device is mtk
-
 # boost framework
 include vendor/xperience/config/boost.mk
 
