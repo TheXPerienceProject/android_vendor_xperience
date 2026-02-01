@@ -327,3 +327,6 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay/certification
 # sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
+-include vendor/xperience-priv/keys/keys.mk
+
+
