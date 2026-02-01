@@ -124,9 +124,11 @@ ifneq (eng,$(TARGET_BUILD_VARIANT))
 ifneq (,$(wildcard vendor/xperience/signing/keys/releasekey.pk8))
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/xperience/signing/keys/releasekey
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.oem_unlock_supported=1
+$(warning DEV CERTS: $PRODUCT_DEFAULT_DEV_CERTIFICATE)
 endif
 ifneq (,$(wildcard vendor/xperience/signing/keys/otakey.x509.pem))
 PRODUCT_OTA_PUBLIC_KEYS := vendor/xperience/signing/keys/otakey.x509.pem
+$(warning OTA CERTS: PRODUCT_OTA_PUBLIC_KEYS)
 endif
 endif
 #########################################################################
