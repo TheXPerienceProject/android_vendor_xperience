@@ -13,7 +13,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     apns-conf.xml
 
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     vendor/xperience/prebuilt/etc/apns-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/apns-conf.xml \
     vendor/xperience/prebuilt/etc/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml \
     vendor/xperience/prebuilt/etc/selective-spn-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/selective-spn-conf.xml
@@ -31,7 +31,7 @@ PRODUCT_PACKAGES += \
 
 # Tethering - allow without requiring a provisioning app
 # (for devices that check this)
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
 ifeq ($(filter mt%,$(TARGET_BOARD_PLATFORM)),)

@@ -8,7 +8,7 @@ XPERIENCE_CPU_LIMIT_UI ?= 0-4
 XPERIENCE_CPU_DISPLAY ?= 4-7
 XPERIENCE_CPU_AUDIO ?= 0-3
 # boost properties
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.xperience_cpu_big=$(XPERIENCE_CPU_BIG_CORES) \
     persist.sys.xperience_cpu_small=$(XPERIENCE_CPU_SMALL_CORES) \
     persist.sys.xperience_cpu_bg=$(XPERIENCE_CPU_BG) \

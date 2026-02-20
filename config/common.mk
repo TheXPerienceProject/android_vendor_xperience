@@ -8,11 +8,6 @@ PRODUCT_BRAND ?= XPerience
 # boost framework
 include vendor/xperience/config/boost.mk
 
-# Implementation of lineage HEALTH
-# HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    vendor/xperience/interfaces/vendor_framework_compatibility_matrix.xml
-
 TARGET_DISABLE_SHUTDOWNANIMATION ?= true
 
 TARGET_SCREEN_WIDTH ?= 1080
@@ -44,10 +39,10 @@ else
 endif
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.clientidbase=android-google
 else
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
 endif
 
@@ -56,7 +51,7 @@ endif
 #PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # general properties
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
@@ -124,11 +119,11 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.face.sense_service=$(TARGET_SUPPORTS_64_BIT_APPS)
 
 # Disable remote keyguard animation
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     persist.wm.enable_remote_keyguard_animation=0
 
 # Enforce privapp-permissions whitelist
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.control_privapp_permissions=log
 
 # Additional packages
@@ -288,7 +283,7 @@ PRODUCT_CFI_EXCLUDE_PATHS += \
     external/wpa_supplicant_8/wpa_supplicant \
     external/wpa_supplicant_8/hostapd
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.ota.allow_downgrade=true
 
 # System
