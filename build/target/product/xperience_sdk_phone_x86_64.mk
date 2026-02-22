@@ -17,6 +17,9 @@ $(call inherit-product, device/generic/goldfish/64bitonly/product/sdk_phone64_x8
 include vendor/xperience/build/target/product/xperience_generic_target.mk
 include device/generic/goldfish/board/kernel/x86_64.mk
 
+# include packages
+-include vendor/xperience/config/packages.mk
+
 # Always build modules from source
 PRODUCT_MODULE_BUILD_FROM_SOURCE := true
 
