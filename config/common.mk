@@ -324,4 +324,5 @@ SELINUX_IGNORE_NEVERALLOWS := true
 
 -include vendor/xperience-priv/keys/keys.mk
 
-
+# signature migration
+-include vendor/xperience-priv/keys/certs_migration.mk

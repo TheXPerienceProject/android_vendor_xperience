@@ -35,10 +35,12 @@ xperience_generator {
 
     // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
+        "include/uapi/audio",
         "usr/audio/include/uapi",
         "usr/include",
         "usr/include/audio",
         "usr/include/audio/include/uapi",
+        "usr/include/uapi/audio",
         "usr/techpack/audio/include",
     ],
 
@@ -56,9 +58,16 @@ xperience_generator {
     name: "prebuilt_kernel_includes",
 
     // The headers extract command
-    cmd: "mkdir -p $(KERNEL_BUILD_OUT_PREFIX)$(genDir) && gzip -d < $(TARGET_PREBUILT_KERNEL_HEADERS) | tar -x -C $(KERNEL_BUILD_OUT_PREFIX)$(genDir) && vendor/xperience/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
+    cmd: "mkdir -p $(KERNEL_BUILD_OUT_PREFIX)$(genDir) && " +
+         "if [ -d \"$(TARGET_PREBUILT_KERNEL_HEADERS)\" ]; then " +
+         "    echo 'Copying headers from directory...'; " +
+         "    cp -R $(TARGET_PREBUILT_KERNEL_HEADERS)/* $(KERNEL_BUILD_OUT_PREFIX)$(genDir)/; " +
+         "else " +
+         "    echo 'Extracting headers from tarballs...'; " +
+         "    gzip -d < $(TARGET_PREBUILT_KERNEL_HEADERS) | tar -x -C $(KERNEL_BUILD_OUT_PREFIX)$(genDir); " +
+         "fi && " +
+         "vendor/xperience/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
 
-    // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
         "usr/audio/include/uapi",
         "usr/include",
