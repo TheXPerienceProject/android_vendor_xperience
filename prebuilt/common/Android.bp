@@ -1,0 +1,6 @@
+prebuilt_etc {
+    name: "xio_model.tflite",
+    src: "xio_model.tflite", // Ruta relativa al archivo
+    sub_dir: "xperience",
+    vendor: true,
+}
