@@ -157,7 +157,6 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay \
     XPerienceImmersiveNavigationOverlay
 
 # Dex preopt

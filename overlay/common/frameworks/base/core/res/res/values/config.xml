@@ -254,6 +254,8 @@
     <string name="config_defaultContextualSearchPackageName" translatable="false">com.google.android.googlequicksearchbox</string>
     <string name="config_defaultContextualSearchServiceName" translatable="false">com.google.android.googlequicksearchbox/com.google.android.apps.search.omnient.host.contextualsearch.ContextualSearchServiceEntrypoint</string>
     <bool name="config_contextualSearchEnabled">true</bool>
+    <bool name="config_isContextualSearchSupported">true</bool>
+    <bool name="config_isOmniscreenAllowed">true</bool>
 
     <!-- Suppress Intent Filter Verification Service crashes and System UI ANRs (both AOSP bugs) -->
     <string translatable="false" name="config_appsNotReportingCrashes">com.android.statementservice,com.android.systemui,com.google.android.as,com.google.android.tts</string>
