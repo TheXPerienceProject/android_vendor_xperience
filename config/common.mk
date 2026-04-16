@@ -139,7 +139,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/xperience/overlay/common
 
 # Exclude from RRO
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/xperience/overlay vendor/xperience/overlay/common
 
 PRODUCT_PACKAGES += \
     DocumentsUIOverlay \
