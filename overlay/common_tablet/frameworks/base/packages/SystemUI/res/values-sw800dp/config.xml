@@ -21,4 +21,6 @@
     <!-- Nav bar button default ordering/layout -->
     <string name="config_navBarLayout" translatable="false">space[.2],back,home;space;menu_ime,recent,space[.2]</string>
 
+    <!-- Whether or not to show the UMO on the glanceable hub when media is playing. -->
+    <bool name="config_showUmoOnHub">true</bool>
 </resources>
