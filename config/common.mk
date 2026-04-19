@@ -2,6 +2,9 @@ PRODUCT_BRAND ?= XPerience
 # Versioning
 -include vendor/xperience/config/version.mk
 
+# Exclude kernel platform repos from bp scanning
+PRODUCT_SOURCE_ROOT_DIRS += -kernel/platform
+
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
