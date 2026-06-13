@@ -55,6 +55,8 @@ xperience_generator {
         "kernel/platform/kernel-$(TARGET_KERNEL_VERSION)/$(TARGET_KERNEL_SOURCE_STEM)-*/**/*.h",
         "kernel/platform/kernel-$(TARGET_KERNEL_VERSION)/$(TARGET_KERNEL_SOURCE_STEM)-*/**/BUILD.bazel",
     ],
+
+    tool_files: [":clean_headers.sh"],
 }
 
 xperience_generator {
@@ -73,6 +75,8 @@ xperience_generator {
         "usr/include/audio/include/uapi",
         "usr/techpack/audio/include",
     ],
+
+    tool_files: [":clean_headers.sh"],
 }
 
 bootstrap_go_package {
