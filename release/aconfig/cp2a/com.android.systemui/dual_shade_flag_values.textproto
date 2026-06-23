@@ -1,0 +1,6 @@
+flag_value {
+  package: "com.android.systemui"
+  name: "dual_shade"
+  state: ENABLED
+  permission: READ_ONLY
+}
