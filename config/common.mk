@@ -334,3 +334,7 @@ SELINUX_IGNORE_NEVERALLOWS := true
 # XPerience Intelligence Optimizer
 PRODUCT_PACKAGES += \
     xio_model.tflite
+
+# Enable background blur for widget picker
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.launcher.depth.widget=true
