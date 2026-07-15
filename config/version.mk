@@ -22,8 +22,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1
 
 #Version of the ROM
-PRODUCT_VERSION_MAJOR = 20
-PRODUCT_VERSION_MINOR = 2
+PRODUCT_VERSION_MAJOR = 21
+PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE = 0
 
 BUILD_DATE := $(shell date +%Y%m%d-%H%M%S)

@@ -179,7 +179,6 @@ PRODUCT_PACKAGES += \
 endif
 
 PRODUCT_PACKAGES += \
-    CertifiedKeyboxOverlay \
     XPerienceOptimizer \
     XPerienceSetupWizard
 
@@ -550,13 +549,13 @@ PRODUCT_COPY_FILES += \
     vendor/xperience_themes/product/etc/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
 
 # Utility Overlays
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     HideSmartSpace \
     SmartSpaceOffset \
     HideClock
 
 # Aod wallpaper
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     AODWALL
 
 # Neural Network
