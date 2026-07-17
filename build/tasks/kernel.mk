@@ -123,7 +123,7 @@ BOARD_RECOVERY_KERNEL_MODULES_LOAD ?= $(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LO
 TARGET_KERNEL_MIXED_MODE ?= true
 
 ## Internal variables
-COLLECT_MODULE_DEPS_CMD := python3 $(BUILD_TOP)/vendor/xperience/scripts/collect-kernel-module-deps/collect-kernel-module-deps.py --non-interactive
+COLLECT_MODULE_DEPS_CMD := python3 $(BUILD_TOP)/lineage/scripts/collect-kernel-module-deps/collect-kernel-module-deps.py --non-interactive
 DTC := $(HOST_OUT_EXECUTABLES)/dtc
 KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
 DTBO_OUT := $(TARGET_OUT_INTERMEDIATES)/DTBO_OBJ
@@ -395,7 +395,7 @@ define build-image-kernel-modules-xperience
     sed -e 's/\(.*modules.*\):/\/\1:/g' -e 's/ \([^ ]*modules[^ ]*\)/ \/\1/g' $(4)/lib/modules/0.0/modules.dep > $(2)/lib/modules$(6)/modules.dep
     cp $(4)/lib/modules/0.0/modules.softdep $(2)/lib/modules$(6)
     cp $(4)/lib/modules/0.0/modules.alias $(2)/lib/modules$(6)
-    rm -f $(2)/lib/modules$(6)/modules.load
+    truncate -s 0 $(2)/lib/modules$(6)/modules.load
     for MODULE in $(5); do \
         NAME=$$(basename $$MODULE .ko); \
         if [ -n "$$(find $(2)/lib/modules$(6) -type f -name $$NAME'.ko')" ]; then \
