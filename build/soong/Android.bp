@@ -37,12 +37,10 @@ xperience_generator {
 
     // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
-        "include/uapi/audio",
         "usr/audio/include/uapi",
         "usr/include",
         "usr/include/audio",
         "usr/include/audio/include/uapi",
-        "usr/include/uapi/audio",
         "usr/techpack/audio/include",
     ],
 
@@ -64,6 +62,7 @@ xperience_generator {
          "(cd $(KERNEL_BUILD_OUT_PREFIX).; " +
          "mkdir -p $(genDir) && gzip -d < $(TARGET_PREBUILT_KERNEL_HEADERS) | tar -x -C $(genDir) && vendor/xperience/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir))",
 
+    // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
         "usr/audio/include/uapi",
         "usr/include",
