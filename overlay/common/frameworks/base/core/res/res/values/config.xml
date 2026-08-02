@@ -251,6 +251,9 @@
     </string-array>
 
     <!-- Circle to search -->
+    <string name="config_defaultContextualSearchEnabled">omni.enable_cs_helper</string>
+    <string name="config_defaultContextualSearchKey">omni.entry_point</string>
+    <string name="config_defaultContextualSearchLegacyEnabled">omni.enable_vis</string>
     <string name="config_defaultContextualSearchPackageName" translatable="false">com.google.android.googlequicksearchbox</string>
     <string name="config_defaultContextualSearchServiceName" translatable="false">com.google.android.googlequicksearchbox/com.google.android.apps.search.omnient.host.contextualsearch.ContextualSearchServiceEntrypoint</string>
     <bool name="config_contextualSearchEnabled">true</bool>
