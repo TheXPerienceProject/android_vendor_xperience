@@ -596,11 +596,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
 
 # Wallpaper
-ifeq ($(TARGET_BOOT_ANIMATION_SIZE), 1080)
+#ifeq ($(TARGET_BOOT_ANIMATION_SIZE), 1080)
+#DEVICE_PACKAGE_OVERLAYS += \
+#    vendor/xperience/custom_overlays/XPerienceWallpaper/1080
+#else
+#DEVICE_PACKAGE_OVERLAYS += \
+#    vendor/xperience/custom_overlays/XPerienceWallpaper/1440
+#endif
 DEVICE_PACKAGE_OVERLAYS += \
-    vendor/xperience/custom_overlays/XPerienceWallpaper/1080
-else
-DEVICE_PACKAGE_OVERLAYS += \
-    vendor/xperience/custom_overlays/XPerienceWallpaper/1440
-
-endif
+    vendor/xperience/custom_overlays/XPerienceWallpaper/nosize
