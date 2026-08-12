@@ -592,7 +592,7 @@ $(TARGET_PREBUILT_INT_KERNEL): $(KERNEL_CONFIG) $(DEPMOD) $(DTC) $(BOOT_KERNEL_M
 				[ $$? -ne 0 ] && exit 1; \
 				if [ -n "$$vendor_boot_modules" ]; then \
 					($(call build-image-kernel-modules-xperience,$$vendor_boot_modules,$(KERNEL_VENDOR_RAMDISK_MODULES_OUT),,$(KERNEL_VENDOR_RAMDISK_DEPMOD_STAGING_DIR),$(KERNEL_VENDOR_RAMDISK_KERNEL_MODULES_LOAD),,,)) || exit "$$?"; \
-				fi \
+				fi; \
 			) \
 			$(if $(RECOVERY_KERNEL_MODULES)$(RECOVERY_KERNEL_MODULES_FINDER),\
 				$(if $(RECOVERY_KERNEL_MODULES_FINDER), \
@@ -608,7 +608,7 @@ $(TARGET_PREBUILT_INT_KERNEL): $(KERNEL_CONFIG) $(DEPMOD) $(DTC) $(BOOT_KERNEL_M
 				[ $$? -ne 0 ] && exit 1; \
 				if [ -n "$$recovery_modules" ]; then \
 					($(call build-image-kernel-modules-xperience,$$recovery_modules,$(KERNEL_RECOVERY_MODULES_OUT),,$(KERNEL_RECOVERY_DEPMOD_STAGING_DIR),$(BOARD_RECOVERY_KERNEL_MODULES_LOAD),,,)) || exit "$$?"; \
-				fi \
+				fi; \
 			) \
 		fi
 
