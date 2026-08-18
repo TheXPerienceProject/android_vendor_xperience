@@ -1016,5 +1016,17 @@ function build_kernel() {
     echo "Kernel build output copied to ${target_kernel_dir}/"
 }
 
+function xperience() {
+  local T=$(gettop)
+  if [ ! "$T" ]; then
+      echo "Couldn't locate the top of the tree. Try setting TOP." >&2
+      return
+  fi
+  source ${ANDROID_BUILD_TOP}/vendor/xperience/vars/aosp_target_release 
+  $T/vendor/xperience/tools/xperience.sh "$@"
+ 
+}
+
+
 generate_host_overrides
 invalidate_prebuilt_intermediates
