@@ -10,7 +10,7 @@ PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
 # boost framework
-include vendor/xperience/config/boost.mk
+#include vendor/xperience/config/boost.mk
 
 TARGET_DISABLE_SHUTDOWNANIMATION ?= true
 
@@ -153,7 +153,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGE_OVERLAYS += vendor/xperience/overlay/dictionaries
 
 # Squisher Location
-SQUISHER_SCRIPT := vendor/xperience/tools/squisher
+#SQUISHER_SCRIPT := vendor/xperience/tools/squisher
 
 # Snapdragon Clang
 #$(call inherit-product, vendor/qcom/sdclang/config/SnapdragonClang.mk)
@@ -219,9 +219,6 @@ PRODUCT_PACKAGES += \
     nano \
     setcap \
     vim
-
-PRODUCT_PACKAGES += \
-    nano_recovery
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/curl \
@@ -297,7 +294,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.ota.allow_downgrade=true
 
 # System
-persist.sys.binary_xml=false
+#persist.sys.binary_xml=false
 
 # Disable default frame rate limit for games
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -340,3 +337,7 @@ SELINUX_IGNORE_NEVERALLOWS := true
 # XPerience Intelligence Optimizer
 PRODUCT_PACKAGES += \
     xio_model.tflite
+
+# Enable background blur for widget picker
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.launcher.depth.widget=true
