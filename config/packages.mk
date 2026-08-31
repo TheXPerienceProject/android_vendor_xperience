@@ -577,6 +577,7 @@ PRODUCT_PACKAGES += \
 
 # SetupWizard
 PRODUCT_PRODUCT_PROPERTIES += \
+    setupwizard.theme=glif_expressive \
     setupwizard.feature.day_night_mode_enabled=true
 
 # TextClassifier
