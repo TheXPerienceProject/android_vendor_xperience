@@ -169,6 +169,18 @@ else
 $(call inherit-product, vendor/gms/gms_full.mk)
 endif
 $(call inherit-product, vendor/pixel-style/config/common.mk)
+
+# Clocks (SystemUI)
+PRODUCT_PACKAGES += \
+    SystemUIClocks-BigNum \
+    SystemUIClocks-Calligraphy \
+    SystemUIClocks-Flex \
+    SystemUIClocks-Growth \
+    SystemUIClocks-Inflate \
+    SystemUIClocks-Metro \
+    SystemUIClocks-NumOverlap \
+    SystemUIClocks-Weather
+
 else
 PRODUCT_PACKAGES += \
     LatinIME
