@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
     GameSpace \
     LMOFreeform \
     LMOFreeformSidebar \
+    LMOSystemUIClock \
     MusicXPeria \
     Recorder \
     Seedvault \
