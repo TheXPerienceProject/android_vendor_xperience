@@ -52,7 +52,6 @@ PRODUCT_PACKAGES += \
     BatteryStatsViewer \
     Camelot \
     Datura \
-    dynamicisland \
     ExactCalculator \
     GameBar \
     GameSpace \

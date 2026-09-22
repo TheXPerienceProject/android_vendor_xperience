@@ -907,7 +907,6 @@ invalidate_prebuilt_intermediates() {
 
     # List of prebuilt intermediate paths (relative to .intermediates)
     local prebuilts=(
-        "vendor/xperience/prebuilt/app/DynamicIsland"
         "vendor/xperience/prebuilt/app/XPerienceWeather"
     )
 
@@ -915,7 +914,7 @@ invalidate_prebuilt_intermediates() {
         local target="${soong_intermediates}/${prebuilt}"
 
         if [ -d "${target}" ]; then
-            echo ">> Invalidating prebuilt intermediates: ${target}"
+            #echo ">> Invalidating prebuilt intermediates: ${target}"
             rm -rf "${target}"
         else
             echo ">> Prebuilt intermediates not found (skipping): ${target}"
