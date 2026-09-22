@@ -1,0 +1,20 @@
+<!--
+ adb shell settings get secure theme_customization_overlay_packages
+{"android.theme.customization.font":"com.android.theme.font.oneplusslate","android.theme.customization.color_both":"1","_applied_timestamp":1790105471436,"android.theme.customization.color_index":"1","android.theme.customization.color_s
+ource":"home_wallpaper","android.theme.customization.theme_style":"VIBRANT"}
+
+{
+  "android.theme.customization.font": "com.android.theme.font.oneplusslate",
+  "android.theme.customization.color_both": "1",
+  "android.theme.customization.color_index": "1",
+  "android.theme.customization.color_source": "home_wallpaper",
+  "android.theme.customization.theme_style": "VIBRANT"
+}
+-->
+<resources>
+    <!-- Enable the dynamic themes and colors engine -->
+    <bool name="def_theme_customization_overlay_enabled">true</bool>
+
+    <!-- Inject the exact JSON string wrapped in CDATA to avoid XML syntax errors -->
+    <string name="def_theme_customization_overlay_packages" translatable="false"><![CDATA[{"android.theme.customization.font":"com.android.theme.font.oneplusslate","android.theme.customization.color_both":"1","android.theme.customization.color_index":"1","android.theme.customization.color_source":"home_wallpaper","android.theme.customization.theme_style":"VIBRANT"}]]></string>
+</resources>
