@@ -45,6 +45,7 @@
 #                                          Defaults to empty
 #   TARGET_KERNEL_EXT_MODULES          = Optional, the external modules we are
 #                                          building. Defaults to empty
+#   TARGET_KERNEL_BAZEL_FLAGS          = Optional, additional Bazel flags for the kernel build
 #   TARGET_KERNEL_UNSAFE_DDK_HEADERS   = Specifies if bazel build should use unsafe headers for DDK
 #                                        modules, this defaults to empty and should only be set to
 #                                        true if no other choice.
@@ -114,7 +115,7 @@ ifneq ($(USE_CCACHE),)
 endif
 
 # Clear this first to prevent accidental poisoning from env
-KERNEL_BAZEL_FLAGS :=
+KERNEL_BAZEL_FLAGS := $(TARGET_KERNEL_BAZEL_FLAGS)
 KERNEL_MAKE_FLAGS :=
 
 # Use "safe" default values for kernel build user & host - matches Pixels, helps avoid detection
