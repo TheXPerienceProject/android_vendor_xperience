@@ -12,9 +12,9 @@ ource":"home_wallpaper","android.theme.customization.theme_style":"VIBRANT"}
 }
 -->
 <resources>
-    <!-- Enable the dynamic themes and colors engine -->
-    <bool name="def_theme_customization_overlay_enabled">true</bool>
-
     <!-- Inject the exact JSON string wrapped in CDATA to avoid XML syntax errors -->
+    <!-- Default theme customization overlay packages (JSON) -->
     <string name="def_theme_customization_overlay_packages" translatable="false"><![CDATA[{"android.theme.customization.font":"com.android.theme.font.oneplusslate","android.theme.customization.color_both":"1","android.theme.customization.color_index":"1","android.theme.customization.color_source":"home_wallpaper","android.theme.customization.theme_style":"VIBRANT"}]]></string>
+    <!-- Default status bar battery style: 4 = XPerience (circle with center dot) -->
+    <integer name="def_status_bar_battery_style">4</integer>
 </resources>
