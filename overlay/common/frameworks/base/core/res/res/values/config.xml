@@ -353,7 +353,7 @@
          Color  - `home_wallpaper` (for color extraction) or a comma-separated list of
                   hexadecimal int (#FFcc99,#aabbcc).<item>*|VIBRANT|home_wallpaper</item>68162A -->
     <string-array name="theming_defaults" translatable="false">
-	<item>*|VIBRANT|#991B1B</item>
+	<item>*|VIBRANT|#FB1C1A</item>
     </string-array>
 
 </resources>
