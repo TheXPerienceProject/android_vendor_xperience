@@ -660,14 +660,14 @@ class CherryPicker:
         if dry_run:
             return True, f"[SIMULATION] git fetch {change.fetch_url} {change.ref_or_sha} && git cherry-pick FETCH_HEAD", []
 
-        # Check git status for uncommitted changes
+        # Check git status for uncommitted tracked changes (ignore untracked files like loose .patch, .txt, etc.)
         status = subprocess.run(
-            ["git", "-C", str(target_path), "status", "--porcelain"],
+            ["git", "-C", str(target_path), "status", "--porcelain", "-uno"],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
         )
         if status.stdout.strip():
             dirty_lines = [line.strip() for line in status.stdout.strip().splitlines()]
-            return False, "Repository has uncommitted changes (dirty working tree)", dirty_lines
+            return False, "Repository has uncommitted tracked changes (dirty working tree)", dirty_lines
 
         # 1. Fetch
         fetch_cmd = ["git", "-C", str(target_path), "fetch", change.fetch_url, change.ref_or_sha]
