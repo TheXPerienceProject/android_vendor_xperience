@@ -20,6 +20,8 @@ XPE_TARGET_PACKAGE := $(PRODUCT_OUT)/xperience-$(XPE_VERSION).zip
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
 .PHONY: xpe bacon
+
+ifneq ($(INTERNAL_OTA_PACKAGE_TARGET),)
 xpe: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(XPE_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(XPE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(XPE_TARGET_PACKAGE).SHA256
@@ -36,5 +38,12 @@ xpe: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e ${CL_CYN}"Package SHA256: "${CL_MAG}" `cat $(XPE_TARGET_PACKAGE).SHA256 | cut -d ' ' -f 1`"${CL_RST}
 	@echo -e ${CL_CYN}"Package size:"${CL_MAG}" `du -h $(XPE_TARGET_PACKAGE) | cut -f 1`            "${CL_RST}
 	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+else
+xpe: droidcore
+	@echo ""
+	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_CYN}"Emulator Build Complete: $(PRODUCT_OUT)" >&2                                   ${CL_RST}
+	@echo -e ${CL_YLW}"════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+endif
 
 bacon: xpe

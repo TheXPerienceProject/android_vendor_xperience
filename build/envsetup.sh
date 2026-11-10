@@ -803,7 +803,15 @@ alias cmkap='dopush cmka'
 
 function repopick() {
   T=$(gettop)
-  $T/vendor/xperience/build/tools/repopick.py $@
+  if [ -z "$T" ]; then
+    echo "Error: Run from an Android tree with envsetup sourced." >&2
+    return 1
+  fi
+  $T/vendor/xperience/build/tools/repopick.py "$@"
+}
+
+function repo-pick() {
+  repopick "$@"
 }
 
 function fixup_common_out_dir() {
