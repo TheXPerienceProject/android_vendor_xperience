@@ -152,11 +152,60 @@ class PickableChange:
     bug_id: Optional[str] = None
     severity: Optional[str] = None
     versions: Optional[str] = None
+    current_revision: str = ""
+    parents: List[str] = field(default_factory=list)
 
     @property
     def is_manifest(self) -> bool:
         p = self.project.lower()
         return p in ("lineageos/android", "android", "platform/manifest", "manifest") or p.endswith("_manifest")
+
+
+def topological_sort_changes(changes: List[PickableChange]) -> List[PickableChange]:
+    """Sorts changes topologically so parent commits are always picked before children."""
+    from collections import defaultdict, deque
+
+    sha_to_change: Dict[str, str] = {}
+    ident_to_change: Dict[str, PickableChange] = {c.identifier: c for c in changes}
+
+    for c in changes:
+        if c.current_revision:
+            sha_to_change[c.current_revision] = c.identifier
+
+    adj = defaultdict(list)
+    in_degree = defaultdict(int)
+
+    for c in changes:
+        ident = c.identifier
+        for p_sha in c.parents:
+            if p_sha in sha_to_change:
+                parent_ident = sha_to_change[p_sha]
+                adj[parent_ident].append(ident)
+                in_degree[ident] += 1
+
+    def sort_key(cid: str):
+        return int(cid) if cid.isdigit() else cid
+
+    zero_in = [c.identifier for c in changes if in_degree[c.identifier] == 0]
+    zero_in.sort(key=sort_key)
+
+    queue = deque(zero_in)
+    sorted_idents = []
+
+    while queue:
+        curr = queue.popleft()
+        sorted_idents.append(curr)
+        for child in sorted(adj[curr], key=sort_key):
+            in_degree[child] -= 1
+            if in_degree[child] == 0:
+                queue.append(child)
+
+    seen = set(sorted_idents)
+    remaining = [c.identifier for c in changes if c.identifier not in seen]
+    remaining.sort(key=sort_key)
+    sorted_idents.extend(remaining)
+
+    return [ident_to_change[cid] for cid in sorted_idents]
 
 
 # ==============================================================================
@@ -394,7 +443,7 @@ class GerritClient:
         if branch:
             q += f' branch:{branch}'
         q_encoded = urllib.parse.quote(q)
-        endpoint = f"changes/?q={q_encoded}&o=CURRENT_REVISION&o=DETAILED_ACCOUNTS"
+        endpoint = f"changes/?q={q_encoded}&o=CURRENT_REVISION&o=CURRENT_COMMIT&o=DETAILED_ACCOUNTS"
 
         data = self._fetch_json(endpoint)
         if not data or not isinstance(data, list):
@@ -402,7 +451,7 @@ class GerritClient:
 
         results = []
         for c in data:
-            rev_id = c.get("current_revision")
+            rev_id = c.get("current_revision") or ""
             revisions = c.get("revisions", {})
             rev_info = revisions.get(rev_id, {})
             fetch_url, fetch_ref = self._resolve_fetch_info(rev_info, c["project"])
@@ -413,6 +462,8 @@ class GerritClient:
                 rev_num = rev_info.get("_number", 1)
                 ref = f"refs/changes/{last_two}/{num}/{rev_num}"
 
+            parents = [p["commit"] for p in rev_info.get("commit", {}).get("parents", [])]
+
             change = PickableChange(
                 source_type="gerrit",
                 identifier=str(c["_number"]),
@@ -422,18 +473,20 @@ class GerritClient:
                 subject=c.get("subject", "No subject"),
                 branch=c.get("branch"),
                 change_id=c.get("change_id"),
+                current_revision=rev_id,
+                parents=parents,
             )
             results.append(change)
 
         return results
 
     def get_change(self, change_num: int) -> Optional[PickableChange]:
-        endpoint = f"changes/{change_num}?o=CURRENT_REVISION"
+        endpoint = f"changes/{change_num}?o=CURRENT_REVISION&o=CURRENT_COMMIT"
         c = self._fetch_json(endpoint)
         if not c or not isinstance(c, dict):
             return None
 
-        rev_id = c.get("current_revision")
+        rev_id = c.get("current_revision") or ""
         revisions = c.get("revisions", {})
         rev_info = revisions.get(rev_id, {})
         fetch_url, fetch_ref = self._resolve_fetch_info(rev_info, c["project"])
@@ -442,6 +495,8 @@ class GerritClient:
             last_two = f"{change_num:02d}"[-2:]
             rev_num = rev_info.get("_number", 1)
             ref = f"refs/changes/{last_two}/{change_num}/{rev_num}"
+
+        parents = [p["commit"] for p in rev_info.get("commit", {}).get("parents", [])]
 
         return PickableChange(
             source_type="gerrit",
@@ -452,6 +507,8 @@ class GerritClient:
             subject=c.get("subject", "No subject"),
             branch=c.get("branch"),
             change_id=c.get("change_id"),
+            current_revision=rev_id,
+            parents=parents,
         )
 
 
@@ -895,6 +952,9 @@ Examples:
         for mc in manifest_excluded:
             print(f"  {Colors.c('⊘ OMITTED', Colors.MAGENTA, Colors.BOLD)} #{mc.identifier} ({mc.project}) : {mc.subject}")
 
+    # Topologically sort code changes so parent commits are always picked before children
+    code_changes = topological_sort_changes(code_changes)
+
     # Inspect Local Manifest & Pre-check Existing Commits
     UI.section("Auditing Manifest Remotes & Pre-Checking Git Commits", "🔍")
     allowed_remotes = {r.strip().lower() for r in parsed_args.remotes.split(",")}
@@ -905,6 +965,7 @@ Examples:
     ok_tracked: List[Tuple[PickableChange, ManifestProject, bool, str]] = []
     fork_needed: List[Tuple[PickableChange, ManifestProject, bool, str]] = []
     not_in_manifest: List[Tuple[PickableChange, Path, bool, str]] = []
+    all_audited: List[Tuple[PickableChange, str, str, bool, str, str]] = []
 
     for c in code_changes:
         mp = inspector.resolve_project(c.project)
@@ -916,10 +977,19 @@ Examples:
         if mp:
             if mp.remote.lower() in allowed_remotes:
                 ok_tracked.append((c, mp, already_applied, reason))
+                category = "OK"
             else:
                 fork_needed.append((c, mp, already_applied, reason))
+                category = "FORK"
+            rem = mp.remote
+            path_str = mp.path
         else:
             not_in_manifest.append((c, target_path, already_applied, reason))
+            category = "MISSING"
+            rem = "N/A"
+            path_str = str(target_path.relative_to(top_dir)) if target_path.is_relative_to(top_dir) else str(target_path)
+
+        all_audited.append((c, rem, path_str, already_applied, reason, category))
 
     # Print Summary Table
     print("\n" + "─" * 96)
@@ -928,15 +998,6 @@ Examples:
 
     display_limit = 30 if len(code_changes) > 35 and not parsed_args.generate_xml else len(code_changes)
     count = 0
-
-    all_audited = []
-    for c, mp, applied, reason in ok_tracked:
-        all_audited.append((c, mp.remote, mp.path, applied, reason, "OK"))
-    for c, mp, applied, reason in fork_needed:
-        all_audited.append((c, mp.remote, mp.path, applied, reason, "FORK"))
-    for c, p, applied, reason in not_in_manifest:
-        rel_p = str(p.relative_to(top_dir)) if p.is_relative_to(top_dir) else str(p)
-        all_audited.append((c, "N/A", rel_p, applied, reason, "MISSING"))
 
     for c, rem, path, applied, reason, category in all_audited:
         count += 1
