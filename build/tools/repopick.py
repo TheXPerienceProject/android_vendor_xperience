@@ -370,6 +370,25 @@ class GerritClient:
             UI.error(f"Connection error to Gerrit ({self.server_url}): {e}")
             return None
 
+    def _resolve_fetch_info(self, rev_info: dict, project: str) -> Tuple[str, str]:
+        """Resolves the proper git fetch URL and ref from Gerrit revision metadata."""
+        fetch_dict = rev_info.get("fetch", {}) if isinstance(rev_info, dict) else {}
+
+        # 1. Check Gerrit provided fetch protocols (e.g. 'anonymous http' pointing to GitHub mirror)
+        for proto in ("anonymous http", "http", "https"):
+            if proto in fetch_dict and isinstance(fetch_dict[proto], dict) and "url" in fetch_dict[proto]:
+                url = fetch_dict[proto]["url"]
+                ref = fetch_dict[proto].get("ref", "")
+                return url, ref
+
+        # 2. Known Fallbacks: LineageOS mirrors all git objects to GitHub
+        if "lineageos.org" in self.server_url:
+            return f"https://github.com/{project}", ""
+        elif "googlesource.com" in self.server_url:
+            return f"https://android.googlesource.com/{project}", ""
+
+        return f"{self.server_url}/{project}", ""
+
     def query_topic(self, topic: str, branch: Optional[str] = None) -> List[PickableChange]:
         q = f'topic:"{topic}"'
         if branch:
@@ -386,7 +405,8 @@ class GerritClient:
             rev_id = c.get("current_revision")
             revisions = c.get("revisions", {})
             rev_info = revisions.get(rev_id, {})
-            ref = rev_info.get("ref", "")
+            fetch_url, fetch_ref = self._resolve_fetch_info(rev_info, c["project"])
+            ref = fetch_ref or rev_info.get("ref", "")
             if not ref and rev_id and "_number" in c:
                 num = c["_number"]
                 last_two = f"{num:02d}"[-2:]
@@ -397,7 +417,7 @@ class GerritClient:
                 source_type="gerrit",
                 identifier=str(c["_number"]),
                 project=c["project"],
-                fetch_url=f"{self.server_url}/{c['project']}",
+                fetch_url=fetch_url,
                 ref_or_sha=ref,
                 subject=c.get("subject", "No subject"),
                 branch=c.get("branch"),
@@ -416,7 +436,8 @@ class GerritClient:
         rev_id = c.get("current_revision")
         revisions = c.get("revisions", {})
         rev_info = revisions.get(rev_id, {})
-        ref = rev_info.get("ref", "")
+        fetch_url, fetch_ref = self._resolve_fetch_info(rev_info, c["project"])
+        ref = fetch_ref or rev_info.get("ref", "")
         if not ref and rev_id:
             last_two = f"{change_num:02d}"[-2:]
             rev_num = rev_info.get("_number", 1)
@@ -426,7 +447,7 @@ class GerritClient:
             source_type="gerrit",
             identifier=str(c["_number"]),
             project=c["project"],
-            fetch_url=f"{self.server_url}/{c['project']}",
+            fetch_url=fetch_url,
             ref_or_sha=ref,
             subject=c.get("subject", "No subject"),
             branch=c.get("branch"),
