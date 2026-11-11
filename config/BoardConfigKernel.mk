@@ -96,7 +96,7 @@ TARGET_KERNEL_CLANG_PATH ?= $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TA
 # for Rust-enabled kernels rather than maintaining a toolchain denylist.
 ifeq ($(TARGET_KERNEL_LIBCLANG_PATH),)
     ifneq ($(wildcard $(TARGET_KERNEL_SOURCE)/rust/bindings/bindings_helper.h),)
-        TARGET_KERNEL_LIBCLANG_PATH := $(shell $(BUILD_TOP)/vendor/lineage/build/tools/select_kernel_libclang.sh \
+        TARGET_KERNEL_LIBCLANG_PATH := $(shell $(BUILD_TOP)/vendor/xperience/build/tools/select_kernel_libclang.sh \
             $(BUILD_TOP)/prebuilts/clang-tools/$(HOST_PREBUILT_TAG)/bin/bindgen \
             $(TARGET_KERNEL_CLANG_PATH) \
             $(BUILD_TOP)/prebuilts/clang/host/$(HOST_PREBUILT_TAG))
